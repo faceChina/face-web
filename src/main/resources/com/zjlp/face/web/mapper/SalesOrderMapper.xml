@@ -1,0 +1,2192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.SalesOrderMapper" >
+<resultMap id="BaseResultMap" type="com.zjlp.face.web.server.trade.order.domain.SalesOrder" >
+    <id column="ORDER_NO" property="orderNo" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="TITLE" property="title" jdbcType="VARCHAR" />
+    <result column="FROM_INNER" property="fromInner" jdbcType="INTEGER" />
+    <result column="QUANTITY" property="quantity" jdbcType="BIGINT" />
+    <result column="PRICE" property="price" jdbcType="BIGINT" />
+    <result column="TOTAL_PRICE" property="totalPrice" jdbcType="BIGINT" />
+    <result column="PAY_PRICE" property="payPrice" jdbcType="BIGINT" />
+    <result column="ADJUST_PRICE" property="adjustPrice" jdbcType="BIGINT" />
+    <result column="DISCOUNT_PRICE" property="discountPrice" jdbcType="BIGINT" />
+    <result column="INTEGRAL" property="integral" jdbcType="BIGINT" />
+    <result column="REAL_INTEGRAL" property="realIntegral" jdbcType="BIGINT" />
+    <result column="OBTAIN_INTEGRAL" property="obtainIntegral" jdbcType="BIGINT" />
+    <result column="USER_ID" property="userId" jdbcType="BIGINT" />
+    <result column="BUYER_ACCOUNT" property="buyerAccount" jdbcType="VARCHAR" />
+    <result column="BUYER_NICK" property="buyerNick" jdbcType="VARCHAR" />
+    <result column="BUYER_MESSAGE" property="buyerMessage" jdbcType="VARCHAR" />
+    <result column="BUYER_MEMO" property="buyerMemo" jdbcType="VARCHAR" />
+    <result column="SHOP_NO" property="shopNo" jdbcType="VARCHAR" />
+    <result column="SHOP_NAME" property="shopName" jdbcType="VARCHAR" />
+    <result column="SELLER_NAME" property="sellerName" jdbcType="VARCHAR" />
+    <result column="SELLER_PHONE" property="sellerPhone" jdbcType="VARCHAR" />
+    <result column="SELLER_MEMO" property="sellerMemo" jdbcType="VARCHAR" />
+    <result column="PAY_WAY" property="payWay" jdbcType="INTEGER" />
+    <result column="PAY_CHANNEL" property="payChannel" jdbcType="INTEGER" />
+    <result column="PAY_TYPE" property="payType" jdbcType="INTEGER" />
+    <result column="BANK_CARD" property="bankCard" jdbcType="BIGINT" />
+    <result column="OPEN_ID" property="openId" jdbcType="VARCHAR" />
+    <result column="DELIVERY_WAY" property="deliveryWay" jdbcType="INTEGER" />
+    <result column="DELIVERY_RANGE" property="deliveryRange" jdbcType="VARCHAR" />
+    <result column="PICK_UP_PHONE" property="pickUpPhone" jdbcType="VARCHAR" />
+    <result column="PICK_UP_ADDRESS" property="pickUpAddress" jdbcType="VARCHAR" />
+    <result column="HAS_POST_FEE" property="hasPostFee" jdbcType="BIT" />
+    <result column="POST_FEE" property="postFee" jdbcType="BIGINT" />
+    <result column="RECEIVER_NAME" property="receiverName" jdbcType="VARCHAR" />
+    <result column="RECEIVER_PHONE" property="receiverPhone" jdbcType="VARCHAR" />
+    <result column="V_AREA_CODE" property="vAreaCode" jdbcType="INTEGER" />
+    <result column="RECEIVER_STATE" property="receiverState" jdbcType="VARCHAR" />
+    <result column="RECEIVER_DISTRICT" property="receiverDistrict" jdbcType="VARCHAR" />
+    <result column="RECEIVER_CITY" property="receiverCity" jdbcType="VARCHAR" />
+    <result column="RECEIVER_ADDRESS" property="receiverAddress" jdbcType="VARCHAR" />
+    <result column="ORDER_TIME" property="orderTime" jdbcType="TIMESTAMP" />
+    <result column="ORDER_CATEGORY" property="orderCategory" jdbcType="INTEGER" />
+    <result column="TRANSACTION_SERIAL_NUMBER" property="transactionSerialNumber" jdbcType="VARCHAR" />
+    <result column="PAYMENT_TIME" property="paymentTime" jdbcType="TIMESTAMP" />
+    <result column="DELIVERY_TIME" property="deliveryTime" jdbcType="TIMESTAMP" />
+    <result column="CONFIRM_TIME" property="confirmTime" jdbcType="TIMESTAMP" />
+    <result column="CLOSING_TIME" property="closingTime" jdbcType="TIMESTAMP" />
+    <result column="CANCEL_TIME" property="cancelTime" jdbcType="TIMESTAMP" />
+    <result column="DELETE_TIME" property="deleteTime" jdbcType="TIMESTAMP" />
+    <result column="TIMEOUT_TIME" property="timeoutTime" jdbcType="TIMESTAMP" />
+    <result column="SOLR_TIME" property="solrTime" jdbcType="TIMESTAMP" />
+    <result column="SENDER_NAME" property="senderName" jdbcType="VARCHAR" />
+    <result column="SENDER_CELL" property="senderCell" jdbcType="VARCHAR" />
+    <result column="DELIVERY_COMPANY" property="deliveryCompany" jdbcType="VARCHAR" />
+    <result column="DELIVERY_SN" property="deliverySn" jdbcType="VARCHAR" />
+    <result column="APPOINTMENT_ID" property="appointmentId" jdbcType="BIGINT" />
+    <result column="APPOINTMENT_NAME" property="appointmentName" jdbcType="VARCHAR" />
+    <result column="PICTURE_PATH" property="picturePath" jdbcType="VARCHAR" />
+    <result column="REFUSE_REASON" property="refuseReason" jdbcType="VARCHAR" />
+    <result column="APPOINTMENT_TIME" property="appointmentTime" jdbcType="TIMESTAMP" />
+    <result column="REFUSE_TIME" property="refuseTime" jdbcType="TIMESTAMP" />
+    <result column="APPOINTMENT_ADDRESS" property="appointmentAddress" jdbcType="VARCHAR" />
+    <result column="PAY_STATUS" property="payStatus" jdbcType="INTEGER" />
+    <result column="DEDUCT_RATE" property="deductRate" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="RECEIVE_TIME" property="receiveTime" jdbcType="TIMESTAMP" />
+    
+    <result column="SELLER_REMOTE_ID" property="sellerRemoteId" jdbcType="VARCHAR" />
+    <result column="SELLER_REMOTE_TYPE" property="sellerRemoteType" jdbcType="INTEGER" />
+    <result column="DELIVERY_REMOTE_ID" property="deliveryRemoteId" jdbcType="VARCHAR" />
+    <result column="DELIVERY_REMOTE_TYPE" property="deliveryRemoteType" jdbcType="INTEGER" />
+    
+    <result column="COUPON_PRICE" property="couponPrice" jdbcType="BIGINT" />
+    
+  </resultMap>
+  <resultMap id="BaseResultMapDto" extends="BaseResultMap" type="com.zjlp.face.web.server.trade.order.domain.dto.SalesOrderDto"></resultMap>
+  <resultMap id="BaseResultMapCustomerOrder" type="com.zjlp.face.web.server.user.customer.domain.dto.CustomerOrder" >
+    <result column="USER_ID" property="userId" jdbcType="BIGINT" />
+    <result column="CUSTOMER_ID" property="customerId" jdbcType="BIGINT" />
+    <result column="SHOP_NO" property="shopNo" jdbcType="VARCHAR" />
+    <result column="SHOP_TYPE" property="shopType" jdbcType="INTEGER" />
+    <result column="SHOP_NAME" property="shopName" jdbcType="VARCHAR" />
+    <result column="ORDER_NO" property="tradeNo" jdbcType="VARCHAR" />
+    <result column="PAY_PRICE" property="totalPayPrice" jdbcType="BIGINT" />
+    <result column="POST_FEE" property="totalPostFree" jdbcType="BIGINT" />
+    <result column="DELIVERY_REMOTE_ID" property="deliveryRemoteId" jdbcType="VARCHAR" />
+    <result column="DELIVERY_REMOTE_TYPE" property="deliveryRemoteType" jdbcType="INTEGER" />
+  </resultMap>
+  <!-- SubBranchSalesOrderVo -->
+  <resultMap type="com.zjlp.face.web.server.trade.order.domain.vo.SubBranchSalesOrderVo" id="BaseResultMapSubBranchSalesOrderVo"  extends="BaseResultMap">
+  	<result column="ITEMS" property="items" jdbcType="INTEGER"/>
+  	<result column="PURCHASE_ID" property="purchaseID" jdbcType="BIGINT"/>
+  	<result column="SUPPLIER_NO" property="supplierShopNo" jdbcType="VARCHAR"/>
+  	<result column="SUPPLIER_NICK" property="supplierShopNick" jdbcType="VARCHAR"/>
+  	<result column="SUPPLIER_TYPE" property="supplierShopType" jdbcType="INTEGER"/>
+  	<result column="PURCHASER_NO" property="purchaserNo" jdbcType="VARCHAR"/>
+  	<result column="PURCHASER_NICK" property="purchaserNick" jdbcType="VARCHAR"/>
+  	<result column="TOTAL_PURCHASE_QUANTITY" property="totalPurchaseQuantity" jdbcType="BIGINT"/>
+  	<result column="TOTAL_PURCHASE_PRICE" property="totalPurchasePrice" jdbcType="BIGINT"/>
+  	<result column="TOTAL_SALES_PRICE" property="totalSalesPrice" jdbcType="BIGINT"/>
+  	<result column="TOTAL_PROFIT_PRICE" property="totalProfitPrice" jdbcType="BIGINT"/>
+  	<result column="COOPERATION_WAY" property="cooperationWay" jdbcType="INTEGER"/>
+  	<result column="PRE_LEVE_COMMSSION" property="preLeveCommssion" jdbcType="BIGINT"/>
+  	<result column="ORDER_SOURCE" property="orderSource" jdbcType="VARCHAR"/>
+  	<result column="SUBBRANCH_ID" property="subbranchId" jdbcType="BIGINT" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    ORDER_NO, STATUS, TITLE, COUPON_PRICE, FROM_INNER, QUANTITY, PRICE, TOTAL_PRICE, PAY_PRICE, ADJUST_PRICE, 
+    DISCOUNT_PRICE, INTEGRAL, REAL_INTEGRAL, OBTAIN_INTEGRAL, USER_ID, BUYER_ACCOUNT, 
+    BUYER_NICK, BUYER_MESSAGE, BUYER_MEMO, SHOP_NO, SHOP_NAME, SELLER_NAME, SELLER_PHONE, 
+    SELLER_MEMO, PAY_WAY, PAY_CHANNEL, PAY_TYPE, BANK_CARD, OPEN_ID, DELIVERY_WAY, DELIVERY_RANGE, 
+    PICK_UP_PHONE, PICK_UP_ADDRESS, HAS_POST_FEE, POST_FEE, RECEIVER_NAME, RECEIVER_PHONE, 
+    V_AREA_CODE, RECEIVER_STATE, RECEIVER_DISTRICT, RECEIVER_CITY, RECEIVER_ADDRESS, 
+    ORDER_TIME, ORDER_CATEGORY, TRANSACTION_SERIAL_NUMBER, PAYMENT_TIME, DELIVERY_TIME, 
+    CONFIRM_TIME, CLOSING_TIME, CANCEL_TIME, DELETE_TIME, TIMEOUT_TIME, SOLR_TIME, SENDER_NAME, 
+    SENDER_CELL, DELIVERY_COMPANY, DELIVERY_SN, APPOINTMENT_ID, APPOINTMENT_NAME, PICTURE_PATH, REFUSE_REASON, 
+    APPOINTMENT_TIME, REFUSE_TIME, APPOINTMENT_ADDRESS, PAY_STATUS, DEDUCT_RATE, CREATE_TIME, UPDATE_TIME,DEDUCT_RATE,
+    SELLER_REMOTE_ID,SELLER_REMOTE_TYPE,DELIVERY_REMOTE_ID,DELIVERY_REMOTE_TYPE,COUPON_PRICE,RECEIVE_TIME
+  </sql>
+
+  <resultMap id="OrderAppointmentDetailMap" type="com.zjlp.face.web.server.operation.appoint.domain.OrderAppointmentDetail" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="ORDER_NO" property="orderNo" jdbcType="VARCHAR" />
+    <result column="ATTR_NAME" property="attrName" jdbcType="VARCHAR" />
+    <result column="ATTR_VALUE" property="attrValue" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="OrderAppointmentDetail" >
+    ID, ORDER_NO, ATTR_NAME, ATTR_VALUE, CREATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sales_order
+    where ORDER_NO = #{orderNo,jdbcType=VARCHAR} <![CDATA[and status <> 11]]>
+  </select>
+  <update id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    update sales_order set status = 11,update_time=now()
+    where ORDER_NO = #{orderNo,jdbcType=VARCHAR}
+  </update>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.trade.order.domain.SalesOrder" >
+  insert into sales_order (ORDER_NO, STATUS, TITLE, 
+      FROM_INNER, QUANTITY, PRICE, 
+      TOTAL_PRICE, PAY_PRICE, ADJUST_PRICE, 
+      DISCOUNT_PRICE, INTEGRAL, REAL_INTEGRAL, 
+      OBTAIN_INTEGRAL, USER_ID, BUYER_ACCOUNT, 
+      BUYER_NICK, BUYER_MESSAGE, BUYER_MEMO, 
+      SHOP_NO, SHOP_NAME, SELLER_NAME, 
+      SELLER_PHONE, SELLER_MEMO, PAY_WAY, 
+      PAY_CHANNEL, PAY_TYPE, BANK_CARD, 
+      OPEN_ID, DELIVERY_WAY, DELIVERY_RANGE, 
+      PICK_UP_PHONE, PICK_UP_ADDRESS, HAS_POST_FEE, 
+      POST_FEE, RECEIVER_NAME, RECEIVER_PHONE, 
+      V_AREA_CODE, RECEIVER_STATE, RECEIVER_DISTRICT, 
+      RECEIVER_CITY, RECEIVER_ADDRESS, ORDER_TIME, 
+      ORDER_CATEGORY, TRANSACTION_SERIAL_NUMBER, 
+      PAYMENT_TIME, DELIVERY_TIME, CONFIRM_TIME, 
+      CLOSING_TIME, CANCEL_TIME, DELETE_TIME, 
+      TIMEOUT_TIME, SOLR_TIME, SENDER_NAME, 
+      SENDER_CELL, DELIVERY_COMPANY, DELIVERY_SN, 
+      APPOINTMENT_ID, APPOINTMENT_NAME, PICTURE_PATH, REFUSE_REASON, 
+      APPOINTMENT_TIME, REFUSE_TIME, APPOINTMENT_ADDRESS, PAY_STATUS,
+      CREATE_TIME, UPDATE_TIME, DEDUCT_RATE,SELLER_REMOTE_ID,
+      SELLER_REMOTE_TYPE,DELIVERY_REMOTE_ID,DELIVERY_REMOTE_TYPE,RECEIVE_TIME)
+    values (#{orderNo,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
+      #{fromInner,jdbcType=INTEGER}, #{quantity,jdbcType=BIGINT}, #{price,jdbcType=BIGINT}, 
+      #{totalPrice,jdbcType=BIGINT}, #{payPrice,jdbcType=BIGINT}, #{adjustPrice,jdbcType=BIGINT}, 
+      #{discountPrice,jdbcType=BIGINT}, #{integral,jdbcType=BIGINT}, #{realIntegral,jdbcType=BIGINT}, 
+      #{obtainIntegral,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{buyerAccount,jdbcType=VARCHAR}, 
+      #{buyerNick,jdbcType=VARCHAR}, #{buyerMessage,jdbcType=VARCHAR}, #{buyerMemo,jdbcType=VARCHAR}, 
+      #{shopNo,jdbcType=VARCHAR}, #{shopName,jdbcType=VARCHAR}, #{sellerName,jdbcType=VARCHAR}, 
+      #{sellerPhone,jdbcType=VARCHAR}, #{sellerMemo,jdbcType=VARCHAR}, #{payWay,jdbcType=INTEGER}, 
+      #{payChannel,jdbcType=INTEGER}, #{payType,jdbcType=INTEGER}, #{bankCard,jdbcType=BIGINT}, 
+      #{openId,jdbcType=VARCHAR}, #{deliveryWay,jdbcType=INTEGER}, #{deliveryRange,jdbcType=VARCHAR}, 
+      #{pickUpPhone,jdbcType=VARCHAR}, #{pickUpAddress,jdbcType=VARCHAR}, #{hasPostFee,jdbcType=BIT}, 
+      #{postFee,jdbcType=BIGINT}, #{receiverName,jdbcType=VARCHAR}, #{receiverPhone,jdbcType=VARCHAR}, 
+      #{vAreaCode,jdbcType=INTEGER}, #{receiverState,jdbcType=VARCHAR}, #{receiverDistrict,jdbcType=VARCHAR}, 
+      #{receiverCity,jdbcType=VARCHAR}, #{receiverAddress,jdbcType=VARCHAR}, #{orderTime,jdbcType=TIMESTAMP}, 
+      #{orderCategory,jdbcType=INTEGER}, #{transactionSerialNumber,jdbcType=VARCHAR}, 
+      #{paymentTime,jdbcType=TIMESTAMP}, #{deliveryTime,jdbcType=TIMESTAMP}, #{confirmTime,jdbcType=TIMESTAMP}, 
+      #{closingTime,jdbcType=TIMESTAMP}, #{cancelTime,jdbcType=TIMESTAMP}, #{deleteTime,jdbcType=TIMESTAMP}, 
+      #{timeoutTime,jdbcType=TIMESTAMP}, #{solrTime,jdbcType=TIMESTAMP}, #{senderName,jdbcType=VARCHAR}, 
+      #{senderCell,jdbcType=VARCHAR}, #{deliveryCompany,jdbcType=VARCHAR}, #{deliverySn,jdbcType=VARCHAR}, 
+      #{appointmentId,jdbcType=BIGINT}, #{appointmentName,jdbcType=VARCHAR}, #{picturePath,jdbcType=VARCHAR}, #{refuseReason,jdbcType=VARCHAR}, 
+      #{appointmentTime,jdbcType=TIMESTAMP}, #{refuseTime,jdbcType=TIMESTAMP}, #{appointmentAddress,jdbcType=VARCHAR}, 
+      #{payStatus,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{deductRate,jdbcType=TIMESTAMP},
+      #{sellerRemoteId,jdbcType=VARCHAR}, #{sellerRemoteType,jdbcType=INTEGER},
+      #{deliveryRemoteId,jdbcType=VARCHAR}, #{deliveryRemoteType,jdbcType=INTEGER}),
+      #{receiveTime,jdbcType=TIMESTAMP}
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.trade.order.domain.SalesOrder" >
+     insert into sales_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderNo != null" >
+        ORDER_NO,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="title != null" >
+        TITLE,
+      </if>
+      <if test="fromInner != null" >
+        FROM_INNER,
+      </if>
+      <if test="quantity != null" >
+        QUANTITY,
+      </if>
+      <if test="price != null" >
+        PRICE,
+      </if>
+      <if test="totalPrice != null" >
+        TOTAL_PRICE,
+      </if>
+      <if test="payPrice != null" >
+        PAY_PRICE,
+      </if>
+      <if test="adjustPrice != null" >
+        ADJUST_PRICE,
+      </if>
+      <if test="discountPrice != null" >
+        DISCOUNT_PRICE,
+      </if>
+      <if test="integral != null" >
+        INTEGRAL,
+      </if>
+      <if test="realIntegral != null" >
+        REAL_INTEGRAL,
+      </if>
+      <if test="obtainIntegral != null" >
+        OBTAIN_INTEGRAL,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="buyerAccount != null" >
+        BUYER_ACCOUNT,
+      </if>
+      <if test="buyerNick != null" >
+        BUYER_NICK,
+      </if>
+      <if test="buyerMessage != null" >
+        BUYER_MESSAGE,
+      </if>
+      <if test="buyerMemo != null" >
+        BUYER_MEMO,
+      </if>
+      <if test="shopNo != null" >
+        SHOP_NO,
+      </if>
+      <if test="shopName != null" >
+        SHOP_NAME,
+      </if>
+      <if test="sellerName != null" >
+        SELLER_NAME,
+      </if>
+      <if test="sellerPhone != null" >
+        SELLER_PHONE,
+      </if>
+      <if test="sellerMemo != null" >
+        SELLER_MEMO,
+      </if>
+      <if test="payWay != null" >
+        PAY_WAY,
+      </if>
+      <if test="payChannel != null" >
+        PAY_CHANNEL,
+      </if>
+      <if test="payType != null" >
+        PAY_TYPE,
+      </if>
+      <if test="bankCard != null" >
+        BANK_CARD,
+      </if>
+      <if test="openId != null" >
+        OPEN_ID,
+      </if>
+      <if test="deliveryWay != null" >
+        DELIVERY_WAY,
+      </if>
+      <if test="deliveryRange != null" >
+        DELIVERY_RANGE,
+      </if>
+      <if test="pickUpPhone != null" >
+        PICK_UP_PHONE,
+      </if>
+      <if test="pickUpAddress != null" >
+        PICK_UP_ADDRESS,
+      </if>
+      <if test="hasPostFee != null" >
+        HAS_POST_FEE,
+      </if>
+      <if test="postFee != null" >
+        POST_FEE,
+      </if>
+      <if test="receiverName != null" >
+        RECEIVER_NAME,
+      </if>
+      <if test="receiverPhone != null" >
+        RECEIVER_PHONE,
+      </if>
+      <if test="vAreaCode != null" >
+        V_AREA_CODE,
+      </if>
+      <if test="receiverState != null" >
+        RECEIVER_STATE,
+      </if>
+      <if test="receiverDistrict != null" >
+        RECEIVER_DISTRICT,
+      </if>
+      <if test="receiverCity != null" >
+        RECEIVER_CITY,
+      </if>
+      <if test="receiverAddress != null" >
+        RECEIVER_ADDRESS,
+      </if>
+      <if test="orderTime != null" >
+        ORDER_TIME,
+      </if>
+      <if test="orderCategory != null" >
+        ORDER_CATEGORY,
+      </if>
+      <if test="transactionSerialNumber != null" >
+        TRANSACTION_SERIAL_NUMBER,
+      </if>
+      <if test="paymentTime != null" >
+        PAYMENT_TIME,
+      </if>
+      <if test="deliveryTime != null" >
+        DELIVERY_TIME,
+      </if>
+      <if test="confirmTime != null" >
+        CONFIRM_TIME,
+      </if>
+      <if test="closingTime != null" >
+        CLOSING_TIME,
+      </if>
+      <if test="cancelTime != null" >
+        CANCEL_TIME,
+      </if>
+      <if test="deleteTime != null" >
+        DELETE_TIME,
+      </if>
+      <if test="timeoutTime != null" >
+        TIMEOUT_TIME,
+      </if>
+      <if test="solrTime != null" >
+        SOLR_TIME,
+      </if>
+      <if test="senderName != null" >
+        SENDER_NAME,
+      </if>
+      <if test="senderCell != null" >
+        SENDER_CELL,
+      </if>
+      <if test="deliveryCompany != null" >
+        DELIVERY_COMPANY,
+      </if>
+      <if test="deliverySn != null" >
+        DELIVERY_SN,
+      </if>
+      <if test="appointmentId != null" >
+        APPOINTMENT_ID,
+      </if>
+      <if test="appointmentName != null" >
+        APPOINTMENT_NAME,
+      </if>
+      <if test="picturePath != null" >
+        PICTURE_PATH,
+      </if>
+      <if test="refuseReason != null" >
+        REFUSE_REASON,
+      </if>
+      <if test="appointmentTime != null" >
+        APPOINTMENT_TIME,
+      </if>
+      <if test="refuseTime != null" >
+        REFUSE_TIME,
+      </if>
+      <if test="appointmentAddress != null" >
+        APPOINTMENT_ADDRESS,
+      </if>
+      <if test="payStatus != null" >
+        PAY_STATUS,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="deductRate != null" >
+        DEDUCT_RATE,
+      </if>
+      <if test="sellerRemoteId != null" >
+        SELLER_REMOTE_ID,
+      </if>
+      <if test="sellerRemoteType != null" >
+        SELLER_REMOTE_TYPE,
+      </if>
+      <if test="deliveryRemoteId != null" >
+        DELIVERY_REMOTE_ID,
+      </if>
+      <if test="deliveryRemoteType != null" >
+        DELIVERY_REMOTE_TYPE,
+      </if>
+      <if test="couponPrice != null" >
+        COUPON_PRICE,
+      </if>
+      <if test="receiveTime != null" >
+        RECEIVE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="fromInner != null" >
+        #{fromInner,jdbcType=INTEGER},
+      </if>
+      <if test="quantity != null" >
+        #{quantity,jdbcType=BIGINT},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=BIGINT},
+      </if>
+      <if test="totalPrice != null" >
+        #{totalPrice,jdbcType=BIGINT},
+      </if>
+      <if test="payPrice != null" >
+        #{payPrice,jdbcType=BIGINT},
+      </if>
+      <if test="adjustPrice != null" >
+        #{adjustPrice,jdbcType=BIGINT},
+      </if>
+      <if test="discountPrice != null" >
+        #{discountPrice,jdbcType=BIGINT},
+      </if>
+      <if test="integral != null" >
+        #{integral,jdbcType=BIGINT},
+      </if>
+      <if test="realIntegral != null" >
+        #{realIntegral,jdbcType=BIGINT},
+      </if>
+      <if test="obtainIntegral != null" >
+        #{obtainIntegral,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="buyerAccount != null" >
+        #{buyerAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerNick != null" >
+        #{buyerNick,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerMessage != null" >
+        #{buyerMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerMemo != null" >
+        #{buyerMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="shopNo != null" >
+        #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="shopName != null" >
+        #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerName != null" >
+        #{sellerName,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerPhone != null" >
+        #{sellerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerMemo != null" >
+        #{sellerMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="payWay != null" >
+        #{payWay,jdbcType=INTEGER},
+      </if>
+      <if test="payChannel != null" >
+        #{payChannel,jdbcType=INTEGER},
+      </if>
+      <if test="payType != null" >
+        #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="bankCard != null" >
+        #{bankCard,jdbcType=BIGINT},
+      </if>
+      <if test="openId != null" >
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryWay != null" >
+        #{deliveryWay,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryRange != null" >
+        #{deliveryRange,jdbcType=VARCHAR},
+      </if>
+      <if test="pickUpPhone != null" >
+        #{pickUpPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="pickUpAddress != null" >
+        #{pickUpAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="hasPostFee != null" >
+        #{hasPostFee,jdbcType=BIT},
+      </if>
+      <if test="postFee != null" >
+        #{postFee,jdbcType=BIGINT},
+      </if>
+      <if test="receiverName != null" >
+        #{receiverName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverPhone != null" >
+        #{receiverPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="vAreaCode != null" >
+        #{vAreaCode,jdbcType=INTEGER},
+      </if>
+      <if test="receiverState != null" >
+        #{receiverState,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverDistrict != null" >
+        #{receiverDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverCity != null" >
+        #{receiverCity,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverAddress != null" >
+        #{receiverAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTime != null" >
+        #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderCategory != null" >
+        #{orderCategory,jdbcType=INTEGER},
+      </if>
+      <if test="transactionSerialNumber != null" >
+        #{transactionSerialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentTime != null" >
+        #{paymentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryTime != null" >
+        #{deliveryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="confirmTime != null" >
+        #{confirmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="closingTime != null" >
+        #{closingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cancelTime != null" >
+        #{cancelTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteTime != null" >
+        #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="timeoutTime != null" >
+        #{timeoutTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="solrTime != null" >
+        #{solrTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="senderName != null" >
+        #{senderName,jdbcType=VARCHAR},
+      </if>
+      <if test="senderCell != null" >
+        #{senderCell,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryCompany != null" >
+        #{deliveryCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="deliverySn != null" >
+        #{deliverySn,jdbcType=VARCHAR},
+      </if>
+      <if test="appointmentId != null" >
+        #{appointmentId,jdbcType=BIGINT},
+      </if>
+      <if test="appointmentName != null" >
+        #{appointmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="picturePath != null" >
+        #{picturePath,jdbcType=VARCHAR},
+      </if>
+      <if test="refuseReason != null" >
+        #{refuseReason,jdbcType=VARCHAR},
+      </if>
+      <if test="appointmentTime != null" >
+        #{appointmentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="refuseTime != null" >
+        #{refuseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appointmentAddress != null" >
+        #{appointmentAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="payStatus != null" >
+        #{payStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deductRate != null" >
+        #{deductRate,jdbcType=INTEGER},
+      </if>
+      <if test="sellerRemoteId != null" >
+        #{sellerRemoteId,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerRemoteType != null" >
+        #{sellerRemoteType,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryRemoteId != null" >
+         #{deliveryRemoteId,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryRemoteType != null" >
+         #{deliveryRemoteType,jdbcType=INTEGER},
+      </if>
+      <if test="couponPrice != null" >
+         #{couponPrice,jdbcType=BIGINT},
+      </if>
+      <if test="receiveTime != null" >
+         #{receiveTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.trade.order.domain.SalesOrder" >
+   update sales_order
+    <set >
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        TITLE = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="fromInner != null" >
+        FROM_INNER = #{fromInner,jdbcType=INTEGER},
+      </if>
+      <if test="quantity != null" >
+        QUANTITY = #{quantity,jdbcType=BIGINT},
+      </if>
+      <if test="price != null" >
+        PRICE = #{price,jdbcType=BIGINT},
+      </if>
+      <if test="totalPrice != null" >
+        TOTAL_PRICE = #{totalPrice,jdbcType=BIGINT},
+      </if>
+      <if test="payPrice != null" >
+        PAY_PRICE = #{payPrice,jdbcType=BIGINT},
+      </if>
+      <if test="adjustPrice != null" >
+        ADJUST_PRICE = #{adjustPrice,jdbcType=BIGINT},
+      </if>
+      <if test="discountPrice != null" >
+        DISCOUNT_PRICE = #{discountPrice,jdbcType=BIGINT},
+      </if>
+      <if test="integral != null" >
+        INTEGRAL = #{integral,jdbcType=BIGINT},
+      </if>
+      <if test="realIntegral != null" >
+        REAL_INTEGRAL = #{realIntegral,jdbcType=BIGINT},
+      </if>
+      <if test="obtainIntegral != null" >
+        OBTAIN_INTEGRAL = #{obtainIntegral,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="buyerAccount != null" >
+        BUYER_ACCOUNT = #{buyerAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerNick != null" >
+        BUYER_NICK = #{buyerNick,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerMessage != null" >
+        BUYER_MESSAGE = #{buyerMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerMemo != null" >
+        BUYER_MEMO = #{buyerMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="shopNo != null" >
+        SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="shopName != null" >
+        SHOP_NAME = #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerName != null" >
+        SELLER_NAME = #{sellerName,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerPhone != null" >
+        SELLER_PHONE = #{sellerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerMemo != null" >
+        SELLER_MEMO = #{sellerMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="payWay != null" >
+        PAY_WAY = #{payWay,jdbcType=INTEGER},
+      </if>
+      <if test="payChannel != null" >
+        PAY_CHANNEL = #{payChannel,jdbcType=INTEGER},
+      </if>
+      <if test="payType != null" >
+        PAY_TYPE = #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="bankCard != null" >
+        BANK_CARD = #{bankCard,jdbcType=BIGINT},
+      </if>
+      <if test="openId != null" >
+        OPEN_ID = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryWay != null" >
+        DELIVERY_WAY = #{deliveryWay,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryRange != null" >
+        DELIVERY_RANGE = #{deliveryRange,jdbcType=VARCHAR},
+      </if>
+      <if test="pickUpPhone != null" >
+        PICK_UP_PHONE = #{pickUpPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="pickUpAddress != null" >
+        PICK_UP_ADDRESS = #{pickUpAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="hasPostFee != null" >
+        HAS_POST_FEE = #{hasPostFee,jdbcType=BIT},
+      </if>
+      <if test="postFee != null" >
+        POST_FEE = #{postFee,jdbcType=BIGINT},
+      </if>
+      <if test="receiverName != null" >
+        RECEIVER_NAME = #{receiverName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverPhone != null" >
+        RECEIVER_PHONE = #{receiverPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="vAreaCode != null" >
+        V_AREA_CODE = #{vAreaCode,jdbcType=INTEGER},
+      </if>
+      <if test="receiverState != null" >
+        RECEIVER_STATE = #{receiverState,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverDistrict != null" >
+        RECEIVER_DISTRICT = #{receiverDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverCity != null" >
+        RECEIVER_CITY = #{receiverCity,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverAddress != null" >
+        RECEIVER_ADDRESS = #{receiverAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTime != null" >
+        ORDER_TIME = #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderCategory != null" >
+        ORDER_CATEGORY = #{orderCategory,jdbcType=INTEGER},
+      </if>
+      <if test="transactionSerialNumber != null" >
+        TRANSACTION_SERIAL_NUMBER = #{transactionSerialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentTime != null" >
+        PAYMENT_TIME = #{paymentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryTime != null" >
+        DELIVERY_TIME = #{deliveryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="confirmTime != null" >
+        CONFIRM_TIME = #{confirmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="closingTime != null" >
+        CLOSING_TIME = #{closingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cancelTime != null" >
+        CANCEL_TIME = #{cancelTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteTime != null" >
+        DELETE_TIME = #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="timeoutTime != null" >
+        TIMEOUT_TIME = #{timeoutTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="solrTime != null" >
+        SOLR_TIME = #{solrTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="senderName != null" >
+        SENDER_NAME = #{senderName,jdbcType=VARCHAR},
+      </if>
+      <if test="senderCell != null" >
+        SENDER_CELL = #{senderCell,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryCompany != null" >
+        DELIVERY_COMPANY = #{deliveryCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="deliverySn != null" >
+        DELIVERY_SN = #{deliverySn,jdbcType=VARCHAR},
+      </if>
+      <if test="appointmentId != null" >
+        APPOINTMENT_ID = #{appointmentId,jdbcType=BIGINT},
+      </if>
+      <if test="appointmentName != null" >
+        APPOINTMENT_NAME = #{appointmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="picturePath != null" >
+        PICTURE_PATH = #{picturePath,jdbcType=VARCHAR},
+      </if>
+      <if test="refuseReason != null" >
+        REFUSE_REASON = #{refuseReason,jdbcType=VARCHAR},
+      </if>
+      <if test="appointmentTime != null" >
+        APPOINTMENT_TIME = #{appointmentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="refuseTime != null" >
+        REFUSE_TIME = #{refuseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appointmentAddress != null" >
+        APPOINTMENT_ADDRESS = #{appointmentAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="payStatus != null" >
+        PAY_STATUS = #{payStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deductRate != null" >
+        DEDUCT_RATE = #{deductRate,jdbcType=INTEGER},
+      </if>
+      <if test="sellerRemoteId != null" >
+        SELLER_REMOTE_ID = #{sellerRemoteId,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerRemoteType != null" >
+        SELLER_REMOTE_TYPE = #{sellerRemoteType,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryRemoteId != null" >
+        DELIVERY_REMOTE_ID = #{deliveryRemoteId,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryRemoteType != null" >
+        DELIVERY_REMOTE_TYPE = #{deliveryRemoteType,jdbcType=INTEGER},
+      </if>
+      <if test="couponPrice != null" >
+        COUPON_PRICE = #{couponPrice,jdbcType=BIGINT},
+      </if>
+      <if test="receiveTime != null" >
+        RECEIVE_TIME = #{receiveTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ORDER_NO = #{orderNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.trade.order.domain.SalesOrder" >
+    update sales_order
+    set STATUS = #{status,jdbcType=INTEGER},
+      TITLE = #{title,jdbcType=VARCHAR},
+      FROM_INNER = #{fromInner,jdbcType=INTEGER},
+      QUANTITY = #{quantity,jdbcType=BIGINT},
+      PRICE = #{price,jdbcType=BIGINT},
+      TOTAL_PRICE = #{totalPrice,jdbcType=BIGINT},
+      PAY_PRICE = #{payPrice,jdbcType=BIGINT},
+      ADJUST_PRICE = #{adjustPrice,jdbcType=BIGINT},
+      DISCOUNT_PRICE = #{discountPrice,jdbcType=BIGINT},
+      INTEGRAL = #{integral,jdbcType=BIGINT},
+      REAL_INTEGRAL = #{realIntegral,jdbcType=BIGINT},
+      OBTAIN_INTEGRAL = #{obtainIntegral,jdbcType=BIGINT},
+      USER_ID = #{userId,jdbcType=BIGINT},
+      BUYER_ACCOUNT = #{buyerAccount,jdbcType=VARCHAR},
+      BUYER_NICK = #{buyerNick,jdbcType=VARCHAR},
+      BUYER_MESSAGE = #{buyerMessage,jdbcType=VARCHAR},
+      BUYER_MEMO = #{buyerMemo,jdbcType=VARCHAR},
+      SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      SHOP_NAME = #{shopName,jdbcType=VARCHAR},
+      SELLER_NAME = #{sellerName,jdbcType=VARCHAR},
+      SELLER_PHONE = #{sellerPhone,jdbcType=VARCHAR},
+      SELLER_MEMO = #{sellerMemo,jdbcType=VARCHAR},
+      PAY_WAY = #{payWay,jdbcType=INTEGER},
+      PAY_CHANNEL = #{payChannel,jdbcType=INTEGER},
+      PAY_TYPE = #{payType,jdbcType=INTEGER},
+      BANK_CARD = #{bankCard,jdbcType=BIGINT},
+      OPEN_ID = #{openId,jdbcType=VARCHAR},
+      DELIVERY_WAY = #{deliveryWay,jdbcType=INTEGER},
+      DELIVERY_RANGE = #{deliveryRange,jdbcType=VARCHAR},
+      PICK_UP_PHONE = #{pickUpPhone,jdbcType=VARCHAR},
+      PICK_UP_ADDRESS = #{pickUpAddress,jdbcType=VARCHAR},
+      HAS_POST_FEE = #{hasPostFee,jdbcType=BIT},
+      POST_FEE = #{postFee,jdbcType=BIGINT},
+      RECEIVER_NAME = #{receiverName,jdbcType=VARCHAR},
+      RECEIVER_PHONE = #{receiverPhone,jdbcType=VARCHAR},
+      V_AREA_CODE = #{vAreaCode,jdbcType=INTEGER},
+      RECEIVER_STATE = #{receiverState,jdbcType=VARCHAR},
+      RECEIVER_DISTRICT = #{receiverDistrict,jdbcType=VARCHAR},
+      RECEIVER_CITY = #{receiverCity,jdbcType=VARCHAR},
+      RECEIVER_ADDRESS = #{receiverAddress,jdbcType=VARCHAR},
+      ORDER_TIME = #{orderTime,jdbcType=TIMESTAMP},
+      ORDER_CATEGORY = #{orderCategory,jdbcType=INTEGER},
+      TRANSACTION_SERIAL_NUMBER = #{transactionSerialNumber,jdbcType=VARCHAR},
+      PAYMENT_TIME = #{paymentTime,jdbcType=TIMESTAMP},
+      DELIVERY_TIME = #{deliveryTime,jdbcType=TIMESTAMP},
+      CONFIRM_TIME = #{confirmTime,jdbcType=TIMESTAMP},
+      CLOSING_TIME = #{closingTime,jdbcType=TIMESTAMP},
+      CANCEL_TIME = #{cancelTime,jdbcType=TIMESTAMP},
+      DELETE_TIME = #{deleteTime,jdbcType=TIMESTAMP},
+      TIMEOUT_TIME = #{timeoutTime,jdbcType=TIMESTAMP},
+      SOLR_TIME = #{solrTime,jdbcType=TIMESTAMP},
+      SENDER_NAME = #{senderName,jdbcType=VARCHAR},
+      SENDER_CELL = #{senderCell,jdbcType=VARCHAR},
+      DELIVERY_COMPANY = #{deliveryCompany,jdbcType=VARCHAR},
+      DELIVERY_SN = #{deliverySn,jdbcType=VARCHAR},
+      APPOINTMENT_ID = #{appointmentId,jdbcType=BIGINT},
+      APPOINTMENT_NAME = #{appointmentName,jdbcType=VARCHAR},
+      PICTURE_PATH = #{picturePath,jdbcType=VARCHAR},
+      REFUSE_REASON = #{refuseReason,jdbcType=VARCHAR},
+      APPOINTMENT_TIME = #{appointmentTime,jdbcType=TIMESTAMP},
+      REFUSE_TIME = #{refuseTime,jdbcType=TIMESTAMP},
+      APPOINTMENT_ADDRESS = #{appointmentAddress,jdbcType=VARCHAR},
+      PAY_STATUS = #{payStatus,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      DEDUCT_RATE = #{deductRate,jdbcType=INTEGER},
+      SELLER_REMOTE_ID = #{sellerRemoteId,jdbcType=VARCHAR},
+      SELLER_REMOTE_TYPE = #{sellerRemoteType,jdbcType=INTEGER},
+      DELIVERY_REMOTE_ID = #{deliveryRemoteId,jdbcType=VARCHAR},
+      DELIVERY_REMOTE_TYPE = #{deliveryRemoteType,jdbcType=INTEGER},
+      COUPON_PRICE = #{couponPrice,jdbcType=BIGINT},
+      RECEIVE_TIME = #{receiveTime,jdbcType=TIMESTAMP}
+    where ORDER_NO = #{orderNo,jdbcType=VARCHAR}
+  </update>
+  <select id="getSalesOrderDtoByOrderNo" resultMap="BaseResultMapDto">
+  	select <include refid="Base_Column_List"/>
+  	from sales_order
+  	where order_no = #{orderNo} <![CDATA[and status <> 11]]>
+  </select>
+  <select id="countSalesOrder" resultType="java.lang.Integer">
+  	select count(1)
+  	from sales_order
+  	<where>
+  	shop_no = #{shopNo}
+  	and order_category in (1,2,4)
+  	<choose>
+  		<when test="status != null">
+  			and status = #{status}
+  		</when>
+  		<otherwise>
+  			<![CDATA[and status <> 11]]> 
+  		</otherwise>
+  	</choose>
+  	<if test="startTime != null">
+  		<![CDATA[ and create_time >= #{startTime}]]>
+  	</if>
+  	<if test="endTime != null">
+  		<![CDATA[and create_time < #{endTime}]]>
+  	</if>
+  	</where> 
+  </select>
+  <select id="getCount" resultType="java.lang.Integer">
+  	select count(1)
+  	from sales_order
+  	<where>
+  	shop_no = #{shopNo}
+  	<choose>
+  		<when test="status == 30">
+  			and status in (10,30)
+  		</when>
+  		<when test="status != null">
+  			and status = #{status}
+  		</when>
+  		<otherwise>
+  			<![CDATA[and status <> 11]]>  
+  		</otherwise>
+  	</choose>
+      <choose>
+        <when test="orderCategory != null">
+          and order_category = #{orderCategory}
+        </when>
+        <otherwise>
+          and order_category in (1,4)
+        </otherwise>
+      </choose>
+  	<if test="orderNo != null">
+  		and order_no like concat('%',#{orderNo},'%')
+  	</if>
+  	<if test="payWay != null">
+  		and pay_way = #{payWay}
+  	</if>
+  	<if test="deliveryWay != null">
+  		and delivery_way = #{deliveryWay}
+  	</if>
+  	<if test="sellerName != null">
+  		and seller_name like concat('%',#{sellerName},'%')
+  	</if>
+  	<if test="buyerAccount != null">
+  		and buyer_account like concat('%',#{buyerAccount},'%')
+  	</if>
+      <if test="appointmentName != null">
+        and appointment_name like concat('%',#{appointmentName},'%')
+      </if>
+      <if test="receiverName != null">
+        and receiver_name = #{receiverName}
+      </if>
+      <if test="receiverPhone != null">
+        and receiver_phone = #{receiverPhone}
+      </if>
+      <if test="startAppointmentTime != null">
+        and appointment_time >= #{startAppointmentTime}
+      </if>
+      <if test="endAppointmentTime != null">
+        <![CDATA[and appointment_time < #{endAppointmentTime}]]>
+      </if>
+  	<if test="startTime != null">
+  		<![CDATA[and create_time >= #{startTime}]]>
+  	</if>
+  	<if test="endTime != null">
+  		<![CDATA[and create_time < #{endTime}]]>
+  	</if>
+  	</where> 
+  </select>
+  <select id="selectSalesOrderPage" resultMap="BaseResultMapDto">
+  	select <include refid="Base_Column_List"/>
+  	from sales_order
+  	<where>
+  	shop_no = #{salesOrderVo.shopNo}
+  	<choose>
+  		<when test="salesOrderVo.status == 30">
+  			and status in (10,30)
+  		</when>
+  		<when test="salesOrderVo.status != null">
+  			and status = #{salesOrderVo.status}
+  		</when>
+  		<otherwise>
+  			<![CDATA[and status <> 11]]> 
+  		</otherwise>
+  	</choose>
+    <choose>
+       <when test="salesOrderVo.orderCategory != null">
+         and order_category = #{salesOrderVo.orderCategory}
+       </when>
+       <otherwise>
+         and order_category in (1, 4)
+       </otherwise>
+    </choose>
+  	<if test="salesOrderVo.userId != null">
+  	    and user_id = #{salesOrderVo.userId} 
+  	</if>
+  	<if test="salesOrderVo.orderNo != null">
+  		and order_no like concat('%',#{salesOrderVo.orderNo},'%')
+  	</if>
+  	<if test="salesOrderVo.payWay != null">
+  		and pay_way = #{salesOrderVo.payWay}
+  	</if>
+  	<if test="salesOrderVo.payChannel != null">
+  		and pay_channel = #{salesOrderVo.payChannel}
+  	</if>
+  	<if test="salesOrderVo.deliveryWay != null">
+  		and delivery_way = #{salesOrderVo.deliveryWay}
+  	</if>
+  	<if test="salesOrderVo.sellerName != null">
+  		and seller_name like concat('%',#{salesOrderVo.sellerName},'%')
+  	</if>
+  	<if test="salesOrderVo.buyerAccount != null">
+  		and buyer_account like concat('%',#{salesOrderVo.buyerAccount},'%')
+  	</if>
+      <if test="salesOrderVo.appointmentName != null">
+        and appointment_name like concat('%',#{salesOrderVo.appointmentName},'%')
+      </if>
+      <if test="salesOrderVo.receiverName != null">
+        and receiver_name = #{salesOrderVo.receiverName}
+      </if>
+      <if test="salesOrderVo.receiverPhone != null">
+        and receiver_phone = #{salesOrderVo.receiverPhone}
+      </if>
+      <if test="salesOrderVo.startAppointmentTime != null">
+        <![CDATA[and appointment_time >= #{salesOrderVo.startAppointmentTime}]]>
+      </if>
+      <if test="salesOrderVo.endAppointmentTime != null">
+        <![CDATA[and appointment_time < #{salesOrderVo.endAppointmentTime}]]>
+      </if>
+  	<if test="salesOrderVo.startTime != null">
+  		<![CDATA[and create_time >= #{salesOrderVo.startTime}]]>
+  	</if>
+  	<if test="salesOrderVo.endTime != null">
+  		<![CDATA[and create_time < #{salesOrderVo.endTime}]]>
+  	</if>
+  	</where> 
+  	order by create_time desc
+  	limit #{start},#{pageSize}
+  </select>
+  <select id="getCountForWap" resultType="java.lang.Integer">
+  	select count(1)
+  	from sales_order
+  	where user_id = #{userId}
+  	<choose>
+  		<when test="status != null">
+  			and status = #{status}
+  		</when>
+  		<otherwise>
+  			<![CDATA[and status <> 11]]>
+  		</otherwise>
+  	</choose>
+  </select>
+  <select id="selectSalesOrderPageForWap" resultMap="BaseResultMapDto">
+  	select <include refid="Base_Column_List"/>
+  	from sales_order
+  	where user_id = #{salesOrderVo.userId}
+  	<choose>
+  		<when test="salesOrderVo.status != null">
+  			and status = #{salesOrderVo.status}
+  		</when>
+  		<otherwise>
+  			<![CDATA[and status <> 11]]> 
+  		</otherwise>
+  	</choose>
+    <choose>
+      <when test="salesOrderVo.orderCategory != null and salesOrderVo.orderCategory == 3">
+        and order_category = #{salesOrderVo.orderCategory}
+      </when>
+      <otherwise>
+        and order_category in (1,2,4)
+      </otherwise>
+    </choose>
+  	order by create_time desc
+  	limit #{start},#{pageSize}
+  </select>
+  <select id="findSalesOrderListByTSN" resultMap="BaseResultMap">
+  	select <include refid="Base_Column_List"/>
+  	from sales_order
+  	where TRANSACTION_SERIAL_NUMBER = #{transactionSerialNumber}
+  </select>
+  <select id="findSalesOrderListByOrderNoList" resultMap="BaseResultMap">
+  	select <include refid="Base_Column_List"/>
+  	from sales_order
+  	where order_no in 
+  	<foreach collection="orderNoList" item="orderNo" open="(" close=")" separator=",">
+  		#{orderNo}
+  	</foreach>
+  </select>
+  <select id="getSalesOrderIncome" resultType="java.lang.Long">
+  	select sum(pay_price)
+  	from sales_order
+  	where shop_no = #{shopNo}
+  	<if test="startTime != null">
+  		<![CDATA[and create_time > #{startTime}]]>
+  	</if>
+  	<![CDATA[and create_time <= #{endTime}]]>
+  	and status in (4, 5)
+  	and ORDER_CATEGORY in (1, 2)
+  </select>
+  
+  <select id="getFreezeSalesOrderIncome" resultType="java.lang.Long">
+  	select sum(pay_price)
+  	from sales_order
+  	where shop_no = #{shopNo}
+  	and status in (2,3)
+  	and ORDER_CATEGORY in (1, 2)
+  </select>
+  <select id="validateOrder" resultType="java.lang.Integer">
+  	select count(1)
+  	from sales_order
+  	where order_no = #{orderNo}
+  	<if test="shopNo != null">
+  		and shop_no = #{shopNo}
+  	</if>
+  	<if test="userId != null">
+  		and user_id = #{userId}
+  	</if>
+  	<![CDATA[and status <> 11]]>
+  </select>
+  <select id="getUserFreezeAmount" resultType="java.lang.Long">
+  	select sum(pay_price)
+  	from sales_order
+  	where user_id = #{userId}
+  	and status in (2,3)
+  	and ORDER_CATEGORY in (1, 2)
+  </select>
+  <update id="editSellerMemo">
+  	update sales_order set seller_memo = #{sellerMemo} where order_no = #{orderNo}
+  </update>
+  <select id="findOrderListByUserIdAndSellerIdForWap" resultMap="BaseResultMapDto">
+  	select s.*
+  	from sales_order s, shop sh
+  	where s.shop_no = sh.no
+  	and s.user_id = #{userId}
+  	and sh.user_id = #{sellerId}
+  	and s.pay_channel in (2, 3)
+  	and s.status = 5
+  	<if test="beginTime != null and endTime != null">
+  		and s.payment_time between #{beginTime} and #{endTime}
+  	</if>
+  	order by s.payment_time desc
+  </select>
+
+  <update id="saveBookOrderRefuseReason">
+    update sales_order set refuse_reason = #{memo} where order_no = #{orderNo}
+  </update>
+
+  <select id="queryAppointmentDetail" resultMap="OrderAppointmentDetailMap">
+    select
+    <include refid="OrderAppointmentDetail" />
+    from order_appointment_detail
+    where order_no = #{orderNo}
+  </select>
+  <select id="getAppointNum" resultType="java.lang.Integer">
+  	select count(1) from sales_order where appointment_id = #{appointmentId} and receiver_phone = #{receiverPhone}
+  </select>
+  <select id="getCustomerOrderByCurrentUserId" resultMap="BaseResultMapCustomerOrder" parameterType="java.util.Map" >
+	SELECT
+		so_temp.USER_ID AS USER_ID,
+		so_temp.CUSTOMER_ID AS CUSTOMER_ID,
+		so_temp.SHOP_NO AS SHOP_NO , 
+		so_temp.SHOP_TYPE AS SHOP_TYPE,
+		so_temp.SHOP_NAME AS SHOP_NAME,
+		so_temp.DELIVERY_REMOTE_ID AS DELIVERY_REMOTE_ID,
+		so_temp.DELIVERY_REMOTE_TYPE AS DELIVERY_REMOTE_TYPE, 
+		COUNT(so_temp.ORDER_NO) AS ORDER_NO,  
+		IFNULL(SUM(so_temp.PAY_PRICE),0) AS PAY_PRICE, 
+		IFNULL(SUM(so_temp.POST_FEE),0) AS POST_FEE 
+		FROM
+	   (SELECT
+		 so.ORDER_NO,
+		 so.PAY_PRICE,
+		 so.SHOP_NO,
+		 so.USER_ID AS CUSTOMER_ID, 
+		 so.POST_FEE,
+		 so.SHOP_NAME,
+		 so.STATUS,
+		 s.USER_ID AS USER_ID,
+		 s.TYPE AS SHOP_TYPE,
+		 so.DELIVERY_REMOTE_ID,
+		 so.DELIVERY_REMOTE_TYPE 
+		FROM sales_order AS so
+	    INNER JOIN shop AS s ON (so.SHOP_NO = s.NO)
+	    AND s.USER_ID = #{userId,jdbcType=BIGINT}
+	    ORDER BY so.SHOP_NO DESC) AS so_temp
+	    WHERE so_temp.CUSTOMER_ID = #{customerId,jdbcType=BIGINT}
+	    AND so_temp.STATUS IN (01, 02, 03, 05)
+	    GROUP BY so_temp.SHOP_NO
+	    ORDER BY SUM(so_temp.PAY_PRICE), SUM(so_temp.ORDER_NO) DESC 
+  </select>
+
+  <select id="findOrderCountByShopNo" resultType="integer">
+  	select count(1) from sales_order where order_category = 1 and status in (1, 2) and shop_no = #{shopNo}
+  </select>
+
+  <select id="selectOrderCount" parameterType="com.zjlp.face.web.server.trade.order.domain.dto.SalesOrderVo" resultType="com.zjlp.face.web.server.trade.order.domain.vo.SingleStatuCountDto">
+       SELECT 
+           STATUS AS states, COUNT(1) AS count
+	  	FROM 
+	  	   SALES_ORDER
+	  	WHERE
+	  	   SHOP_NO = #{shopNo}
+	  	   <![CDATA[AND STATUS <> 11]]> 
+	       AND order_category in (1,2)
+	    GROUP BY STATUS
+  </select>
+  
+  <select id="getPopularizeOrderFreezeAmount" resultType="java.lang.Long" >
+  	SELECT
+		sum(po.TOTAL_PROFIT_PRICE)
+	FROM
+		purchase_order AS po,
+		sales_order AS so
+	WHERE
+		po.COOPERATION_WAY = 2
+	AND so. STATUS IN (2, 3)
+	AND so.ORDER_CATEGORY = 5
+	AND po.ORDER_NO = so.ORDER_NO
+	AND po.PURCHASER_NO = (
+		SELECT
+			u.LOGIN_ACCOUNT
+		FROM
+			USER AS u
+		WHERE
+			u.id = #{userId}
+	)
+  </select>
+  <select id="selectCountsByType" parameterType="com.zjlp.face.web.server.trade.order.domain.dto.SalesOrderDto" resultType="java.lang.Integer">
+      SELECT
+          COUNT(1)
+      FROM
+          SALES_ORDER
+      WHERE
+          SHOP_NO = #{shopNo}
+          AND STATUS = #{status}
+          AND ORDER_CATEGORY = #{orderCategory}
+  </select>
+  
+  <select id="getShopSalesOrderCountInfo" resultType="java.util.Map">
+   SELECT a.*,b.* 
+   FROM (
+	SELECT IFNULL(SUM(so.PAY_PRICE),0)  AS payPrice,COUNT(1) AS orderNumber 
+		FROM sales_order so WHERE so.SHOP_NO=#{shopNo} AND so.STATUS IN(1,2,3,4,5) AND so.ORDER_CATEGORY IN(1,2,4)
+		<if test="startTime != null">
+  		<![CDATA[ and so.create_time >= #{startTime}]]>
+	  	</if>
+	  	<if test="endTime != null">
+	  		<![CDATA[and so.create_time < #{endTime}]]>
+	  	</if>
+		) AS a,
+	(SELECT COUNT(1) AS sendOrderNumber
+		FROM sales_order so WHERE so.SHOP_NO=#{shopNo} AND  so.STATUS IN(2) AND so.ORDER_CATEGORY IN(1,2)
+		) AS b 
+		
+  </select>
+  
+  <select id="selectSubBranchSalesOrderByPrimaryKey" resultMap="BaseResultMapSubBranchSalesOrderVo">
+  	SELECT so.*,ifnull(lf.c,0) ITEMS,po.ID PURCHASE_ID,
+  	po.SUPPLIER_NO SUPPLIER_NO,po.SUPPLIER_NICK SUPPLIER_NICK,po.SUPPLIER_TYPE SUPPLIER_TYPE,
+  	po.PURCHASER_NO PURCHASER_NO,po.PURCHASER_NICK PURCHASER_NICK,po.TOTAL_PURCHASE_QUANTITY TOTAL_PURCHASE_QUANTITY,
+  	po.TOTAL_PURCHASE_PRICE TOTAL_PURCHASE_PRICE,po.TOTAL_SALES_PRICE TOTAL_SALES_PRICE,po.TOTAL_PROFIT_PRICE TOTAL_PROFIT_PRICE,
+  	po.PICTURE_PATH PICTURE_PATH,po.COOPERATION_WAY COOPERATION_WAY,
+  	(select PURCHASER_NICK from purchase_order where ORDER_NO = so.ORDER_NO and SUPPLIER_NO = #{purchaserNo}) as ORDER_SOURCE
+  	FROM purchase_order po,sales_order so
+  	LEFT JOIN (
+  		SELECT ORDER_NO,COUNT(ORDER_NO) c
+  		FROM order_item
+  		GROUP BY ORDER_NO
+  	) lf ON lf.ORDER_NO=so.ORDER_NO  
+  	WHERE so.ORDER_NO=#{orderNo} 
+  	AND so.ORDER_NO=po.ORDER_NO
+  	AND po.PURCHASER_NO=#{purchaserNo}
+  	<!-- 分销订单 -->
+  	AND so.ORDER_CATEGORY=4
+  	AND so.STATUS != 11
+  </select>
+  
+  <select id="selectSubOrder" resultMap="BaseResultMapSubBranchSalesOrderVo">
+  	SELECT so.*,ifnull(lf.c,0) ITEMS,po.ID PURCHASE_ID,
+  	po.SUPPLIER_NO SUPPLIER_NO,po.SUPPLIER_NICK SUPPLIER_NICK,po.SUPPLIER_TYPE SUPPLIER_TYPE,
+  	po.PURCHASER_NO PURCHASER_NO,po.PURCHASER_NICK PURCHASER_NICK,po.TOTAL_PURCHASE_QUANTITY TOTAL_PURCHASE_QUANTITY,
+  	po.TOTAL_PURCHASE_PRICE TOTAL_PURCHASE_PRICE,po.TOTAL_SALES_PRICE TOTAL_SALES_PRICE,po.TOTAL_PROFIT_PRICE TOTAL_PROFIT_PRICE,
+  	po.PICTURE_PATH PICTURE_PATH,po.COOPERATION_WAY COOPERATION_WAY,
+  	(select TOTAL_PROFIT_PRICE from purchase_order where ORDER_NO=#{orderNo} and PURCHASER_NO=#{supplierNo}) as PRE_LEVE_COMMSSION
+  	FROM purchase_order po,sales_order so
+  	LEFT JOIN (
+  		SELECT ORDER_NO,COUNT(ORDER_NO) c
+  		FROM order_item
+  		GROUP BY ORDER_NO
+  	) lf ON lf.ORDER_NO=so.ORDER_NO  
+  	WHERE so.ORDER_NO=#{orderNo} 
+  	AND so.ORDER_NO=po.ORDER_NO
+  	AND po.SUPPLIER_NO=#{supplierNo}
+  	<!-- 分销订单 -->
+  	AND so.ORDER_CATEGORY=4
+  </select>
+  
+ <!--  根据直接购买商店NO获取订单 -->
+  <select id="selectOwnSalesOrderPageByShopNo" resultMap="BaseResultMapSubBranchSalesOrderVo" parameterType="java.util.Map">
+  SELECT so.*,ifnull(lf.c,0) ITEMS,po.ID PURCHASE_ID,
+  	po.SUPPLIER_NO SUPPLIER_NO,po.SUPPLIER_NICK SUPPLIER_NICK,po.SUPPLIER_TYPE SUPPLIER_TYPE,
+  	po.PURCHASER_NO PURCHASER_NO,po.PURCHASER_NICK PURCHASER_NICK,po.TOTAL_PURCHASE_QUANTITY TOTAL_PURCHASE_QUANTITY,
+  	po.TOTAL_PURCHASE_PRICE TOTAL_PURCHASE_PRICE,po.TOTAL_SALES_PRICE TOTAL_SALES_PRICE,po.TOTAL_PROFIT_PRICE TOTAL_PROFIT_PRICE,
+  	po.COOPERATION_WAY COOPERATION_WAY
+  	FROM purchase_order po,sales_order so
+  	LEFT JOIN (
+  		SELECT ORDER_NO,COUNT(ORDER_NO) c
+  		FROM order_item
+  		GROUP BY ORDER_NO
+  	) lf ON lf.ORDER_NO=so.ORDER_NO
+  	WHERE so.SELLER_REMOTE_ID=#{shopNo} 
+  	AND so.ORDER_NO=po.ORDER_NO
+  	AND po.PURCHASER_NO=so.SELLER_REMOTE_ID
+  	<!-- 分销订单 -->
+  	AND so.ORDER_CATEGORY=4
+  	<!-- 查找不同订单状态 -->
+  	<choose>
+  		<when test="status == 30">
+  			AND STATUS IN (10,30)
+  		</when>
+  		<when test="status != null">
+  			AND STATUS = #{status}
+  		</when>
+  		<otherwise>
+  			<![CDATA[and status <> 11]]>  
+  		</otherwise>
+  	</choose>
+  	<!-- 排序 -->
+  	<if test="orderBy != null">
+	 <![CDATA[ORDER BY ${orderBy}]]>
+	</if>
+	<if test="start !=null and pageSize!=null">
+	 LIMIT #{start},#{pageSize}
+	</if>
+  </select>
+  <!--  根据直接购买手机获取订单 -->
+  <select id="selectOwnSalesOrderPageBySubbranchId" resultMap="BaseResultMapSubBranchSalesOrderVo" parameterType="java.util.Map">
+  	SELECT so.*,ifnull(lf.c,0) ITEMS,po.ID PURCHASE_ID,
+  	po.SUPPLIER_NO SUPPLIER_NO,po.SUPPLIER_NICK SUPPLIER_NICK,po.SUPPLIER_TYPE SUPPLIER_TYPE,
+  	po.PURCHASER_NO PURCHASER_NO,po.PURCHASER_NICK PURCHASER_NICK,po.TOTAL_PURCHASE_QUANTITY TOTAL_PURCHASE_QUANTITY,
+  	po.TOTAL_PURCHASE_PRICE TOTAL_PURCHASE_PRICE,po.TOTAL_SALES_PRICE TOTAL_SALES_PRICE,po.TOTAL_PROFIT_PRICE TOTAL_PROFIT_PRICE,
+  	po.COOPERATION_WAY COOPERATION_WAY
+  	FROM purchase_order po,sales_order so
+  	LEFT JOIN (
+  		SELECT ORDER_NO,COUNT(ORDER_NO) c
+  		FROM order_item
+  		GROUP BY ORDER_NO
+  	) lf ON lf.ORDER_NO=so.ORDER_NO,subbranch sub
+  	WHERE 
+  	sub.id=#{subbranchId}
+  	AND po.SUBBRANCH_ID=#{subbranchId}	
+<!--     <if test="isShopRequest == null"> -->
+      AND so.SELLER_REMOTE_ID=sub.user_cell 
+<!--     </if>  -->
+  	AND so.ORDER_NO=po.ORDER_NO
+	AND so.ORDER_CATEGORY=4
+  	<choose>
+  		<when test="status == 30">
+  			AND so.STATUS IN (10,30)
+  		</when>
+  		<when test="status != null">
+  			AND so.STATUS = #{status}
+  		</when>
+  		<otherwise>
+  			<![CDATA[and so.status <> 11]]>  
+  		</otherwise>
+  	</choose>
+ 	<if test="searchKey != null">
+       AND ( so.ORDER_NO LIKE CONCAT('%',#{searchKey},'%')
+       	OR so.BUYER_NICK LIKE CONCAT('%',#{searchKey},'%')
+       	OR so.ORDER_NO IN (SELECT DISTINCT oi.ORDER_NO FROM order_item oi WHERE oi.GOOD_NAME LIKE CONCAT('%',#{searchKey},'%'))
+       )
+   </if>
+   <!-- 加userId过滤我的分店下自营订单 -->
+   <if test="userId != null">
+    AND so.USER_ID = #{userId}
+   </if>
+  	<if test="orderBy != null">
+	 <![CDATA[ORDER BY ${orderBy}]]>
+	</if>
+	<if test="start !=null and pageSize!=null">
+	 LIMIT #{start},#{pageSize}
+	</if>
+  </select>
+  <select id="selectSubBranchSalesOrderPageByShopNo" resultMap="BaseResultMapSubBranchSalesOrderVo" parameterType="java.util.Map">
+  	SELECT so.*,ifnull(lf.c,0) ITEMS,po.ID PURCHASE_ID,
+  	po.SUPPLIER_NO SUPPLIER_NO,po.SUPPLIER_NICK SUPPLIER_NICK,po.SUPPLIER_TYPE SUPPLIER_TYPE,
+  	po.PURCHASER_NO PURCHASER_NO,po.PURCHASER_NICK PURCHASER_NICK,po.TOTAL_PURCHASE_QUANTITY TOTAL_PURCHASE_QUANTITY,
+  	po.TOTAL_PURCHASE_PRICE TOTAL_PURCHASE_PRICE,po.TOTAL_SALES_PRICE TOTAL_SALES_PRICE,po.TOTAL_PROFIT_PRICE TOTAL_PROFIT_PRICE,
+  	po.COOPERATION_WAY COOPERATION_WAY
+  	FROM  purchase_order po,sales_order so
+  	LEFT JOIN (
+  		SELECT ORDER_NO,COUNT(ORDER_NO) c
+  		FROM order_item
+  		GROUP BY ORDER_NO
+  	) lf ON lf.ORDER_NO=so.ORDER_NO
+  	WHERE po.SUPPLIER_NO=#{shopNo}
+  	AND so.ORDER_NO=po.ORDER_NO
+	AND so.ORDER_CATEGORY=4
+  	<choose>
+  		<when test="status == 30">
+  			AND STATUS IN (10,30)
+  		</when>
+  		<when test="status != null">
+  			AND STATUS = #{status}
+  		</when>
+  		<otherwise>
+  			<![CDATA[and status <> 11]]>  
+  		</otherwise>
+  	</choose>
+  	<if test="orderBy != null">
+	 <![CDATA[ORDER BY ${orderBy}]]>
+	</if>
+	<if test="start !=null and pageSize!=null">
+	 LIMIT #{start},#{pageSize}
+	</if>
+  </select>
+  <select id="selectSubBranchSalesOrderPageBySubbranchId" resultMap="BaseResultMapSubBranchSalesOrderVo" parameterType="java.util.Map">
+  	SELECT so.*,ifnull(lf.c,0) ITEMS,po.ID PURCHASE_ID,
+  	po.SUPPLIER_NO SUPPLIER_NO,po.SUPPLIER_NICK SUPPLIER_NICK,po.SUPPLIER_TYPE SUPPLIER_TYPE,
+  	po.PURCHASER_NO PURCHASER_NO,po.PURCHASER_NICK PURCHASER_NICK,po.TOTAL_PURCHASE_QUANTITY TOTAL_PURCHASE_QUANTITY,
+  	po.TOTAL_PURCHASE_PRICE TOTAL_PURCHASE_PRICE,po.TOTAL_SALES_PRICE TOTAL_SALES_PRICE,po.TOTAL_PROFIT_PRICE TOTAL_PROFIT_PRICE,
+  	po.COOPERATION_WAY COOPERATION_WAY,
+  	(select TOTAL_PROFIT_PRICE from purchase_order where ORDER_NO=so.ORDER_NO and SUBBRANCH_ID=#{subbranchId}) as PRE_LEVE_COMMSSION
+  	FROM purchase_order po,sales_order so
+  	LEFT JOIN (
+  		SELECT ORDER_NO,COUNT(ORDER_NO) c
+  		FROM order_item
+  		GROUP BY ORDER_NO
+  	) lf ON lf.ORDER_NO=so.ORDER_NO,subbranch sub
+  	WHERE 
+  	sub.id=#{subbranchId}
+  	AND po.SUBBRANCH_ID=#{subbranchId}	 
+  	<![CDATA[ AND so.SELLER_REMOTE_ID<>sub.user_cell ]]> 
+  	AND so.ORDER_NO=po.ORDER_NO
+  	 <!-- 订单为代理单 -->
+	AND so.ORDER_CATEGORY=4
+	<!-- 订单状态 为可空 -->
+  	<choose>
+  		<when test="status == 30">
+  			AND so.STATUS IN (10,30)
+  		</when>
+  		<when test="status != null">
+  			AND so.STATUS = #{status}
+  		</when>
+  		<otherwise>
+  			<![CDATA[and so.status <> 11]]>  
+  		</otherwise>
+  	</choose>
+  	<if test="searchKey != null">
+        AND ( so.ORDER_NO LIKE CONCAT('%',#{searchKey},'%')
+        	OR so.BUYER_NICK LIKE CONCAT('%',#{searchKey},'%')
+        	OR so.ORDER_NO IN (SELECT DISTINCT oi.ORDER_NO FROM order_item oi WHERE oi.GOOD_NAME LIKE CONCAT('%',#{searchKey},'%'))
+        )
+   </if>
+  	<if test="orderBy != null">
+	 <![CDATA[ORDER BY ${orderBy}]]>
+	</if>
+	<if test="start !=null and pageSize!=null">
+	 LIMIT #{start},#{pageSize}
+	</if>
+  </select>
+  <select id="selectOwnSalesOrderCountByShopNo" resultType="java.lang.Integer" parameterType="java.util.Map">
+  	select count(1) `count`
+	FROM sales_order
+	WHERE 
+	<!-- 订单为代理单 -->
+	ORDER_CATEGORY = 4 
+	AND SELLER_REMOTE_ID=#{shopNo}
+
+	<choose>
+  		<when test="status == 30">
+  			AND STATUS IN (10,30)
+  		</when>
+  		<when test="status != null">
+  			AND STATUS = #{status}
+  		</when>
+  		<otherwise>
+  			<![CDATA[and status <> 11]]>  
+  		</otherwise>
+  	</choose>
+ </select>
+ <select id="selectOwnSalesOrderCountBySubbranchId" resultType="java.lang.Integer" parameterType="java.util.Map">
+  	select count(1) `count`
+	FROM sales_order so ,purchase_order po,subbranch sub
+  	WHERE 
+  	sub.id=#{subbranchId}
+  	AND po.SUBBRANCH_ID=#{subbranchId}	 
+  	 AND so.SELLER_REMOTE_ID=sub.user_cell 
+  	AND so.ORDER_NO=po.ORDER_NO
+	AND so.ORDER_CATEGORY=4
+	<choose>
+  		<when test="status == 30">
+  			AND so.STATUS IN (10,30)
+  		</when>
+  		<when test="status != null">
+  			AND so.STATUS = #{status}
+  		</when>
+  		<otherwise>
+  			<![CDATA[and so.status <> 11]]>  
+  		</otherwise>
+  	</choose>
+    <if test="searchKey != null">
+        AND ( so.ORDER_NO LIKE CONCAT('%',#{searchKey},'%')
+        	OR so.BUYER_NICK LIKE CONCAT('%',#{searchKey},'%')
+        	OR so.ORDER_NO IN (SELECT DISTINCT oi.ORDER_NO FROM order_item oi WHERE oi.GOOD_NAME LIKE CONCAT('%',#{searchKey},'%'))
+        )
+	</if>
+   <!-- 加userId过滤我的分店下自营订单 -->
+   <if test="userId != null">
+    AND so.USER_ID = #{userId}
+   </if>
+ </select>
+  
+  <select id="selectSubBranchSalesOrderCountByShopNo" resultType="java.lang.Integer" parameterType="java.util.Map">
+  	SELECT count(1) `count`
+  	FROM  sales_order so,purchase_order po
+  	WHERE
+	po.SUPPLIER_NO=#{shopNo}
+  	AND so.ORDER_NO=po.ORDER_NO
+	AND so.ORDER_CATEGORY=4
+  	<choose>
+  		<when test="status == 30">
+  			AND STATUS in (10,30)
+  		</when>
+  		<when test="status != null">
+  			AND STATUS = #{status}
+  		</when>
+  		<otherwise>
+  			<![CDATA[and status <> 11]]>  
+  		</otherwise>
+  	</choose>
+ </select>
+ <select id="selectSubBranchSalesOrderCountBySubbranchId" resultType="java.lang.Integer" parameterType="java.util.Map">
+  	SELECT count(1) `count`
+  	FROM  sales_order so,purchase_order po,subbranch sub
+  	WHERE 
+  	sub.id=#{subbranchId}
+  	AND po.SUBBRANCH_ID=#{subbranchId}	 
+  	<![CDATA[ AND so.SELLER_REMOTE_ID<>sub.user_cell ]]>  
+  	AND so.ORDER_NO=po.ORDER_NO
+	AND so.ORDER_CATEGORY=4
+  	<choose>
+  		<when test="status == 30">
+  			AND so.STATUS in (10,30)
+  		</when>
+  		<when test="status != null">
+  			AND so.STATUS = #{status}
+  		</when>
+  		<otherwise>
+  			<![CDATA[and so.status <> 11]]>  
+  		</otherwise>
+  	</choose>
+	<if test="searchKey != null">
+        AND ( so.ORDER_NO LIKE CONCAT('%',#{searchKey},'%')
+        	OR so.BUYER_NICK LIKE CONCAT('%',#{searchKey},'%')
+        	OR so.ORDER_NO IN (SELECT DISTINCT oi.ORDER_NO FROM order_item oi WHERE oi.GOOD_NAME LIKE CONCAT('%',#{searchKey},'%'))
+        )
+	</if>
+  	
+ </select>
+ <select id="selectSubBranchSalesOrderCountForProducer" resultType="java.lang.Integer" parameterType="java.util.Map">
+	SELECT COUNT(1)
+	FROM sales_order
+	WHERE SHOP_NO=#{shopNo}
+	AND PAYMENT_TIME >= #{time}
+ </select>
+ <select id="selectSubBranchSalesOrderCountForDistributor" resultType="java.lang.Integer" parameterType="java.util.Map">
+	SELECT COUNT(1)
+	FROM sales_order
+	WHERE SELLER_REMOTE_ID=#{shopNo}
+	AND PAYMENT_TIME >= #{time}
+ </select>
+ <select id="selectSubBranchSalesOrderTotalPrice" resultType="java.lang.Long" parameterType="java.util.Map">
+ 	SELECT SUM(PAY_PRICE)
+	FROM sales_order
+	WHERE SHOP_NO=#{shopNo}
+	AND PAYMENT_TIME >= #{time}
+ </select>
+ <select id="selectSubBranchSalesOrderUnFreezeTotalProfitPrice" resultType="java.lang.Long" parameterType="java.util.Map">
+	SELECT SUM(aor.TO_AMOUNT_AFTER-aor.TO_AMOUNT_BEFORE)
+	FROM account a ,account_operation_record aor
+	WHERE a.REMOTE_ID = #{userId}
+	<!-- 外部ID类型：1.用户 2.店铺 -->
+	AND a.REMOTE_TYPE = 1
+	AND a.ID = aor.TO_ACCOUNT_ID
+	<!-- 操作类型（1银行卡支付 2钱包支付 3余额提现 4佣金提现 11商户收益 12手续费收益 13佣金收益 14彩票中奖 15一键余额提取 16卖家退款 17赠送平台） -->
+	AND aor.OPERATION_TYPE = 21
+	AND aor.CREATE_TIME >= #{time}
+ </select>
+ <select id="selectAllMySalesOrderByShopNo" resultMap="BaseResultMapSubBranchSalesOrderVo" parameterType="java.util.Map">
+	SELECT so.*,po.ID PURCHASE_ID,0 ITEMS,
+  	po.SUPPLIER_NO SUPPLIER_NO,po.SUPPLIER_NICK SUPPLIER_NICK,po.SUPPLIER_TYPE SUPPLIER_TYPE,
+  	po.PURCHASER_NO PURCHASER_NO,po.PURCHASER_NICK PURCHASER_NICK,po.TOTAL_PURCHASE_QUANTITY TOTAL_PURCHASE_QUANTITY,
+  	po.TOTAL_PURCHASE_PRICE TOTAL_PURCHASE_PRICE,po.TOTAL_SALES_PRICE TOTAL_SALES_PRICE,po.TOTAL_PROFIT_PRICE TOTAL_PROFIT_PRICE,
+  	po.COOPERATION_WAY COOPERATION_WAY  
+	FROM sales_order so
+		LEFT JOIN purchase_order po
+		ON  po.ORDER_NO=so.ORDER_NO
+		AND po.SUPPLIER_NO=so.SHOP_NO 
+	<where>
+  	so.SHOP_NO = #{shopNo}
+  	<choose>
+  		<when test="status == 30">
+  			AND so.STATUS IN (10,30)
+  		</when>
+  		<when test="status != null">
+  			AND so.STATUS = #{status}
+  		</when>
+  		<otherwise>
+  			<![CDATA[AND so.STATUS <> 11]]> 
+  		</otherwise>
+  	</choose>
+      <choose>
+        <when test="orderCategory != null and orderCategory == 3">
+          AND so.ORDER_CATEGORY = 3
+        </when>
+        <otherwise>
+          AND so.ORDER_CATEGORY IN (1,2,4)
+        </otherwise>
+      </choose>
+  	<if test="userId != null">
+  	    AND so.USER_ID = #{userId} 
+  	</if>
+  	<if test="orderNo != null">
+  		AND so.ORDER_NO LIKE CONCAT('%',#{orderNo},'%')
+  	</if>
+  	<if test="payWay != null">
+  		AND so.PAY_WAY = #{payWay}
+  	</if>
+  	<if test="deliveryWay != null">
+  		AND so.DELIVERY_WAY = #{deliveryWay}
+  	</if>
+  	<if test="buyerAccount != null">
+  		AND so.BUYER_ACCOUNT LIKE CONCAT('%',#{buyerAccount},'%')
+  	</if>
+      <if test="appointmentName != null">
+        AND so.APPOINTMENT_NAME LIKE CONCAT('%',#{appointmentName},'%')
+      </if>
+      <if test="receiverName != null">
+        AND so.RECEIVER_NAME = #{receiverName}
+      </if>
+      <if test="receiverPhone != null">
+        AND so.RECEIVER_PHONE = #{receiverPhone}
+      </if>
+      <if test="searchKey != null">
+        AND ( so.ORDER_NO LIKE CONCAT('%',#{searchKey},'%')
+        	OR so.BUYER_NICK LIKE CONCAT('%',#{searchKey},'%')
+        	OR so.ORDER_NO IN (SELECT DISTINCT oi.ORDER_NO FROM order_item oi WHERE oi.GOOD_NAME LIKE CONCAT('%',#{searchKey},'%'))
+        )
+      </if>
+      <!-- 加userId过滤我的总店下自营订单 -->
+      <if test="userId != null">
+       AND so.USER_ID = #{userId}
+      </if>
+      <!--如果是客户统计请求，过滤掉预约订单 -->
+      <if test="isShopRequest != null">
+       AND so.STATUS IN (01, 02, 03, 05, 10 ,30)
+	   AND so.ORDER_CATEGORY IN (1,4)
+      </if>
+  	</where> 
+  	<if test="orderBy != null">
+	<![CDATA[ORDER BY ${orderBy}]]>
+	</if>
+	<if test="start !=null and pageSize!=null">
+	LIMIT #{start},#{pageSize}
+	</if>
+ </select>
+ <select id="countAllMySalesOrderByShopNo" resultType="java.lang.Integer" parameterType="java.util.Map">
+	SELECT count(1)
+	FROM sales_order so
+	<where>
+  	so.SHOP_NO = #{shopNo}
+  	<choose>
+  		<when test="status == 30">
+  			AND so.STATUS IN (10,30)
+  		</when>
+  		<when test="status != null and status == 2">
+  			AND so.DELIVERY_REMOTE_ID = #{shopNo}
+  			AND so.STATUS = #{status}
+  		</when>
+  		<when test="status != null and status != 2">
+  			AND so.STATUS = #{status}
+  		</when>
+  		<otherwise>
+  			<![CDATA[AND so.STATUS <> 11]]> 
+  		</otherwise>
+  	</choose>
+      <choose>
+        <when test="orderCategory != null and orderCategory == 3">
+          AND so.ORDER_CATEGORY = 3
+        </when>
+        <otherwise>
+          AND so.ORDER_CATEGORY IN (1,2,4)
+        </otherwise>
+      </choose>
+  	<if test="userId != null">
+  	    AND so.USER_ID = #{userId} 
+  	</if>
+  	<if test="orderNo != null">
+  		AND so.ORDER_NO LIKE CONCAT('%',#{orderNo},'%')
+  	</if>
+  	<if test="payWay != null">
+  		AND so.PAY_WAY = #{payWay}
+  	</if>
+  	<if test="deliveryWay != null">
+  		AND so.DELIVERY_WAY = #{deliveryWay}
+  	</if>
+  	<if test="buyerAccount != null">
+  		AND so.BUYER_ACCOUNT LIKE CONCAT('%',#{buyerAccount},'%')
+  	</if>
+      <if test="appointmentName != null">
+        AND so.APPOINTMENT_NAME LIKE CONCAT('%',#{appointmentName},'%')
+      </if>
+      <if test="receiverName != null">
+        AND so.RECEIVER_NAME = #{receiverName}
+      </if>
+      <if test="receiverPhone != null">
+        AND so.RECEIVER_PHONE = #{receiverPhone}
+      </if>
+     <if test="searchKey != null">
+        AND ( so.ORDER_NO LIKE CONCAT('%',#{searchKey},'%')
+        	OR so.BUYER_NICK LIKE CONCAT('%',#{searchKey},'%')
+        	OR so.ORDER_NO IN (SELECT DISTINCT oi.ORDER_NO FROM order_item oi WHERE oi.GOOD_NAME LIKE CONCAT('%',#{searchKey},'%'))
+        )
+      </if>
+  	</where> 
+ </select>
+ <select id="seletAll" resultMap="BaseResultMap">
+  select <include refid="Base_Column_List" />
+  from sales_order
+ </select>
+ 
+ 
+ <!-- 历史分店订单模块   start-->
+ 
+ <select id="countHistoryOrderForOwn" resultType="java.lang.Integer" parameterType="java.util.Map">
+  	select count(1) `count`
+	FROM sales_order a 
+	RIGHT JOIN(SELECT * FROM subbranch  WHERE  ID=#{subBranchId} AND STATUS = -1 ) b 
+	ON  a.SELLER_REMOTE_ID = b.user_cell 
+	AND a.shop_no= b.SUPPLIER_SHOP_NO WHERE a.ORDER_CATEGORY = 4 
+	<choose>
+  		<when test="status == 30">
+  			AND a.STATUS IN (10,30)
+  		</when>
+  		<when test="status != null">
+  			AND a.STATUS = #{status}
+  		</when>
+  		<otherwise>
+  			<![CDATA[and a.status <> 11]]>  
+  		</otherwise>
+  	</choose>
+ </select>
+  <select id="selectHistoryOrderForOwn" resultMap="BaseResultMapSubBranchSalesOrderVo" parameterType="java.util.Map">
+  	SELECT so.*,ifnull(lf.c,0) ITEMS,po.ID PURCHASE_ID,
+  	po.SUPPLIER_NO SUPPLIER_NO,po.SUPPLIER_NICK SUPPLIER_NICK,po.SUPPLIER_TYPE SUPPLIER_TYPE,
+  	po.PURCHASER_NO PURCHASER_NO,po.PURCHASER_NICK PURCHASER_NICK,po.TOTAL_PURCHASE_QUANTITY TOTAL_PURCHASE_QUANTITY,
+  	po.TOTAL_PURCHASE_PRICE TOTAL_PURCHASE_PRICE,po.TOTAL_SALES_PRICE TOTAL_SALES_PRICE,po.TOTAL_PROFIT_PRICE TOTAL_PROFIT_PRICE,
+  	po.COOPERATION_WAY COOPERATION_WAY
+  	FROM purchase_order po,sales_order so
+  	LEFT JOIN (
+  		SELECT ORDER_NO,COUNT(ORDER_NO) c
+  		FROM order_item
+  		GROUP BY ORDER_NO
+  	) lf ON lf.ORDER_NO=so.ORDER_NO,subbranch sub
+  	WHERE sub.ID=#{subBranchId} AND sub.STATUS = -1 
+  	<if test="isShopRequest == null">
+     AND so.SELLER_REMOTE_ID=sub.user_cell
+  	</if>
+<!--   	解绑后再次成为同一个上级的分店后两个分店下订单没有过滤 -->
+<!--   	<if test="isShopRequest == 1"> -->
+     AND po.SUBBRANCH_ID = #{subBranchId}
+<!--   	</if> -->
+  	AND so.shop_no= sub.SUPPLIER_SHOP_NO
+  	AND po.PURCHASER_NO=so.SELLER_REMOTE_ID
+  	AND so.ORDER_NO=po.ORDER_NO
+	AND so.ORDER_CATEGORY=4
+  	<choose>
+  		<when test="status == 30">
+  			AND so.STATUS IN (10,30)
+  		</when>
+  		<when test="status != null">
+  			AND so.STATUS = #{status}
+  		</when>
+  		<otherwise>
+  			<![CDATA[and so.status <> 11]]>  
+  		</otherwise>
+  	</choose>
+  	<if test="customerId != null">
+	 AND so.USER_ID = #{customerId,jdbcType=BIGINT}
+	</if>
+  	<if test="orderBy != null">
+	 <![CDATA[ORDER BY ${orderBy}]]>
+	</if>
+	<if test="start !=null and pageSize!=null">
+	 LIMIT #{start},#{pageSize}
+	</if>
+  </select>
+  <select id="countHistoryOrderForSub" resultType="java.lang.Integer" parameterType="java.util.Map">
+  	SELECT COUNT(1) `count`
+  	FROM  sales_order so,purchase_order po ,subbranch sub
+  	WHERE
+  	sub.ID=#{subBranchId} AND sub.STATUS =-1 AND sub.SUPPLIER_SHOP_NO = so.SHOP_NO 
+  	AND po.SUPPLIER_NO=sub.USER_CELL
+  	AND so.ORDER_NO=po.ORDER_NO
+	AND so.ORDER_CATEGORY=4
+  	<choose>
+  		<when test="status == 30">
+  			AND so.STATUS in (10,30)
+  		</when>
+  		<when test="status != null">
+  			AND so.STATUS = #{status}
+  		</when>
+  		<otherwise>
+  			<![CDATA[and so.status <> 11]]>  
+  		</otherwise>
+  	</choose>
+ </select>
+ <select id="selectHistoryOrderForSub" resultMap="BaseResultMapSubBranchSalesOrderVo" parameterType="java.util.Map">
+  	SELECT so.*,ifnull(lf.c,0) ITEMS,po.ID PURCHASE_ID,
+  	po.SUPPLIER_NO SUPPLIER_NO,po.SUPPLIER_NICK SUPPLIER_NICK,po.SUPPLIER_TYPE SUPPLIER_TYPE,
+  	po.PURCHASER_NO PURCHASER_NO,po.PURCHASER_NICK PURCHASER_NICK,po.TOTAL_PURCHASE_QUANTITY TOTAL_PURCHASE_QUANTITY,
+  	po.TOTAL_PURCHASE_PRICE TOTAL_PURCHASE_PRICE,po.TOTAL_SALES_PRICE TOTAL_SALES_PRICE,po.TOTAL_PROFIT_PRICE TOTAL_PROFIT_PRICE,
+  	po.COOPERATION_WAY COOPERATION_WAY,
+  	(select TOTAL_PROFIT_PRICE from purchase_order where ORDER_NO=so.ORDER_NO and PURCHASER_NO=#{phone}) as PRE_LEVE_COMMSSION
+  	FROM purchase_order po,sales_order so
+  	LEFT JOIN (
+  		SELECT ORDER_NO,COUNT(ORDER_NO) c
+  		FROM order_item
+  		GROUP BY ORDER_NO
+  	) lf ON lf.ORDER_NO=so.ORDER_NO,subbranch sub
+  	WHERE 
+  	sub.ID=#{subBranchId} AND sub.STATUS =-1 AND sub.SUPPLIER_SHOP_NO = so.SHOP_NO 
+  	AND po.SUPPLIER_NO=sub.USER_CELL
+  	AND so.ORDER_NO=po.ORDER_NO
+  	 <!-- 订单为代理单 -->
+	AND so.ORDER_CATEGORY=4
+	<!-- 订单状态 为可空 -->
+  	<choose>
+  		<when test="status == 30">
+  			AND so.STATUS IN (10,30)
+  		</when>
+  		<when test="status != null">
+  			AND so.STATUS = #{status}
+  		</when>
+  		<otherwise>
+  			<![CDATA[and so.status <> 11]]>  
+  		</otherwise>
+  	</choose>
+  	<if test="orderBy != null">
+	 <![CDATA[ORDER BY ${orderBy}]]>
+	</if>
+	<if test="start !=null and pageSize!=null">
+	 LIMIT #{start},#{pageSize}
+	</if>
+  </select>
+ <!-- 历史分店订单模块   end-->
+ 
+ <select id="countTodayShopCommission" resultType="java.lang.Long">
+	SELECT
+		SUM(lf.tpp)
+	FROM
+		sales_order so
+	RIGHT JOIN (
+		SELECT
+			ORDER_NO o,
+			TOTAL_PROFIT_PRICE tpp
+		FROM
+			purchase_order
+		WHERE
+			SUBBRANCH_ID = #{subbranchId}
+		AND COOPERATION_WAY = 1
+	) lf ON lf.o = so.ORDER_NO
+	WHERE so.PAYMENT_TIME IS NOT NULL
+	AND so.SELLER_REMOTE_TYPE = 2
+	AND so.SELLER_REMOTE_ID = #{userCell}
+	AND so.ORDER_CATEGORY = 4
+	<![CDATA[AND so.PAYMENT_TIME >= #{today} ]]>
+ </select>
+ 
+ <select id="countTodaySubbranchCommission" resultType="java.lang.Long">
+	SELECT
+		SUM(lf.tpp)
+	FROM
+		sales_order so
+	RIGHT JOIN (
+		SELECT
+			ORDER_NO o,
+			TOTAL_PROFIT_PRICE tpp
+		FROM
+			purchase_order
+		WHERE
+			SUBBRANCH_ID = #{subbranchId}
+		AND COOPERATION_WAY = 1
+	) lf ON lf.o = so.ORDER_NO
+	WHERE so.PAYMENT_TIME IS NOT NULL
+	AND so.SELLER_REMOTE_TYPE = 2
+	<![CDATA[AND so.SELLER_REMOTE_ID <> #{userCell}]]>  
+	AND so.ORDER_CATEGORY = 4
+	<![CDATA[AND so.PAYMENT_TIME >= #{today} ]]>
+ </select>
+ 
+ <select id="countTodayPayOrder" resultType="java.lang.Integer">
+ 	SELECT
+		count(1)
+	FROM
+		sales_order so
+	RIGHT JOIN (
+		SELECT
+			ORDER_NO o
+		FROM
+			purchase_order
+		WHERE
+			SUBBRANCH_ID = #{subbranchId}
+		AND COOPERATION_WAY = 1
+	) lf ON lf.o = so.ORDER_NO
+	WHERE so.PAYMENT_TIME IS NOT NULL
+	AND so.ORDER_CATEGORY = 4
+	<![CDATA[AND so.PAYMENT_TIME >= #{today} ]]>
+ </select>
+ 
+ <select id="countTodayCustomer" resultType="java.lang.Integer">
+	SELECT
+		COUNT(DISTINCT so.USER_ID)
+	FROM
+		sales_order so
+	RIGHT JOIN (
+		SELECT
+			ORDER_NO o
+		FROM
+			purchase_order
+		WHERE
+			SUBBRANCH_ID = #{subbranchId}
+		AND COOPERATION_WAY = 1
+	) lf ON lf.o = so.ORDER_NO
+	WHERE
+		so.PAYMENT_TIME IS NOT NULL
+	AND so.ORDER_CATEGORY = 4
+	<![CDATA[AND so.PAYMENT_TIME >= #{today} ]]>
+ </select>
+ 
+ <select id="countTodayCommission" resultType="java.lang.Long">
+ 	SELECT
+		SUM(lf.tpp)
+	FROM
+		sales_order so
+	RIGHT JOIN (
+		SELECT
+			ORDER_NO o,
+			TOTAL_PROFIT_PRICE tpp
+		FROM
+			purchase_order
+		WHERE
+			SUBBRANCH_ID = #{subbranchId}
+		AND COOPERATION_WAY = 1
+	) lf ON lf.o = so.ORDER_NO
+	WHERE
+		so.PAYMENT_TIME IS NOT NULL
+	AND so.ORDER_CATEGORY = 4
+	<![CDATA[AND so.PAYMENT_TIME >= #{today} ]]>
+ </select>
+ 
+ <select id="countSubbranchWeekCommission" resultType="com.zjlp.face.web.server.trade.order.domain.vo.OperateData">
+ 	SELECT
+		SUM(lf.tpp) AS price, DATE_FORMAT(so.PAYMENT_TIME,'%Y-%m-%d') AS timeStamp
+	FROM
+		sales_order so
+	RIGHT JOIN (
+		SELECT
+			ORDER_NO o,
+			TOTAL_PROFIT_PRICE tpp
+		FROM
+			purchase_order
+		WHERE
+			SUBBRANCH_ID = #{subbranchId}
+		AND COOPERATION_WAY = 1
+	) lf ON lf.o = so.ORDER_NO
+	WHERE
+		so.PAYMENT_TIME IS NOT NULL
+	AND so.ORDER_CATEGORY = 4
+	AND so.PAYMENT_TIME BETWEEN #{startTime} AND #{endTime}
+	GROUP BY timeStamp
+ </select>
+ <!-- 经营数据  4.5更新 start -->
+ <select id="selectSupplierRecivePrices"  parameterType="com.zjlp.face.web.server.trade.order.domain.dto.SalesOrderVo" 
+         resultType="com.zjlp.face.web.server.trade.order.domain.vo.OperateData">
+      SELECT 
+          DATE_FORMAT(so.PAYMENT_TIME,'%Y-%m-%d') AS timeStamp, SUM(so.pay_price) as price
+      FROM 
+          sales_order AS so 
+      WHERE 
+          so.shop_no = #{shopNo}
+          and so.PAYMENT_TIME IS NOT NULL
+          <![CDATA[ and so.PAYMENT_TIME >= #{paymentTime} ]]>
+      GROUP BY 
+          timeStamp
+ </select>
+ <select id="selectSupplierRecivePrice" parameterType="com.zjlp.face.web.server.trade.order.domain.dto.SalesOrderVo" 
+         resultType="java.lang.Long">
+      SELECT
+          sum(so.pay_price)
+      FROM 
+          sales_order AS so
+      where
+          so.shop_no = #{shopNo}
+          and so.PAYMENT_TIME IS NOT NULL
+          <![CDATA[ and so.PAYMENT_TIME >= #{paymentTime} ]]>
+ </select>
+ <select id="selectSupplierPayOrderCount" parameterType="com.zjlp.face.web.server.trade.order.domain.dto.SalesOrderVo" 
+         resultType="java.lang.Integer">
+      select
+          count(1)
+      from
+          sales_order as so 
+      where
+          so.shop_no = #{shopNo}
+          and so.PAYMENT_TIME IS NOT NULL
+          <![CDATA[ and so.PAYMENT_TIME >= #{paymentTime} ]]>
+ </select>
+ <select id="selectSupplierConsumerCount" parameterType="com.zjlp.face.web.server.trade.order.domain.dto.SalesOrderVo" 
+         resultType="java.lang.Integer">
+      SELECT
+          COUNT(1)
+      FROM
+          (
+	          SELECT DISTINCT 
+	              so.USER_ID 
+	          FROM 
+	              SALES_ORDER AS so 
+	          WHERE
+	              so.SHOP_NO = #{shopNo}
+	              AND so.PAYMENT_TIME IS NOT NULL
+                  <![CDATA[ AND so.PAYMENT_TIME >= #{paymentTime} ]]>
+          ) AS TEMP
+ </select>
+ <!-- 经营数据  4.5更新 end -->
+ <select id="getSubbranchFreezeAmount" parameterType="java.lang.String" resultType="java.lang.Long">
+ 	SELECT
+		SUM(po.TOTAL_PROFIT_PRICE)
+		
+	FROM
+		purchase_order po
+	INNER JOIN (
+		SELECT
+			so.ORDER_NO son
+		FROM
+			sales_order so
+		WHERE
+			so.`STATUS` IN (2, 3)
+		AND so.ORDER_CATEGORY = 4
+	) lj ON lj.son = po.ORDER_NO
+	WHERE po.PURCHASER_NO = #{cell}
+	AND po.COOPERATION_WAY = 1
+ </select>
+ 
+ <select id="countBookOrder" resultType="java.lang.Integer">
+ 	SELECT count(1)
+	FROM sales_order so
+	<where>
+  	so.SHOP_NO = #{shopNo}
+  	<choose>
+  		<when test="status == 30">
+  			AND so.STATUS IN (10,30)
+  		</when>
+  		<when test="status != null">
+  			AND so.STATUS = #{status}
+  		</when>
+  		<otherwise>
+  			<![CDATA[AND so.STATUS <> 11]]> 
+  		</otherwise>
+  	</choose>
+          AND so.ORDER_CATEGORY = 3
+  	</where> 
+ </select>
+ 
+ <!--  查询客户在我的总店下的订单 -统计-->
+ <select id="countCustomerOrderInMyShop" resultType="java.lang.Integer" parameterType="java.util.Map">
+   SELECT   
+     COUNT(1)
+     <include refid="customerOrderInMyShopCluase"/>
+ </select>
+ 
+ <!--  查询客户在我的总店下的订单 -分页-->
+ <select id="findCustomerOrderInMyShop" resultMap="BaseResultMap" parameterType="java.util.Map">
+   SELECT   
+      so.ORDER_NO AS ORDER_NO, 
+      so.CREATE_TIME AS CREATE_TIME, 
+      so.PICTURE_PATH AS PICTURE_PATH, 
+      IFNULL(so.PAY_PRICE, 0) AS PAY_PRICE, 
+      so.QUANTITY AS QUANTITY, 
+      so.STATUS AS STATUS,
+      so.TITLE AS TITLE
+    <include refid="customerOrderInMyShopCluase"/> 
+    ORDER BY so.CREATE_TIME DESC
+    LIMIT #{start},#{pageSize}
+ </select>
+ 
+ <sql id="customerOrderInMyShopCluase">
+   FROM sales_order so  
+   WHERE 1=1
+   AND so.USER_ID = #{customerId,jdbcType=BIGINT}
+   AND so.SHOP_NO = #{shopNo,jdbcType=VARCHAR}
+   AND so.ORDER_CATEGORY = 1 AND so.STATUS != 11
+ </sql>
+ 
+ <select id="selectAgrencyFreezeAmount" parameterType="java.lang.String" resultType="java.lang.Long">
+      SELECT 
+          temp.payPrice - temp.profit 
+      FROM 
+          (SELECT 
+               (SELECT 
+                    SUM(pay_price) 
+                FROM 
+                    SALES_ORDER 
+                WHERE 
+                    SHOP_NO=#{shopNo} 
+                    AND ORDER_CATEGORY=4
+               ) AS payPrice, 
+               (SELECT 
+                    SUM(TOTAL_PROFIT_PRICE) 
+                FROM 
+                    PURCHASE_ORDER AS po 
+                LEFT JOIN SALES_ORDER AS so ON (po.order_no = so.order_no) 
+                WHERE 
+                    so.shop_no=#{shopNo}
+                    AND so.ORDER_CATEGORY=4 AND so.status IN (2,3)
+                ) AS profit
+          ) AS temp
+ </select>
+</mapper>

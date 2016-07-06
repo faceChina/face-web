@@ -1,0 +1,226 @@
+/* 组件--通用 */
+/* .iconfont{font-size:20px;line-height:20px;} */
+.icon-right{color:#ccc;}
+
+/* ----------基础类---------- */
+.group{
+	background:#ffffff;
+	border-top:1px solid #ddd;
+	border-bottom:1px solid #ddd;
+	margin-top:10px;
+}
+
+.group-item{
+	margin:0 10px;
+	border-bottom:1px solid #eeeeee;
+}
+
+.group-item:last-child{
+	border-bottom:none;
+}
+
+.group-item.active,
+.group-item.danger{
+	background:#cc0000;
+	color:#FFF;
+}
+
+.group-item.warning{
+	background:#ff6600;
+	color:#FFF;
+}
+
+.group-item.disabled{
+	background:#f6f6f6;
+}
+
+.group-item.hover{
+	background:#eeeeee;
+    -webkit-box-shadow:0px 1px 2px #ccc inset;
+       -moz-box-shadow:0px 1px 2px #ccc inset;           
+    	    box-shadow:0px 1px 2px #ccc inset;
+}
+.group-item.active.hover,
+.group-item.danger.hover{
+	background:#bb0000;
+    -webkit-box-shadow:0px 1px 2px #660000 inset;  
+       -moz-box-shadow:0px 1px 2px #660000 inset;           
+    	    box-shadow:0px 1px 2px #660000 inset;
+}
+.group-item.warning.hover{
+	background:#ff5500;
+    -webkit-box-shadow:0px 1px 2px #aa3300 inset;  
+       -moz-box-shadow:0px 1px 2px #aa3300 inset;           
+    	    box-shadow:0px 1px 2px #aa3300 inset;
+}
+
+.group-item.active,
+.group-item.danger,
+.group-item.warning,
+.group-item.active.hover,
+.group-item.danger.hover,
+.group-item.warning.hover,
+.group-item.disabled,
+.group-item.hover{
+	margin:0;
+	padding:0 10px;
+}
+
+.group-item.active .group-rowspan .iconfont,
+.group-item.danger .group-rowspan .iconfont,
+.group-item.warning .group-rowspan .iconfont{
+	color:#fff;
+}
+
+.group-rowspan{
+	display:table;
+	width:100%;
+/* 	border-bottom:1px dashed #eeeeee; */
+}
+
+.group-rowspan:last-child{
+	border-bottom:none;
+}
+
+/* .group-item:last-child .group-rowspan{
+	border-bottom:none;
+} */
+
+.group-colspan{
+	display:table-cell;
+	overflow:hidden;
+	vertical-align:middle;
+	text-align:left;
+	padding:14px 0 14px 10px;
+}
+.group-colspan:first-child{
+	padding-left:0;
+}
+
+/* ----------内容水平居中---------- */
+.group-center .group-colspan{
+	text-align:center;
+}
+
+/* ----------内容垂直置顶---------- */
+.group-top .group-colspan{
+	vertical-align:top;
+}
+
+/* ----------内容垂直置底---------- */
+.group-bottom .group-colspan{
+	vertical-align:bottom;
+}
+
+/* ----------单行两列（右对齐）---------- */
+.group-right .group-colspan:nth-child(1),
+.group-right .group-colspan:nth-child(2){
+	text-align:right;
+}
+
+/* ----------单行两列（两端对齐）----------*/
+.group-justify .group-colspan:nth-child(2){
+	text-align:right;
+}
+
+/* ----------单行两列（中间对齐）----------*/
+.group-between .group-colspan{
+	width:50%;
+}
+.group-between .group-colspan:nth-child(1){
+	text-align:right;
+}
+
+/* ----------单行三列及以上---------- */
+.group-others .group-colspan:last-child{
+	text-align:right;
+}
+
+/* ----------中间无间隔线---------- */
+.group-noborder .group-rowspan{
+	border-bottom:none;
+}
+
+/* ----------无上边距及间隔---------- */
+.group-cleartop{
+	border-top:none;
+	margin-top:0;
+}
+
+/* ----------中间显示竖线---------- */
+.group-verticalline .group-colspan{
+	border-right:1px solid #f1f1f1;
+	padding:6px 10px;
+}
+.group-verticalline .group-colspan:first-child{
+	padding-left:0;
+}
+.group-verticalline .group-colspan:last-child{
+	border-right:none;
+	padding-right:0;
+}
+
+/* ----------模块之间小间距---------- */
+.group-small{
+	padding-top:6px;
+	padding-bottom:6px;
+}
+.group-small .group-colspan{
+	padding:6px 0 6px 10px;
+}
+.group-small .group-colspan:first-child{
+	padding-left:0;
+}
+
+
+/*------------模块平分--------------*/
+.group-equally{}
+.group-equally .group-item{
+	margin:0;
+}
+.group-equally .group-rowspan{
+	width:100%;
+	display:-moz-box;
+	display:-webkit-box;
+}
+.group-equally .group-colspan{
+	display:block;
+	-moz-box-flex:1.0;
+	-webkit-box-flex:1.0;
+	text-align:center;
+}
+
+
+
+
+/* ----------自定义宽度---------- */
+.width20 .group-colspan:first-child{
+	width:20px;
+}
+.width40 .group-colspan:first-child{
+	width:40px;
+}
+.width55 .group-colspan:first-child{
+	width:55px;
+}
+.width60 .group-colspan:first-child{
+	width:60px;
+}
+.width70 .group-colspan:first-child{
+	width:70px;
+}
+.width80 .group-colspan:first-child{
+	width:80px;
+}
+.width100 .group-colspan:first-child{
+	width:100px;
+}
+.width105 .group-colspan:first-child{
+	width:105px;
+}
+.width110 .group-colspan:first-child{
+	width:110px;
+}
+.width120 .group-colspan:first-child{
+	width:120px;
+}

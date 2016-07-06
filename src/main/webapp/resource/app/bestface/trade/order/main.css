@@ -1,0 +1,206 @@
+/*  
+* @description:CSS
+* @author: dhp
+* @update:
+*/
+
+/*  
+* @description:CSS
+* @author: sf
+* @update:
+*/
+.sup{
+	position:absolute;
+	top:0;
+	right:-5px;
+	width:30px;
+	height:25px;
+	background:#c00;
+	border-radius:80%;
+	line-height:25px;
+	text-align:center;
+	color:#fff;
+	font-size:14px;
+}
+
+/*  
+* @description:CSS
+* @author: wmm
+* @update:
+*/
+.list-tab{
+	display: table;
+	width: 100%;
+	text-align: center;
+	vertical-align: middle;
+	background-color: #fff;
+	border-bottom: 1px solid #ccc;
+}
+.list-tab ul{
+	display: table-row;
+}
+.list-tab li{
+	display: table-cell;
+}
+.list-tab span{
+	display: inline-block;
+	padding: 16px 0;
+	margin-bottom: -1px;
+}
+.list-tab .active{
+	border-bottom: 2px solid #c00;
+	color: #c00;
+}
+
+
+.list-tabs{
+	overflow-x: auto;
+	width: 100%;
+	-webkit-overflow-scrolling:touch;
+	-moz-overflow-scrolling:touch;
+	-o-overflow-scrolling:touch;
+	text-align: center;
+	vertical-align: middle;
+	background-color: #fff;
+	border-bottom: 1px solid #ccc;
+}
+.list-tabs ul{
+	width:200%;
+}
+.list-tabs li{
+	width:12%;
+	float:left;
+	display:inline;
+	overflow:hidden;
+}
+.list-tabs span{
+	display: inline-block;
+	padding: 16px 0;
+	margin-bottom: -1px;
+}
+.list-tabs .active{
+	border-bottom: 2px solid #c00;
+	color: #c00;
+}
+
+
+/* list-row扩展 商品 */
+.shop-other{
+	max-width: 100px;
+	text-align: right;
+	line-height: 1.8em;
+}
+.shop-other span{
+	display: block;
+	text-align: 
+}
+
+.shop-info p{
+	margin-right: 8px;
+}
+
+/* 
+* 订单详情
+*/
+
+/* 地址 */
+
+.list-address{
+	padding: 20px 16px;
+	margin-top: 16px;
+	background:#fff;
+	border-image: url("../img/address-border.jpg") 4 4 4 4 / 2px 2px 2px 2px round round;
+}
+.list-address .user{
+
+}
+.list-address .mobile{
+	float: right;
+}
+.list-address .address{
+	margin-top: 8px;
+}
+/* 订单详情 end */
+
+div::-webkit-scrollbar{
+	display: none;
+}
+
+
+/* 上标   */
+.icon-sup{
+	display: inline-block;
+	width:18px;
+	height:18px;
+	background:#cc0000;
+	border-radius: 100%;
+	color: #fff;
+	font-size:10px;
+	line-height:18px;
+}
+
+/* 代理订单  */
+.tab{
+	width:100%;
+	margin:0 auto;
+}
+.tab-handle {
+	margin:10px;
+ 	border:1px solid #c00;
+ 	border-radius:30px;
+}
+.tab-handle li a {
+	background:none;
+	border-right:none;
+	border-bottom:none;
+	border-radius:30px;
+}
+/* 搜索  */
+.search {
+	position: relative;
+	margin:0 10px;
+	padding: 10px 0 0 0;
+}
+.search i {
+	position: absolute;
+	left:8px;
+	z-index: 9;
+	color: #ccc;
+	line-height:30px;
+}
+.search span {
+	position: relative;
+	z-index: 0;
+	display: inline-block;
+	width: 100%;
+	height: 30px;
+	margin:0 auto;
+	background: #fff;
+	border-radius:30px;
+	cursor: pointer;
+}
+.search span input{
+	background:transparent;
+	padding-left:30px;
+	line-height:30px;
+	font-size:14px;
+}
+.agency-order{}
+.agency-order .list-inline{
+	position:relative;
+}
+.agency-order-tit{
+	display:block;
+	position:absolute;
+	left:0px;
+	width:70px;
+	height:20px;
+	margin-top:50px;
+	background:rgba(0,0,0,.5);
+	color:#fff;
+	line-height:20px;
+	text-align:center;
+}
+
+/* 代理订单 end  */
+

@@ -1,0 +1,1125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<!-- 首页及分类页预览配置开始 STATUS:1 默认选中 -->
+	<OWTEMPLATEDTOS>
+		<!-- 三阶段1期模版开始 -->
+		
+		<!--##################################### 三阶段模版开始  #################################################### -->
+		<!-- 官网 5套 -->
+		<!-- 热门：高档华丽HP_WGW_V31_1 -->
+		<OWTEMPLATEDTO>
+			<NAME>高档华丽</NAME>
+			<CODE>HP_WGW_V31_1</CODE>
+			<PATH>/resource/m/img/owtemplate/hot-temp1.jpg</PATH>
+			<STATUS>0</STATUS>
+			<TYPE>1</TYPE><!-- 类型 1：官网模板，2：商城模板，4：商城分类页模板，   -->
+			<ISIMAGE>1</ISIMAGE><!-- 标准模块是否有图标 0无 1有-->
+			<ISIMAGECUSTOM>1</ISIMAGECUSTOM><!-- 自定义模块是否有图标 0无 1有-->
+			<ISMODULAR>1</ISMODULAR><!-- 是否有模块 0无 1有 -->
+			<ISCHANGE>0</ISCHANGE><!-- 模块数量是否 可增 可删 可移 0不可 1可-->
+			<SHAPE>0</SHAPE><!-- 图片形状 0方型 1圆型 -->
+			<ISSHOPSTROKES>0</ISSHOPSTROKES><!-- 模板是否有店招 0无 1有 -->
+			<ISBACKGROUNDCOLOR>1</ISBACKGROUNDCOLOR><!-- 模块是否有背景颜色 0无 1有 -->
+			<ISNAMEEN>0</ISNAMEEN><!-- 是否有英文名称 0无 1有 -->
+			<ISCONTACTWAY>0</ISCONTACTWAY><!-- 是否有联系方式 0无 1有  -->
+			<ISUSERDEFINED>1</ISUSERDEFINED><!-- 是否有自定义模块 0无 1有  -->
+			<ISCARLORBG>1</ISCARLORBG><!-- 0.无 1.轮播图 2.背景图 -->
+			<CLASSIFICATION>1</CLASSIFICATION><!-- 归类1.热门2.行业3.其他 -->
+			<ISREGULAR>1</ISREGULAR><!-- 是否是规则模块 0.不规则 1.规则 -->
+			<ISIMAGECUSTOM>0</ISIMAGECUSTOM><!-- 自定义模块是否有图片  0无 1有 -->
+			<ISNAMEENCUSTOM>0</ISNAMEENCUSTOM><!-- 自定义模块是否有英文名称  0无 1有 -->
+			<ISBACKGROUNDCOLORCUSTOM>0</ISBACKGROUNDCOLORCUSTOM><!-- 自定义模块是否有背景颜色  0无 1有 -->
+			<ISTEMPLATEDETAIL>0</ISTEMPLATEDETAIL><!-- 模板是否有模板细项 -->
+			<ISNAMEZHCOLORCUSTOM>0</ISNAMEZHCOLORCUSTOM><!-- 自定义模块 名称是否有颜色  0无 1有 -->
+			<SORT>1</SORT>
+			<ISHIDDEN>0</ISHIDDEN><!-- 模版是否显示到模版管理0.不隐藏1.隐藏 -->
+		</OWTEMPLATEDTO>
+		<!-- 热门：高贵奢华HP_WGW_V31_2 -->
+		<OWTEMPLATEDTO>
+			<NAME>高贵奢华</NAME>
+			<CODE>HP_WGW_V31_2</CODE>
+			<PATH>/resource/m/img/owtemplate/hot-temp2.jpg</PATH>
+			<STATUS>0</STATUS>
+			<TYPE>1</TYPE><!-- 类型 1：官网模板，2：商城模板，4：商城分类页模板，  6：文章分类列表模版 7：相册模版 -->
+			<ISIMAGE>1</ISIMAGE><!-- 标准模块是否有图标 0无 1有-->
+			<ISIMAGECUSTOM>1</ISIMAGECUSTOM><!-- 自定义模块是否有图标 0无 1有-->
+			<ISMODULAR>1</ISMODULAR><!-- 是否有模块 0无 1有 -->
+			<ISCHANGE>1</ISCHANGE><!-- 模块数量是否 可增 可删 可移 0不可 1可-->
+			<SHAPE>0</SHAPE><!-- 图片形状 0方型 1圆型 -->
+			<ISSHOPSTROKES>1</ISSHOPSTROKES><!-- 模板是否有店招 0无 1有 -->
+			<SHOPSTROKESPATH>/resource/base/img/hp/V31/website2/img/signage.jpg</SHOPSTROKESPATH>
+			<ISBACKGROUNDCOLOR>1</ISBACKGROUNDCOLOR><!-- 模块是否有背景颜色 0无 1有 -->
+			<ISNAMEEN>0</ISNAMEEN><!-- 是否有英文名称 0无 1有 -->
+			<ISCONTACTWAY>0</ISCONTACTWAY><!-- 是否有联系方式  0无 1有 -->
+			<ISUSERDEFINED>1</ISUSERDEFINED><!-- 是否有自定义模块 0无 1有  -->
+			<ISCARLORBG>2</ISCARLORBG><!-- 0.无 1.轮播图 2.背景图 -->
+			<CLASSIFICATION>1</CLASSIFICATION><!-- 归类1.热门2.行业3.其他 -->
+			<ISREGULAR>1</ISREGULAR><!-- 是否是规则模块 0.不规则 1.规则 -->
+			<ISIMAGECUSTOM>0</ISIMAGECUSTOM><!-- 自定义模块是否有图片  0无 1有 -->
+			<ISNAMEENCUSTOM>0</ISNAMEENCUSTOM><!-- 自定义模块是否有英文名称  0无 1有 -->
+			<ISBACKGROUNDCOLORCUSTOM>0</ISBACKGROUNDCOLORCUSTOM><!-- 自定义模块是否有背景颜色  0无 1有 -->
+			<ISTEMPLATEDETAIL>1</ISTEMPLATEDETAIL><!-- 模板是否有模板细项 -->
+			<ISNAMEZHCOLORCUSTOM>0</ISNAMEZHCOLORCUSTOM><!-- 自定义模块 名称是否有颜色  0无 1有 -->
+			<SORT>2</SORT>
+			<ISHIDDEN>0</ISHIDDEN><!-- 模版是否显示到模版管理0.不隐藏1.隐藏 -->
+		</OWTEMPLATEDTO>
+		<!-- 商务通用 HP_WGW_V31_3-->
+		<OWTEMPLATEDTO>
+			<NAME>商务通用</NAME>
+			<CODE>HP_WGW_V31_3</CODE>
+			<PATH>/resource/m/img/owtemplate/hot-temp3.jpg</PATH>
+			<STATUS>1</STATUS>
+			<TYPE>1</TYPE><!-- 类型 1：官网模板，2：商城模板，4：商城分类页模板，  6：文章分类列表模版 7：相册模版 -->
+			<ISIMAGE>0</ISIMAGE><!-- 模块是否有图标 0无 1有-->
+			<ISIMAGECUSTOM>1</ISIMAGECUSTOM><!-- 自定义模块是否有图标 0无 1有-->
+			<ISMODULAR>1</ISMODULAR><!-- 是否有模块 0无 1有 -->
+			<ISCHANGE>1</ISCHANGE><!-- 模块数量是否 可增 可删 可移 0不可 1可-->
+			<SHAPE>1</SHAPE><!-- 图片形状 0方型 1圆型 -->
+			<ISSHOPSTROKES>0</ISSHOPSTROKES><!-- 模板是否有店招 0无 1有 -->
+			<ISBACKGROUNDCOLOR>1</ISBACKGROUNDCOLOR><!-- 模块是否有背景颜色 0无 1有 -->
+			<ISNAMEEN>1</ISNAMEEN><!-- 是否有英文名称 0无 1有 -->
+			<ISCONTACTWAY>1</ISCONTACTWAY><!-- 是否有联系方式  0无 1有 -->
+			<ISUSERDEFINED>0</ISUSERDEFINED><!-- 是否有自定义模块 0无 1有  -->
+			<ISCARLORBG>2</ISCARLORBG><!-- 0.无 1.轮播图 2.背景图 -->
+			<CLASSIFICATION>1</CLASSIFICATION><!-- 归类1.热门2.行业3.其他 -->
+			<ISREGULAR>1</ISREGULAR><!-- 是否是规则模块 0.不规则 1.规则 -->
+			<ISIMAGECUSTOM>0</ISIMAGECUSTOM><!-- 自定义模块是否有图片  0无 1有 -->
+			<ISNAMEENCUSTOM>0</ISNAMEENCUSTOM><!-- 自定义模块是否有英文名称  0无 1有 -->
+			<ISBACKGROUNDCOLORCUSTOM>0</ISBACKGROUNDCOLORCUSTOM><!-- 自定义模块是否有背景颜色  0无 1有 -->
+			<ISTEMPLATEDETAIL>1</ISTEMPLATEDETAIL><!-- 模板是否有模板细项 -->
+			<ISNAMEZHCOLORCUSTOM>0</ISNAMEZHCOLORCUSTOM><!-- 自定义模块 名称是否有颜色  0无 1有 -->
+			<SORT>3</SORT>
+			<ISHIDDEN>0</ISHIDDEN><!-- 模版是否显示到模版管理0.不隐藏1.隐藏 -->
+		</OWTEMPLATEDTO>
+		<!-- 热门：酷炫大气 HP_WGW_V31_4-->
+		<OWTEMPLATEDTO>
+			<NAME>酷炫大气</NAME>
+			<CODE>HP_WGW_V31_4</CODE>
+			<PATH>/resource/m/img/owtemplate/hot-temp4.jpg</PATH>
+			<STATUS>0</STATUS>
+			<TYPE>1</TYPE><!-- 类型 1：官网模板，2：商城模板，4：商城分类页模板，  6：文章分类列表模版 7：相册模版 -->
+			<ISIMAGE>0</ISIMAGE><!-- 模块是否有图标 0无 1有-->
+			<ISMODULAR>1</ISMODULAR><!-- 是否有模块 0无 1有 -->
+			<ISCHANGE>1</ISCHANGE><!-- 模块数量是否 可增 可删 可移 0不可 1可-->
+			<SHAPE>0</SHAPE><!-- 图片形状 0方型 1圆型 -->
+			<ISSHOPSTROKES>0</ISSHOPSTROKES><!-- 模板是否有店招 0无 1有 -->
+			<ISBACKGROUNDCOLOR>1</ISBACKGROUNDCOLOR><!-- 模块是否有背景颜色 0无 1有 -->
+			<ISNAMEEN>1</ISNAMEEN><!-- 是否有英文名称 0无 1有 -->
+			<ISCONTACTWAY>0</ISCONTACTWAY><!-- 是否有联系方式 -->
+			<ISUSERDEFINED>1</ISUSERDEFINED><!-- 是否有自定义模块 -->
+			<ISCARLORBG>0</ISCARLORBG><!-- 0.无 1.轮播图 2.背景图 -->
+			<CLASSIFICATION>1</CLASSIFICATION><!-- 归类1.热门2.行业3.其他 -->
+			<ISREGULAR>1</ISREGULAR><!-- 是否是规则模块 0.不规则 1.规则 -->
+			<ISIMAGECUSTOM>1</ISIMAGECUSTOM><!-- 自定义模块是否有图片  0无 1有 -->
+			<ISNAMEENCUSTOM>1</ISNAMEENCUSTOM><!-- 自定义模块是否有英文名称  0无 1有 -->
+			<ISBACKGROUNDCOLORCUSTOM>1</ISBACKGROUNDCOLORCUSTOM><!-- 自定义模块是否有背景颜色  0无 1有 -->
+			<ISNAMEZHCOLORCUSTOM>1</ISNAMEZHCOLORCUSTOM><!-- 自定义模块 名称是否有颜色  0无 1有 -->
+			<ISTEMPLATEDETAIL>0</ISTEMPLATEDETAIL><!-- 模板是否有模板细项 -->
+			<SORT>4</SORT>
+			<ISHIDDEN>0</ISHIDDEN><!-- 模版是否显示到模版管理0.不隐藏1.隐藏 -->
+		</OWTEMPLATEDTO>
+		<!-- 热门：唯美简约 HP_WGW_V31_5-->
+		<OWTEMPLATEDTO>
+			<NAME>唯美简约</NAME>
+			<CODE>HP_WGW_V31_5</CODE>
+			<PATH>/RESOURCE/M/IMG/OWTEMPLATE/template-home-14.jpg</PATH>
+			<STATUS>0</STATUS>
+			<TYPE>1</TYPE><!-- 类型 1：官网模板，2：商城模板，4：商城分类页模板，  6：文章分类列表模版 7：相册模版 -->
+			<ISIMAGE>0</ISIMAGE><!-- 模块是否有图标 0无 1有 -->
+			<ISIMAGECUSTOM>1</ISIMAGECUSTOM><!-- 自定义模块是否有图标 0无 1有 -->
+			<ISMODULAR>1</ISMODULAR><!-- 是否有模块 0无 1有 -->
+			<ISCHANGE>1</ISCHANGE><!-- 模块数量是否 可增 可删 可移 0不可 1可 -->
+			<SHAPE>0</SHAPE><!-- 图片形状 0方型 1圆型 -->
+			<ISSHOPSTROKES>0</ISSHOPSTROKES><!-- 模板是否有店招 0无 1有 -->
+			<ISBACKGROUNDCOLOR>1</ISBACKGROUNDCOLOR><!-- 模块是否有背景颜色 0无 1有 -->
+			<ISNAMEEN>1</ISNAMEEN><!-- 是否有英文名称 0无 1有 -->
+			<ISCONTACTWAY>0</ISCONTACTWAY><!-- 是否有联系方式 -->
+			<ISUSERDEFINED>0</ISUSERDEFINED><!-- 是否有自定义模块 -->
+			<ISCARLORBG>2</ISCARLORBG><!-- 0.无 1.轮播图 2.背景图 -->
+			<CLASSIFICATION>2</CLASSIFICATION><!-- 归类1.热门2.行业3.其他 -->
+			<ISREGULAR>1</ISREGULAR><!-- 是否是规则模块 0.不规则 1.规则 -->
+			<ISIMAGECUSTOM>1</ISIMAGECUSTOM><!-- 自定义模块是否有图片  0无 1有 -->
+			<ISNAMEENCUSTOM>1</ISNAMEENCUSTOM><!-- 自定义模块是否有英文名称  0无 1有 -->
+			<ISBACKGROUNDCOLORCUSTOM>1</ISBACKGROUNDCOLORCUSTOM><!-- 自定义模块是否有背景颜色  0无 1有 -->
+			<ISTEMPLATEDETAIL>0</ISTEMPLATEDETAIL><!-- 模板是否有模板细项 -->
+			<ISNAMEZHCOLORCUSTOM>0</ISNAMEZHCOLORCUSTOM><!-- 自定义模块 名称是否有颜色  0无 1有 -->
+			<SORT>5</SORT>
+			<ISHIDDEN>0</ISHIDDEN><!-- 模版是否显示到模版管理0.不隐藏1.隐藏 -->
+		</OWTEMPLATEDTO>
+		
+		<!-- 官网-商城4套 -->
+		<!-- 经典时尚 -->
+		<OWTEMPLATEDTO>
+			<CODE>HP_GW_WSC_V31_1</CODE>
+			<NAME>经典时尚</NAME>
+			<PATH>/resource/m/img/owtemplate/hot-shoptemp1.jpg</PATH>
+			<STATUS>0</STATUS>
+			<TYPE>2</TYPE><!-- 类型 1：官网模板，2：商城模板，4：商城分类页模板，  6：文章分类列表模版 7：相册模版 -->
+			<ISIMAGE>1</ISIMAGE><!-- 模块是否有图标 0无 1有-->
+			<ISMODULAR>1</ISMODULAR><!-- 是否有模块 0无 1有 -->
+			<ISCHANGE>0</ISCHANGE><!-- 模块数量是否 可增 可删 可移 0不可 1可-->
+			<SHAPE>0</SHAPE><!-- 图片形状 0方型 1圆型 -->
+			<ISSHOPSTROKES>0</ISSHOPSTROKES><!-- 模板是否有店招 0无 1有 -->
+			<ISBACKGROUNDCOLOR>1</ISBACKGROUNDCOLOR><!-- 模块是否有背景颜色 0无 1有 -->
+			<ISNAMEEN>0</ISNAMEEN><!-- 是否有英文名称 0无 1有 -->
+			<ISCONTACTWAY>0</ISCONTACTWAY><!-- 是否有联系方式 -->
+			<ISUSERDEFINED>0</ISUSERDEFINED><!-- 是否有自定义模块 -->
+			<ISCARLORBG>1</ISCARLORBG><!-- 0.无 1.轮播图 2.背景图 -->
+			<CLASSIFICATION>1</CLASSIFICATION><!-- 归类1.热门2.行业3.其他 -->
+			<ISREGULAR>1</ISREGULAR><!-- 是否是规则模块 0.不规则 1.规则 -->
+			<ISIMAGECUSTOM>0</ISIMAGECUSTOM><!-- 自定义模块是否有图片  0无 1有 -->
+			<ISNAMEENCUSTOM>0</ISNAMEENCUSTOM><!-- 自定义模块是否有英文名称  0无 1有 -->
+			<ISBACKGROUNDCOLORCUSTOM>0</ISBACKGROUNDCOLORCUSTOM><!-- 自定义模块是否有背景颜色  0无 1有 -->
+			<ISTEMPLATEDETAIL>0</ISTEMPLATEDETAIL><!-- 模板是否有模板细项 -->
+			<SORT>1</SORT>
+			<ISHIDDEN>0</ISHIDDEN><!-- 模版是否显示到模版管理0.不隐藏1.隐藏 -->
+		</OWTEMPLATEDTO>
+		<!-- 商务个性 -->
+		<OWTEMPLATEDTO>
+			<NAME>商务个性</NAME>
+			<CODE>HP_GW_WSC_V31_2</CODE>
+			<PATH>/resource/m/img/owtemplate/hot-shoptemp4.jpg</PATH>
+			<STATUS>0</STATUS>
+			<TYPE>2</TYPE><!-- 类型 1：官网模板，2：商城模板，4：商城分类页模板，  6：文章分类列表模版 7：相册模版 -->
+			<ISIMAGE>0</ISIMAGE><!-- 模块是否有图标 0无 1有-->
+			<ISMODULAR>1</ISMODULAR><!-- 是否有模块 0无 1有 -->
+			<ISCHANGE>1</ISCHANGE><!-- 模块数量是否 可增 可删 可移 0不可 1可-->
+			<SHAPE>0</SHAPE><!-- 图片形状 0方型 1圆型 -->
+			<ISSHOPSTROKES>0</ISSHOPSTROKES><!-- 模板是否有店招 0无 1有 -->
+			<ISBACKGROUNDCOLOR>1</ISBACKGROUNDCOLOR><!-- 模块是否有背景颜色 0无 1有 -->
+			<ISNAMEEN>0</ISNAMEEN><!-- 是否有英文名称 0无 1有 -->
+			<ISCONTACTWAY>0</ISCONTACTWAY><!-- 是否有联系方式 -->
+			<ISUSERDEFINED>0</ISUSERDEFINED><!-- 是否有自定义模块 -->
+			<ISCARLORBG>1</ISCARLORBG><!-- 0.无 1.轮播图 2.背景图 -->
+			<CLASSIFICATION>1</CLASSIFICATION><!-- 归类1.热门2.行业3.其他 -->
+			<ISREGULAR>1</ISREGULAR><!-- 是否是规则模块 0.不规则 1.规则 -->
+			<ISIMAGECUSTOM>0</ISIMAGECUSTOM><!-- 自定义模块是否有图片  0无 1有 -->
+			<ISNAMEENCUSTOM>0</ISNAMEENCUSTOM><!-- 自定义模块是否有英文名称  0无 1有 -->
+			<ISBACKGROUNDCOLORCUSTOM>0</ISBACKGROUNDCOLORCUSTOM><!-- 自定义模块是否有背景颜色  0无 1有 -->
+			<ISTEMPLATEDETAIL>0</ISTEMPLATEDETAIL><!-- 模板是否有模板细项 -->
+			<SORT>2</SORT>
+			<ISHIDDEN>0</ISHIDDEN><!-- 模版是否显示到模版管理0.不隐藏1.隐藏 -->
+		</OWTEMPLATEDTO>
+		<!-- 清新唯美 -->
+		<OWTEMPLATEDTO>
+			<CODE>HP_GW_WSC_V31_3</CODE>
+			<NAME>清新唯美</NAME>
+			<PATH>/resource/m/img/owtemplate/hot-shoptemp3.jpg</PATH>
+			<STATUS>0</STATUS>
+			<TYPE>2</TYPE><!-- 类型 1：官网模板，2：商城模板，4：商城分类页模板，  6：文章分类列表模版 7：相册模版 -->
+			<ISIMAGE>1</ISIMAGE><!-- 模块是否有图标 0无 1有-->
+			<ISMODULAR>1</ISMODULAR><!-- 是否有模块 0无 1有 -->
+			<ISCHANGE>1</ISCHANGE><!-- 模块数量是否 可增 可删 可移 0不可 1可-->
+			<SHAPE>1</SHAPE><!-- 图片形状 0方型 1圆型 -->
+			<ISSHOPSTROKES>0</ISSHOPSTROKES><!-- 模板是否有店招 0无 1有 -->
+			<ISBACKGROUNDCOLOR>0</ISBACKGROUNDCOLOR><!-- 模块是否有背景颜色 0无 1有 -->
+			<ISNAMEEN>0</ISNAMEEN><!-- 是否有英文名称 0无 1有 -->
+			<ISCONTACTWAY>0</ISCONTACTWAY><!-- 是否有联系方式 -->
+			<ISUSERDEFINED>0</ISUSERDEFINED><!-- 是否有自定义模块 -->
+			<ISCARLORBG>0</ISCARLORBG><!-- 0.无 1.轮播图 2.背景图 -->
+			<CLASSIFICATION>1</CLASSIFICATION><!-- 归类1.热门2.行业3.其他 -->
+			<ISREGULAR>1</ISREGULAR><!-- 是否是规则模块 0.不规则 1.规则 -->
+			<ISIMAGECUSTOM>0</ISIMAGECUSTOM><!-- 自定义模块是否有图片  0无 1有 -->
+			<ISNAMEENCUSTOM>0</ISNAMEENCUSTOM><!-- 自定义模块是否有英文名称  0无 1有 -->
+			<ISBACKGROUNDCOLORCUSTOM>0</ISBACKGROUNDCOLORCUSTOM><!-- 自定义模块是否有背景颜色  0无 1有 -->
+			<ISTEMPLATEDETAIL>0</ISTEMPLATEDETAIL><!-- 模板是否有模板细项 -->
+			<SORT>3</SORT>
+			<ISHIDDEN>0</ISHIDDEN><!-- 模版是否显示到模版管理0.不隐藏1.隐藏 -->
+		</OWTEMPLATEDTO>
+		<!-- 潮流大气 -->
+		<OWTEMPLATEDTO>
+			<CODE>HP_GW_WSC_V31_4</CODE>
+			<NAME>潮流大气</NAME>
+			<PATH>/resource/m/img/owtemplate/hot-shoptemp2.jpg</PATH>
+			<STATUS>0</STATUS>
+			<TYPE>2</TYPE><!-- 类型 1：官网模板，2：商城模板，4：商城分类页模板，  6：文章分类列表模版 7：相册模版 -->
+			<ISIMAGE>0</ISIMAGE><!-- 模块是否有图标 0无 1有-->
+			<ISMODULAR>0</ISMODULAR><!-- 是否有模块 0无 1有 -->
+			<ISCHANGE>0</ISCHANGE><!-- 模块数量是否 可增 可删 可移 0不可 1可-->
+			<SHAPE>0</SHAPE><!-- 图片形状 0方型 1圆型 -->
+			<ISSHOPSTROKES>0</ISSHOPSTROKES><!-- 模板是否有店招 0无 1有 -->
+			<ISBACKGROUNDCOLOR>0</ISBACKGROUNDCOLOR><!-- 模块是否有背景颜色 0无 1有 -->
+			<ISNAMEEN>0</ISNAMEEN><!-- 是否有英文名称 0无 1有 -->
+			<ISCONTACTWAY>0</ISCONTACTWAY><!-- 是否有联系方式 -->
+			<ISUSERDEFINED>0</ISUSERDEFINED><!-- 是否有自定义模块 -->
+			<ISCARLORBG>1</ISCARLORBG><!-- 0.无 1.轮播图 2.背景图 -->
+			<CLASSIFICATION>1</CLASSIFICATION><!-- 归类1.热门2.行业3.其他 -->
+			<ISREGULAR>1</ISREGULAR><!-- 是否是规则模块 0.不规则 1.规则 -->
+			<ISIMAGECUSTOM>0</ISIMAGECUSTOM><!-- 自定义模块是否有图片  0无 1有 -->
+			<ISNAMEENCUSTOM>0</ISNAMEENCUSTOM><!-- 自定义模块是否有英文名称  0无 1有 -->
+			<ISBACKGROUNDCOLORCUSTOM>0</ISBACKGROUNDCOLORCUSTOM><!-- 自定义模块是否有背景颜色  0无 1有 -->
+			<ISTEMPLATEDETAIL>0</ISTEMPLATEDETAIL><!-- 模板是否有模板细项 -->
+			<SORT>4</SORT>
+			<ISHIDDEN>0</ISHIDDEN><!-- 模版是否显示到模版管理0.不隐藏1.隐藏 -->
+		</OWTEMPLATEDTO>
+		<!-- 手机端开店默认模版 -->
+		<OWTEMPLATEDTO>
+			<CODE>HP_GW_WSC_V31_6</CODE>
+			<NAME>默认模版</NAME>
+			<PATH>/resource/m/img/owtemplate/hot-shoptemp5.jpg</PATH>
+			<STATUS>1</STATUS>
+			<TYPE>2</TYPE><!-- 类型 1：官网模板，2：商城模板，4：商城分类页模板，  6：文章分类列表模版 7：相册模版 -->
+			<ISIMAGE>0</ISIMAGE><!-- 模块是否有图标 0无 1有-->
+			<ISMODULAR>0</ISMODULAR><!-- 是否有模块 0无 1有 -->
+			<ISCHANGE>0</ISCHANGE><!-- 模块数量是否 可增 可删 可移 0不可 1可-->
+			<SHAPE>0</SHAPE><!-- 图片形状 0方型 1圆型 -->
+			<ISSHOPSTROKES>0</ISSHOPSTROKES><!-- 模板是否有店招 0无 1有 -->
+			<ISBACKGROUNDCOLOR>0</ISBACKGROUNDCOLOR><!-- 模块是否有背景颜色 0无 1有 -->
+			<ISNAMEEN>0</ISNAMEEN><!-- 是否有英文名称 0无 1有 -->
+			<ISCONTACTWAY>0</ISCONTACTWAY><!-- 是否有联系方式 -->
+			<ISUSERDEFINED>0</ISUSERDEFINED><!-- 是否有自定义模块 -->
+			<ISCARLORBG>0</ISCARLORBG><!-- 0.无 1.轮播图 2.背景图 -->
+			<CLASSIFICATION>1</CLASSIFICATION><!-- 归类1.热门2.行业3.其他 -->
+			<ISREGULAR>1</ISREGULAR><!-- 是否是规则模块 0.不规则 1.规则 -->
+			<ISIMAGECUSTOM>0</ISIMAGECUSTOM><!-- 自定义模块是否有图片  0无 1有 -->
+			<ISNAMEENCUSTOM>0</ISNAMEENCUSTOM><!-- 自定义模块是否有英文名称  0无 1有 -->
+			<ISBACKGROUNDCOLORCUSTOM>0</ISBACKGROUNDCOLORCUSTOM><!-- 自定义模块是否有背景颜色  0无 1有 -->
+			<ISTEMPLATEDETAIL>0</ISTEMPLATEDETAIL><!-- 模板是否有模板细项 -->
+			<SORT>5</SORT>
+			<ISHIDDEN>0</ISHIDDEN><!-- 模版是否显示到模版管理0.不隐藏1.隐藏 -->
+		</OWTEMPLATEDTO>
+		
+		<!-- 微官网商城商品分类预览开始 -->
+		<!-- 第一套开始 -->
+		<OWTEMPLATEDTO>
+			<CODE>GT_GW_WSC_1</CODE>
+			<PATH>/resource/base/img/gt/wsc/temp/templist-img1.jpg</PATH>
+			<STATUS>0</STATUS>
+			<TYPE>4</TYPE>
+			<ISIMAGE>1</ISIMAGE>
+			<ISDESCRIPTION>0</ISDESCRIPTION>
+			<ISFONTCOLOR>0</ISFONTCOLOR>
+			<SORT>1</SORT>
+		</OWTEMPLATEDTO>		
+		<!-- 第一套结束 -->
+		<!-- 第三套开始 -->
+		<OWTEMPLATEDTO>
+			<CODE>GT_GW_WSC_3</CODE>
+			<PATH>/resource/base/img/gt/wsc/temp/templist-img3.jpg</PATH>
+			<STATUS>1</STATUS>
+			<TYPE>4</TYPE>
+			<ISIMAGE>0</ISIMAGE>
+			<SORT>3</SORT>
+		</OWTEMPLATEDTO>
+		<!-- 第三套结束 -->
+		<!-- 第四套开始 -->
+		<OWTEMPLATEDTO>
+			<CODE>GT_GW_WSC_4</CODE>
+			<PATH>/resource/base/img/gt/wsc/temp/templist-img4.jpg</PATH>
+			<STATUS>0</STATUS>
+			<TYPE>4</TYPE>
+			<ISIMAGE>0</ISIMAGE>
+			<SORT>4</SORT>
+		</OWTEMPLATEDTO>
+		<!-- 第四套结束 -->
+		<!-- 微官网商城商品分类预览结束 -->
+		
+		<!-- 微商城商品分类预览开始 -->
+		<!-- 第一套开始 -->
+		<OWTEMPLATEDTO>
+			<CODE>GT_WSC_1</CODE>
+			<PATH>/resource/base/img/gt/wsc/temp/templist-img1.jpg</PATH>
+			<STATUS>0</STATUS>
+			<TYPE>4</TYPE>
+			<ISIMAGE>1</ISIMAGE>
+			<SORT>1</SORT>
+		</OWTEMPLATEDTO>		
+		<!-- 第一套结束 -->
+		<!-- 第三套开始 -->
+		<OWTEMPLATEDTO>
+			<CODE>GT_WSC_3</CODE>
+			<PATH>/resource/base/img/gt/wsc/temp/templist-img3.jpg</PATH>
+			<STATUS>1</STATUS>
+			<TYPE>4</TYPE>
+			<ISIMAGE>0</ISIMAGE>
+			<SORT>3</SORT>
+		</OWTEMPLATEDTO>
+		<!-- 第三套结束 -->
+		<!-- 第四套开始 -->
+		<OWTEMPLATEDTO>
+			<CODE>GT_WSC_4</CODE>
+			<PATH>/resource/base/img/gt/wsc/temp/templist-img4.jpg</PATH>
+			<STATUS>0</STATUS>
+			<TYPE>4</TYPE>
+			<ISIMAGE>0</ISIMAGE>
+			<SORT>4</SORT>
+		</OWTEMPLATEDTO>
+		<!-- 第四套结束 -->
+		<!-- 微商城商品分类预览结束 -->
+		
+		<!--##################################### 三阶段模版结束  #################################################### -->
+		
+		<!--##################################### 一阶段6期模版开始 ################################################## -->
+		
+		<!--##################################### 一阶段6期模版结束 ################################################## -->
+	</OWTEMPLATEDTOS>
+	
+	<MODULARS>
+		<!-- 官网 高档华丽 标准 开始-->
+		<MODULAR>
+			<CODE>HP_WGW_V31_1</CODE>
+			<NAMEZH>餐厅介绍</NAMEZH>
+			<NAMEZHCOLOR>#ffffff</NAMEZHCOLOR>
+			<NAMEEN></NAMEEN>
+			<NAMEENCOLOR></NAMEENCOLOR>
+			<BACKGROUNDCOLOR>#fab100</BACKGROUNDCOLOR>
+			<TRANSPARENCY>100</TRANSPARENCY>
+			<SORT>1</SORT>
+			<IMGPATH>/resource/base/img/hp/V31/website1/img/column-1.png</IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>1</TYPE>
+		</MODULAR>
+		<MODULAR>
+			<CODE>HP_WGW_V31_1</CODE>
+			<NAMEZH>最新菜品</NAMEZH>
+			<NAMEZHCOLOR>#ffffff</NAMEZHCOLOR>
+			<NAMEEN></NAMEEN>
+			<NAMEENCOLOR></NAMEENCOLOR>
+			<BACKGROUNDCOLOR>#f19659</BACKGROUNDCOLOR>
+			<TRANSPARENCY>100</TRANSPARENCY>
+			<SORT>2</SORT>
+			<IMGPATH>/resource/base/img/hp/V31/website1/img/column-2.png</IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>1</TYPE>
+		</MODULAR>
+		<MODULAR>
+			<CODE>HP_WGW_V31_1</CODE>
+			<NAMEZH>优惠套餐</NAMEZH>
+			<NAMEZHCOLOR>#ffffff</NAMEZHCOLOR>
+			<NAMEEN></NAMEEN>
+			<NAMEENCOLOR></NAMEENCOLOR>
+			<BACKGROUNDCOLOR>#6bb30f</BACKGROUNDCOLOR>
+			<TRANSPARENCY>100</TRANSPARENCY>
+			<SORT>3</SORT>
+			<IMGPATH>/resource/base/img/hp/V31/website1/img/column-3.png</IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>1</TYPE>
+		</MODULAR>
+		<MODULAR>
+			<CODE>HP_WGW_V31_1</CODE>
+			<NAMEZH>饭后甜点</NAMEZH>
+			<NAMEZHCOLOR>#ffffff</NAMEZHCOLOR>
+			<NAMEEN></NAMEEN>
+			<NAMEENCOLOR></NAMEENCOLOR>
+			<BACKGROUNDCOLOR>#27c1bc</BACKGROUNDCOLOR>
+			<TRANSPARENCY>100</TRANSPARENCY>
+			<SORT>4</SORT>
+			<IMGPATH>/resource/base/img/hp/V31/website1/img/column-4.png</IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>1</TYPE>
+		</MODULAR>
+		<MODULAR>
+			<CODE>HP_WGW_V31_1</CODE>
+			<NAMEZH>酒水饮料</NAMEZH>
+			<NAMEZHCOLOR>#ffffff</NAMEZHCOLOR>
+			<NAMEEN></NAMEEN>
+			<NAMEENCOLOR></NAMEENCOLOR>
+			<BACKGROUNDCOLOR>#2497e8</BACKGROUNDCOLOR>
+			<TRANSPARENCY>100</TRANSPARENCY>
+			<SORT>5</SORT>
+			<IMGPATH>/resource/base/img/hp/V31/website1/img/column-5.png</IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>1</TYPE>
+		</MODULAR>
+		<MODULAR>
+			<CODE>HP_WGW_V31_1</CODE>
+			<NAMEZH>在线预订</NAMEZH>
+			<NAMEZHCOLOR>#ffffff</NAMEZHCOLOR>
+			<NAMEEN></NAMEEN>
+			<NAMEENCOLOR></NAMEENCOLOR>
+			<BACKGROUNDCOLOR>#20c8e1</BACKGROUNDCOLOR>
+			<TRANSPARENCY>100</TRANSPARENCY>
+			<SORT>6</SORT>
+			<IMGPATH>/resource/base/img/hp/V31/website1/img/column-6.png</IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>1</TYPE>
+		</MODULAR>
+		<!-- 官网 高档华丽 标准 结束-->
+		
+		<!-- 官网 高档华丽 自定义 开始-->
+		<MODULAR>
+			<CODE>HP_WGW_V31_1</CODE>
+			<NAMEZH>香蕉奶油拔丝</NAMEZH>
+			<NAMEEN></NAMEEN>
+			<SORT>1</SORT>
+			<IMGPATH>/resource/base/img/hp/V31/website1/img/shop1.jpg</IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>2</TYPE>
+		</MODULAR>
+		<MODULAR>
+			<CODE>HP_WGW_V31_1</CODE>
+			<NAMEZH>草莓奶油蛋糕</NAMEZH>
+			<NAMEEN></NAMEEN>
+			<SORT>2</SORT>
+			<IMGPATH>/resource/base/img/hp/V31/website1/img/shop2.jpg</IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>2</TYPE>
+		</MODULAR>
+		<MODULAR>
+			<CODE>HP_WGW_V31_1</CODE>
+			<NAMEZH>四季什锦色拉</NAMEZH>
+			<NAMEEN></NAMEEN>
+			<SORT>3</SORT>
+			<IMGPATH>/resource/base/img/hp/V31/website1/img/shop3.jpg</IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>2</TYPE>
+		</MODULAR>
+		<!-- 官网 高档华丽 自定义 结束-->
+		
+		<!-- 官网 高贵奢华 标准 开始 -->
+		<MODULAR>
+			<CODE>HP_WGW_V31_2</CODE>
+			<NAMEZH>最新资讯</NAMEZH>
+			<NAMEZHCOLOR>#000000</NAMEZHCOLOR>
+			<NAMEEN></NAMEEN>
+			<NAMEENCOLOR></NAMEENCOLOR>
+			<BACKGROUNDCOLOR>#d9d9d9</BACKGROUNDCOLOR>
+			<TRANSPARENCY>100</TRANSPARENCY>
+			<SORT>1</SORT>
+			<IMGPATH>/resource/base/img/hp/V31/website2/img/menus-1.png</IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>1</TYPE>
+		</MODULAR>
+		<MODULAR>
+			<CODE>HP_WGW_V31_2</CODE>
+			<NAMEZH>香水</NAMEZH>
+			<NAMEZHCOLOR>#000000</NAMEZHCOLOR>
+			<NAMEEN></NAMEEN>
+			<NAMEENCOLOR></NAMEENCOLOR>
+			<BACKGROUNDCOLOR>#d9d9d9</BACKGROUNDCOLOR>
+			<TRANSPARENCY>100</TRANSPARENCY>
+			<SORT>2</SORT>
+			<IMGPATH>/resource/base/img/hp/V31/website2/img/menus-2.png</IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>1</TYPE>
+		</MODULAR>
+		<MODULAR>
+			<CODE>HP_WGW_V31_2</CODE>
+			<NAMEZH>彩妆</NAMEZH>
+			<NAMEZHCOLOR>#000000</NAMEZHCOLOR>
+			<NAMEEN></NAMEEN>
+			<NAMEENCOLOR></NAMEENCOLOR>
+			<BACKGROUNDCOLOR>#d9d9d9</BACKGROUNDCOLOR>
+			<TRANSPARENCY>100</TRANSPARENCY>
+			<SORT>3</SORT>
+			<IMGPATH>/resource/base/img/hp/V31/website2/img/menus-3.png</IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>1</TYPE>
+		</MODULAR>
+		<MODULAR>
+			<CODE>HP_WGW_V31_2</CODE>
+			<NAMEZH>专卖店</NAMEZH>
+			<NAMEZHCOLOR>#000000</NAMEZHCOLOR>
+			<NAMEEN></NAMEEN>
+			<NAMEENCOLOR></NAMEENCOLOR>
+			<BACKGROUNDCOLOR>#d9d9d9</BACKGROUNDCOLOR>
+			<TRANSPARENCY>100</TRANSPARENCY>
+			<SORT>4</SORT>
+			<IMGPATH>/resource/base/img/hp/V31/website2/img/menus-4.png</IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>1</TYPE>
+		</MODULAR>
+		<!-- 官网 高贵奢华 标准 结束 -->
+		
+		<!-- 官网 高贵奢华 自定义 开始 -->
+		<MODULAR>
+			<CODE>HP_WGW_V31_2</CODE>
+			<NAMEZH>追寻COCO小姐</NAMEZH>
+			<NAMEEN></NAMEEN>
+			<SORT>1</SORT>
+			<IMGPATH>/resource/base/img/hp/V31/website2/img/item1.jpg</IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>2</TYPE>
+		</MODULAR>
+		<MODULAR>
+			<CODE>HP_WGW_V31_2</CODE>
+			<NAMEZH>蔚蓝男士香水系列</NAMEZH>
+			<NAMEEN></NAMEEN>
+			<SORT>2</SORT>
+			<IMGPATH>/resource/base/img/hp/V31/website2/img/item2.jpg</IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>2</TYPE>
+		</MODULAR>
+		<MODULAR>
+			<CODE>HP_WGW_V31_2</CODE>
+			<NAMEZH>2014秋季彩妆系列</NAMEZH>
+			<NAMEEN></NAMEEN>
+			<SORT>3</SORT>
+			<IMGPATH>/resource/base/img/hp/V31/website2/img/item3.jpg</IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>2</TYPE>
+		</MODULAR>
+		<!-- 官网 高贵奢华 自定义 结束 -->
+		
+		<!-- 官网 商务通用 标准 开始 -->
+		<MODULAR>
+			<CODE>HP_WGW_V31_3</CODE>
+			<NAMEZH>关于脸谱</NAMEZH>
+			<NAMEZHCOLOR>#333333</NAMEZHCOLOR>
+			<NAMEEN>About us</NAMEEN>
+			<NAMEENCOLOR>#666666</NAMEENCOLOR>
+			<BACKGROUNDCOLOR>#eeeeee</BACKGROUNDCOLOR>
+			<TRANSPARENCY>100</TRANSPARENCY>
+			<SORT>1</SORT>
+			<IMGPATH></IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>1</TYPE>
+		</MODULAR>
+		<MODULAR>
+			<CODE>HP_WGW_V31_3</CODE>
+			<NAMEZH>脸谱理念</NAMEZH>
+			<NAMEZHCOLOR>#333333</NAMEZHCOLOR>
+			<NAMEEN>Idea</NAMEEN>
+			<NAMEENCOLOR>#666666</NAMEENCOLOR>
+			<BACKGROUNDCOLOR>#eeeeee</BACKGROUNDCOLOR>
+			<TRANSPARENCY>100</TRANSPARENCY>
+			<SORT>2</SORT>
+			<IMGPATH></IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>1</TYPE>
+		</MODULAR>
+		<MODULAR>
+			<CODE>HP_WGW_V31_3</CODE>
+			<NAMEZH>脸谱产品</NAMEZH>
+			<NAMEZHCOLOR>#333333</NAMEZHCOLOR>
+			<NAMEEN>Products</NAMEEN>
+			<NAMEENCOLOR>#666666</NAMEENCOLOR>
+			<BACKGROUNDCOLOR>#eeeeee</BACKGROUNDCOLOR>
+			<TRANSPARENCY>100</TRANSPARENCY>
+			<SORT>3</SORT>
+			<IMGPATH></IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>1</TYPE>
+		</MODULAR>
+		<MODULAR>
+			<CODE>HP_WGW_V31_3</CODE>
+			<NAMEZH>脸谱案例</NAMEZH>
+			<NAMEZHCOLOR>#333333</NAMEZHCOLOR>
+			<NAMEEN>Case</NAMEEN>
+			<NAMEENCOLOR>#666666</NAMEENCOLOR>
+			<BACKGROUNDCOLOR>#eeeeee</BACKGROUNDCOLOR>
+			<TRANSPARENCY>100</TRANSPARENCY>
+			<SORT>4</SORT>
+			<IMGPATH></IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>1</TYPE>
+		</MODULAR>
+		<!-- 官网 商务通用 标准 结束 -->
+		
+		<!-- 官网 酷炫大气 标准 开始 -->
+		<MODULAR>
+			<CODE>HP_WGW_V31_4</CODE>
+			<NAMEZH>关于我们</NAMEZH>
+			<NAMEZHCOLOR>#000000</NAMEZHCOLOR>
+			<NAMEEN>About us</NAMEEN>
+			<NAMEENCOLOR>#666666</NAMEENCOLOR>
+			<BACKGROUNDCOLOR>#cccccc</BACKGROUNDCOLOR>
+			<TRANSPARENCY>100</TRANSPARENCY>
+			<SORT>1</SORT>
+			<IMGPATH></IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>1</TYPE>
+		</MODULAR>
+		<MODULAR>
+			<CODE>HP_WGW_V31_4</CODE>
+			<NAMEZH>新闻中心</NAMEZH>
+			<NAMEZHCOLOR>#000000</NAMEZHCOLOR>
+			<NAMEEN>News</NAMEEN>
+			<NAMEENCOLOR>#666666</NAMEENCOLOR>
+			<BACKGROUNDCOLOR>#cccccc</BACKGROUNDCOLOR>
+			<TRANSPARENCY>100</TRANSPARENCY>
+			<SORT>2</SORT>
+			<IMGPATH></IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>1</TYPE>
+		</MODULAR>
+		<MODULAR>
+			<CODE>HP_WGW_V31_4</CODE>
+			<NAMEZH>联系我们</NAMEZH>
+			<NAMEZHCOLOR>#000000</NAMEZHCOLOR>
+			<NAMEEN>Contact us</NAMEEN>
+			<NAMEENCOLOR>#666666</NAMEENCOLOR>
+			<BACKGROUNDCOLOR>#cccccc</BACKGROUNDCOLOR>
+			<TRANSPARENCY>100</TRANSPARENCY>
+			<SORT>3</SORT>
+			<IMGPATH></IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>1</TYPE>
+		</MODULAR>
+		<!-- 官网 酷炫大气 标准 结束 -->
+		
+		<!-- 官网 酷炫大气 自定义 开始 -->
+		<MODULAR>
+			<CODE>HP_WGW_V31_4</CODE>
+			<NAMEZH>新品上市</NAMEZH>
+			<NAMEZHCOLOR>#000000</NAMEZHCOLOR>
+			<NAMEEN>NEW LISTING</NAMEEN>
+			<NAMEENCOLOR>#000000</NAMEENCOLOR>
+			<BACKGROUNDCOLOR>#ffffff</BACKGROUNDCOLOR>
+			<TRANSPARENCY>40</TRANSPARENCY>
+			<SORT>1</SORT>
+			<IMGPATH>/resource/base/img/hp/V31/website4/img/pic-1.jpg</IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>2</TYPE>
+		</MODULAR>
+		<MODULAR>
+			<CODE>HP_WGW_V31_4</CODE>
+			<NAMEZH>产品中心</NAMEZH>
+			<NAMEZHCOLOR>#000000</NAMEZHCOLOR>
+			<NAMEEN>PRODUCT CENTER</NAMEEN>
+			<NAMEENCOLOR>#000000</NAMEENCOLOR>
+			<BACKGROUNDCOLOR>#ffffff</BACKGROUNDCOLOR>
+			<TRANSPARENCY>40</TRANSPARENCY>
+			<SORT>2</SORT>
+			<IMGPATH>/resource/base/img/hp/V31/website4/img/pic-2.jpg</IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>2</TYPE>
+		</MODULAR>
+		<MODULAR>
+			<CODE>HP_WGW_V31_4</CODE>
+			<NAMEZH>高端项目</NAMEZH>
+			<NAMEZHCOLOR>#000000</NAMEZHCOLOR>
+			<NAMEEN>HIGH END CASE</NAMEEN>
+			<NAMEENCOLOR>#000000</NAMEENCOLOR>
+			<BACKGROUNDCOLOR>#ffffff</BACKGROUNDCOLOR>
+			<TRANSPARENCY>40</TRANSPARENCY>
+			<SORT>3</SORT>
+			<IMGPATH>/resource/base/img/hp/V31/website4/img/pic-3.jpg</IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>2</TYPE>
+		</MODULAR>
+		<!-- 官网 酷炫大气 自定义 结束 -->
+		
+		<!-- 官网 商务通用 标准 开始 -->
+		<MODULAR>
+			<CODE>HP_WGW_V31_5</CODE>
+			<NAMEZH>关于脸谱</NAMEZH>
+			<NAMEZHCOLOR>NULL</NAMEZHCOLOR>
+			<NAMEEN>About us</NAMEEN>
+			<NAMEENCOLOR></NAMEENCOLOR>
+			<BACKGROUNDCOLOR>NULL</BACKGROUNDCOLOR>
+			<TRANSPARENCY>100</TRANSPARENCY>
+			<SORT>1</SORT>
+			<IMGPATH></IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>1</TYPE>
+		</MODULAR>
+		<MODULAR>
+			<CODE>HP_WGW_V31_5</CODE>
+			<NAMEZH>脸谱理念</NAMEZH>
+			<NAMEZHCOLOR>NULL</NAMEZHCOLOR>
+			<NAMEEN>Idea</NAMEEN>
+			<NAMEENCOLOR></NAMEENCOLOR>
+			<BACKGROUNDCOLOR>NULL</BACKGROUNDCOLOR>
+			<TRANSPARENCY>100</TRANSPARENCY>
+			<SORT>2</SORT>
+			<IMGPATH></IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>1</TYPE>
+		</MODULAR>
+		<MODULAR>
+			<CODE>HP_WGW_V31_5</CODE>
+			<NAMEZH>脸谱产品</NAMEZH>
+			<NAMEZHCOLOR>NULL</NAMEZHCOLOR>
+			<NAMEEN>Products</NAMEEN>
+			<NAMEENCOLOR></NAMEENCOLOR>
+			<BACKGROUNDCOLOR>NULL</BACKGROUNDCOLOR>
+			<TRANSPARENCY>100</TRANSPARENCY>
+			<SORT>3</SORT>
+			<IMGPATH></IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>1</TYPE>
+		</MODULAR>
+		<MODULAR>
+			<CODE>HP_WGW_V31_5</CODE>
+			<NAMEZH>脸谱案例</NAMEZH>
+			<NAMEZHCOLOR>NULL</NAMEZHCOLOR>
+			<NAMEEN>Case</NAMEEN>
+			<NAMEENCOLOR></NAMEENCOLOR>
+			<BACKGROUNDCOLOR>NULL</BACKGROUNDCOLOR>
+			<TRANSPARENCY>100</TRANSPARENCY>
+			<SORT>4</SORT>
+			<IMGPATH></IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>1</TYPE>
+		</MODULAR>
+		<!-- 官网 商务通用 标准 结束 -->
+		
+		<!-- 官网-商城 经典时尚 标准 开始 -->
+		<MODULAR>
+			<CODE>HP_GW_WSC_V31_1</CODE>
+			<NAMEZH>酒店介绍</NAMEZH>
+			<NAMEZHCOLOR>#ffffff</NAMEZHCOLOR>
+			<NAMEEN></NAMEEN>
+			<NAMEENCOLOR></NAMEENCOLOR>
+			<BACKGROUNDCOLOR>#ff9900</BACKGROUNDCOLOR>
+			<TRANSPARENCY>100</TRANSPARENCY>
+			<SORT>1</SORT>
+			<IMGPATH>/resource/base/img/hp/V31/shop2/img/pic1.png</IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>1</TYPE>
+		</MODULAR>
+		<MODULAR>
+			<CODE>HP_GW_WSC_V31_1</CODE>
+			<NAMEZH>饮食特色</NAMEZH>
+			<NAMEZHCOLOR>#ffffff</NAMEZHCOLOR>
+			<NAMEEN></NAMEEN>
+			<NAMEENCOLOR></NAMEENCOLOR>
+			<BACKGROUNDCOLOR>#ff9900</BACKGROUNDCOLOR>
+			<TRANSPARENCY>100</TRANSPARENCY>
+			<SORT>2</SORT>
+			<IMGPATH>/resource/base/img/hp/V31/shop2/img/pic2.png</IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>1</TYPE>
+		</MODULAR>
+		<MODULAR>
+			<CODE>HP_GW_WSC_V31_1</CODE>
+			<NAMEZH>套房特色</NAMEZH>
+			<NAMEZHCOLOR>#ffffff</NAMEZHCOLOR>
+			<NAMEEN></NAMEEN>
+			<NAMEENCOLOR></NAMEENCOLOR>
+			<BACKGROUNDCOLOR>#ff9900</BACKGROUNDCOLOR>
+			<TRANSPARENCY>100</TRANSPARENCY>
+			<SORT>3</SORT>
+			<IMGPATH>/resource/base/img/hp/V31/shop2/img/pic3.png</IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>1</TYPE>
+		</MODULAR>
+		<MODULAR>
+			<CODE>HP_GW_WSC_V31_1</CODE>
+			<NAMEZH>优惠活动</NAMEZH>
+			<NAMEZHCOLOR>#ffffff</NAMEZHCOLOR>
+			<NAMEEN></NAMEEN>
+			<NAMEENCOLOR></NAMEENCOLOR>
+			<BACKGROUNDCOLOR>#ff9900</BACKGROUNDCOLOR>
+			<TRANSPARENCY>100</TRANSPARENCY>
+			<SORT>4</SORT>
+			<IMGPATH>/resource/base/img/hp/V31/shop2/img/pic4.png</IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>1</TYPE>
+		</MODULAR>
+		<MODULAR>
+			<CODE>HP_GW_WSC_V31_1</CODE>
+			<NAMEZH>微笑之星</NAMEZH>
+			<NAMEZHCOLOR>#ffffff</NAMEZHCOLOR>
+			<NAMEEN></NAMEEN>
+			<NAMEENCOLOR></NAMEENCOLOR>
+			<BACKGROUNDCOLOR>#ff9900</BACKGROUNDCOLOR>
+			<TRANSPARENCY>100</TRANSPARENCY>
+			<SORT>5</SORT>
+			<IMGPATH>/resource/base/img/hp/V31/shop2/img/pic5.png</IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>1</TYPE>
+		</MODULAR>
+		<MODULAR>
+			<CODE>HP_GW_WSC_V31_1</CODE>
+			<NAMEZH>联系我们</NAMEZH>
+			<NAMEZHCOLOR>#ffffff</NAMEZHCOLOR>
+			<NAMEEN></NAMEEN>
+			<NAMEENCOLOR></NAMEENCOLOR>
+			<BACKGROUNDCOLOR>#ff9900</BACKGROUNDCOLOR>
+			<TRANSPARENCY>100</TRANSPARENCY>
+			<SORT>6</SORT>
+			<IMGPATH>/resource/base/img/hp/V31/shop2/img/pic6.png</IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>1</TYPE>
+		</MODULAR>
+		<!-- 官网-商城 经典时尚 标准 结束 -->
+		
+		<!-- 官网-商城 商务个性 标准 开始 -->
+		<MODULAR>
+			<CODE>HP_GW_WSC_V31_2</CODE>
+			<NAMEZH>会员卡</NAMEZH>
+			<NAMEZHCOLOR>#666666</NAMEZHCOLOR>
+			<NAMEEN></NAMEEN>
+			<NAMEENCOLOR></NAMEENCOLOR>
+			<BACKGROUNDCOLOR>#fafafa</BACKGROUNDCOLOR>
+			<TRANSPARENCY>100</TRANSPARENCY>
+			<SORT>1</SORT>
+			<IMGPATH></IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>1</TYPE>
+		</MODULAR>
+		<MODULAR>
+			<CODE>HP_GW_WSC_V31_2</CODE>
+			<NAMEZH>微活动</NAMEZH>
+			<NAMEZHCOLOR>#666666</NAMEZHCOLOR>
+			<NAMEEN></NAMEEN>
+			<NAMEENCOLOR></NAMEENCOLOR>
+			<BACKGROUNDCOLOR>#fafafa</BACKGROUNDCOLOR>
+			<TRANSPARENCY>100</TRANSPARENCY>
+			<SORT>2</SORT>
+			<IMGPATH></IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>1</TYPE>
+		</MODULAR>
+		<MODULAR>
+			<CODE>HP_GW_WSC_V31_2</CODE>
+			<NAMEZH>限时特惠</NAMEZH>
+			<NAMEZHCOLOR>#666666</NAMEZHCOLOR>
+			<NAMEEN></NAMEEN>
+			<NAMEENCOLOR></NAMEENCOLOR>
+			<BACKGROUNDCOLOR>#fafafa</BACKGROUNDCOLOR>
+			<TRANSPARENCY>100</TRANSPARENCY>
+			<SORT>3</SORT>
+			<IMGPATH></IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>1</TYPE>
+		</MODULAR>
+		<MODULAR>
+			<CODE>HP_GW_WSC_V31_2</CODE>
+			<NAMEZH>新品上市</NAMEZH>
+			<NAMEZHCOLOR>#666666</NAMEZHCOLOR>
+			<NAMEEN></NAMEEN>
+			<NAMEENCOLOR></NAMEENCOLOR>
+			<BACKGROUNDCOLOR>#fafafa</BACKGROUNDCOLOR>
+			<TRANSPARENCY>100</TRANSPARENCY>
+			<SORT>4</SORT>
+			<IMGPATH></IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>1</TYPE>
+		</MODULAR>
+		<!-- 官网-商城 商务个性 标准 结束 -->
+		
+		<!-- 官网-商城 清新唯美 标准 开始 -->
+		<MODULAR>
+			<CODE>HP_GW_WSC_V31_3</CODE>
+			<NAMEZH>会员卡</NAMEZH>
+			<NAMEZHCOLOR>#333333</NAMEZHCOLOR>
+			<NAMEEN></NAMEEN>
+			<NAMEENCOLOR></NAMEENCOLOR>
+			<BACKGROUNDCOLOR>#f1ca2e</BACKGROUNDCOLOR>
+			<TRANSPARENCY>100</TRANSPARENCY>
+			<SORT>1</SORT>
+			<IMGPATH>/resource/base/img/hp/V31/shop4/img/icon1.png</IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>1</TYPE>
+		</MODULAR>
+		<MODULAR>
+			<CODE>HP_GW_WSC_V31_3</CODE>
+			<NAMEZH>微活动</NAMEZH>
+			<NAMEZHCOLOR>#333333</NAMEZHCOLOR>
+			<NAMEEN></NAMEEN>
+			<NAMEENCOLOR></NAMEENCOLOR>
+			<BACKGROUNDCOLOR>#85ce44</BACKGROUNDCOLOR>
+			<TRANSPARENCY>100</TRANSPARENCY>
+			<SORT>2</SORT>
+			<IMGPATH>/resource/base/img/hp/V31/shop4/img/icon2.png</IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>1</TYPE>
+		</MODULAR>
+		<MODULAR>
+			<CODE>HP_GW_WSC_V31_3</CODE>
+			<NAMEZH>淘精品</NAMEZH>
+			<NAMEZHCOLOR>#333333</NAMEZHCOLOR>
+			<NAMEEN></NAMEEN>
+			<NAMEENCOLOR></NAMEENCOLOR>
+			<BACKGROUNDCOLOR>#5bcae0</BACKGROUNDCOLOR>
+			<TRANSPARENCY>100</TRANSPARENCY>
+			<SORT>3</SORT>
+			<IMGPATH>/resource/base/img/hp/V31/shop4/img/icon3.png</IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>1</TYPE>
+		</MODULAR>
+		<MODULAR>
+			<CODE>HP_GW_WSC_V31_3</CODE>
+			<NAMEZH>新品上市</NAMEZH>
+			<NAMEZHCOLOR>#333333</NAMEZHCOLOR>
+			<NAMEEN></NAMEEN>
+			<NAMEENCOLOR></NAMEENCOLOR>
+			<BACKGROUNDCOLOR>#ef7539</BACKGROUNDCOLOR>
+			<TRANSPARENCY>100</TRANSPARENCY>
+			<SORT>4</SORT>
+			<IMGPATH>/resource/base/img/hp/V31/shop4/img/icon4.png</IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>1</TYPE>
+		</MODULAR>
+		<MODULAR>
+			<CODE>HP_GW_WSC_V31_3</CODE>
+			<NAMEZH>所有商品</NAMEZH>
+			<NAMEZHCOLOR>#333333</NAMEZHCOLOR>
+			<NAMEEN></NAMEEN>
+			<NAMEENCOLOR></NAMEENCOLOR>
+			<BACKGROUNDCOLOR>#5dcbe1</BACKGROUNDCOLOR>
+			<TRANSPARENCY>100</TRANSPARENCY>
+			<SORT>5</SORT>
+			<IMGPATH>/resource/base/img/hp/V31/shop4/img/icon5.png</IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>1</TYPE>
+		</MODULAR>
+		<MODULAR>
+			<CODE>HP_GW_WSC_V31_3</CODE>
+			<NAMEZH>便民服务</NAMEZH>
+			<NAMEZHCOLOR>#333333</NAMEZHCOLOR>
+			<NAMEEN></NAMEEN>
+			<NAMEENCOLOR></NAMEENCOLOR>
+			<BACKGROUNDCOLOR>#f2c204</BACKGROUNDCOLOR>
+			<TRANSPARENCY>100</TRANSPARENCY>
+			<SORT>6</SORT>
+			<IMGPATH>/resource/base/img/hp/V31/shop4/img/icon6.png</IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>1</TYPE>
+		</MODULAR>
+		<MODULAR>
+			<CODE>HP_GW_WSC_V31_3</CODE>
+			<NAMEZH>在线联系</NAMEZH>
+			<NAMEZHCOLOR>#333333</NAMEZHCOLOR>
+			<NAMEEN></NAMEEN>
+			<NAMEENCOLOR></NAMEENCOLOR>
+			<BACKGROUNDCOLOR>#c458d4</BACKGROUNDCOLOR>
+			<TRANSPARENCY>100</TRANSPARENCY>
+			<SORT>7</SORT>
+			<IMGPATH>/resource/base/img/hp/V31/shop4/img/icon6.png</IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>1</TYPE>
+		</MODULAR>
+		<MODULAR>
+			<CODE>HP_GW_WSC_V31_3</CODE>
+			<NAMEZH>店铺简介</NAMEZH>
+			<NAMEZHCOLOR>#333333</NAMEZHCOLOR>
+			<NAMEEN></NAMEEN>
+			<NAMEENCOLOR></NAMEENCOLOR>
+			<BACKGROUNDCOLOR>#74c5d5</BACKGROUNDCOLOR>
+			<TRANSPARENCY>100</TRANSPARENCY>
+			<SORT>8</SORT>
+			<IMGPATH>/resource/base/img/hp/V31/shop4/img/icon8.png</IMGPATH>
+			<RESOURCEPATH>/any/empty</RESOURCEPATH>
+			<STATUS>1</STATUS>
+			<TYPE>1</TYPE>
+		</MODULAR>
+		<!-- 官网-商城 清新唯美 标准 结束 -->
+	</MODULARS>
+	
+	<CAROUSELDIAGRAMS>
+		<!-- 微官网 高档华丽 轮播图开始 -->
+		<CAROUSELDIAGRAM>
+			<CODE>HP_WGW_V31_1</CODE>
+			<IMGPATH>/resource/base/img/hp/V31/website1/img/banner.jpg</IMGPATH>
+			<SORT>1</SORT>
+			<STATUS>1</STATUS>
+		</CAROUSELDIAGRAM>
+		<!-- 微官网 高档华丽 轮播图开始 -->
+		<CAROUSELDIAGRAM>
+			<CODE>HP_WGW_V31_2</CODE>
+			<IMGPATH>/resource/base/img/hp/V31/website2/img/banner.jpg</IMGPATH>
+			<SORT>1</SORT>
+			<STATUS>1</STATUS>
+		</CAROUSELDIAGRAM>
+		<!-- 商务通用 -->
+		<CAROUSELDIAGRAM>
+			<CODE>HP_WGW_V31_3</CODE>
+			<IMGPATH>/resource/base/img/hp/V31/website3/img/banner.jpg</IMGPATH>
+			<SORT>1</SORT>
+			<STATUS>1</STATUS>
+		</CAROUSELDIAGRAM>
+		<!-- 酷炫大气 -->
+		<CAROUSELDIAGRAM>
+			<CODE>HP_WGW_V31_5</CODE>
+			<IMGPATH>/resource/base/img/owtemplate/carouseldiagram/shangwutongyong/banner.jpg</IMGPATH>
+			<SORT>1</SORT>
+			<STATUS>1</STATUS>
+		</CAROUSELDIAGRAM>
+		<!-- 官网 商城 经典时尚-->
+		<CAROUSELDIAGRAM>
+			<CODE>HP_GW_WSC_V31_1</CODE>
+			<IMGPATH>/resource/base/img/hp/V31/shop2/img/banner.jpg</IMGPATH>
+			<SORT>1</SORT>
+			<STATUS>1</STATUS>
+		</CAROUSELDIAGRAM>
+		<!-- 官网 商城  商务个性  -->
+		<CAROUSELDIAGRAM>
+			<CODE>HP_GW_WSC_V31_2</CODE>
+			<IMGPATH>/resource/base/img/hp/V31/shop3/img/banner.jpg</IMGPATH>
+			<SORT>1</SORT>
+			<STATUS>1</STATUS>
+		</CAROUSELDIAGRAM>
+		<!-- 官网 商城  潮流大气 -->
+		<CAROUSELDIAGRAM>
+			<CODE>HP_GW_WSC_V31_4</CODE>
+			<IMGPATH>/resource/base/img/hp/V31/shop5/img/banner.jpg</IMGPATH>
+			<SORT>1</SORT>
+			<STATUS>1</STATUS>
+		</CAROUSELDIAGRAM>
+		
+		<!-- 微官网商城分类页第一套默认轮播图开始 -->
+		<CAROUSELDIAGRAM>
+			<CODE>GT_GW_WSC_1</CODE>
+			<IMGPATH>/resource/base/img/gt/wsc/carousel/GT_WSC_1/banner1.jpg</IMGPATH>
+			<SORT>1</SORT>
+			<STATUS>1</STATUS>
+		</CAROUSELDIAGRAM>
+		<!-- 微官网商城分类页第一套默认轮播图结束 -->
+		<!-- 微官网商城分类页第二套默认轮播图开始 -->
+		<CAROUSELDIAGRAM>
+			<CODE>GT_GW_WSC_2</CODE>
+			<IMGPATH>/resource/base/img/gt/wsc/carousel/GT_WSC_2/banner-bg.jpg</IMGPATH>
+			<SORT>1</SORT>
+			<STATUS>1</STATUS>
+		</CAROUSELDIAGRAM>
+		<!-- 微官网商城分类页第二套默认轮播图结束 -->
+		
+		<!-- 微商城分类页第一套默认轮播图开始 -->
+		<CAROUSELDIAGRAM>
+			<CODE>GT_WSC_1</CODE>
+			<IMGPATH>/resource/base/img/gt/wsc/carousel/GT_WSC_1/banner1.jpg</IMGPATH>
+			<SORT>1</SORT>
+			<STATUS>1</STATUS>
+		</CAROUSELDIAGRAM>
+		<!-- 微商城分类页第一套默认轮播图结束 -->
+		<!-- 微商城分类页第二套默认轮播图开始 -->
+		<CAROUSELDIAGRAM>
+			<CODE>GT_WSC_2</CODE>
+			<IMGPATH>/resource/base/img/gt/wsc/carousel/GT_WSC_2/banner-bg.jpg</IMGPATH>
+			<SORT>1</SORT>
+			<STATUS>1</STATUS>
+		</CAROUSELDIAGRAM>
+		<!-- 微商城分类页第二套默认轮播图结束 -->
+	</CAROUSELDIAGRAMS>
+</root>

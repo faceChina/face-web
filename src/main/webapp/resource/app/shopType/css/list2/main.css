@@ -1,0 +1,43 @@
+﻿@charset "utf-8";
+/*  
+* @description:商品分类2
+* @author: sf 
+* @update:
+*/
+
+/* 商品分类列表  */
+
+.list-rowspan{}
+.list-product{
+	margin:0 10px;
+}
+.list-product-col{
+	width:100%;
+	display:table;
+	margin:10px 0;
+	background:#fff;
+}
+.list-product-col span{
+	display:table-cell;
+	vertical-align:middle;
+}
+.list-product-col .pic{
+	width:50%;
+}
+.list-product-col .pic img{
+	display:block;
+	width:100%;
+}
+.list-product-col .info{
+	text-align:center;
+}
+.list-product-col .info .tit{
+	display: -webkit-box;
+	-webkit-line-clamp:1;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	word-break: break-word;
+	font-size:16px;
+}
+
+/* 商品分类列表   end*/

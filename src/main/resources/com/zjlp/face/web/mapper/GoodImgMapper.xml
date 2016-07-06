@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.GoodImgMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.product.good.domain.GoodImg" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="GOOD_ID" property="goodId" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="INTEGER"/>
+    <result column="URL" property="url" jdbcType="VARCHAR" />
+    <result column="POSITION" property="position" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultVoMap" type="com.zjlp.face.web.server.product.good.domain.vo.GoodImgVo" extends="BaseResultMap">
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, GOOD_ID, TYPE, URL, POSITION, CREATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from good_img
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+    <select id="selectByGoodIdAndType" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from good_img
+    where GOOD_ID = #{goodId,jdbcType=BIGINT} and type=#{type}
+    order by POSITION
+  </select>
+  <select id="selectZoomByGoodIdAndType" resultMap="ResultVoMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from good_img
+    where GOOD_ID = #{goodId,jdbcType=BIGINT} and type=#{type}
+    order by POSITION
+  </select>
+  <select id="selectFirst" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />,MIN(POSITION) as min
+    from good_img
+    where GOOD_ID = #{goodId,jdbcType=BIGINT}  limit 1
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from good_img
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByGoodId" parameterType="java.lang.Long" >
+    delete from good_img
+    where GOOD_ID = #{goodId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.product.good.domain.GoodImg" >
+      	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into good_img (ID, GOOD_ID, TYPE, URL, 
+      POSITION, CREATE_TIME)
+    values (#{id,jdbcType=BIGINT}, #{goodId,jdbcType=BIGINT}, #{type}, #{url,jdbcType=VARCHAR}, 
+      #{position,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.product.good.domain.GoodImg" >
+      	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into good_img
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="goodId != null" >
+        GOOD_ID,
+      </if>
+      <if test="type!=null">
+      	TYPE,
+      </if>
+      <if test="url != null" >
+        URL,
+      </if>
+      <if test="position != null" >
+        POSITION,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="goodId != null" >
+        #{goodId,jdbcType=BIGINT},
+      </if>
+      <if test="type!=null">
+      	#{type},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.product.good.domain.GoodImg" >
+    update good_img
+    <set >
+      <if test="goodId != null" >
+        GOOD_ID = #{goodId,jdbcType=BIGINT},
+      </if>
+      <if test="url != null" >
+        URL = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        POSITION = #{position,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.product.good.domain.GoodImg" >
+    update good_img
+    set GOOD_ID = #{goodId,jdbcType=BIGINT},
+      URL = #{url,jdbcType=VARCHAR},
+      POSITION = #{position,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

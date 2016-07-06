@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.AppGroupMapper">
+	<resultMap id="BaseResultMap" type="com.zjlp.face.web.server.user.customer.domain.AppGroup">
+		<id column="ID" property="id" jdbcType="BIGINT" />
+		<result column="TYPE" property="type" jdbcType="INTEGER" />
+		<result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="SORT" property="sort" jdbcType="INTEGER" />
+		<result column="UNGROUPED" property="ungrouped" jdbcType="INTEGER" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, TYPE, USER_ID, NAME, SORT, UNGROUPED, CREATE_TIME, UPDATE_TIME
+	</sql>
+	
+	<insert id="insert" parameterType="com.zjlp.face.web.server.user.customer.domain.AppGroup">
+		<selectKey keyProperty="id" resultType="long" order="AFTER">
+			SELECT
+			LAST_INSERT_ID();
+		</selectKey>
+		INSERT INTO app_group (TYPE, USER_ID, NAME, SORT, UNGROUPED, CREATE_TIME, UPDATE_TIME)
+		VALUES (
+		#{type,jdbcType=INTEGER},
+		#{userId,jdbcType=BIGINT},
+		#{name,jdbcType=VARCHAR},
+		#{sort,jdbcType=INTEGER},
+		#{ungrouped,jdbcType=INTEGER},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{updateTime,jdbcType=TIMESTAMP}
+		)
+	</insert>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		DELETE FROM
+		app_group
+		WHERE ID = #{id,jdbcType=BIGINT}
+	</delete>
+
+	<update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.user.customer.domain.AppGroup">
+		UPDATE app_group
+		<set>
+		  <if test=" type!= null">
+		   TYPE = #{type,jdbcType=INTEGER},
+		  </if>
+		  <if test=" userId!= null">
+		   USER_ID = #{userId,jdbcType=BIGINT},
+		  </if>
+		  <if test=" name!= null">
+		   NAME = #{name,jdbcType=VARCHAR},
+		  </if>
+		  <if test="sort != null">
+		   SORT = #{sort,jdbcType=INTEGER},
+		  </if>
+		  <if test="ungrouped != null">
+		   UNGROUPED = #{ungrouped,jdbcType=INTEGER},
+		  </if>
+		  <if test=" createTime!= null">
+		   CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+		  </if>
+		  <if test=" updateTime!= null">
+		   UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+		  </if>
+		</set>
+		WHERE ID = #{id,jdbcType=BIGINT}
+	</update>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM app_group
+		WHERE ID = #{id,jdbcType=BIGINT}
+	</select>
+	
+	<select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.util.Map">
+	   SELECT
+	   <include refid="Base_Column_List" />
+	   FROM app_group
+	   WHERE USER_ID = #{userId,jdbcType=BIGINT}
+	   <if test="type != null">
+	    AND TYPE = #{type,jdbcType=INTEGER}
+	   </if>
+	    ORDER BY SORT ASC
+	</select>
+	
+	<select id="selectByUserIdAndGroupName" resultMap="BaseResultMap" parameterType="java.util.Map">
+	  SELECT 
+	  <include refid="Base_Column_List" />
+	  FROM app_group
+	  WHERE USER_ID = #{userId,jdbcType=BIGINT}
+	  <if test="name != null">
+	    AND NAME = #{name,jdbcType=VARCHAR}
+	  </if>
+	  <if test="type != null">
+	    AND TYPE = #{type,jdbcType=INTEGER}
+	  </if>
+	</select>
+	
+	<select id="getMaxGroupSort" resultType="java.lang.Integer" parameterType="java.util.Map">
+	   SELECT MAX(SORT) 
+	   FROM app_group 
+	   WHERE USER_ID = #{userId,jdbcType=BIGINT} 
+	     AND TYPE = #{type,jdbcType=INTEGER}
+	</select>
+	
+	<select id="selectUngroups" resultMap="BaseResultMap" parameterType="java.util.Map">
+	 SELECT 
+	 <include refid="Base_Column_List" />
+	 FROM app_group
+	 WHERE USER_ID = #{userId,jdbcType=BIGINT}
+	 AND TYPE = #{type,jdbcType=INTEGER}
+	 AND UNGROUPED = 1
+	</select>
+	
+	<delete id="deleteUngroupByUserId" parameterType="java.lang.Long">
+		DELETE FROM
+		app_group
+		WHERE USER_ID = #{userId,jdbcType=BIGINT} AND UNGROUPED = 1
+	</delete>
+</mapper>

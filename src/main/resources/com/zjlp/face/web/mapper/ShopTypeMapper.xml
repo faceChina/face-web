@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.ShopTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.product.good.domain.ShopType" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="SERVICE_ID" property="serviceId" jdbcType="BIGINT" />
+    <result column="SHOP_NO" property="shopNo" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="TYPE_DESCRIBE" property="typeDescribe" jdbcType="VARCHAR" />
+    <result column="BACKGROUND_COLOR" property="backgroundColor" jdbcType="VARCHAR" />
+    <result column="FONT_COLOR" property="fontColor" jdbcType="VARCHAR" />
+    <result column="IMG_PATH" property="imgPath" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="SORT" property="sort" jdbcType="BIGINT" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="BaseResultMapVo" type="com.zjlp.face.web.server.product.good.domain.vo.ShopTypeVo" extends="BaseResultMap" >
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, SERVICE_ID, SHOP_NO, NAME, TYPE_DESCRIBE, BACKGROUND_COLOR, FONT_COLOR, IMG_PATH, STATUS, 
+    SORT, CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from shop_type
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <!-- 查询店铺商品分类列表 -->
+  <select id="selectListByShopNoAndGoodId" resultType="com.zjlp.face.web.server.product.good.domain.vo.ShopTypeVo" parameterType="java.lang.Long" >
+    select 
+    st.ID as id, st.SERVICE_ID as serviceId, st.SHOP_NO as shopNo, st.NAME as name,
+    st.TYPE_DESCRIBE as typeDescribe, st.BACKGROUND_COLOR as backgroundColor,
+     st.FONT_COLOR as fontColor, st.IMG_PATH as imgPath, st.STATUS as status, 
+    st.SORT as sort, st.CREATE_TIME as createTime, st.UPDATE_TIME as updateTime 
+    <if test="goodId != null">
+	    ,(select gstr.GOOD_ID from good_shop_type_relation gstr where gstr.shop_type_id=st.id and gstr.good_id=#{goodId,jdbcType=BIGINT}) as goodId
+	</if>
+	
+	,(select count(gstr.GOOD_ID) from good_shop_type_relation gstr where gstr.shop_type_id=st.id) as count
+	
+    FROM 
+    	shop_type st
+    WHERE 
+        st.STATUS = 1
+    <if test="shopNo != null" >
+    AND st.SHOP_NO = #{shopNo,jdbcType=BIGINT}
+    <choose>
+   		<when test="serviceId!=null">
+   			and service_id = #{serviceId}
+   		</when>
+   		<otherwise>
+   			and service_id = 1
+   		</otherwise>
+   	</choose>
+    </if>
+    ORDER BY 
+    	st.SORT DESC
+  </select>
+  
+  <!-- 分页查询店铺商品分类总数 -->
+  <select id="selectPageCount" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    SELECT 
+    	COUNT(st.ID)
+    FROM 
+    	SHOP_TYPE st
+   	<if test="shopType.groupId != null">
+		JOIN GROUP_LIST gl on st.ID=gl.PART_ID
+	</if>
+    WHERE 
+    	st.STATUS = 1
+    AND 
+    	st.SHOP_NO = #{shopType.shopNo,jdbcType=BIGINT}
+    	<choose>
+    		<when test="shopType.serviceId!=null">
+    			and service_id = #{shopType.serviceId}
+    		</when>
+    		<otherwise>
+    			and service_id = 1
+    		</otherwise>
+    	</choose>
+    <if test="shopType.groupId != null">
+		and gl.ASSOCIATION_TABLE='SHOP_TYPE' and gl.GROUP_ID=#{shopType.groupId,jdbcType=BIGINT}
+	</if>
+  </select>
+  <!-- 分页查询店铺商品分类总数 -->
+  <select id="selectPageShopType" resultMap="BaseResultMapVo" parameterType="java.util.Map" >
+    SELECT 
+	    st.ID, st.SHOP_NO, st.NAME, st.TYPE_DESCRIBE, st.BACKGROUND_COLOR, st.FONT_COLOR, st.IMG_PATH, st.STATUS, 
+	    st.SORT, st.CREATE_TIME, st.UPDATE_TIME
+    FROM 
+    	SHOP_TYPE st
+   	<if test="shopType.groupId != null">
+		JOIN GROUP_LIST gl on st.ID=gl.PART_ID
+	</if>
+    WHERE 
+    	st.STATUS = 1
+    AND 
+    	st.SHOP_NO = #{shopType.shopNo}
+   	<choose>
+   		<when test="shopType.serviceId!=null">
+   			and service_id = #{shopType.serviceId}
+   		</when>
+   		<otherwise>
+   			and service_id = 1
+   		</otherwise>
+   	</choose>
+    <if test="shopType.groupId != null">
+		and gl.ASSOCIATION_TABLE='SHOP_TYPE' and gl.GROUP_ID=#{shopType.groupId,jdbcType=BIGINT}
+	</if>
+    ORDER BY 
+    	SORT DESC,st.CREATE_TIME DESC
+	LIMIT #{start},#{pageSize}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from shop_type
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.product.good.domain.ShopType" >
+   	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into shop_type (ID, SERVICE_ID, SHOP_NO, NAME, 
+      TYPE_DESCRIBE, BACKGROUND_COLOR, FONT_COLOR, 
+      IMG_PATH, STATUS, SORT, 
+      CREATE_TIME, UPDATE_TIME)
+    values (#{id,jdbcType=BIGINT}, #{serviceId,jdbcType=BIGINT}, #{shopNo,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{typeDescribe,jdbcType=VARCHAR}, #{backgroundColor,jdbcType=VARCHAR}, #{fontColor,jdbcType=VARCHAR}, 
+      #{imgPath,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{sort,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.product.good.domain.ShopType" >
+   	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into shop_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="serviceId != null" >
+        SERVICE_ID,
+      </if>
+      <if test="shopNo != null" >
+        SHOP_NO,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="typeDescribe != null" >
+        TYPE_DESCRIBE,
+      </if>
+      <if test="backgroundColor != null" >
+        BACKGROUND_COLOR,
+      </if>
+      <if test="fontColor != null" >
+        FONT_COLOR,
+      </if>
+      <if test="imgPath != null" >
+        IMG_PATH,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="sort != null" >
+        SORT,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="serviceId != null" >
+        #{serviceId,jdbcType=BIGINT},
+      </if>
+      <if test="shopNo != null" >
+        #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="typeDescribe != null" >
+        #{typeDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="backgroundColor != null" >
+        #{backgroundColor,jdbcType=VARCHAR},
+      </if>
+      <if test="fontColor != null" >
+        #{fontColor,jdbcType=VARCHAR},
+      </if>
+      <if test="imgPath != null" >
+        #{imgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.product.good.domain.ShopType" >
+    update shop_type
+    <set >
+      <if test="serviceId != null" >
+        SERVICE_ID = #{serviceId,jdbcType=BIGINT},
+      </if>
+      <if test="shopNo != null" >
+        SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="typeDescribe != null" >
+        TYPE_DESCRIBE = #{typeDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="backgroundColor != null" >
+        BACKGROUND_COLOR = #{backgroundColor,jdbcType=VARCHAR},
+      </if>
+      <if test="fontColor != null" >
+        FONT_COLOR = #{fontColor,jdbcType=VARCHAR},
+      </if>
+      <if test="imgPath != null" >
+        IMG_PATH = #{imgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null" >
+        SORT = #{sort,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.product.good.domain.ShopType" >
+    update shop_type
+    set SERVICE_ID = #{serviceId,jdbcType=BIGINT}, 
+      SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      TYPE_DESCRIBE = #{typeDescribe,jdbcType=VARCHAR},
+      BACKGROUND_COLOR = #{backgroundColor,jdbcType=VARCHAR},
+      FONT_COLOR = #{fontColor,jdbcType=VARCHAR},
+      IMG_PATH = #{imgPath,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=INTEGER},
+      SORT = #{sort,jdbcType=BIGINT},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="findShopTypeList" resultMap="BaseResultMapVo">
+  	select 
+    st.ID as id, st.SERVICE_ID as serviceId, st.SHOP_NO as shopNo, st.NAME as name,
+    st.TYPE_DESCRIBE as typeDescribe, st.BACKGROUND_COLOR as backgroundColor,
+     st.FONT_COLOR as fontColor, st.IMG_PATH as imgPath, st.STATUS as status, 
+    st.SORT as sort, st.CREATE_TIME as createTime, st.UPDATE_TIME as updateTime 
+    <if test="goodId != null">
+	    ,(select gstr.GOOD_ID from good_shop_type_relation gstr where gstr.shop_type_id=st.id and gstr.good_id=#{goodId,jdbcType=BIGINT}) as goodId
+	</if>
+    FROM 
+    	shop_type st
+    WHERE 
+        st.STATUS = 1
+    <if test="shopNo != null" >
+    AND st.SHOP_NO = #{shopNo,jdbcType=BIGINT}
+    <choose>
+   		<when test="serviceId!=null">
+   			and service_id = #{serviceId}
+   		</when>
+   		<otherwise>
+   			and service_id = 1
+   		</otherwise>
+   	</choose>
+    </if>
+    ORDER BY 
+    	st.SORT DESC
+  </select>
+  <select id="findAppointShopTypeList" resultMap="BaseResultMapVo">
+  	select 
+    st.ID as id, st.SERVICE_ID as serviceId, st.SHOP_NO as shopNo, st.NAME as name,
+    st.TYPE_DESCRIBE as typeDescribe, st.BACKGROUND_COLOR as backgroundColor,
+     st.FONT_COLOR as fontColor, st.IMG_PATH as imgPath, st.STATUS as status, 
+    st.SORT as sort, st.CREATE_TIME as createTime, st.UPDATE_TIME as updateTime 
+    FROM shop_type st
+    join good_shop_type_relation gstr on st.id=gstr.shop_type_id
+    join good g on gstr.good_id=g.id 
+    join appointment_sku_relation asr on gstr.good_id=asr.good_id
+    WHERE 
+        st.STATUS = 1
+    and g.status = 1 and asr.appointment_id = #{appointmentId}
+    <if test="shopNo != null" >
+    AND st.SHOP_NO = #{shopNo,jdbcType=BIGINT}
+    <choose>
+   		<when test="serviceId!=null">
+   			and st.service_id = #{serviceId}
+   		</when>
+   		<otherwise>
+   			and st.service_id = 1
+   		</otherwise>
+   	</choose>
+    </if>
+    ORDER BY 
+    	st.SORT DESC
+  </select>
+</mapper>

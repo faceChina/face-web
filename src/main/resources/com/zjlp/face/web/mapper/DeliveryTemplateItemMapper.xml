@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.DeliveryTemplateItemMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.user.shop.domain.DeliveryTemplateItem" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="POSTAGE_TEMPLATE_ID" property="postageTemplateId" jdbcType="BIGINT" />
+    <result column="DESTINATION" property="destination" jdbcType="VARCHAR" />
+    <result column="START_STANDARD" property="startStandard" jdbcType="INTEGER" />
+    <result column="START_POSTAGE" property="startPostage" jdbcType="BIGINT" />
+    <result column="ADD_STANDARD" property="addStandard" jdbcType="INTEGER" />
+    <result column="ADD_POSTAGE" property="addPostage" jdbcType="BIGINT" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap type="com.zjlp.face.web.server.user.shop.domain.dto.DeliveryTemplateItemDto" id="DtoResultMap" extends="BaseResultMap">
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, POSTAGE_TEMPLATE_ID, DESTINATION, START_STANDARD, START_POSTAGE, ADD_STANDARD, 
+    ADD_POSTAGE, CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from delivery_template_item
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from delivery_template_item
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.user.shop.domain.DeliveryTemplateItem" >
+    insert into delivery_template_item (ID, POSTAGE_TEMPLATE_ID, DESTINATION, 
+      START_STANDARD, START_POSTAGE, ADD_STANDARD, 
+      ADD_POSTAGE, CREATE_TIME, UPDATE_TIME
+      )
+    values (#{id,jdbcType=BIGINT}, #{postageTemplateId,jdbcType=BIGINT}, #{destination,jdbcType=VARCHAR}, 
+      #{startStandard,jdbcType=INTEGER}, #{startPostage,jdbcType=BIGINT}, #{addStandard,jdbcType=INTEGER}, 
+      #{addPostage,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.user.shop.domain.DeliveryTemplateItem" >
+  	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into delivery_template_item
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="postageTemplateId != null" >
+        POSTAGE_TEMPLATE_ID,
+      </if>
+      <if test="destination != null" >
+        DESTINATION,
+      </if>
+      <if test="startStandard != null" >
+        START_STANDARD,
+      </if>
+      <if test="startPostage != null" >
+        START_POSTAGE,
+      </if>
+      <if test="addStandard != null" >
+        ADD_STANDARD,
+      </if>
+      <if test="addPostage != null" >
+        ADD_POSTAGE,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="postageTemplateId != null" >
+        #{postageTemplateId,jdbcType=BIGINT},
+      </if>
+      <if test="destination != null" >
+        #{destination,jdbcType=VARCHAR},
+      </if>
+      <if test="startStandard != null" >
+        #{startStandard,jdbcType=INTEGER},
+      </if>
+      <if test="startPostage != null" >
+        #{startPostage,jdbcType=BIGINT},
+      </if>
+      <if test="addStandard != null" >
+        #{addStandard,jdbcType=INTEGER},
+      </if>
+      <if test="addPostage != null" >
+        #{addPostage,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.user.shop.domain.DeliveryTemplateItem" >
+    update delivery_template_item
+    <set >
+      <if test="postageTemplateId != null" >
+        POSTAGE_TEMPLATE_ID = #{postageTemplateId,jdbcType=BIGINT},
+      </if>
+      <if test="destination != null" >
+        DESTINATION = #{destination,jdbcType=VARCHAR},
+      </if>
+      <if test="startStandard != null" >
+        START_STANDARD = #{startStandard,jdbcType=INTEGER},
+      </if>
+      <if test="startPostage != null" >
+        START_POSTAGE = #{startPostage,jdbcType=BIGINT},
+      </if>
+      <if test="addStandard != null" >
+        ADD_STANDARD = #{addStandard,jdbcType=INTEGER},
+      </if>
+      <if test="addPostage != null" >
+        ADD_POSTAGE = #{addPostage,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.user.shop.domain.DeliveryTemplateItem" >
+    update delivery_template_item
+    set POSTAGE_TEMPLATE_ID = #{postageTemplateId,jdbcType=BIGINT},
+      DESTINATION = #{destination,jdbcType=VARCHAR},
+      START_STANDARD = #{startStandard,jdbcType=INTEGER},
+      START_POSTAGE = #{startPostage,jdbcType=BIGINT},
+      ADD_STANDARD = #{addStandard,jdbcType=INTEGER},
+      ADD_POSTAGE = #{addPostage,jdbcType=BIGINT},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 根据模板id查询快递子项列表 -->
+  <select id="selectByTemplateId" resultMap="DtoResultMap" parameterType="java.lang.Long">
+       SELECT
+           <include refid="Base_Column_List" />
+       FROM
+           DELIVERY_TEMPLATE_ITEM
+       WHERE
+           POSTAGE_TEMPLATE_ID = #{templateId,jdbcType=BIGINT}
+  </select>
+  
+  <!-- 删除对应模板下的所有快递子项 -->
+  <delete id="deleteByTemplateId" parameterType="java.lang.Long">
+       DELETE FROM 
+           DELIVERY_TEMPLATE_ITEM
+       WHERE 
+           POSTAGE_TEMPLATE_ID = #{templateId,jdbcType=BIGINT}
+  </delete>
+</mapper>

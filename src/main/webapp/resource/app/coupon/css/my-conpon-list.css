@@ -1,0 +1,208 @@
+@charset "utf-8";
+.my-coupon-list{
+	font-family: 微软雅黑;
+}
+/*头部*/
+.m-c-l-header{
+	width: 100%;
+	height: 2.25rem;
+	font-size: 0.75rem;
+	background: #fff;
+	text-align: center;
+	border-bottom: 1px solid #ddd;
+}
+.m-c-l-header li{
+	float: left;
+	width: 7.97rem;
+	height: 100%;
+}
+.m-c-l-header li.line{
+	width: 1px;
+	height: 1.3rem;
+	background: #ddd;
+	margin-top: 0.5rem;
+}
+.m-c-l-header li a{
+	width: 4.5rem;
+	height: 2.2rem;
+	line-height: 2.2rem;
+	display: inline-block;
+}
+.m-c-l-header li a.current{
+	color: #cc0000;
+	border-bottom: 1px solid #cc0000;
+}
+/*内容头部*/
+.c-title{
+	padding: 0 1.05rem;
+	font-size: 0.7rem;
+	display: inline-block;
+	height: 1.35rem;
+	width: 100%;
+	padding-left: 0.85rem;
+}
+
+.c-title .iconfont-yuanquan,.c-title .all-coupon,.c-title a{
+	float: left;
+	margin-top: 0.7rem;
+}
+.c-title .all-coupon{
+	color: #999;
+}
+.all-coupon i{
+	color: #000;
+}
+.c-title a.c-t-a-edit{
+	float: right;
+}
+.c-title i.iconfont-yuanquan{
+	padding-right: 0.7rem;
+	margin-top: 0.38rem;
+}
+/*内容列表*/
+.c-list{
+  	padding-left:0.5rem;
+  	padding-bottom: 2.5rem;
+  	
+}
+.c-list .c-list-item{
+	width: 100%;
+	height: 4.88rem;
+	overflow: hidden;
+	display: inline-block;
+	position: relative;
+	margin-top: 0.5rem;
+}
+.item-left{
+	display: inline-table;
+	height: 4.88rem;
+	margin-left: 0.3rem;
+}
+
+.item-left i{
+	display: table-cell;
+	vertical-align: middle;
+}
+.item-left i.none{
+	display: none;
+}
+.item-right{
+	width: 14.95rem;
+	height: 4.88rem;
+	overflow: hidden;
+	display: inline-block;
+	border: 1px solid #ddd;
+	position: absolute;
+	left: 0rem;
+	background-image: url(../img/my-coupons-contentbg.png);
+	background-size: 100% 100%;
+}
+.l68{
+	left: 1.7rem;
+}
+.c-l-header{
+	width: 100%;
+	height: 0.45rem;
+	background-image: url(../img/list-lx-header.png);
+	background-size: 100% 100%;
+}
+
+
+.l-c-shopheader,.l-c-price,.l-c-other{
+	float: left;
+}
+.l-c-shopheader{
+	width: 3.2rem;
+	height: 3.2rem;
+	border: 1px solid #ddd;
+	margin: 0.5rem;
+}
+.l-c-price{
+	display: table;
+ 	color: #ff7e00;
+ 	font-size: 0.6rem;
+ 	font-weight: 700;
+ 	padding-top: 0.4rem;
+}
+.price-num{
+	font-size: 1.2rem;
+}
+.l-c-other{
+	width: 7rem;
+	padding-top: 0.7rem;
+	text-align: right;
+	float: right;
+	padding-right: 0.5rem;
+}
+.other-shopnname{
+	font-size: 0.65rem;
+	padding-bottom: 0.35rem;
+}
+.other-order{
+	font-size: 0.6rem;
+}
+.other-line{
+	height: 1px;
+	background: #ddd;
+	margin: 0.25rem 0;
+}
+.other-time{
+	font-size: 0.5rem;
+	color: #999;
+}
+
+/*失效*/
+.c-list-item-sx .c-l-header{
+	background-image: url(../img/list-sx-header.png);
+}
+.c-list-item-sx .l-c-price{
+	color: #ccc;
+}
+
+
+.icon-yinzhang{
+	position: absolute;
+	width: 3.2rem;
+	height: 3.2rem;
+	display: inline-block;
+	background-size: 100% 100%;
+	top: 0.5rem;
+	right: 0.7rem;
+}
+.icon-yishixiao{
+	background-image: url(../img/icon-yishixiao.png);
+}
+.icon-roundcheckfill{
+	color: #c80303;
+}
+.delShopGoods{
+	width: 100%;
+	height: 2rem;
+	line-height: 2rem;
+	text-align: center;
+	font-size: 0.75rem;
+	font-weight: 700;
+	color: #fff;
+	background: #d51c1c;
+	float: left;
+}
+.red{
+	color: #cc0000;
+}
+.delinfo{
+	padding: 1.5rem 2.5rem;
+}
+.iconfont-yuanquan{
+	font-size: 0.9rem;
+}
+
+.no-content img{
+	width: 4.5rem;
+	height: 4.5rem;
+	display: inline-block;
+	background-size: 100%;
+}
+.no-content p{
+	padding-top: 0.5rem;
+	font-size: 0.75rem;
+}

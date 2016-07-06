@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.TransactionRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.trade.payment.domain.TransactionRecord" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="USER_ID" property="userId" jdbcType="BIGINT" />
+    <result column="TRANSACTION_SERIAL_NUMBER" property="transactionSerialNumber" jdbcType="VARCHAR" />
+    <result column="BANK_CARD" property="bankCard" jdbcType="VARCHAR" />
+    <result column="BANK_NAME" property="bankName" jdbcType="VARCHAR" />
+    <result column="SERIAL_NUMBER" property="serialNumber" jdbcType="VARCHAR" />
+    <result column="CASH" property="cash" jdbcType="BIGINT" />
+    <result column="FEE" property="fee" jdbcType="BIGINT" />
+    <result column="TYPE" property="type" jdbcType="INTEGER" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="SYSTEM_CODE" property="systemCode" jdbcType="CHAR" />
+    <result column="TRANSACTION_TIME" property="transactionTime" jdbcType="TIMESTAMP" />
+    <result column="CELL" property="cell" jdbcType="VARCHAR" />
+    <result column="BANK_CODE" property="bankCode" jdbcType="VARCHAR" />
+    <result column="CVV" property="cvv" jdbcType="VARCHAR" />
+    <result column="END_TIME" property="endTime" jdbcType="VARCHAR" />
+    <result column="PAY_TYPE" property="payType" jdbcType="INTEGER" />
+    <result column="ORDER_INFO" property="orderInfo" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, USER_ID, TRANSACTION_SERIAL_NUMBER, BANK_CARD, BANK_NAME, SERIAL_NUMBER, 
+    CASH, FEE, TYPE, STATUS,SYSTEM_CODE, TRANSACTION_TIME, 
+    CELL, BANK_CODE, CVV, END_TIME, PAY_TYPE, ORDER_INFO, CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from transaction_record
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectOneByTSN" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from transaction_record
+    where TRANSACTION_SERIAL_NUMBER = #{transactionSerialNumber,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from transaction_record
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.trade.payment.domain.TransactionRecord" >
+   	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into transaction_record (ID, USER_ID, TRANSACTION_SERIAL_NUMBER, 
+      BANK_CARD, BANK_NAME, SERIAL_NUMBER, 
+      CASH, FEE, TYPE, 
+      STATUS, 
+      SYSTEM_CODE, TRANSACTION_TIME, CELL, 
+      BANK_CODE, CVV, END_TIME, 
+      PAY_TYPE, ORDER_INFO, CREATE_TIME, 
+      UPDATE_TIME)
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{transactionSerialNumber,jdbcType=VARCHAR}, 
+      #{bankCard,jdbcType=VARCHAR}, #{bankName,jdbcType=VARCHAR}, #{serialNumber,jdbcType=VARCHAR}, 
+      #{cash,jdbcType=BIGINT}, #{fee,jdbcType=BIGINT}, #{type,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER},
+      #{systemCode,jdbcType=CHAR}, #{transactionTime,jdbcType=TIMESTAMP}, #{cell,jdbcType=VARCHAR}, 
+      #{bankCode,jdbcType=VARCHAR}, #{cvv,jdbcType=VARCHAR}, #{endTime,jdbcType=VARCHAR}, 
+      #{payType,jdbcType=INTEGER}, #{orderInfo,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.trade.payment.domain.TransactionRecord" >
+   	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into transaction_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="transactionSerialNumber != null" >
+        TRANSACTION_SERIAL_NUMBER,
+      </if>
+      <if test="bankCard != null" >
+        BANK_CARD,
+      </if>
+      <if test="bankName != null" >
+        BANK_NAME,
+      </if>
+      <if test="serialNumber != null" >
+        SERIAL_NUMBER,
+      </if>
+      <if test="cash != null" >
+        CASH,
+      </if>
+      <if test="fee != null" >
+        FEE,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="systemCode != null" >
+        SYSTEM_CODE,
+      </if>
+      <if test="transactionTime != null" >
+        TRANSACTION_TIME,
+      </if>
+      <if test="cell != null" >
+        CELL,
+      </if>
+      <if test="bankCode != null" >
+        BANK_CODE,
+      </if>
+      <if test="cvv != null" >
+        CVV,
+      </if>
+      <if test="endTime != null" >
+        END_TIME,
+      </if>
+      <if test="payType != null" >
+        PAY_TYPE,
+      </if>
+      <if test="orderInfo != null" >
+        ORDER_INFO,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="transactionSerialNumber != null" >
+        #{transactionSerialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCard != null" >
+        #{bankCard,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null" >
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNumber != null" >
+        #{serialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cash != null" >
+        #{cash,jdbcType=BIGINT},
+      </if>
+      <if test="fee != null" >
+        #{fee,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="systemCode != null" >
+        #{systemCode,jdbcType=CHAR},
+      </if>
+      <if test="transactionTime != null" >
+        #{transactionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cell != null" >
+        #{cell,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null" >
+        #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cvv != null" >
+        #{cvv,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null" >
+        #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="orderInfo != null" >
+        #{orderInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.trade.payment.domain.TransactionRecord" >
+    update transaction_record
+    <set >
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="transactionSerialNumber != null" >
+        TRANSACTION_SERIAL_NUMBER = #{transactionSerialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCard != null" >
+        BANK_CARD = #{bankCard,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null" >
+        BANK_NAME = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNumber != null" >
+        SERIAL_NUMBER = #{serialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cash != null" >
+        CASH = #{cash,jdbcType=BIGINT},
+      </if>
+      <if test="fee != null" >
+        FEE = #{fee,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="systemCode != null" >
+        SYSTEM_CODE = #{systemCode,jdbcType=CHAR},
+      </if>
+      <if test="transactionTime != null" >
+        TRANSACTION_TIME = #{transactionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cell != null" >
+        CELL = #{cell,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null" >
+        BANK_CODE = #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cvv != null" >
+        CVV = #{cvv,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        END_TIME = #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null" >
+        PAY_TYPE = #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="orderInfo != null" >
+        ORDER_INFO = #{orderInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.trade.payment.domain.TransactionRecord" >
+    update transaction_record
+    set USER_ID = #{userId,jdbcType=BIGINT},
+      TRANSACTION_SERIAL_NUMBER = #{transactionSerialNumber,jdbcType=VARCHAR},
+      BANK_CARD = #{bankCard,jdbcType=VARCHAR},
+      BANK_NAME = #{bankName,jdbcType=VARCHAR},
+      SERIAL_NUMBER = #{serialNumber,jdbcType=VARCHAR},
+      CASH = #{cash,jdbcType=BIGINT},
+      FEE = #{fee,jdbcType=BIGINT},
+      TYPE = #{type,jdbcType=INTEGER},
+      STATUS = #{status,jdbcType=INTEGER},
+      SYSTEM_CODE = #{systemCode,jdbcType=CHAR},
+      TRANSACTION_TIME = #{transactionTime,jdbcType=TIMESTAMP},
+      CELL = #{cell,jdbcType=VARCHAR},
+      BANK_CODE = #{bankCode,jdbcType=VARCHAR},
+      CVV = #{cvv,jdbcType=VARCHAR},
+      END_TIME = #{endTime,jdbcType=VARCHAR},
+      PAY_TYPE = #{payType,jdbcType=INTEGER},
+      ORDER_INFO = #{orderInfo,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

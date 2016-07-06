@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.MemberWechatRelationMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.operation.member.domain.MemberWechatRelation" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="OPEN_ID" property="openId" jdbcType="VARCHAR" />
+    <result column="FAKE_ID" property="fakeId" jdbcType="VARCHAR" />
+    <result column="SELLER_ID" property="sellerId" jdbcType="BIGINT" />
+    <result column="SHOP_NO" property="shopNo" jdbcType="VARCHAR" />
+    <result column="MEMBER_CARD_ID" property="memberCardId" jdbcType="BIGINT" />
+    <result column="USER_ID" property="userId" jdbcType="BIGINT" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, OPEN_ID, FAKE_ID, SELLER_ID, SHOP_NO, MEMBER_CARD_ID, USER_ID, CREATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from member_wechat_relation
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="getMemberWechatRelation" resultMap="BaseResultMap" parameterType="com.zjlp.face.web.server.operation.member.domain.MemberWechatRelation" >
+    select 
+    <include refid="Base_Column_List" />
+    from member_wechat_relation
+    <where>
+    	<if test="openId != null">
+    		OPEN_ID = #{openId,jdbcType=VARCHAR}
+    	</if>
+    	<if test="fakeId != null">
+    		and FAKE_ID = #{fakeId,jdbcType=VARCHAR}
+    	</if>
+    	<if test="shopNo != null">
+    		and SHOP_NO = #{shopNo,jdbcType=VARCHAR}
+    	</if>
+    </where>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from member_wechat_relation
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.operation.member.domain.MemberWechatRelation" >
+  	<selectKey keyProperty="id" resultType="long" order="AFTER">  
+        SELECT LAST_INSERT_ID();  
+    </selectKey> 
+    insert into member_wechat_relation (ID, OPEN_ID, FAKE_ID, 
+      SELLER_ID, SHOP_NO, MEMBER_CARD_ID, 
+      USER_ID, CREATE_TIME)
+    values (#{id,jdbcType=BIGINT}, #{openId,jdbcType=VARCHAR}, #{fakeId,jdbcType=VARCHAR}, 
+      #{sellerId,jdbcType=BIGINT}, #{shopNo,jdbcType=VARCHAR}, #{memberCardId,jdbcType=BIGINT}, 
+      #{userId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.operation.member.domain.MemberWechatRelation" >
+  	<selectKey keyProperty="id" resultType="long" order="AFTER">  
+        SELECT LAST_INSERT_ID();  
+    </selectKey> 
+    insert into member_wechat_relation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="openId != null" >
+        OPEN_ID,
+      </if>
+      <if test="fakeId != null" >
+        FAKE_ID,
+      </if>
+      <if test="sellerId != null" >
+        SELLER_ID,
+      </if>
+      <if test="shopNo != null" >
+        SHOP_NO,
+      </if>
+      <if test="memberCardId != null" >
+        MEMBER_CARD_ID,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="openId != null" >
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="fakeId != null" >
+        #{fakeId,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerId != null" >
+        #{sellerId,jdbcType=BIGINT},
+      </if>
+      <if test="shopNo != null" >
+        #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="memberCardId != null" >
+        #{memberCardId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.operation.member.domain.MemberWechatRelation" >
+    update member_wechat_relation
+    <set >
+      <if test="openId != null" >
+        OPEN_ID = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="fakeId != null" >
+        FAKE_ID = #{fakeId,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerId != null" >
+        SELLER_ID = #{sellerId,jdbcType=BIGINT},
+      </if>
+      <if test="shopNo != null" >
+        SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="memberCardId != null" >
+        MEMBER_CARD_ID = #{memberCardId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.operation.member.domain.MemberWechatRelation" >
+    update member_wechat_relation
+    set OPEN_ID = #{openId,jdbcType=VARCHAR},
+      FAKE_ID = #{fakeId,jdbcType=VARCHAR},
+      SELLER_ID = #{sellerId,jdbcType=BIGINT},
+      SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      MEMBER_CARD_ID = #{memberCardId,jdbcType=BIGINT},
+      USER_ID = #{userId,jdbcType=BIGINT},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

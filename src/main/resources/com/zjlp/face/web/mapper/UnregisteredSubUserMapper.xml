@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.UnregisteredSubUserMapper">
+ <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.operation.subbranch.domain.UnregisteredSubUser">
+   <id column="ID" property="id" jdbcType="BIGINT"/>
+   <result column="LOGIN_ACCOUNT" property="loginAccount" jdbcType="VARCHAR"/>
+   <result column="NAME" property="name" jdbcType="VARCHAR"/>
+   <result column="STATUS" property="status" jdbcType="INTEGER"/>
+   <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+   <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP"/>
+ </resultMap>
+
+  <sql id="Base_Column_List">
+    ID,LOGIN_ACCOUNT,NAME,STATUS,CREATE_TIME,UPDATE_TIME
+  </sql>
+  
+  <insert id="insert" parameterType="com.zjlp.face.web.server.operation.subbranch.domain.UnregisteredSubUser">
+    <selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+    </selectKey>
+    INSERT INTO UNREGISTERED_SUB_USER (LOGIN_ACCOUNT,NAME,STATUS,CREATE_TIME,UPDATE_TIME)
+      VALUES(
+       #{loginAccount,jdbcType=VARCHAR},
+       #{name,jdbcType=VARCHAR},
+       #{status,jdbcType=INTEGER},
+       #{createTime,jdbcType=TIMESTAMP},
+       #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  
+   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+	FROM UNREGISTERED_SUB_USER 
+	WHERE ID = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <select id="selectByLoginAccount" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM UNREGISTERED_SUB_USER
+    WHERE LOGIN_ACCOUNT = #{loginAccount,jdbcType=VARCHAR} AND STATUS = 1
+  </select>
+  
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.operation.subbranch.domain.UnregisteredSubUser">
+    UPDATE UNREGISTERED_SUB_USER
+     <set>
+      <if test="loginAccount != null">
+        LOGIN_ACCOUNT = #{loginAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+       CREATE_TIME =  #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+     </set>
+     WHERE ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <delete id="deleteByPrimarykey" parameterType="java.lang.Long">
+    DELETE FROM UNREGISTERED_SUB_USER
+    WHERE ID = #{id,jdbcType=BIGINT}
+  </delete>
+  
+</mapper>

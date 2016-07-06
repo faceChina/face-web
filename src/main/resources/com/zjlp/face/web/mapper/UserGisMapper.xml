@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.UserGisMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.user.user.domain.UserGis" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="USER_ID" property="userId" jdbcType="BIGINT" />
+    <result column="LONGITUDE" property="longitude" jdbcType="DECIMAL" />
+    <result column="LATITUDE" property="latitude" jdbcType="DECIMAL" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="RADAR_ENABLE" property="radarEnable" jdbcType="INTEGER" />
+  </resultMap>
+    <resultMap id="DtoResultMap" type="com.zjlp.face.web.server.user.user.domain.dto.UserGisDto" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="LOGIN_ACCOUNT" property="loginAccount" jdbcType="VARCHAR" />
+    <result column="NICKNAME" property="nickname" jdbcType="VARCHAR" />
+    <result column="HEADIMGURL" property="headimgurl" jdbcType="VARCHAR" />
+    <result column="USER_ID" property="userId" jdbcType="BIGINT" />
+    <result column="LONGITUDE" property="longitude" jdbcType="DECIMAL" />
+    <result column="LATITUDE" property="latitude" jdbcType="DECIMAL" />
+    <result column="SIGNATURE" property="signature" jdbcType="VARCHAR" />
+    <result column="COMPANY_NAME" property="company" jdbcType="VARCHAR" />
+    <result column="POSITION" property="position" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, USER_ID, LONGITUDE, LATITUDE, STATUS, CREATE_TIME, UPDATE_TIME
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from app_user_gis
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByUserId" parameterType="java.lang.Long" >
+    delete from app_user_gis
+    where ID = #{user_id,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterType="com.zjlp.face.web.server.user.user.domain.UserGis" >
+   	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into app_user_gis (USER_ID, LONGITUDE, LATITUDE, STATUS, CREATE_TIME, UPDATE_TIME)
+    values (#{userId,jdbcType=BIGINT},#{longitude,jdbcType=DECIMAL},#{latitude,jdbcType=DECIMAL}, #{status,jdbcType=INTEGER},
+    	#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  
+  <update id="updateUserGis" parameterType="com.zjlp.face.web.server.user.user.domain.UserGis" >
+    update app_user_gis
+    <set >
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="longitude != null" >
+        LONGITUDE = #{longitude,jdbcType=DECIMAL},
+      </if>
+      <if test="latitude != null" >
+        LATITUDE = #{latitude,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="getUserGisByUserId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from app_user_gis
+    where USER_ID = #{userId,jdbcType=BIGINT}
+  </select>
+  <select id="getCount" resultType="java.lang.Integer">
+  	select count(1)
+  	from app_user_gis
+  </select>
+  <select id="selectUserGisPage" resultMap="DtoResultMap" parameterType="com.zjlp.face.web.server.user.user.domain.vo.UserGisVo">
+  	SELECT 
+  	b.ID,b.LOGIN_ACCOUNT,b.HEADIMGURL,b.NICKNAME,a.LONGITUDE,a.LATITUDE,b.SIGNATURE,
+  	<![CDATA[(ABS(LATITUDE-#{latitude,jdbcType=DECIMAL})+ABS(LONGITUDE-#{longitude,jdbcType=DECIMAL})) AS val]]>, c.POSITION, c.COMPANY_NAME AS company
+    FROM app_user_gis a  JOIN USER b ON a.user_id = b.ID
+    LEFT JOIN business_card c ON a.user_id = c.user_id
+    <where>
+    	a.STATUS = 1
+    	AND a.USER_ID != #{userId}
+    	AND a.LONGITUDE > #{leftLongitude}
+    	<![CDATA[AND a.LONGITUDE < #{rightLongitude}]]>
+    	AND a.LATITUDE > #{downLatitude}
+    	<![CDATA[AND a.LATITUDE < #{topLatitude}]]>
+    	ORDER BY val ASC
+    	LIMIT #{number}
+    </where>
+  </select>
+  
+  <select id="findLeiDaUser" resultMap="DtoResultMap" parameterType="com.zjlp.face.web.server.user.user.domain.vo.UserGisVo">
+  	SELECT 
+  	    b.POSITION ,b.COMPANY_NAME, u.NICKNAME, u.HEADIMGURL, a.LONGITUDE,a.LATITUDE,
+  	    <![CDATA[(ABS(LATITUDE-#{latitude,jdbcType=DECIMAL})+ABS(LONGITUDE-#{longitude,jdbcType=DECIMAL})) AS val]]>,
+  	    u.LOGIN_ACCOUNT
+  	FROM 
+  	    app_user_gis a 
+    JOIN 
+  	    user u
+  	ON 
+  	    u.id = a.user_id 
+  	LEFT JOIN 
+  	    business_card b 
+  	ON 
+  	    a.user_id = b.user_id
+    <where>
+    	a.STATUS = 1 
+    	AND RADAR_ENABLE = 1
+    	<![CDATA[and a.user_id <>]]> #{userId}
+    	AND a.LONGITUDE > #{leftLongitude}
+    	<![CDATA[AND a.LONGITUDE <]]> #{rightLongitude}
+    	AND a.LATITUDE > #{downLatitude}
+    	<![CDATA[AND a.LATITUDE <]]> #{topLatitude}
+    </where>
+   	ORDER BY val ASC
+  </select>
+  
+  <update id="updateLeiDaGisRadarEnable" parameterType="com.zjlp.face.web.server.user.user.domain.UserGis" >
+    update app_user_gis
+    <set >
+      <if test="radarEnable != null" >
+        RADAR_ENABLE = #{radarEnable,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="getUserGisById" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from app_user_gis
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+</mapper>

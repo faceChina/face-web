@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.ClassificationPropRealtionMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.product.good.domain.ClassificationPropRealtion" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="CLASSIFICATION_ID" property="classificationId" jdbcType="BIGINT" />
+    <result column="PROP_ID" property="propId" jdbcType="BIGINT" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="SORT" property="sort" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, CLASSIFICATION_ID, PROP_ID, CREATE_TIME, SORT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from classification_prop_realtion
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from classification_prop_realtion
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.product.good.domain.ClassificationPropRealtion" >
+    insert into classification_prop_realtion (ID, CLASSIFICATION_ID, PROP_ID, 
+      CREATE_TIME , SORT)
+    values (#{id,jdbcType=BIGINT}, #{classificationId,jdbcType=BIGINT}, #{propId,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP} ,#{sort,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.product.good.domain.ClassificationPropRealtion" >
+    insert into classification_prop_realtion
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="classificationId != null" >
+        CLASSIFICATION_ID,
+      </if>
+      <if test="propId != null" >
+        PROP_ID,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="sort != null" >
+        SORT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="classificationId != null" >
+        #{classificationId,jdbcType=BIGINT},
+      </if>
+      <if test="propId != null" >
+        #{propId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.product.good.domain.ClassificationPropRealtion" >
+    update classification_prop_realtion
+    <set >
+      <if test="classificationId != null" >
+        CLASSIFICATION_ID = #{classificationId,jdbcType=BIGINT},
+      </if>
+      <if test="propId != null" >
+        PROP_ID = #{propId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sort != null" >
+        SORT = #{sort,jdbcType=BIGINT},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.product.good.domain.ClassificationPropRealtion" >
+    update classification_prop_realtion
+    set CLASSIFICATION_ID = #{classificationId,jdbcType=BIGINT},
+      PROP_ID = #{propId,jdbcType=BIGINT},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      SORT = #{sort,jdbcType=BIGINT}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

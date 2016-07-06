@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.GoodSkuMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.product.good.domain.GoodSku" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="GOOD_ID" property="goodId" jdbcType="BIGINT" />
+    <result column="SERVICE_ID" property="serviceId" jdbcType="BIGINT"/>
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="BAR_CODE" property="barCode" jdbcType="VARCHAR" />
+    <result column="STOCK" property="stock" jdbcType="BIGINT" />
+    <result column="MARKET_PRICE" property="marketPrice" jdbcType="BIGINT" />
+    <result column="SALES_PRICE" property="salesPrice" jdbcType="BIGINT" />
+    <result column="PREFERENTIAL_POLICY" property="preferentialPolicy" jdbcType="INTEGER" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="SKU_PROPERTIES" property="skuProperties" jdbcType="VARCHAR" />
+    <result column="SKU_PROPERTIES_NAME" property="skuPropertiesName" jdbcType="VARCHAR" />
+    <result column="VERSION" property="version" jdbcType="VARCHAR" />
+    <result column="PICTURE_PATH" property="picturePath" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="BaseResultMapVo" type="com.zjlp.face.web.server.product.good.domain.vo.GoodSkuVo" extends="BaseResultMap"></resultMap>
+  <sql id="Base_Column_List" >
+    ID, GOOD_ID, SERVICE_ID, NAME, BAR_CODE, STOCK, MARKET_PRICE, SALES_PRICE, PREFERENTIAL_POLICY, 
+    STATUS, SKU_PROPERTIES, SKU_PROPERTIES_NAME, VERSION, PICTURE_PATH, CREATE_TIME, 
+    UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from good_sku
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectByGoodIdAndPrprerty" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    SELECT 
+    	<include refid="Base_Column_List" />
+    FROM 
+    	good_sku
+    WHERE 
+    	STATUS > 0 
+    AND 
+    	GOOD_ID = #{goodId,jdbcType=BIGINT}
+    AND
+    	SKU_PROPERTIES = #{skuProperties,jdbcType=BIGINT}
+  </select>
+  <select id="selectGoodSkusByGoodId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM 
+    	good_sku
+    WHERE
+    	STATUS > 0  
+    AND 
+    	GOOD_ID = #{goodId,jdbcType=BIGINT}
+  </select>
+  <select id="selectAllGoodSkusByGoodId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM 
+    	good_sku
+    WHERE 
+    	GOOD_ID = #{goodId,jdbcType=BIGINT} and status>0
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from good_sku
+    where STATUS =1  AND GOOD_ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.product.good.domain.GoodSku" >
+    	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into good_sku (ID, GOOD_ID, SERVICE_ID, NAME, 
+      BAR_CODE, STOCK, MARKET_PRICE, 
+      SALES_PRICE, PREFERENTIAL_POLICY, STATUS, 
+      SKU_PROPERTIES, SKU_PROPERTIES_NAME, VERSION, 
+      PICTURE_PATH, CREATE_TIME, UPDATE_TIME
+      )
+    values (#{id,jdbcType=BIGINT}, #{goodId,jdbcType=BIGINT}, #{serviceId},#{name,jdbcType=VARCHAR}, 
+      #{barCode,jdbcType=VARCHAR}, #{stock,jdbcType=BIGINT}, #{marketPrice,jdbcType=BIGINT}, 
+      #{salesPrice,jdbcType=BIGINT}, #{preferentialPolicy,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{skuProperties,jdbcType=VARCHAR}, #{skuPropertiesName,jdbcType=VARCHAR}, #{version,jdbcType=VARCHAR}, 
+      #{picturePath,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.product.good.domain.GoodSku" >
+    	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into good_sku
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="goodId != null" >
+        GOOD_ID,
+      </if>
+      <if test="serviceId != null">
+      	SERVICE_ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="barCode != null" >
+        BAR_CODE,
+      </if>
+      <if test="stock != null" >
+        STOCK,
+      </if>
+      <if test="marketPrice != null" >
+        MARKET_PRICE,
+      </if>
+      <if test="salesPrice != null" >
+        SALES_PRICE,
+      </if>
+      <if test="preferentialPolicy != null" >
+        PREFERENTIAL_POLICY,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="skuProperties != null" >
+        SKU_PROPERTIES,
+      </if>
+      <if test="skuPropertiesName != null" >
+        SKU_PROPERTIES_NAME,
+      </if>
+      <if test="version != null" >
+        VERSION,
+      </if>
+      <if test="picturePath != null" >
+        PICTURE_PATH,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="goodId != null" >
+        #{goodId,jdbcType=BIGINT},
+      </if>
+      <if test="serviceId != null">
+      	#{serviceId},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="barCode != null" >
+        #{barCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stock != null" >
+        #{stock,jdbcType=BIGINT},
+      </if>
+      <if test="marketPrice != null" >
+        #{marketPrice,jdbcType=BIGINT},
+      </if>
+      <if test="salesPrice != null" >
+        #{salesPrice,jdbcType=BIGINT},
+      </if>
+      <if test="preferentialPolicy != null" >
+        #{preferentialPolicy,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="skuProperties != null" >
+        #{skuProperties,jdbcType=VARCHAR},
+      </if>
+      <if test="skuPropertiesName != null" >
+        #{skuPropertiesName,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="picturePath != null" >
+        #{picturePath,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.product.good.domain.GoodSku" >
+    update good_sku
+    <set >
+      <if test="goodId != null" >
+        GOOD_ID = #{goodId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="barCode != null" >
+        BAR_CODE = #{barCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stock != null" >
+        STOCK = #{stock,jdbcType=BIGINT},
+      </if>
+      <if test="marketPrice != null" >
+        MARKET_PRICE = #{marketPrice,jdbcType=BIGINT},
+      </if>
+      <if test="salesPrice != null" >
+        SALES_PRICE = #{salesPrice,jdbcType=BIGINT},
+      </if>
+      <if test="preferentialPolicy != null" >
+        PREFERENTIAL_POLICY = #{preferentialPolicy,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="skuProperties != null" >
+        SKU_PROPERTIES = #{skuProperties,jdbcType=VARCHAR},
+      </if>
+      <if test="skuPropertiesName != null" >
+        SKU_PROPERTIES_NAME = #{skuPropertiesName,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        VERSION = #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="picturePath != null" >
+        PICTURE_PATH = #{picturePath,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.product.good.domain.GoodSku" >
+    update good_sku
+    set GOOD_ID = #{goodId,jdbcType=BIGINT},
+      NAME = #{name,jdbcType=VARCHAR},
+      BAR_CODE = #{barCode,jdbcType=VARCHAR},
+      STOCK = #{stock,jdbcType=BIGINT},
+      MARKET_PRICE = #{marketPrice,jdbcType=BIGINT},
+      SALES_PRICE = #{salesPrice,jdbcType=BIGINT},
+      PREFERENTIAL_POLICY = #{preferentialPolicy,jdbcType=INTEGER},
+      STATUS = #{status,jdbcType=INTEGER},
+      SKU_PROPERTIES = #{skuProperties,jdbcType=VARCHAR},
+      SKU_PROPERTIES_NAME = #{skuPropertiesName,jdbcType=VARCHAR},
+      VERSION = #{version,jdbcType=VARCHAR},
+      PICTURE_PATH = #{picturePath,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="removeByGoodId" parameterType="java.lang.Long" >
+    UPDATE 
+    	good_sku
+    SET  
+    	STATUS = -1,
+    	UPDATE_TIME = now()
+    WHERE 
+    	GOOD_ID = #{goodId,jdbcType=BIGINT} and status>-1
+  </update>
+    <update id="removeById" parameterType="java.lang.Long" >
+    UPDATE 
+    	good_sku
+    SET  
+    	STATUS = -1,
+    	UPDATE_TIME = now()
+    WHERE 
+    	ID = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectGoodskuByGoodIdAndPrprerty" resultMap="BaseResultMap" parameterType="com.zjlp.face.web.server.product.good.domain.GoodSku">
+       select
+           <include refid="Base_Column_List" />
+       from
+           good_sku
+       where
+           GOOD_ID = #{goodId,jdbcType=BIGINT}
+           AND STATUS > 0  
+           AND SKU_PROPERTIES like CONCAT('%',#{skuProperties,jdbcType=VARCHAR},'%')
+  </select>
+  <select id="findGoodSkuByAppointmentIdAndShopTypeId" resultMap="BaseResultMapVo">
+  	select gs.ID, gs.GOOD_ID, gs.NAME, gs.BAR_CODE, gs.STOCK, gs.MARKET_PRICE, gs.SALES_PRICE, gs.PREFERENTIAL_POLICY, 
+    gs.STATUS, gs.SKU_PROPERTIES, gs.SKU_PROPERTIES_NAME, gs.VERSION, gs.PICTURE_PATH, gs.CREATE_TIME, 
+    gs.UPDATE_TIME
+  	from good_sku gs
+  	join appointment_sku_relation asr on gs.id=asr.good_sku_id
+  	join good g on asr.good_id=g.id
+  	join good_shop_type_relation gstr on g.id=gstr.good_id
+  	where asr.appointment_id=#{appointmentId} and gstr.shop_type_id=#{shopTypeId} and gs.status=1
+  </select>
+</mapper>

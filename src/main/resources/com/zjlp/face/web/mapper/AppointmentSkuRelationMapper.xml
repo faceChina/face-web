@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.AppointmentSkuRelationMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.operation.appoint.domain.AppointmentSkuRelation" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="APPOINTMENT_ID" property="appointmentId" jdbcType="BIGINT" />
+    <result column="GOOD_ID" property="goodId" jdbcType="BIGINT" />
+    <result column="GOOD_SKU_ID" property="goodSkuId" jdbcType="BIGINT" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, APPOINTMENT_ID, GOOD_ID, GOOD_SKU_ID, CREATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from appointment_sku_relation
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from appointment_sku_relation
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.operation.appoint.domain.AppointmentSkuRelation" >
+    insert into appointment_sku_relation (ID, APPOINTMENT_ID, GOOD_ID, 
+      GOOD_SKU_ID, CREATE_TIME)
+    values (#{id,jdbcType=BIGINT}, #{appointmentId,jdbcType=BIGINT}, #{goodId,jdbcType=BIGINT}, 
+      #{goodSkuId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.operation.appoint.domain.AppointmentSkuRelation" >
+    insert into appointment_sku_relation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="appointmentId != null" >
+        APPOINTMENT_ID,
+      </if>
+      <if test="goodId != null" >
+        GOOD_ID,
+      </if>
+      <if test="goodSkuId != null" >
+        GOOD_SKU_ID,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="appointmentId != null" >
+        #{appointmentId,jdbcType=BIGINT},
+      </if>
+      <if test="goodId != null" >
+        #{goodId,jdbcType=BIGINT},
+      </if>
+      <if test="goodSkuId != null" >
+        #{goodSkuId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.operation.appoint.domain.AppointmentSkuRelation" >
+    update appointment_sku_relation
+    <set >
+      <if test="appointmentId != null" >
+        APPOINTMENT_ID = #{appointmentId,jdbcType=BIGINT},
+      </if>
+      <if test="goodId != null" >
+        GOOD_ID = #{goodId,jdbcType=BIGINT},
+      </if>
+      <if test="goodSkuId != null" >
+        GOOD_SKU_ID = #{goodSkuId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.operation.appoint.domain.AppointmentSkuRelation" >
+    update appointment_sku_relation
+    set APPOINTMENT_ID = #{appointmentId,jdbcType=BIGINT},
+      GOOD_ID = #{goodId,jdbcType=BIGINT},
+      GOOD_SKU_ID = #{goodSkuId,jdbcType=BIGINT},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="findAppointmentSkuRelationList" resultMap="BaseResultMap">
+  	select <include refid="Base_Column_List"/>
+  	from appointment_sku_relation
+  	where appointment_id = #{appointmentId}
+  </select>
+  <delete id="deleteBySkuId">
+  	delete from appointment_sku_relation where good_sku_id = #{skuId}
+  </delete>
+</mapper>

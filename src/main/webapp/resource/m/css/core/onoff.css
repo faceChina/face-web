@@ -1,0 +1,15 @@
+@CHARSET "UTF-8";
+/*  
+* @description:开关按钮
+* @author: 
+* @update:
+*/
+
+/*开关*/
+.ico_btn{ background:url(../../img/ico_btn.png) no-repeat;}
+.OC_box{ width:128px;height:22px; margin:auto;}
+.OC_box span{ width:40px; float:left; height:22px; line-height:22px; text-align:center;}
+.OC_box_bar{ float:left; width:48px; height:22px; position:relative; overflow:hidden;cursor:pointer;}
+.OC_box_bar h1{ width:48px; height:22px; position:absolute; left:0px; top:0px; background-position:0px 2px; z-index:99;}
+.OC_box_bar h3{ width:48px; height:22px; position:absolute; left:0px; top:0px; background-position:-6px -20px; z-index:98; }
+.OC_box_bar h2{ width:22px; height:22px; position:absolute; left:0px; top:0px;  background-position:0px -42px; z-index:100; cursor:pointer;}

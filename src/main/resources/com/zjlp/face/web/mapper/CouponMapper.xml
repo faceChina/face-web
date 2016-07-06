@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.CouponMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.trade.coupon.domain.Coupon" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="COUPON_SET_ID" property="couponSetId" jdbcType="BIGINT" />
+    <result column="USER_ID" property="userId" jdbcType="BIGINT" />
+    <result column="SELLER_ID" property="sellerId" jdbcType="BIGINT" />
+    <result column="SHOP_NO" property="shopNo" jdbcType="VARCHAR" />
+    <result column="CODE" property="code" jdbcType="VARCHAR" />
+    <result column="DRAW_REMOTE_ID" property="drawRemoteId" jdbcType="VARCHAR" />
+    <result column="DRAW_REMOTE_TYPE" property="drawRemoteType" jdbcType="INTEGER" />
+    <result column="FACE_VALUE" property="faceValue" jdbcType="BIGINT" />
+    <result column="CURRENCY_TYPE" property="currencyType" jdbcType="INTEGER" />
+    <result column="ORDER_PRICE" property="orderPrice" jdbcType="BIGINT" />
+    <result column="CAN_JOIN" property="canJoin" jdbcType="INTEGER" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="EFFECTIVE_TIME" property="effectiveTime" jdbcType="TIMESTAMP" />
+    <result column="END_TIME" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="DtoResultMap" type="com.zjlp.face.web.server.trade.coupon.domain.dto.CouponDto" extends="BaseResultMap" >
+  	<result column="TIME_STATUS" property="timeStatus" jdbcType="INTEGER"/>
+  	<result column="SHOP_LOGO" property="shopLogo" jdbcType="VARCHAR"/>
+  	<result column="SHOP_NAME" property="shopName" jdbcType="VARCHAR"/>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, COUPON_SET_ID, USER_ID, SELLER_ID, SHOP_NO, CODE, DRAW_REMOTE_ID, DRAW_REMOTE_TYPE, 
+    FACE_VALUE, CURRENCY_TYPE, ORDER_PRICE, CAN_JOIN, STATUS, EFFECTIVE_TIME, END_TIME, 
+    CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from coupon
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from coupon
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.trade.coupon.domain.Coupon" >
+    insert into coupon (ID, COUPON_SET_ID, USER_ID, 
+      SELLER_ID, SHOP_NO, CODE, 
+      DRAW_REMOTE_ID, DRAW_REMOTE_TYPE, FACE_VALUE, 
+      CURRENCY_TYPE, ORDER_PRICE, CAN_JOIN, 
+      STATUS, EFFECTIVE_TIME, END_TIME, 
+      CREATE_TIME, UPDATE_TIME)
+    values (#{id,jdbcType=BIGINT}, #{couponSetId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, 
+      #{sellerId,jdbcType=BIGINT}, #{shopNo,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{drawRemoteId,jdbcType=VARCHAR}, #{drawRemoteType,jdbcType=INTEGER}, #{faceValue,jdbcType=BIGINT}, 
+      #{currencyType,jdbcType=INTEGER}, #{orderPrice,jdbcType=BIGINT}, #{canJoin,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{effectiveTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.trade.coupon.domain.Coupon" >
+  	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+   </selectKey>
+    insert into coupon
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="couponSetId != null" >
+        COUPON_SET_ID,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="sellerId != null" >
+        SELLER_ID,
+      </if>
+      <if test="shopNo != null" >
+        SHOP_NO,
+      </if>
+      <if test="code != null" >
+        CODE,
+      </if>
+      <if test="drawRemoteId != null" >
+        DRAW_REMOTE_ID,
+      </if>
+      <if test="drawRemoteType != null" >
+        DRAW_REMOTE_TYPE,
+      </if>
+      <if test="faceValue != null" >
+        FACE_VALUE,
+      </if>
+      <if test="currencyType != null" >
+        CURRENCY_TYPE,
+      </if>
+      <if test="orderPrice != null" >
+        ORDER_PRICE,
+      </if>
+      <if test="canJoin != null" >
+        CAN_JOIN,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="effectiveTime != null" >
+        EFFECTIVE_TIME,
+      </if>
+      <if test="endTime != null" >
+        END_TIME,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="couponSetId != null" >
+        #{couponSetId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="sellerId != null" >
+        #{sellerId,jdbcType=BIGINT},
+      </if>
+      <if test="shopNo != null" >
+        #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="drawRemoteId != null" >
+        #{drawRemoteId,jdbcType=VARCHAR},
+      </if>
+      <if test="drawRemoteType != null" >
+        #{drawRemoteType,jdbcType=INTEGER},
+      </if>
+      <if test="faceValue != null" >
+        #{faceValue,jdbcType=BIGINT},
+      </if>
+      <if test="currencyType != null" >
+        #{currencyType,jdbcType=INTEGER},
+      </if>
+      <if test="orderPrice != null" >
+        #{orderPrice,jdbcType=BIGINT},
+      </if>
+      <if test="canJoin != null" >
+        #{canJoin,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="effectiveTime != null" >
+        #{effectiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.trade.coupon.domain.Coupon" >
+    update coupon
+    <set >
+      <if test="couponSetId != null" >
+        COUPON_SET_ID = #{couponSetId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="sellerId != null" >
+        SELLER_ID = #{sellerId,jdbcType=BIGINT},
+      </if>
+      <if test="shopNo != null" >
+        SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        CODE = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="drawRemoteId != null" >
+        DRAW_REMOTE_ID = #{drawRemoteId,jdbcType=VARCHAR},
+      </if>
+      <if test="drawRemoteType != null" >
+        DRAW_REMOTE_TYPE = #{drawRemoteType,jdbcType=INTEGER},
+      </if>
+      <if test="faceValue != null" >
+        FACE_VALUE = #{faceValue,jdbcType=BIGINT},
+      </if>
+      <if test="currencyType != null" >
+        CURRENCY_TYPE = #{currencyType,jdbcType=INTEGER},
+      </if>
+      <if test="orderPrice != null" >
+        ORDER_PRICE = #{orderPrice,jdbcType=BIGINT},
+      </if>
+      <if test="canJoin != null" >
+        CAN_JOIN = #{canJoin,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="effectiveTime != null" >
+        EFFECTIVE_TIME = #{effectiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.trade.coupon.domain.Coupon" >
+    update coupon
+    set COUPON_SET_ID = #{couponSetId,jdbcType=BIGINT},
+      USER_ID = #{userId,jdbcType=BIGINT},
+      SELLER_ID = #{sellerId,jdbcType=BIGINT},
+      SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      CODE = #{code,jdbcType=VARCHAR},
+      DRAW_REMOTE_ID = #{drawRemoteId,jdbcType=VARCHAR},
+      DRAW_REMOTE_TYPE = #{drawRemoteType,jdbcType=INTEGER},
+      FACE_VALUE = #{faceValue,jdbcType=BIGINT},
+      CURRENCY_TYPE = #{currencyType,jdbcType=INTEGER},
+      ORDER_PRICE = #{orderPrice,jdbcType=BIGINT},
+      CAN_JOIN = #{canJoin,jdbcType=INTEGER},
+      STATUS = #{status,jdbcType=INTEGER},
+      EFFECTIVE_TIME = #{effectiveTime,jdbcType=TIMESTAMP},
+      END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="countHasReveivedCoupon" parameterType="java.lang.Long" resultType="java.lang.Integer">
+  	SELECT COUNT(1) FROM coupon WHERE COUPON_SET_ID = #{couponSetId}
+  </select>
+  <select id="countCouponByUserIdAndCouponSetId" resultType="java.lang.Integer">
+  	SELECT COUNT(1) FROM coupon WHERE COUPON_SET_ID = #{couponSetId} AND USER_ID = #{userId} 
+  	<if test="status != null">
+  		AND STATUS = #{status}
+  	</if>
+  </select>
+  <select id="countCouponByUserId" parameterType="com.zjlp.face.web.server.trade.coupon.domain.Coupon" resultType="java.lang.Integer">
+  	SELECT COUNT(1) FROM coupon WHERE USER_ID = #{userId} AND STATUS = 1
+  </select>
+  <select id="findCouponPage" parameterType="java.util.Map" resultMap="DtoResultMap">
+  	SELECT
+		c.ID, c.COUPON_SET_ID, c.SELLER_ID, c.SHOP_NO, c.CODE, c.DRAW_REMOTE_ID, c.DRAW_REMOTE_TYPE, 
+    	c.FACE_VALUE, c.CURRENCY_TYPE, c.ORDER_PRICE, c.CAN_JOIN, c.STATUS, c.EFFECTIVE_TIME, c.END_TIME, 
+    	s.SHOP_LOGO_URL AS SHOP_LOGO, s.NAME AS SHOP_NAME,
+		CASE  
+		<![CDATA[WHEN (c.END_TIME <= ]]>NOW()) THEN 2
+		ELSE 1
+		END AS TIME_STATUS
+	FROM
+		coupon c
+	LEFT JOIN shop s ON s.`NO` = c.SHOP_NO
+	WHERE
+		c.USER_ID = #{couponDto.userId}
+	AND c.STATUS = 1
+	ORDER BY TIME_STATUS ASC, c.SHOP_NO, c.FACE_VALUE DESC
+	LIMIT #{start}, #{pageSize}
+  </select>
+  <select id="findAllCouponWhenValidByUserIdAndShopNoAndOrderPrice" resultMap="BaseResultMap">
+  	SELECT
+		*
+	FROM
+		coupon
+	WHERE
+		USER_ID = #{userId}
+	AND SHOP_NO = #{shopNo}
+	<![CDATA[AND ORDER_PRICE <= ]]> #{orderPrice}
+	<![CDATA[AND EFFECTIVE_TIME <= ]]> NOW()
+	<![CDATA[AND END_TIME >= ]]> NOW()
+	AND STATUS = 1
+	ORDER BY FACE_VALUE DESC, ORDER_PRICE DESC, END_TIME ASC
+  </select>
+  <select id="findValidCouponsInThisShop" resultMap="BaseResultMap">
+  	SELECT
+		<include refid="Base_Column_List"/>
+	FROM
+		coupon
+	WHERE
+		USER_ID = #{userId}
+	AND SHOP_NO = #{shopNo}
+	<![CDATA[AND EFFECTIVE_TIME <= ]]> NOW()
+	<![CDATA[AND END_TIME >= ]]> NOW()
+	AND STATUS = 1
+	ORDER BY FACE_VALUE DESC, ORDER_PRICE DESC, END_TIME ASC
+  </select>
+  <select id="countUserAllCoupon" parameterType="java.lang.Long" resultType="java.lang.Integer">
+  	SELECT COUNT(1) FROM coupon WHERE USER_ID = #{userId} AND STATUS = 1
+  </select>
+  <update id="deleteCouponBatch">
+  	UPDATE coupon SET STATUS = -1, UPDATE_TIME = NOW() WHERE USER_ID = #{userId} AND ID IN <foreach collection="ids" item="id" open="(" separator="," close=")"> #{id}</foreach>
+  </update>
+  <select id="countUserReceiveNumber" resultType="java.lang.Integer">
+  	SELECT COUNT(1) FROM coupon WHERE USER_ID = #{userId} AND COUPON_SET_ID = #{couponSetId}
+  </select>
+  <update id="deleteAllCoupon" parameterType="java.lang.Long">
+  	UPDATE coupon SET STATUS = -1, UPDATE_TIME = NOW() WHERE USER_ID=#{userId}
+  </update>
+</mapper>

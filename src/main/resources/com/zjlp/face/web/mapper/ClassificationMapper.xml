@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.ClassificationMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.product.good.domain.Classification" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="SERVICE_ID" property="serviceId" jdbcType="BIGINT" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="LEVEL" property="level" jdbcType="INTEGER" />
+    <result column="PARENT_ID" property="parentId" jdbcType="BIGINT" />
+    <result column="LEAF" property="leaf" jdbcType="INTEGER" />
+    <result column="CATEGORY" property="category" jdbcType="INTEGER"/>
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, SERVICE_ID, NAME, LEVEL, PARENT_ID, LEAF, CATEGORY, CREATE_TIME, UPDATE_TIME,STATUS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from classification
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <select id="selectByPid" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from classification
+    where PARENT_ID = #{pid,jdbcType=BIGINT} and service_id != 2 and status = 1
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from classification
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.product.good.domain.Classification" >
+   	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into classification (ID, SERVICE_ID, NAME, LEVEL, 
+      PARENT_ID, LEAF, CATEGORY, CREATE_TIME, 
+      UPDATE_TIME,STATUS)
+    values (#{id,jdbcType=BIGINT}, #{serviceId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER}, 
+      #{parentId,jdbcType=BIGINT}, #{leaf,jdbcType=INTEGER}, #{category,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP},#{status,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.product.good.domain.Classification" >
+   	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into classification
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="serviceId != null" >
+        SERVICE_ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="level != null" >
+        LEVEL,
+      </if>
+      <if test="parentId != null" >
+        PARENT_ID,
+      </if>
+      <if test="leaf != null" >
+        LEAF,
+      </if>
+      <if test="category != null" >
+        CATEGORY,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="serviceId != null" >
+        #{serviceId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="leaf != null" >
+        #{leaf,jdbcType=INTEGER},
+      </if>
+      <if test="category != null" >
+        #{category,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.product.good.domain.Classification" >
+    update classification
+    <set >
+      <if test="serviceId != null" >
+        SERVICE_ID = #{serviceId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        LEVEL = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null" >
+        PARENT_ID = #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="leaf != null" >
+        LEAF = #{leaf,jdbcType=INTEGER},
+      </if>
+      <if test="category != null" >
+        CATEGORY = #{category,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.product.good.domain.Classification" >
+    update classification
+    set SERVICE_ID = #{serviceId,jdbcType=BIGINT},
+      NAME = #{name,jdbcType=VARCHAR},
+      LEVEL = #{level,jdbcType=INTEGER},
+      PARENT_ID = #{parentId,jdbcType=BIGINT},
+      LEAF = #{leaf,jdbcType=INTEGER},
+      CATEGORY = #{category,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      STATUS = #{status,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

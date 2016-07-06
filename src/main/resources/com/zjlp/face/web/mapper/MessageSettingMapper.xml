@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.MessageSettingMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.user.weixin.domain.MessageSetting" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="MESSAGE_BODY_ID" property="messageBodyId" jdbcType="BIGINT" />
+    <result column="SHOP_NO" property="shopNo" jdbcType="VARCHAR" />
+    <result column="EVENT_TYPE" property="eventType" jdbcType="INTEGER" />
+    <result column="RECOVERY_MODE" property="recoveryMode" jdbcType="INTEGER" />
+    <result column="KEY_WORD" property="keyWord" jdbcType="VARCHAR" />
+    <result column="MATCHING_TYPE" property="matchingType" jdbcType="INTEGER" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, NAME, MESSAGE_BODY_ID, SHOP_NO, EVENT_TYPE, RECOVERY_MODE, KEY_WORD, MATCHING_TYPE, 
+    STATUS, CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from message_setting
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectList" resultMap="BaseResultMap" parameterType="java.util.Map">
+  	select 
+  	<include refid="Base_Column_List" />
+  	from message_setting
+  	<where>
+  		status = #{dto.status, jdbcType=INTEGER}
+  		and shop_no = #{dto.shopNo, jdbcType=VARCHAR}
+  		<if test="dto.recoveryMode != null">
+  			and recovery_mode = #{dto.recoveryMode, jdbcType=INTEGER}
+  		</if>
+  		<if test="dto.keyWord != null">
+  			and key_word like CONCAT('%',#{dto.keyWord,jdbcType=VARCHAR},'%')
+  		</if>
+  		<if test="dto.eventType != null">
+  			and EVENT_TYPE = #{dto.eventType,jdbcType=INTEGER}
+  		</if>
+  	</where>
+  	order by update_time desc
+  	limit #{start}, #{pageSize}
+  </select>
+  <select id="getCount" resultType="java.lang.Integer" parameterType="com.zjlp.face.web.server.user.weixin.domain.dto.MessageSettingDto">
+  	select 
+  	count(*)
+  	from message_setting
+  	<where>
+  		status = #{status,jdbcType=INTEGER}
+  		and shop_no = #{shopNo, jdbcType=VARCHAR}
+  		<if test="keyWord != null">
+  			and key_word like CONCAT('%',#{keyWord,jdbcType=VARCHAR},'%')
+  		</if>
+  	</where>
+  </select>
+  <select id="getMessageSetting" resultMap="BaseResultMap" parameterType="com.zjlp.face.web.server.user.weixin.domain.MessageSetting" >
+    select 
+    <include refid="Base_Column_List" />
+    from message_setting
+    <where>
+    	status = 1
+    	<if test="id != null">
+    		and ID = #{id,jdbcType=BIGINT}
+    	</if>
+    	<if test="shopNo != null">
+    		and SHOP_NO = #{shopNo,jdbcType=VARCHAR}
+    	</if>
+    	<if test="eventType != null">
+    		and EVENT_TYPE = #{eventType,jdbcType=INTEGER}
+    	</if>
+    	<if test="recoveryMode != null">
+    		and RECOVERY_MODE = #{recoveryMode, jdbcType=INTEGER}
+    	</if>
+    </where>
+    order by UPDATE_TIME desc,CREATE_TIME desc
+    limit 1
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from message_setting
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.user.weixin.domain.MessageSetting" >
+    <selectKey keyProperty="id" resultType="long" order="AFTER">  
+        SELECT LAST_INSERT_ID();  
+    </selectKey> 
+    insert into message_setting (ID, NAME, MESSAGE_BODY_ID, SHOP_NO, 
+      EVENT_TYPE, RECOVERY_MODE, KEY_WORD, 
+      MATCHING_TYPE, STATUS, CREATE_TIME, 
+      UPDATE_TIME)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{messageBodyId,jdbcType=BIGINT}, #{shopNo,jdbcType=VARCHAR}, 
+      #{eventType,jdbcType=INTEGER}, #{recoveryMode,jdbcType=INTEGER}, #{keyWord,jdbcType=VARCHAR}, 
+      #{matchingType,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.user.weixin.domain.MessageSetting" >
+    <selectKey keyProperty="id" resultType="long" order="AFTER">  
+        SELECT LAST_INSERT_ID();  
+    </selectKey> 
+    insert into message_setting
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="name != null">
+      	NAME,
+      </if>
+      <if test="messageBodyId != null" >
+        MESSAGE_BODY_ID,
+      </if>
+      <if test="shopNo != null" >
+        SHOP_NO,
+      </if>
+      <if test="eventType != null" >
+        EVENT_TYPE,
+      </if>
+      <if test="recoveryMode != null" >
+        RECOVERY_MODE,
+      </if>
+      <if test="keyWord != null" >
+        KEY_WORD,
+      </if>
+      <if test="matchingType != null" >
+        MATCHING_TYPE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="messageBodyId != null" >
+        #{messageBodyId,jdbcType=BIGINT},
+      </if>
+      <if test="shopNo != null" >
+        #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="eventType != null" >
+        #{eventType,jdbcType=INTEGER},
+      </if>
+      <if test="recoveryMode != null" >
+        #{recoveryMode,jdbcType=INTEGER},
+      </if>
+      <if test="keyWord != null" >
+        #{keyWord,jdbcType=VARCHAR},
+      </if>
+      <if test="matchingType != null" >
+        #{matchingType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.user.weixin.domain.MessageSetting" >
+    update message_setting
+    <set >
+      <if test="name != null">
+      	NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="messageBodyId != null" >
+        MESSAGE_BODY_ID = #{messageBodyId,jdbcType=BIGINT},
+      </if>
+      <if test="shopNo != null" >
+        SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="eventType != null" >
+        EVENT_TYPE = #{eventType,jdbcType=INTEGER},
+      </if>
+      <if test="recoveryMode != null" >
+        RECOVERY_MODE = #{recoveryMode,jdbcType=INTEGER},
+      </if>
+      <if test="keyWord != null" >
+        KEY_WORD = #{keyWord,jdbcType=VARCHAR},
+      </if>
+      <if test="matchingType != null" >
+        MATCHING_TYPE = #{matchingType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.user.weixin.domain.MessageSetting" >
+    update message_setting
+    set NAME = #{name,jdbcType=VARCHAR}, 
+      MESSAGE_BODY_ID = #{messageBodyId,jdbcType=BIGINT},
+      SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      EVENT_TYPE = #{eventType,jdbcType=INTEGER},
+      RECOVERY_MODE = #{recoveryMode,jdbcType=INTEGER},
+      KEY_WORD = #{keyWord,jdbcType=VARCHAR},
+      MATCHING_TYPE = #{matchingType,jdbcType=INTEGER},
+      STATUS = #{status,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateMessageSetting" parameterType="com.zjlp.face.web.server.user.weixin.domain.MessageSetting" >
+    update message_setting
+    set EVENT_TYPE = #{eventType,jdbcType=INTEGER},
+      KEY_WORD = #{keyWord,jdbcType=VARCHAR},
+      MATCHING_TYPE = #{matchingType,jdbcType=INTEGER},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="editMessageSettingStatus" parameterType="com.zjlp.face.web.server.user.weixin.domain.MessageSetting" >
+    update message_setting
+    set STATUS = #{status,jdbcType=INTEGER}
+    <where>
+    	<if test="shopNo != null">
+    		shop_no = #{shopNo, jdbcType=VARCHAR}
+    	</if>
+    	<if test="eventType != null">
+    		and EVENT_TYPE = #{eventType,jdbcType=INTEGER}
+    	</if>
+    	<if test="recoveryMode != null">
+    		and RECOVERY_MODE != #{recoveryMode,jdbcType=INTEGER}
+    	</if>
+    </where>
+  </update>
+</mapper>

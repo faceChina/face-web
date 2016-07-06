@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.MemberEnactmentMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.operation.member.domain.MemberEnactment" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="SELLER_ID" property="sellerId" jdbcType="BIGINT" />
+    <result column="CARD_NAME" property="cardName" jdbcType="VARCHAR" />
+    <result column="IMG_PATH" property="imgPath" jdbcType="VARCHAR" />
+    <result column="CARD_NAME_COLOR" property="cardNameColor" jdbcType="VARCHAR" />
+    <result column="CARD_NO_COLOR" property="cardNoColor" jdbcType="VARCHAR" />
+    <result column="CARD_CODE" property="cardCode" jdbcType="VARCHAR" />
+    <result column="START_NO" property="startNo" jdbcType="BIGINT" />
+    <result column="END_NO" property="endNo" jdbcType="BIGINT" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="MEMBER_CONTENT" property="memberContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, SELLER_ID, CARD_NAME, IMG_PATH, CARD_NAME_COLOR, CARD_NO_COLOR, CARD_CODE, START_NO, 
+    END_NO, STATUS, CREATE_TIME, UPDATE_TIME, MEMBER_CONTENT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from member_enactment
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from member_enactment
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.operation.member.domain.MemberEnactment" >
+    insert into member_enactment (ID, SELLER_ID, CARD_NAME, 
+      IMG_PATH, CARD_NAME_COLOR, CARD_NO_COLOR, 
+      CARD_CODE, START_NO, END_NO, 
+      STATUS, CREATE_TIME, UPDATE_TIME, 
+      MEMBER_CONTENT)
+    values (#{id,jdbcType=BIGINT}, #{sellerId,jdbcType=BIGINT}, #{cardName,jdbcType=VARCHAR}, 
+      #{imgPath,jdbcType=VARCHAR}, #{cardNameColor,jdbcType=VARCHAR}, #{cardNoColor,jdbcType=VARCHAR}, 
+      #{cardCode,jdbcType=VARCHAR}, #{startNo,jdbcType=BIGINT}, #{endNo,jdbcType=BIGINT}, 
+      #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{memberContent,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.operation.member.domain.MemberEnactment" >
+  	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into member_enactment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="sellerId != null" >
+        SELLER_ID,
+      </if>
+      <if test="cardName != null" >
+        CARD_NAME,
+      </if>
+      <if test="imgPath != null" >
+        IMG_PATH,
+      </if>
+      <if test="cardNameColor != null" >
+        CARD_NAME_COLOR,
+      </if>
+      <if test="cardNoColor != null" >
+        CARD_NO_COLOR,
+      </if>
+      <if test="cardCode != null" >
+        CARD_CODE,
+      </if>
+      <if test="startNo != null" >
+        START_NO,
+      </if>
+      <if test="endNo != null" >
+        END_NO,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="memberContent != null" >
+        MEMBER_CONTENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="sellerId != null" >
+        #{sellerId,jdbcType=BIGINT},
+      </if>
+      <if test="cardName != null" >
+        #{cardName,jdbcType=VARCHAR},
+      </if>
+      <if test="imgPath != null" >
+        #{imgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNameColor != null" >
+        #{cardNameColor,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNoColor != null" >
+        #{cardNoColor,jdbcType=VARCHAR},
+      </if>
+      <if test="cardCode != null" >
+        #{cardCode,jdbcType=VARCHAR},
+      </if>
+      <if test="startNo != null" >
+        #{startNo,jdbcType=BIGINT},
+      </if>
+      <if test="endNo != null" >
+        #{endNo,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memberContent != null" >
+        #{memberContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.operation.member.domain.MemberEnactment" >
+    update member_enactment
+    <set >
+      <if test="sellerId != null" >
+        SELLER_ID = #{sellerId,jdbcType=BIGINT},
+      </if>
+      <if test="cardName != null" >
+        CARD_NAME = #{cardName,jdbcType=VARCHAR},
+      </if>
+      <if test="imgPath != null" >
+        IMG_PATH = #{imgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNameColor != null" >
+        CARD_NAME_COLOR = #{cardNameColor,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNoColor != null" >
+        CARD_NO_COLOR = #{cardNoColor,jdbcType=VARCHAR},
+      </if>
+      <if test="cardCode != null" >
+        CARD_CODE = #{cardCode,jdbcType=VARCHAR},
+      </if>
+      <if test="startNo != null" >
+        START_NO = #{startNo,jdbcType=BIGINT},
+      </if>
+      <if test="endNo != null" >
+        END_NO = #{endNo,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memberContent != null" >
+        MEMBER_CONTENT = #{memberContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.operation.member.domain.MemberEnactment" >
+    update member_enactment
+    set SELLER_ID = #{sellerId,jdbcType=BIGINT},
+      CARD_NAME = #{cardName,jdbcType=VARCHAR},
+      IMG_PATH = #{imgPath,jdbcType=VARCHAR},
+      CARD_NAME_COLOR = #{cardNameColor,jdbcType=VARCHAR},
+      CARD_NO_COLOR = #{cardNoColor,jdbcType=VARCHAR},
+      CARD_CODE = #{cardCode,jdbcType=VARCHAR},
+      START_NO = #{startNo,jdbcType=BIGINT},
+      END_NO = #{endNo,jdbcType=BIGINT},
+      STATUS = #{status,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      MEMBER_CONTENT = #{memberContent,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 查询卖家会员设置 -->
+  <select id="selectBySellerId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+       SELECT
+           <include refid="Base_Column_List"/>
+       FROM
+           MEMBER_ENACTMENT
+       WHERE
+           SELLER_ID = #{sellerId,jdbcType=BIGINT}
+           AND STATUS = 1
+  </select>
+  
+  <select id="selectValidById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+       SELECT
+           <include refid="Base_Column_List"/>
+       FROM
+           MEMBER_ENACTMENT
+       WHERE
+           ID = #{id,jdbcType=BIGINT}
+           AND STATUS = 1
+  </select>
+</mapper>

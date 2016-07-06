@@ -1,0 +1,189 @@
+﻿@charset "utf-8";
+/* ------------------ 按钮样式 ------------------- */
+.button{
+	padding:10px 10px 0;
+}
+
+/* 以下兼容IE，需要时再取消注释 */
+/* .button[data-col="1"] .btn{
+	display:block;
+	width:100%;
+}
+
+.button[data-col="2"] .btn{
+	display:inline-block;
+	width:49.5%;
+}
+.button[data-col="2"] .btn+.btn{
+	margin-left:1%;
+}
+
+.button[data-col="3"] .btn{
+	display:inline-block;
+	width:32.66667%;
+}
+.button[data-col="3"] .btn+.btn,
+.button[data-col="3"] .btn+.btn+.btn{
+	margin-left:1%;
+}
+
+.button[data-col="4"] .btn{
+	display:inline-block;
+	width:24.25%;
+}
+.button[data-col="4"] .btn+.btn,
+.button[data-col="4"] .btn+.btn+.btn,
+.button[data-col="4"] .btn+.btn+.btn+.btn{
+	margin-left:1%;
+} */
+
+.btn {
+  display: inline-block;
+  padding:10px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  font-size:14px;
+  font-weight: normal;
+  font-family:'Microsoft Yahei', Tahoma, sans-serif, Helvetica, Arial;
+  line-height: 1.428571429;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.btn.disabled,
+.btn[disabled],
+fieldset[disabled] .btn {
+  pointer-events: none;
+  cursor: not-allowed;
+  background-color: #cccccc;
+  color: #666666;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+/*默认样式*/
+.btn-default {
+	background: #ffffff;
+	border-color:#CCCCCC;
+	color:#333;
+}
+.btn-default.hover,
+.btn-default:hover{
+	background:#f6f6f6;
+}
+.btn-default.active{
+	border:1px solid #cc0000;
+	color:#cc0000;
+}
+
+/* 虚线边框 */
+.btn-dashed{
+	border:1px dashed #ccc;
+	background:#fff;
+}
+.btn-dashed.hover,
+.btn-dashed:hover{
+	background:#f6f6f6;
+	color:#fff;
+}
+
+/*警告*/
+.btn-warning {
+	background: #ff6600;
+	color: #fff;
+}
+.btn-warning.hover,
+.btn-warning:hover{
+	background:#ff3300;
+	color:#fff;
+}
+/*危险*/
+.btn-danger {
+	background: #cc0000;
+    color: #ffffff;
+}
+.btn-danger.hover,
+.btn-danger:hover{
+	background:#bb0000;
+	color:#fff;
+}
+/* 通行  */
+.btn-health{
+	background: #51CC72;
+    color: #ffffff;
+}
+.btn-health.hover,
+.btn-health:hover{
+	background: #6BCC9C;
+    color: #ffffff;
+}
+/*禁止*/
+.btn-disabled {
+	background-color: #ccc;
+  	color: #666666;
+}
+.btn-disabled.hover,
+.btn-disabled:hover{
+	background:#ddd;
+	color:#fff;
+}
+/*大按钮*/
+.btn-lg {
+  padding:15px 25px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 6px;
+}
+/*小按钮*/
+.btn-sm {
+  padding:6px 12px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+/* 链接按钮 */
+.btn-link {
+  font-weight: normal;
+  color: #000;
+  cursor: pointer;
+  background:transparent;
+  border:none;
+  border-radius: 0;
+}
+/* 块级元素按钮 */
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+/* 按钮排列：单行多列 */
+.button-equally{
+	width:100%;
+	display:-moz-box; /* Firefox */
+	display:-webkit-box; /* Safari and Chrome */
+	padding:20px 10px;
+}
+.button-equally .btn,
+.button-equally .btn-equally{
+	display:block;
+	-moz-box-flex:1.0; /* Firefox */
+	-webkit-box-flex:1.0;/*  Safari 和 Chrome */
+	text-align:center;
+	margin-left:0.5em;
+	
+	display:-webkit-box;-webkit-box-align:center;-webkit-box-pack:center;
+    display:-moz-box;-moz-box-align:center;-moz-box-pack:center;
+    display:-o-box;-o-box-align:center;-o-box-pack:center;
+    display:-ms-box;-ms-box-align:center;-ms-box-pack:center;
+    display:box;box-align:center;box-pack:center;
+}
+.button-equally .btn-equally:first-child,
+.button-equally .btn:first-child{
+	margin-left:0;
+}
+
+.btn-twords{
+	padding:10px 25px;
+}

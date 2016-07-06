@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.MarketingToolMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.operation.marketing.domain.MarketingTool" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="REMOTE_TYPE" property="remoteType" jdbcType="INTEGER" />
+    <result column="REMOTE_ID" property="remoteId" jdbcType="VARCHAR" />
+    <result column="MARKETING_TYPE" property="marketingType" jdbcType="INTEGER" />
+    <result column="PRODUCT_TYPE" property="productType" jdbcType="INTEGER" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="STANDARD_TYPE" property="standardType" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, REMOTE_TYPE, REMOTE_ID, MARKETING_TYPE, PRODUCT_TYPE, STATUS, STANDARD_TYPE, 
+    CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from marketing_tool
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from marketing_tool
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.operation.marketing.domain.MarketingTool" >
+    insert into marketing_tool (ID, REMOTE_TYPE, REMOTE_ID, 
+      MARKETING_TYPE, PRODUCT_TYPE, STATUS, 
+      STANDARD_TYPE, CREATE_TIME, UPDATE_TIME
+      )
+    values (#{id,jdbcType=BIGINT}, #{remoteType,jdbcType=INTEGER}, #{remoteId,jdbcType=VARCHAR}, 
+      #{marketingType,jdbcType=INTEGER}, #{productType,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{standardType,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.operation.marketing.domain.MarketingTool" >
+  	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into marketing_tool
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="remoteType != null" >
+        REMOTE_TYPE,
+      </if>
+      <if test="remoteId != null" >
+        REMOTE_ID,
+      </if>
+      <if test="marketingType != null" >
+        MARKETING_TYPE,
+      </if>
+      <if test="productType != null" >
+        PRODUCT_TYPE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="standardType != null" >
+        STANDARD_TYPE,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="remoteType != null" >
+        #{remoteType,jdbcType=INTEGER},
+      </if>
+      <if test="remoteId != null" >
+        #{remoteId,jdbcType=VARCHAR},
+      </if>
+      <if test="marketingType != null" >
+        #{marketingType,jdbcType=INTEGER},
+      </if>
+      <if test="productType != null" >
+        #{productType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="standardType != null" >
+        #{standardType,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.operation.marketing.domain.MarketingTool" >
+    update marketing_tool
+    <set >
+      <if test="remoteType != null" >
+        REMOTE_TYPE = #{remoteType,jdbcType=INTEGER},
+      </if>
+      <if test="remoteId != null" >
+        REMOTE_ID = #{remoteId,jdbcType=VARCHAR},
+      </if>
+      <if test="marketingType != null" >
+        MARKETING_TYPE = #{marketingType,jdbcType=INTEGER},
+      </if>
+      <if test="productType != null" >
+        PRODUCT_TYPE = #{productType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="standardType != null" >
+        STANDARD_TYPE = #{standardType,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.operation.marketing.domain.MarketingTool" >
+    update marketing_tool
+    set REMOTE_TYPE = #{remoteType,jdbcType=INTEGER},
+      REMOTE_ID = #{remoteId,jdbcType=VARCHAR},
+      MARKETING_TYPE = #{marketingType,jdbcType=INTEGER},
+      PRODUCT_TYPE = #{productType,jdbcType=INTEGER},
+      STATUS = #{status,jdbcType=INTEGER},
+      STANDARD_TYPE = #{standardType,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="selectByUserAndType" resultMap="BaseResultMap" parameterType="com.zjlp.face.web.server.operation.marketing.domain.MarketingTool">
+       SELECT
+           <include refid="Base_Column_List" />
+       FROM
+           MARKETING_TOOL
+       WHERE
+           REMOTE_TYPE = #{remoteType,jdbcType=INTEGER}
+           AND REMOTE_ID = #{remoteId,jdbcType=VARCHAR}
+           AND MARKETING_TYPE = #{marketingType,jdbcType=INTEGER}
+           AND PRODUCT_TYPE = #{productType,jdbcType=INTEGER}
+  </select>
+</mapper>

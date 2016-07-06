@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.SubbranchMapper">
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.operation.subbranch.domain.Subbranch">
+   <id column="ID" property="id" jdbcType="BIGINT"/>
+   <result column="PID" property="pid" jdbcType="BIGINT"/>
+   <result column="TYPE" property="type" jdbcType="INTEGER"/>
+   <result column="SUPERIOR_USER_ID" property="superiorUserId" jdbcType="BIGINT"/>
+   <result column="USER_ID" property="userId" jdbcType="BIGINT"/>
+   <result column="USER_NAME" property="userName" jdbcType="VARCHAR"/>
+   <result column="USER_CELL" property="userCell" jdbcType="VARCHAR"/>
+   <result column="USER_BINDING_CELL" property="userBindingCell" jdbcType="VARCHAR"/>
+   <result column="SHOP_NAME" property="shopName" jdbcType="VARCHAR"/>
+   <result column="SHOP_LOGO" property="shopLogo" jdbcType="VARCHAR"/>
+   <result column="DELIVER" property="deliver" jdbcType="INTEGER"/>
+   <result column="PROFIT" property="profit" jdbcType="INTEGER"/>
+   <result column="SUPPLIER_SHOP_NO" property="supplierShopNo" jdbcType="VARCHAR"/>
+   <result column="STATUS" property="status" jdbcType="INTEGER"/>
+   <result column="FREEZE_SHOP" property="freezeShop" jdbcType="INTEGER"/>
+   <result column="TWO_DIMENSION_CODE" property="twoDimensionCode" jdbcType="VARCHAR"/>
+   <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+   <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP"/>
+  </resultMap>
+  
+  <resultMap id="SubbranchVoResultMap" type="com.zjlp.face.web.server.operation.subbranch.domain.vo.SubbranchVo">
+   <id column="ID" property="id" jdbcType="BIGINT"/>
+   <result column="PID" property="pid" jdbcType="BIGINT"/>
+   <result column="TYPE" property="type" jdbcType="INTEGER"/>
+   <result column="SUPERIOR_USER_ID" property="superiorUserId" jdbcType="BIGINT"/>
+   <result column="USER_ID" property="userId" jdbcType="BIGINT"/>
+   <result column="USER_NAME" property="userName" jdbcType="VARCHAR"/>
+   <result column="USER_CELL" property="userCell" jdbcType="VARCHAR"/>
+   <result column="USER_BINDING_CELL" property="userBindingCell" jdbcType="VARCHAR"/>
+   <result column="SHOP_NAME" property="shopName" jdbcType="VARCHAR"/>
+   <result column="SUPPLIER_SHOP_LOGO" property="shopLogo" jdbcType="VARCHAR"/>
+   <result column="DELIVER" property="deliver" jdbcType="INTEGER"/>
+   <result column="PROFIT" property="profit" jdbcType="INTEGER"/>
+   <result column="SUPPLIER_SHOP_NO" property="supplierShopNo" jdbcType="VARCHAR"/>
+   <result column="STATUS" property="status" jdbcType="INTEGER"/>
+   <result column="TWO_DIMENSION_CODE" property="twoDimensionCode" jdbcType="VARCHAR"/>
+   <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+   <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP"/>
+   <result column="SUPPLIER_SHOP_NAME" property="supplierShopName" jdbcType="VARCHAR"/>
+  </resultMap>
+  
+  <resultMap id="BaseResultMapVo" type="com.zjlp.face.web.server.operation.subbranch.domain.vo.SubbranchVo" extends="BaseResultMap">
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    ID,PID,TYPE,SUPERIOR_USER_ID,USER_ID,USER_NAME,USER_CELL,USER_BINDING_CELL,SHOP_NAME,SHOP_LOGO,DELIVER,PROFIT,SUPPLIER_SHOP_NO,STATUS,FREEZE_SHOP,TWO_DIMENSION_CODE,CREATE_TIME,UPDATE_TIME
+  </sql>
+  
+  <insert id="insert" parameterType="com.zjlp.face.web.server.operation.subbranch.domain.Subbranch">
+   <selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+   </selectKey>
+    INSERT INTO SUBBRANCH (PID,TYPE,SUPERIOR_USER_ID,USER_ID,USER_NAME,USER_CELL,USER_BINDING_CELL,SHOP_NAME,SHOP_LOGO,DELIVER,PROFIT,SUPPLIER_SHOP_NO,STATUS,FREEZE_SHOP,TWO_DIMENSION_CODE,CREATE_TIME,UPDATE_TIME)
+         VALUES(
+          #{pid,jdbcType=BIGINT},
+          #{type,jdbcType=INTEGER},
+          #{superiorUserId,jdbcType=BIGINT},
+          #{userId,jdbcType=BIGINT},
+          #{userName,jdbcType=VARCHAR},
+          #{userCell,jdbcType=VARCHAR},
+          #{userBindingCell,jdbcType=VARCHAR},
+          #{shopName,jdbcType=VARCHAR},
+          #{shopLogo,jdbcType=VARCHAR},
+          #{deliver,jdbcType=INTEGER},
+          #{profit,jdbcType=INTEGER},
+          #{supplierShopNo,jdbcType=VARCHAR},
+          #{status,jdbcType=INTEGER},
+          #{freezeShop,jdbcType=INTEGER},
+          #{twoDimensionCode,jdbcType=VARCHAR},
+          #{createTime,jdbcType=TIMESTAMP},
+          #{updateTime,jdbcType=TIMESTAMP}
+         )
+  </insert>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+	FROM SUBBRANCH 
+	WHERE ID = #{id,jdbcType=BIGINT} AND STATUS IN (1,0,-1)
+  </select>
+  
+  <select id="findSubbranchByIdWithNoStatus" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  	SELECT
+    <include refid="Base_Column_List" />
+	FROM SUBBRANCH 
+	WHERE ID = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <select id="selectByUserId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+	FROM SUBBRANCH 
+	WHERE USER_ID = #{userId,jdbcType=BIGINT} AND STATUS IN (1,0)
+  </select>
+   
+  <select id="countExistAsSub" parameterType="java.util.Map" resultType="java.lang.Integer">
+    SELECT COUNT(1) 
+    FROM SUBBRANCH s 
+    WHERE s.TYPE = #{type,jdbcType=INTEGER}
+    AND s.USER_ID = #{userId,jdbcType=BIGINT}
+    AND s.SUPERIOR_USER_ID = #{superiorUserId,jdbcType=BIGINT}
+  </select>
+  
+  <select id="getTotalCount" parameterType="com.zjlp.face.web.server.operation.subbranch.domain.vo.SubbranchVo" resultType="java.lang.Integer">
+    SELECT COUNT(1) 
+    FROM SUBBRANCH s
+    WHERE 1=1
+    <if test="superiorUserId != null">
+    AND s.SUPERIOR_USER_ID = #{superiorUserId,jdbcType=BIGINT}
+    </if>
+     <if test="type != null">
+    AND s.TYPE = #{type,jdbcType=INTEGER}
+    </if> 
+    AND s.STATUS IN (1,0)
+  </select>
+  
+  <select id="findPageSubbrache" parameterType="java.util.Map" resultMap="BaseResultMapVo">
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM SUBBRANCH s
+    WHERE 1=1
+    <if test="subbranchVo.superiorUserId != null">
+    AND s.SUPERIOR_USER_ID = #{subbranchVo.superiorUserId,jdbcType=BIGINT}
+    </if> 
+    <if test="subbranchVo.type != null">
+    AND s.TYPE = #{subbranchVo.type,jdbcType=INTEGER}
+    </if>
+    AND s.STATUS IN (1,0)
+    ORDER BY s.CREATE_TIME DESC
+    LIMIT #{start},#{pageSize}
+  </select>
+  
+  <select id="selectMySubbrachs" parameterType="java.util.Map" resultMap="BaseResultMapVo">
+    SELECT  
+    s.ID,PID,s.TYPE,SUPERIOR_USER_ID,USER_ID,USER_NAME,USER_CELL,USER_BINDING_CELL,SHOP_NAME,SHOP_LOGO,DELIVER,PROFIT,SUPPLIER_SHOP_NO,s.STATUS,TWO_DIMENSION_CODE,s.CREATE_TIME,s.UPDATE_TIME          
+    FROM SUBBRANCH s 
+    INNER JOIN USER u ON s.USER_ID = u.ID 
+    WHERE  s.SUPERIOR_USER_ID = #{superiorUserId,jdbcType=BIGINT}
+    AND s.TYPE = #{role,jdbcType=INTEGER}
+    AND (s.SHOP_NAME LIKE #{keyword,jdbcType=VARCHAR}
+         OR s.USER_NAME LIKE #{keyword,jdbcType=VARCHAR}
+         OR u.LOGIN_ACCOUNT LIKE #{keyword,jdbcType=VARCHAR}
+         )
+    AND s.STATUS = 1
+  </select>
+  
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.operation.subbranch.domain.Subbranch">
+    UPDATE SUBBRANCH
+     <set>
+     <if test="pid!= null">
+        PID = #{pid,jdbcType=BIGINT},
+      </if>
+      <if test="type!= null">
+        TYPE = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="superiorUserId!= null">
+        SUPERIOR_USER_ID = #{superiorUserId,jdbcType=BIGINT},
+      </if>
+      <if test="userId!= null">
+        USER_ID = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userName!= null">
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+<!--       <if test="userCell!= null"> -->
+<!--         USER_CELL = #{userCell,jdbcType=VARCHAR}, -->
+<!--       </if> -->
+      <if test="userBindingCell != null">
+	    USER_BINDING_CELL = #{userBindingCell,jdbcType=VARCHAR},
+      </if>
+      <if test="shopName!= null">
+        SHOP_NAME = #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopLogo!= null">
+        SHOP_LOGO = #{shopLogo,jdbcType=VARCHAR},
+       </if>
+      <if test="deliver!= null">
+        DELIVER = #{deliver,jdbcType=INTEGER},
+      </if>
+      <if test="profit!= null">
+        PROFIT = #{profit,jdbcType=INTEGER},
+      </if>
+      <if test="supplierShopNo!= null">
+        SUPPLIER_SHOP_NO =  #{supplierShopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status!= null">
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="freezeShop!= null">
+        FREEZE_SHOP = #{freezeShop,jdbcType=INTEGER},
+      </if>
+      <if test="twoDimensionCode!= null">
+        TWO_DIMENSION_CODE = #{twoDimensionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime!= null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime!= null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+     </set>
+    WHERE ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <delete id="deleteByPrimarykey" parameterType="java.lang.Long">
+    DELETE FROM SUBBRANCH
+    WHERE ID = #{id,jdbcType=BIGINT}
+  </delete>
+  
+  <select id="findByUserCell" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	SELECT  <include refid="Base_Column_List" />
+  	FROM SUBBRANCH
+  	WHERE USER_CELL = #{userCell}
+  	AND STATUS in (0, 1)
+  </select>
+  
+    <select id="getHistoryTotalCount" parameterType="com.zjlp.face.web.server.operation.subbranch.domain.vo.SubbranchVo" resultType="java.lang.Integer">
+    SELECT COUNT(1) 
+    FROM SUBBRANCH s
+    WHERE 
+    s.USER_ID = #{userId,jdbcType=BIGINT}
+     <if test="type != null">
+    AND s.TYPE = #{type,jdbcType=INTEGER}
+    </if> 
+    AND s.STATUS IN (-1)
+  </select>
+  
+    <select id="findMyHistorySubbrachs" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+	FROM SUBBRANCH 
+	WHERE USER_ID = #{userId,jdbcType=BIGINT} AND STATUS IN (-1)
+	ORDER BY #{subbranchVo.orderBy,jdbcType=VARCHAR} DESC
+    LIMIT #{start},#{pageSize}
+  </select>
+  
+    <select id="countExistAsHistorySub" parameterType="java.util.Map" resultType="java.lang.Integer">
+    SELECT COUNT(1) 
+    FROM SUBBRANCH s 
+    WHERE s.USER_ID = #{userId,jdbcType=BIGINT}
+    AND s.STATUS IN (-1)
+  </select>
+  
+  <select id="selectListByPid" parameterType="java.lang.Long" resultMap="BaseResultMap">
+      SELECT
+          <include refid="Base_Column_List" />
+      FROM
+          SUBBRANCH
+      WHERE
+          PID = #{pid}
+          AND STATUS in (0, 1)
+  </select>
+  <select id="countHistorySubbranch" parameterType="java.lang.Long" resultType="java.lang.Integer">
+  	SELECT
+		COUNT(1)
+	FROM
+		subbranch
+	WHERE
+		USER_ID = #{userId}
+	AND `STATUS` = - 1
+  </select>
+  
+  <select id="findHistorySubbranchByUserIdPage" parameterType="java.util.Map" resultMap="BaseResultMap">
+  	SELECT
+		<include refid="Base_Column_List" />
+	FROM
+		subbranch
+	WHERE
+		USER_ID = #{userId}
+	AND `STATUS` = - 1
+	ORDER BY
+		UPDATE_TIME DESC
+	LIMIT #{start}, #{pageSize}
+  </select>
+  
+  <select id="findAllHistorySubbranch" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  	SELECT
+		<include refid="Base_Column_List" />
+	FROM
+		subbranch
+	WHERE
+		USER_ID = #{userId}
+	AND `STATUS` = - 1
+  </select>
+  <select id="findUncompleteSubByUserCell" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	SELECT  
+  	<include refid="Base_Column_List" />
+  	FROM SUBBRANCH
+  	WHERE USER_CELL = #{userCell,jdbcType=VARCHAR}
+  	AND STATUS in (0, 1)
+  	<![CDATA[AND USER_ID < 0]]>
+  </select>
+  
+  <select id="findByPrimarykeyWhenStatusIsNormal" resultMap="BaseResultMap" parameterType="java.lang.Long">
+  	SELECT
+    <include refid="Base_Column_List" />
+	FROM SUBBRANCH 
+	WHERE ID = #{id,jdbcType=BIGINT} AND STATUS = 1
+  </select>
+  
+  <select id="getSupplierSalesRaningCount" resultType="java.lang.Integer">
+  	SELECT COUNT(1) FROM ( 
+		SELECT
+			ID as subbranchId,USER_NAME, USER_ID as userId, COUNT(lj2.ORDER_NO) as orderCount, ifnull(SUM(lj2.PAY_PRICE), 0) as payAmount, (SELECT HEADIMGURL FROM `user` WHERE ID = userId) as headUrl, CREATE_TIME
+		FROM
+			subbranch 
+		LEFT JOIN (SELECT SUBBRANCH_ID, ORDER_NO FROM purchase_order WHERE COOPERATION_WAY = 1) lj on subbranch.ID = lj.SUBBRANCH_ID
+		<![CDATA[LEFT JOIN (SELECT ORDER_NO, PAY_PRICE, PAYMENT_TIME FROM sales_order WHERE `STATUS` = 5 AND CONFIRM_TIME > #{countDay} AND CONFIRM_TIME < #{today} ) lj2 on lj2.ORDER_NO = lj.ORDER_NO]]>
+		WHERE
+			TYPE = 1
+		AND SUPERIOR_USER_ID = #{userId}
+		AND status = 1
+		GROUP BY id) as temp
+  </select>
+  
+  <select id="getSupplierSalesRaning" resultType="com.zjlp.face.web.server.trade.order.domain.vo.SupplierSalesRankingVo">
+  	SELECT
+	    ID as subbranchId,USER_NAME as userName, USER_ID as userId, COUNT(lj2.ORDER_NO) as orderCount, IFNULL(SUM(lj2.PAY_PRICE), 0) as payAmount, (SELECT HEADIMGURL FROM `user` WHERE ID = userId) as headUrl
+	FROM
+	    subbranch 
+	LEFT JOIN (SELECT SUBBRANCH_ID, ORDER_NO FROM purchase_order WHERE COOPERATION_WAY = 1) lj on subbranch.ID = lj.SUBBRANCH_ID
+	<![CDATA[LEFT JOIN (SELECT ORDER_NO, PAY_PRICE, PAYMENT_TIME FROM sales_order WHERE `STATUS` = 5 AND CONFIRM_TIME > #{countDay} AND CONFIRM_TIME < #{today} ) lj2 on lj2.ORDER_NO = lj.ORDER_NO]]>
+	WHERE
+	    TYPE = 1
+	AND SUPERIOR_USER_ID = #{userId}
+	AND status = 1
+	GROUP BY id
+	<if test="orderBy == 1">
+		ORDER BY payAmount desc,  
+	</if>
+	<if test="orderBy == 2">
+		ORDER BY orderCount desc, 
+	</if>
+	CREATE_TIME 
+	LIMIT #{start}, #{pageSize}
+  </select>
+  
+  <select id="getSupplierSalesRankingDetail" resultType="com.zjlp.face.web.server.trade.order.domain.vo.SupplierSalesRankingVo">
+  	SELECT
+	    ID as subbranchId, USER_NAME as userName, USER_CELL as userCell, USER_ID as userId, COUNT(lj2.ORDER_NO) as orderCount, IFNULL(SUM(lj2.PAY_PRICE), 0) as payAmount, (SELECT HEADIMGURL FROM `user` WHERE ID = userId) as headUrl,
+	    (SELECT LOGIN_ACCOUNT FROM USER WHERE ID = userId) as loginAccount
+	FROM
+	    subbranch 
+	<![CDATA[LEFT JOIN (SELECT TOTAL_PROFIT_PRICE, SUBBRANCH_ID, ORDER_NO FROM purchase_order WHERE COOPERATION_WAY = 1) lj on subbranch.ID = lj.SUBBRANCH_ID]]>
+	<![CDATA[LEFT JOIN (SELECT ORDER_NO, PAY_PRICE, PAYMENT_TIME FROM sales_order WHERE `STATUS` = 5 AND CONFIRM_TIME > #{countDay} AND CONFIRM_TIME < #{today} ) lj2 on lj2.ORDER_NO = lj.ORDER_NO]]>
+	WHERE ID = #{subbranchId}
+	AND status = 1
+  </select>
+  
+  
+  <!-- 根据分店ID查询主店号 -->
+  <select id="findShopOnById" parameterType="java.lang.Long" resultType="java.lang.String">
+  	select SUPPLIER_SHOP_NO FROM subbranch WHERE id = #{id} and STATUS = 1;
+  </select>
+  
+    <select id="getSubbranchWithNamePhoneDelieveryCount" parameterType="com.zjlp.face.web.server.operation.subbranch.domain.vo.SubbranchVo" resultType="java.lang.Integer">
+  	SELECT
+		COUNT(1)
+	FROM
+		subbranch
+	WHERE
+		TYPE = 1
+	AND SUPERIOR_USER_ID = #{superiorUserId}
+	AND SUPPLIER_SHOP_NO = #{supplierShopNo}
+	<if test="userName != null">
+		AND USER_NAME LIKE CONCAT(CONCAT('%', #{userName}), '%')
+	</if>
+	<if test="userBindingCell != null">
+		AND USER_BINDING_CELL LIKE CONCAT(CONCAT('%', #{userBindingCell}), '%')
+	</if>
+	<if test="deliver != null">
+		AND DELIVER = #{deliver}
+	</if>
+	AND `STATUS` = 1
+  </select>
+  
+  <select id="findSubbranchWithNamePhoneDelievery" parameterType="java.util.Map" resultType="com.zjlp.face.web.server.operation.subbranch.domain.vo.SubbranchVo">
+  	SELECT
+		s.ID, s.USER_NAME as userName, s.USER_BINDING_CELL as userBindingCell, s.SHOP_NAME as shopName, s.DELIVER, lj.`NAME` as supplierShopName, lj1.LOGIN_ACCOUNT as subAccount
+	FROM
+		subbranch s
+	LEFT JOIN (SELECT `NAME`, `NO` FROM shop) lj ON s.SUPPLIER_SHOP_NO = lj.`NO`
+	LEFT JOIN (SELECT ID, LOGIN_ACCOUNT FROM `user` ) lj1 ON s.USER_ID = lj1.ID
+	WHERE
+		s.TYPE = 1
+	AND s.SUPERIOR_USER_ID = #{subbranchVo.superiorUserId}
+	AND s.SUPPLIER_SHOP_NO = #{subbranchVo.supplierShopNo}
+	<if test="subbranchVo.userName != null">
+		AND s.USER_NAME LIKE CONCAT(CONCAT('%', #{subbranchVo.userName}), '%')
+	</if>
+	<if test="subbranchVo.userBindingCell != null">
+		AND s.USER_BINDING_CELL LIKE CONCAT(CONCAT('%', #{subbranchVo.userBindingCell}), '%')
+	</if>
+	<if test="subbranchVo.deliver != null">
+		AND s.DELIVER = #{subbranchVo.deliver}
+	</if>
+	AND s.`STATUS` = 1
+	ORDER BY s.CREATE_TIME DESC
+	LIMIT #{start}, #{pageSize}
+  </select>
+  
+  <select id="getActiveSubbranchByUserId" parameterType="java.lang.Long" resultMap="SubbranchVoResultMap">
+  	SELECT
+		s.ID, s.PID, s.TYPE, s.SUPERIOR_USER_ID ,s.USER_ID, s.USER_NAME, s.USER_CELL, s.USER_BINDING_CELL, s.SHOP_NAME, s.SHOP_LOGO, s.DELIVER, s.PROFIT, 
+		s.SUPPLIER_SHOP_NO, s.STATUS, s.TWO_DIMENSION_CODE, s.CREATE_TIME, s.UPDATE_TIME,  ij.NAME as SUPPLIER_SHOP_NAME, ij.SHOP_LOGO_URL as SUPPLIER_SHOP_LOGO
+	FROM
+		subbranch s
+	INNER JOIN (SELECT NAME, SHOP_LOGO_URL, NO FROM SHOP) ij ON s.SUPPLIER_SHOP_NO = ij.NO
+	WHERE
+		s.USER_ID = #{userId}
+	AND s.`STATUS` = 1
+  </select>
+</mapper>

@@ -1,0 +1,331 @@
+@charset "utf-8";
+/*  
+* @description:名片模板1
+* @author:lmy
+* @update:
+*/
+
+html,body{
+	height:100%;
+}
+
+.swiper-container{
+	width: 100%;
+    height: 100%;
+	background:#fff;
+}  
+.swiper-wrapper{
+	height: 100%;
+}
+.swiper-slide{
+	width:100%;
+	height:100%;
+	background:url(../img/bg.png) no-repeat left top;
+	background-size:100% 100%;
+	display: inline-block;
+	overflow: inherit;
+	font-size: 12px;
+}
+.header{
+	width:80%;
+	height:51%;
+	background:url(../img/header.png) no-repeat left top;
+	background-size:100% 100%;
+	display: inline-block;
+	margin-top: 1rem;
+}
+.headerapp{
+	height:50%;
+}
+.content{
+	width:80%;
+	height:30%;
+	background:url(../img/contentbg.png) no-repeat left top;
+	background-size:100% 100%;
+	display: inline-block;
+	margin-top: 1rem;
+}
+.contentapp{
+	height:25%;
+}
+.swiper-footer{
+	width: 100%;
+	position: absolute;
+	bottom: 0.4rem;
+}
+@-webkit-keyframes tipmove{0%{bottom:10px;opacity:0}50%{bottom:15px;opacity:1}100%{bottom:20px;opacity:0}}
+
+.swiper-slide img.nextpage{
+	width: 8%;
+	margin: 0 auto;
+	-webkit-animation: tipmove 1.8s infinite ease-in-out;
+}
+/*=用户信息=*/
+.userinfo{
+	position: relative;
+}
+.userinfo .ui-header{
+	width: 40%;
+	overflow: hidden;
+	margin: 0 auto;
+	margin-top: 1rem;
+	position: relative;
+}
+.userinfo .ui-header img{
+	width: 5rem;
+	height: 5rem;
+	border-radius: 100%;
+}
+.userinfo .sex-icon{
+	width: 16%;
+	height: 18%;
+	display: inline-block;
+	border: 1px solid #d3d3d3;
+	background-color: #fff;
+	border-radius: 100%;
+	position: absolute;
+	bottom: 0.6rem;
+	right: 0.7rem;
+}
+.userinfo .sex-icon i{
+	position: absolute;
+	right: -0.1rem;
+	top: -0.45rem;
+	font-size: 1rem;
+}
+.userinfo .sex-icon i.icon-nan{
+	color: #188EE8;
+}
+.userinfo .sex-icon i.icon-nv{
+	color: #F74134;
+}
+.ui-name{
+	font-size: 1rem;
+	font-family: 微软雅黑;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+}
+.ui-p-name{
+	font-size: 0.8rem;
+	font-family: 微软雅黑;
+	color: #999;
+}
+.ui-p-dl{
+	font-size: 0.68rem;
+	font-family: 微软雅黑;
+	font-weight: bold;
+	color: #ec2323;
+	border: 1px solid #ec2323;
+	border-radius:28px;
+	padding: 0.2rem 0.5rem;
+	display: inline-block;
+	line-height: 0.8rem;
+	margin-left: 0.2rem;
+	position: relative;
+	top: -0.14rem;
+}
+.userinfo .a-qrcode{
+	position: absolute;
+	color: #a6a6a6;
+	top: 0.5rem;
+	right: 2rem;
+}
+.userinfo .a-qrcode i{
+	font-size: 1.5rem;
+}
+/*=公司信息=*/
+.companyinfo{
+	margin-top: 6%;
+	line-height: 1.2rem;
+}
+
+.companyinfo .ci-left{
+	width: 62%;
+	font-size: 0.7rem;
+	font-family:微软雅黑;
+	color: #999;
+	display: inline-block;
+	border-right: 1px solid #dfdfdf;
+	padding-right: 0.5rem;
+}
+.ci-l-name,.ci-l-slaccount,.ci-l-iphone{
+	text-align: right;
+	display: inline-block;
+	width: 100%;
+	height: 1.2rem;
+	text-overflow:ellipsis;
+	white-space:nowrap;   
+	overflow:hidden;
+}
+.ci-l-iphone a{
+	color: #999;
+}
+.swiper-slide a, .swiper-slide img{
+	width: auto;
+}
+.ci-right{
+	display: inline-block;
+	margin-left: 0.5rem;
+}
+.icon-dianpu1{
+	font-size: 2.5rem;
+	color: #b8b8b8;
+}
+.icon-dianpu1{
+	font-size: 2.5rem;
+	color: #b8b8b8;
+}
+.ci-right p.goshopname{
+    font-size: 0.6rem;
+	font-family:微软雅黑;
+	color: #999;
+	padding-top: 0.1rem;
+}
+.content-g,.content-q{
+	width: 90%;
+	height: 47%;
+	float: left;
+	margin-left: 5%;
+	padding-top: 4%;
+}
+.content-q{
+	padding-top: 2%;
+}
+.content-lineapp{
+	margin-top: 2%;
+	margin-bottom:0;
+}
+.content-line{
+	float: left;
+	width: 90%;
+	margin-left: 5%;
+	opacity: .31;
+	filter: alpha(opacity=31);
+}
+.content-line-top{
+	margin-top: 1%;
+	border-top: 1px solid #4f4a5a;	
+}
+.content-line-bottom{
+	margin-top:0;
+	margin-bottom: 1%;
+	border-top: 1px solid #d3d8df;	
+}
+
+.content-g .content-g-left,.content-q .content-q-left{
+	float: left;
+	height: 100%;
+}
+.content-g .content-g-left a,.content-q .content-q-left a{
+	float: left;
+	width: 2rem;
+	height: 2rem;
+	border: 1px solid #fff;
+	border-radius: 100%;
+	font-size: 1.35rem;
+	line-height: 2rem;
+	margin-right: 0.6rem;
+	color: #fff;
+	margin-top: 0.7rem;
+}
+.content-g .content-g-right,.content-q .content-q-right{
+	text-align: justify;
+	color: #fff;
+	font-size: 0.7rem;
+	line-height: 1rem;
+	height: 3rem;
+	margin-top: 0.35rem;
+	overflow: hidden;
+}
+.content-g .content-g-right,.content-q .content-q-right span{
+	display: table-cell;
+	vertical-align: middle;
+	overflow: hidden;
+}
+.none{
+	display: none;
+}
+
+/*==第二页==*/
+.header1{
+	height: 44%;
+}
+.ui-account{
+	padding-top: 0.6rem;
+	font-size: 0.8rem;
+}
+.cooperate{
+	width: 90%;
+	margin: 0 auto;
+	margin-top: 0.8rem;
+	padding-top: 0.5rem;
+	line-height: 1.5rem;
+	font-size: 0.9rem;
+	font-family: 微软雅黑;
+	border-top: 1px dotted #a4aebb;
+}
+.content1{
+	margin-top: 1rem;
+	width: 80%;
+	margin: 0 auto;
+}
+.content1 .my-cooperate,.content1 .add-slcard{
+	width: 90%;
+	height: 2.5rem;
+	font-size: 0.9rem;
+	line-height: 2.3rem;
+	display: inline-block;
+	margin: 0 auto;
+	margin-top: 0.8rem;
+	color: #fff;
+	border: 2px solid #fff;
+	border-radius: 25px;
+}
+.swiper-footer-logo{
+	background-color: #cc1f1f;
+	bottom: 0;
+	height: 3.5rem;
+	text-align: center;
+}
+.swiper-footer-logo img{
+	width: 45%;
+	margin-top: 2%;
+	vertical-align:middle;
+}
+/*app*/
+.swiper-footer-app{
+	width: 80%;
+	display: inline-block;
+	margin-left: 10%;
+	margin-top: 1.3rem;
+}
+.swiper-footer-app img.app-icon{
+	width: 3rem;
+	height: 3rem;
+	display: inline-block;
+	margin-right: 1.85rem;
+}
+
+/* 二维码样式  */
+.artDialogAlert{
+	width: 80%!important;
+}
+#QRCodeBox{
+	padding-top: 2rem;
+}
+#QRCodeBox span{
+	width:70%;
+	display:block;
+	margin:0 auto;
+}
+#QRCodeBox span img{
+	width:100%;
+	display:block;
+}
+#QRCodeBox p{
+	color: #999;
+	font-size:0.75rem;
+	font-family: 微软雅黑;
+	padding: 0.8rem 0;
+}
+/* 二维码样式  end*/

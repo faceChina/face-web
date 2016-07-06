@@ -1,0 +1,38 @@
+@charset "utf-8";
+/*  
+* @description: 超级管理员
+* @author:  
+* @update:
+*/
+.sidebar>li:nth-child(4) i {
+background-position: -180px -23px;
+}
+/*IE8*/
+.sidebar>li:first-child +li+li+li i {
+background-position: -180px -23px;
+}
+/* .f-cont-auto{
+	min-height: 0;
+} */
+.box-small{
+	min-height: 288px;
+}
+/*end IE8*/
+
+/*  
+* @description: 超级管理员  
+* @author:  sf
+* @update:
+*/
+/* 我要当老板 */
+.list-titletext img{
+	margin:20px 10px 0;
+}
+.list-titletext .boss-center{
+	margin:20px 10px 0;
+	line-height:28px;
+}
+.list-titletext-btn{
+	margin:10px auto 20px;
+}
+/* 我要当老板 end */

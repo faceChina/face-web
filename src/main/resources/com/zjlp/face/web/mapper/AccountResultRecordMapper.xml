@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjlp.face.web.mapper.AccountResultRecordMapper">
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.trade.account.domain.AccountResultRecord">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="BUSINESS_ID" jdbcType="VARCHAR" property="businessId" />
+    <result column="BUSINESS_TYPE" jdbcType="INTEGER" property="businessType" />
+    <result column="FROM_USER_ID" jdbcType="BIGINT" property="fromUserId" />
+    <result column="TO_USER_ID" jdbcType="BIGINT" property="toUserId" />
+    <result column="PROCESS_RESULT" jdbcType="INTEGER" property="processResult" />
+    <result column="SERIAL_NUMBER" jdbcType="VARCHAR" property="serialNumber" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, BUSINESS_ID, BUSINESS_TYPE, FROM_USER_ID, TO_USER_ID, PROCESS_RESULT, SERIAL_NUMBER, 
+    UPDATE_TIME, CREATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from account_result_record
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from account_result_record
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.trade.account.domain.AccountResultRecord">
+    insert into account_result_record (ID, BUSINESS_ID, BUSINESS_TYPE, 
+      FROM_USER_ID, TO_USER_ID, PROCESS_RESULT, 
+      SERIAL_NUMBER, UPDATE_TIME, CREATE_TIME
+      )
+    values (#{id,jdbcType=BIGINT}, #{businessId,jdbcType=VARCHAR}, #{businessType,jdbcType=INTEGER}, 
+      #{fromUserId,jdbcType=BIGINT}, #{toUserId,jdbcType=BIGINT}, #{processResult,jdbcType=INTEGER}, 
+      #{serialNumber,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.trade.account.domain.AccountResultRecord">
+    insert into account_result_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="businessId != null">
+        BUSINESS_ID,
+      </if>
+      <if test="businessType != null">
+        BUSINESS_TYPE,
+      </if>
+      <if test="fromUserId != null">
+        FROM_USER_ID,
+      </if>
+      <if test="toUserId != null">
+        TO_USER_ID,
+      </if>
+      <if test="processResult != null">
+        PROCESS_RESULT,
+      </if>
+      <if test="serialNumber != null">
+        SERIAL_NUMBER,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="businessId != null">
+        #{businessId,jdbcType=VARCHAR},
+      </if>
+      <if test="businessType != null">
+        #{businessType,jdbcType=INTEGER},
+      </if>
+      <if test="fromUserId != null">
+        #{fromUserId,jdbcType=BIGINT},
+      </if>
+      <if test="toUserId != null">
+        #{toUserId,jdbcType=BIGINT},
+      </if>
+      <if test="processResult != null">
+        #{processResult,jdbcType=INTEGER},
+      </if>
+      <if test="serialNumber != null">
+        #{serialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.trade.account.domain.AccountResultRecord">
+    update account_result_record
+    <set>
+      <if test="businessId != null">
+        BUSINESS_ID = #{businessId,jdbcType=VARCHAR},
+      </if>
+      <if test="businessType != null">
+        BUSINESS_TYPE = #{businessType,jdbcType=INTEGER},
+      </if>
+      <if test="fromUserId != null">
+        FROM_USER_ID = #{fromUserId,jdbcType=BIGINT},
+      </if>
+      <if test="toUserId != null">
+        TO_USER_ID = #{toUserId,jdbcType=BIGINT},
+      </if>
+      <if test="processResult != null">
+        PROCESS_RESULT = #{processResult,jdbcType=INTEGER},
+      </if>
+      <if test="serialNumber != null">
+        SERIAL_NUMBER = #{serialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.trade.account.domain.AccountResultRecord">
+    update account_result_record
+    set BUSINESS_ID = #{businessId,jdbcType=VARCHAR},
+      BUSINESS_TYPE = #{businessType,jdbcType=INTEGER},
+      FROM_USER_ID = #{fromUserId,jdbcType=BIGINT},
+      TO_USER_ID = #{toUserId,jdbcType=BIGINT},
+      PROCESS_RESULT = #{processResult,jdbcType=INTEGER},
+      SERIAL_NUMBER = #{serialNumber,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

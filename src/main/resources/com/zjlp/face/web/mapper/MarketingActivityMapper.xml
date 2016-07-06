@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.MarketingActivityMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.operation.marketing.domain.MarketingActivity" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="REMOTE_TYPE" property="remoteType" jdbcType="INTEGER" />
+    <result column="REMOTE_ID" property="remoteId" jdbcType="VARCHAR" />
+    <result column="TOOL_ID" property="toolId" jdbcType="BIGINT" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="IS_TIME_LIMIT" property="isTimeLimit" jdbcType="INTEGER" />
+    <result column="START_TIME" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="END_TIME" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" type="com.zjlp.face.web.server.operation.marketing.domain.dto.MarketingActivityDto" id="DtoResultMap">
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, REMOTE_TYPE, REMOTE_ID, TOOL_ID, STATUS, IS_TIME_LIMIT, START_TIME, END_TIME, 
+    CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from marketing_activity
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from marketing_activity
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.operation.marketing.domain.MarketingActivity" >
+    insert into marketing_activity (ID, REMOTE_TYPE, REMOTE_ID, 
+      TOOL_ID, STATUS, IS_TIME_LIMIT, 
+      START_TIME, END_TIME, CREATE_TIME, 
+      UPDATE_TIME)
+    values (#{id,jdbcType=BIGINT}, #{remoteType,jdbcType=INTEGER}, #{remoteId,jdbcType=VARCHAR}, 
+      #{toolId,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, #{isTimeLimit,jdbcType=INTEGER}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.operation.marketing.domain.MarketingActivity" >
+  	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into marketing_activity
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="remoteType != null" >
+        REMOTE_TYPE,
+      </if>
+      <if test="remoteId != null" >
+        REMOTE_ID,
+      </if>
+      <if test="toolId != null" >
+        TOOL_ID,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="isTimeLimit != null" >
+        IS_TIME_LIMIT,
+      </if>
+      <if test="startTime != null" >
+        START_TIME,
+      </if>
+      <if test="endTime != null" >
+        END_TIME,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="remoteType != null" >
+        #{remoteType,jdbcType=INTEGER},
+      </if>
+      <if test="remoteId != null" >
+        #{remoteId,jdbcType=VARCHAR},
+      </if>
+      <if test="toolId != null" >
+        #{toolId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="isTimeLimit != null" >
+        #{isTimeLimit,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.operation.marketing.domain.MarketingActivity" >
+    update marketing_activity
+    <set >
+      <if test="remoteType != null" >
+        REMOTE_TYPE = #{remoteType,jdbcType=INTEGER},
+      </if>
+      <if test="remoteId != null" >
+        REMOTE_ID = #{remoteId,jdbcType=VARCHAR},
+      </if>
+      <if test="toolId != null" >
+        TOOL_ID = #{toolId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="isTimeLimit != null" >
+        IS_TIME_LIMIT = #{isTimeLimit,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.operation.marketing.domain.MarketingActivity" >
+    update marketing_activity
+    set REMOTE_TYPE = #{remoteType,jdbcType=INTEGER},
+      REMOTE_ID = #{remoteId,jdbcType=VARCHAR},
+      TOOL_ID = #{toolId,jdbcType=BIGINT},
+      STATUS = #{status,jdbcType=INTEGER},
+      IS_TIME_LIMIT = #{isTimeLimit,jdbcType=INTEGER},
+      START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 查询当前有效的活动 -->
+  <select id="selectValidActivityByToolId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+       SELECT
+           <include refid="Base_Column_List" />
+       FROM
+           MARKETING_ACTIVITY
+       WHERE
+           TOOL_ID = #{toolId,jdbcType=BIGINT}
+           AND STATUS = 1
+           AND (IS_TIME_LIMIT = -1 OR (<![CDATA[ START_TIME <= NOW() AND END_TIME > NOW() ]]>))
+  </select>
+  
+  <select id="selectListByToolId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+       SELECT
+           <include refid="Base_Column_List" />
+       FROM
+           MARKETING_ACTIVITY
+       WHERE
+           TOOL_ID = #{toolId,jdbcType=BIGINT}
+           AND STATUS = 1
+  </select>
+  
+  <select id="selectPage" resultMap="DtoResultMap" parameterType="com.zjlp.face.web.server.operation.marketing.domain.dto.MarketingActivityDto">
+       SELECT
+           <include refid="Base_Column_List" />
+       FROM
+           MARKETING_ACTIVITY
+       WHERE
+           TOOL_ID = #{toolId,jdbcType=BIGINT}
+           AND STATUS > -1
+       limit #{aide.startNum}, #{aide.pageSizeNum}
+  </select>
+  
+  <select id="selectCount" resultType="java.lang.Integer" parameterType="com.zjlp.face.web.server.operation.marketing.domain.dto.MarketingActivityDto">
+       SELECT
+           COUNT(1)
+       FROM
+           MARKETING_ACTIVITY
+       WHERE
+           TOOL_ID = #{toolId,jdbcType=BIGINT}
+           AND STATUS > -1
+  </select>
+  <update id="delById" parameterType="java.lang.Long">
+       UPDATE
+           MARKETING_ACTIVITY
+       SET
+           STATUS = -1,
+           UPDATE_TIME = NOW()
+       WHERE
+           ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateStatusByToolId" parameterType="com.zjlp.face.web.server.operation.marketing.domain.MarketingActivity">
+       UPDATE
+           MARKETING_ACTIVITY
+       SET
+           STATUS = #{status,jdbcType=INTEGER},
+           UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+       WHERE
+           TOOL_ID = #{toolId,jdbcType=BIGINT}
+           AND STATUS > -1
+  </update>
+</mapper>

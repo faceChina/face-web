@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.GwInformationMapper" >
+	<resultMap id="BaseResultMap" type="com.zjlp.face.web.server.product.material.domain.GwInformation" >
+	    <id column="ID" property="id" jdbcType="BIGINT" />
+	    <result column="ANNOUNCER" property="announcer" jdbcType="VARCHAR" />
+	    <result column="TITLE" property="title" jdbcType="VARCHAR" />
+	    <result column="PIC_PATH" property="picPath" jdbcType="VARCHAR" />
+	    <result column="SOURCE" property="source" jdbcType="VARCHAR" />
+	    <result column="SEO_TITLE" property="seoTitle" jdbcType="VARCHAR" />
+	    <result column="SEO_KEYWORDS" property="seoKeywords" jdbcType="VARCHAR" />
+	    <result column="SEO_DESCRIPTION" property="seoDescription" jdbcType="VARCHAR" />
+	    <result column="SORT" property="sort" jdbcType="BIGINT" />
+	    <result column="STATUS" property="status" jdbcType="INTEGER" />
+	    <result column="PUBLISH_TIME" property="publishTime" jdbcType="TIMESTAMP" />
+	    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+	    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+	    <result column="SUMMARY" property="summary" jdbcType="LONGVARCHAR" />
+	    <result column="CONTENT" property="content" jdbcType="LONGVARCHAR" />
+  	</resultMap>
+  	<sql id="Base_Column_List" >
+    	ID, ANNOUNCER, TITLE, PIC_PATH, SOURCE, SEO_TITLE, SEO_KEYWORDS, SEO_DESCRIPTION, 
+    	SORT, STATUS, PUBLISH_TIME, CREATE_TIME, UPDATE_TIME, SUMMARY, CONTENT
+  	</sql>
+  	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    	select 
+    		<include refid="Base_Column_List" />
+    	from gw_information
+    	where ID = #{id,jdbcType=BIGINT}
+  	</select>
+  	<select id="getCount" resultType="java.lang.Integer">
+  		select count(1) from gw_information 
+  		<where>
+	  		<if test="title != null">
+		  	 	title like concat("%",#{title},"%")
+	  		</if>
+	  		<choose>
+		  		<when test="status != null and status > -1">
+		  			and status=#{status}
+		  		</when>
+		  		<otherwise>
+		  			and status>-1
+		  		</otherwise>
+		  	</choose>
+	  	</where>
+  	</select>
+  	<select id="findGwInformationPageList" resultMap="BaseResultMap" parameterType="java.util.Map">
+  		select 
+  			<include refid="Base_Column_List"/> 
+  			from gw_information 
+  		<where>
+	  		<if test="gwInformation.title != null">
+		  		title like concat("%",#{gwInformation.title},"%")
+	  		</if>
+	  		<choose>
+		  		<when test="gwInformation.status != null and gwInformation.status > -1">
+		  			and status=#{gwInformation.status}
+		  		</when>
+		  		<otherwise>
+		  			and status>-1
+		  		</otherwise>
+	  		</choose>
+  		</where> 
+  		order by sort ,publish_time desc,create_time desc
+  		limit #{start},#{pageSize}
+  	</select>
+</mapper>

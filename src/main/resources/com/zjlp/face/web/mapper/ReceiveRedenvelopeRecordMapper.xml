@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.ReceiveRedenvelopeRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.operation.redenvelope.domain.ReceiveRedenvelopeRecord" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="REDENVELOPE_ID" property="redenvelopeId" jdbcType="BIGINT" />
+    <result column="SEND_USER_ID" property="sendUserId" jdbcType="BIGINT" />
+    <result column="RECEIVE_USER_ID" property="receiveUserId" jdbcType="BIGINT" />
+    <result column="AMOUNT" property="amount" jdbcType="BIGINT" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="RECEIVE_TIME" property="receiveTime" jdbcType="TIMESTAMP"/>
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap type="com.zjlp.face.web.server.operation.redenvelope.domain.vo.ReceivePerson" id="ReceivePersonResultMap" extends="BaseResultMap">
+  	<result column="HEAD_URL" property="headUrl" jdbcType="VARCHAR"/>
+  	<result column="NICKNAME" property="nickname" jdbcType="VARCHAR"/>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, REDENVELOPE_ID, SEND_USER_ID, RECEIVE_USER_ID, AMOUNT, STATUS,RECEIVE_TIME, CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from receive_redenvelope_record
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from receive_redenvelope_record
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.operation.redenvelope.domain.ReceiveRedenvelopeRecord" >
+    insert into receive_redenvelope_record (ID, REDENVELOPE_ID, SEND_USER_ID, 
+      RECEIVE_USER_ID, AMOUNT, STATUS, RECEIVE_TIME,
+      CREATE_TIME, UPDATE_TIME)
+    values (#{id,jdbcType=BIGINT}, #{redenvelopeId,jdbcType=BIGINT}, #{sendUserId,jdbcType=BIGINT}, 
+      #{receiveUserId,jdbcType=BIGINT}, #{amount,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, #{receiveTime,jdbcType=TIMESTAMP},
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.operation.redenvelope.domain.ReceiveRedenvelopeRecord" >
+    insert into receive_redenvelope_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="redenvelopeId != null" >
+        REDENVELOPE_ID,
+      </if>
+      <if test="sendUserId != null" >
+        SEND_USER_ID,
+      </if>
+      <if test="receiveUserId != null" >
+        RECEIVE_USER_ID,
+      </if>
+      <if test="amount != null" >
+        AMOUNT,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="receiveTime != null" >
+        RECEIVE_TIME,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="redenvelopeId != null" >
+        #{redenvelopeId,jdbcType=BIGINT},
+      </if>
+      <if test="sendUserId != null" >
+        #{sendUserId,jdbcType=BIGINT},
+      </if>
+      <if test="receiveUserId != null" >
+        #{receiveUserId,jdbcType=BIGINT},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="receiveTime != null" >
+        #{receiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.operation.redenvelope.domain.ReceiveRedenvelopeRecord" >
+    update receive_redenvelope_record
+    <set >
+      <if test="redenvelopeId != null" >
+        REDENVELOPE_ID = #{redenvelopeId,jdbcType=BIGINT},
+      </if>
+      <if test="sendUserId != null" >
+        SEND_USER_ID = #{sendUserId,jdbcType=BIGINT},
+      </if>
+      <if test="receiveUserId != null" >
+        RECEIVE_USER_ID = #{receiveUserId,jdbcType=BIGINT},
+      </if>
+      <if test="amount != null" >
+        AMOUNT = #{amount,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="receiveTime != null" >
+        RECEIVE_TIME = #{receiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.operation.redenvelope.domain.ReceiveRedenvelopeRecord" >
+    update receive_redenvelope_record
+    set REDENVELOPE_ID = #{redenvelopeId,jdbcType=BIGINT},
+      SEND_USER_ID = #{sendUserId,jdbcType=BIGINT},
+      RECEIVE_USER_ID = #{receiveUserId,jdbcType=BIGINT},
+      AMOUNT = #{amount,jdbcType=BIGINT},
+      STATUS = #{status,jdbcType=INTEGER},
+      RECEIVE_TIME = #{receiveTime,jdbcType=TIMESTAMP},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <insert id="insertReceive" parameterType="java.util.List">
+  	INSERT INTO receive_redenvelope_record (
+		REDENVELOPE_ID,
+		SEND_USER_ID,
+		RECEIVE_USER_ID,
+		AMOUNT,
+		STATUS,
+		CREATE_TIME,
+		UPDATE_TIME
+	)
+	VALUES 
+	<foreach collection="recordList" item="record" separator=",">
+		(#{record.redenvelopeId,jdbcType=BIGINT}, #{record.sendUserId,jdbcType=BIGINT}, 
+     	#{record.receiveUserId,jdbcType=BIGINT}, #{record.amount,jdbcType=BIGINT}, #{record.status,jdbcType=INTEGER},
+    	#{record.createTime,jdbcType=TIMESTAMP}, #{record.updateTime,jdbcType=TIMESTAMP})
+	</foreach>
+  </insert>
+  <select id="countReceivePerson" parameterType="java.lang.Long" resultType="java.lang.Integer">
+  	SELECT COUNT(1) FROM receive_redenvelope_record WHERE `STATUS` = 2 AND REDENVELOPE_ID = #{sendRecordId} AND RECEIVE_TIME <![CDATA[<= #{clickTime}]]> 
+  </select>
+  <select id="findReceivePerson" parameterType="java.util.Map" resultMap="ReceivePersonResultMap">
+  	SELECT
+		r.ID, r.REDENVELOPE_ID, r.SEND_USER_ID, r.RECEIVE_USER_ID, r.AMOUNT, r.STATUS,r.RECEIVE_TIME, r.CREATE_TIME, r.UPDATE_TIME, u.HEADIMGURL as HEAD_URL, u.NICKNAME as NICKNAME
+	FROM
+		receive_redenvelope_record as r
+	JOIN (SELECT NICKNAME, HEADIMGURL, ID FROM `user`) u ON u.ID = r.RECEIVE_USER_ID
+	WHERE r.REDENVELOPE_ID = #{sendRecordId}
+	AND r.STATUS = 2
+	AND r.RECEIVE_TIME <![CDATA[<= #{clickTime}]]> 
+	ORDER BY r.RECEIVE_TIME DESC
+	LIMIT #{start}, #{pageSize}
+  </select>
+  <select id="getReceiveRecordByReceiveUserIdAndSendId" resultMap="BaseResultMap">
+  	SELECT <include refid="Base_Column_List"/> FROM receive_redenvelope_record WHERE REDENVELOPE_ID = #{redenvelopeId} AND RECEIVE_USER_ID = #{receiveUserId} AND STATUS = 2
+  </select>
+  <select id="sumHasReceiveMoney" resultType="java.lang.Long" parameterType="java.lang.Long">
+  	SELECT IFNULL(SUM(AMOUNT), 0) FROM receive_redenvelope_record WHERE REDENVELOPE_ID = #{redenvelopeId} AND STATUS = 2
+  </select>
+  <select id="countNotReceive" resultType="java.lang.Integer" parameterType="java.lang.Long">
+  	SELECT COUNT(1) FROM receive_redenvelope_record WHERE REDENVELOPE_ID = #{redenvelopeId} AND STATUS = 1
+  </select>
+  <select id="getLastReceive" resultMap="BaseResultMap" parameterType="java.lang.Long">
+  	SELECT
+		<include refid="Base_Column_List"/>
+	FROM
+		receive_redenvelope_record
+	WHERE
+		REDENVELOPE_ID = #{redenvelopeId}
+	AND `STATUS` = 2
+	ORDER BY
+		RECEIVE_TIME DESC, ID DESC
+	LIMIT 0, 1
+  </select>
+  <select id="getBestLuckReceive" resultMap="BaseResultMap" parameterType="java.lang.Long">
+  	SELECT
+		<include refid="Base_Column_List"/>
+	FROM
+		receive_redenvelope_record
+	WHERE
+		REDENVELOPE_ID = #{redenvelopeId}
+	AND `STATUS` = 2
+	ORDER BY
+		AMOUNT DESC,
+		RECEIVE_TIME ASC
+	LIMIT 0,1
+  </select>
+</mapper>

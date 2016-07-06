@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+ 	
+ 	<!-- 该路径下的资源不用过滤 -->             
+	<http pattern="/login.htm" security="none" />
+	<http pattern="/wap/*/login.htm" security="none" />
+	<http pattern="/wap/login.htm" security="none" />
+	<http pattern="/accessDenied.htm" security="none" />
+	<http pattern="/app/download.htm" security="none"/>
+	<http pattern="/app/internetadd.htm" security="none"/>
+	<!-- <http pattern="/app/card/*.htm" security="none"/> -->
+	
+	<http pattern="/resource/**" security="none" />
+	<http pattern="/resources/**" security="none" />
+	
+	<http pattern="/message/**" security="none" />
+	<http pattern="/index.htm" security="none" />
+	<http pattern="/information/**" security="none" />
+	
+	<!-- 微信支付回调地址 -->
+	<http pattern="/uc/**" security="none" />
+	<http pattern="/any/**" security="none" />
+	<http pattern="/pay/getOpenId.htm" security="none"/>
+	<http pattern="/pay/wechatConsumer.htm" security="none"/>
+	<http pattern="/wechat/getOpenId" security="none"/>
+	<http pattern="/wechat/getAnonymousOpenId" security="none"/>
+	
+	<http pattern="/assistant/ass/login.htm" security="none" />
+	
+	<http name="app" pattern="/assistant/ass/**" use-expressions='true' entry-point-ref="appAuthenticationEntryPoint"
+		access-denied-page="/assistant/ass/login">
+		<session-management >
+			<concurrency-control max-sessions="8" error-if-maximum-exceeded="true" />
+		</session-management>
+		
+		<custom-filter ref="singleLogoutFilter" before="CAS_FILTER" />  
+		
+		<custom-filter ref="appCasAuthenticationFilter" position="CAS_FILTER" />
+		
+	</http>
+	
+	<beans:bean id="appCasAuthenticationFilter" class="org.springframework.security.cas.web.CasAuthenticationFilter">
+		<beans:property name="filterProcessesUrl" value="/assistant/ass/j_spring_ass_security_check"/>
+		<beans:property name="authenticationManager" ref="appAuthenticationManager"/>
+		<beans:property name="authenticationFailureHandler" ref="appFailureHandler"/>
+        <beans:property name="authenticationSuccessHandler" ref="appSuccessHandler"/>
+	</beans:bean>
+	
+	<beans:bean id="appAuthenticationEntryPoint" class="com.zjlp.face.web.security.cas.userdetails.AppAuthenticationEntryPoint"/>
+   
+    <beans:bean id="appFailureHandler" class="com.zjlp.face.web.security.web.authentication.AppAuthenticationFailureHandler"/>  
+    
+    <beans:bean id="appSuccessHandler" class="com.zjlp.face.web.security.web.authentication.AppAuthenticationSuccessHandler">
+    </beans:bean>  
+    
+    <beans:bean id="appAuthenticationManager" class="org.springframework.security.authentication.ProviderManager">
+    	<beans:constructor-arg >
+           <beans:list>
+			<beans:ref bean="appCasAuthenticationProvider"/>
+           </beans:list>
+       </beans:constructor-arg> 
+    </beans:bean>
+    
+<!--     <authentication-manager alias="appAuthenticationManager"> -->
+<!-- 		<authentication-provider ref="appCasAuthenticationProvider" /> -->
+<!-- 	</authentication-manager> -->
+	
+	<beans:bean id="appCasAuthenticationProvider"
+		class="org.springframework.security.cas.authentication.CasAuthenticationProvider">
+		<beans:property name="authenticationUserDetailsService" ref="authenticationUserDetailsService" />
+		<beans:property name="serviceProperties" ref="appServiceProperties"/>
+		<beans:property name="ticketValidator">
+			<beans:bean class="org.jasig.cas.client.validation.Cas20ServiceTicketValidator">
+				<!-- 验证地址 -->
+				<beans:constructor-arg index="0" value="${CAS.URL}" />
+			</beans:bean>
+		</beans:property>
+		<beans:property name="key" value="cas_app"/>
+	</beans:bean>
+	
+	<beans:bean id="appServiceProperties" class="org.springframework.security.cas.ServiceProperties">
+		<beans:property name="service" value="${SYSTEM.HOME.URL}/assistant/ass/j_spring_ass_security_check"/>
+		<beans:property name="sendRenew" value="false"/>
+	</beans:bean>
+	
+    
+	
+    <http name="web" pattern="/**" use-expressions='true' entry-point-ref="myCasAuthenticationEntryPoint"
+		access-denied-page="/accessDenied.htm">
+		<session-management session-authentication-strategy-ref="sas"/>
+        
+        <custom-filter ref="requestSingleLogoutFilter" before="LOGOUT_FILTER"/>
+        
+        <custom-filter ref="appCasLoginFilter" before="FORM_LOGIN_FILTER" />
+        
+		<custom-filter ref="casLoginFilter" position="FORM_LOGIN_FILTER" />
+		
+		<custom-filter ref="singleLogoutFilter" before="CAS_FILTER" />  
+		
+		<custom-filter position="CAS_FILTER" ref="casAuthenticationFilter"/>
+        
+		<custom-filter before="FILTER_SECURITY_INTERCEPTOR" ref="myAuthorizationFilter"  />
+		
+        <custom-filter ref="rememberMeFilter" position="REMEMBER_ME_FILTER"/>
+	</http>
+	
+	<beans:bean id="casLoginFilter" class="com.zjlp.face.web.http.filter.CasLoginFilter">
+		<beans:constructor-arg name="filterProcessesUrl" value="/j_spring_security_check"/>
+		<beans:property name="casLoginUrl" value="${CAS.URL}/login"/>
+		<beans:property name="service" value="${SYSTEM.HOME.URL}/j_spring_cas_security_check"/>
+	</beans:bean>
+	
+	<beans:bean id="appCasLoginFilter" class="com.zjlp.face.web.http.filter.AppCasLoginFilter">
+		<beans:constructor-arg name="filterProcessesUrl" value="/assistant/j_spring_ass_check"/>
+		<beans:property name="casLoginUrl" value="${CAS.URL}/login"/>
+		<beans:property name="service" value="${SYSTEM.HOME.URL}/assistant/ass/j_spring_ass_security_check"/>
+	</beans:bean>
+	
+	<beans:bean id="casAuthenticationFilter" class="org.springframework.security.cas.web.CasAuthenticationFilter">
+		<beans:property name="rememberMeServices" ref="rememberMeService" />
+		<beans:property name="authenticationManager" ref="authenticationManager"/>
+		<beans:property name="authenticationSuccessHandler">
+			<beans:bean class="com.zjlp.face.web.security.MySavedRequestAwareAuthenticationSuccessHandler">
+				<beans:property name="indexPointMap" ref="indexPointMap"/>
+				<beans:property name="requestCache" ref="httpSessionRequestCache"/>
+				<beans:property name="defaultTargetUrl" value="/u/index.htm" />
+			</beans:bean>
+		</beans:property>
+		<beans:property name="authenticationFailureHandler">
+			<beans:bean
+				class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
+				<beans:property name="defaultFailureUrl" value="/tologin.htm"/>
+			</beans:bean>
+		</beans:property>
+	</beans:bean>
+	
+	<authentication-manager alias="authenticationManager">
+		<authentication-provider ref="casAuthenticationProvider" />
+		<authentication-provider ref="rememberMeAuthenticationProvider"/>
+	</authentication-manager>
+	
+	<beans:bean id="tgtCookieRedirectToCas" class="com.zjlp.face.web.security.cas.userdetails.TgtCookieRedirectToCas">
+		<beans:property name="serviceProperties" ref="serviceProperties"/>
+		<beans:property name="casLoginUrl" value="${CAS.URL}/login"/>
+		<beans:property name="requestCache" ref="httpSessionRequestCache"/>
+	</beans:bean>
+
+	<beans:bean id="serviceProperties" class="org.springframework.security.cas.ServiceProperties">
+		<beans:property name="service" value="${SYSTEM.HOME.URL}/j_spring_cas_security_check"/>
+		<beans:property name="sendRenew" value="false"/>
+	</beans:bean>
+	
+	<beans:bean id="sessionRegistry" class="org.springframework.security.core.session.SessionRegistryImpl"/>
+ 
+    <beans:bean id="sas" class="org.springframework.security.web.authentication.session.ConcurrentSessionControlStrategy">
+        <beans:constructor-arg name="sessionRegistry" ref="sessionRegistry" />
+        <beans:property name="maximumSessions" value="100" />
+    </beans:bean>
+
+	
+	<beans:bean id="casAuthenticationProvider"
+		class="org.springframework.security.cas.authentication.CasAuthenticationProvider">
+		<beans:property name="authenticationUserDetailsService" ref="authenticationUserDetailsService" />
+		<beans:property name="serviceProperties" ref="serviceProperties"/>
+		<beans:property name="ticketValidator">
+			<beans:bean class="org.jasig.cas.client.validation.Cas20ServiceTicketValidator">
+				<!-- 验证地址 -->
+				<beans:constructor-arg index="0" value="${CAS.URL}" />
+			</beans:bean>
+		</beans:property>
+		<beans:property name="key" value="cas"/>
+	</beans:bean>
+	
+	<beans:bean id="authenticationUserDetailsService"
+		class="com.zjlp.face.web.security.cas.userdetails.MyGrantedAuthorityFromAssertionAttributesUserDetailsService">
+		<beans:constructor-arg>
+			<beans:array>
+				<beans:value>authorities</beans:value>
+			</beans:array>
+		</beans:constructor-arg>
+	</beans:bean>
+
+	<beans:bean id="myCasAuthenticationEntryPoint"
+		class="com.zjlp.face.web.security.cas.userdetails.MyCasAuthenticationEntryPoint">
+		<beans:property name="casLoginUrl" value="${CAS.URL}/login"/>
+		<beans:property name="serviceProperties" ref="serviceProperties"/>
+		<beans:property name="useForward" value="false"/>
+		<beans:property name="defaultLoginFormUrl" value="/login.htm"/>
+		<beans:property name="entryPointMap" ref="entryPointMap"/>
+	</beans:bean>
+	
+	<beans:bean id="entryPointMap" class="java.util.LinkedHashMap">
+		<beans:constructor-arg>
+			<beans:map>
+				<beans:entry key="/wap/" value="/wap/*/login.htm"/>
+			</beans:map>
+		</beans:constructor-arg>
+	</beans:bean>
+	
+	<beans:bean id="indexPointMap" class="java.util.LinkedHashMap">
+		<beans:constructor-arg>
+			<beans:map>
+				<beans:entry key="/wap/" value="/wap/*/any/index.htm"/>
+			</beans:map>
+		</beans:constructor-arg>
+	</beans:bean>
+	
+	<beans:bean id="singleLogoutFilter" class="org.jasig.cas.client.session.SingleSignOutFilter" />
+	
+    <beans:bean id="requestSingleLogoutFilter" class="org.springframework.security.web.authentication.logout.LogoutFilter"> 
+       <beans:constructor-arg >
+        	<beans:ref bean="mySimpleUrlLogoutSuccessHandler"/>
+       </beans:constructor-arg>
+	   <beans:constructor-arg >
+           <beans:list>
+               <beans:bean class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler" />
+			<beans:ref bean="rememberMeService"/>
+           </beans:list>
+       </beans:constructor-arg> 
+	    <beans:property name="filterProcessesUrl" value="${CAS.LOGOUT.URL}" /> 
+    </beans:bean> 
+	
+    <beans:bean id="mySimpleUrlLogoutSuccessHandler" class="com.zjlp.face.web.security.MySimpleUrlLogoutSuccessHandler">
+		<beans:property name="entryPointMap" ref="entryPointMap"/>
+		<beans:property name="casLogout" value="true"/>
+		<beans:property name="casLogoutUrl" value="${CAS.URL}/logout"/>
+    </beans:bean>
+	
+	<beans:bean id="httpSessionRequestCache" class="org.springframework.security.web.savedrequest.HttpSessionRequestCache">
+   	 	<beans:property name="createSessionAllowed" value="true"/>
+    </beans:bean> 
+  
+
+	<beans:bean id="myAuthorizationFilter" class="com.zjlp.face.web.security.MyAuthorizationFilter">
+		<beans:property name="authenticationManager" ref="authenticationManager" />
+		<beans:property name="accessDecisionManager">
+			<beans:bean class="com.zjlp.face.web.security.MyAccessDecisionManager" />
+		</beans:property>
+		<beans:property name="securityMetadataSource">
+			<beans:bean class="com.zjlp.face.web.security.MySecurityMetadataSource">
+				<beans:constructor-arg name="permissionDao" ref="permissionDao" />
+			</beans:bean>
+		</beans:property>
+	</beans:bean>
+	
+	<beans:bean id="rememberMeFilter" class="com.zjlp.face.web.security.MyRememberMeAuthenticationFilter">
+      <beans:property name="rememberMeServices" ref="rememberMeService" />
+      <beans:property name="authenticationManager" ref="authenticationManager" />
+   </beans:bean>
+	
+	<beans:bean id="rememberMeService" class="org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices">
+	   <beans:property name="alwaysRemember" value="true"/>
+	   <beans:property name="key" value="WGJ_89XWEBSHWET"/>
+	   <beans:property name="userDetailsService" ref="myUserDetailService"/>
+	</beans:bean>
+	
+	<beans:bean id="myUserDetailService" class="com.zjlp.face.web.security.MyUserDetailServiceImpl"/>
+	
+	<beans:bean id="rememberMeAuthenticationProvider" class="org.springframework.security.authentication.RememberMeAuthenticationProvider">
+	    <beans:property name="key" value="WGJ_89XWEBSHWET" />
+	</beans:bean>
+</beans:beans>

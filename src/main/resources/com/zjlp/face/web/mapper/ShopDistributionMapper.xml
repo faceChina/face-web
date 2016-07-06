@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.ShopDistributionMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.user.shop.domain.ShopDistribution" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="SHOP_NO" property="shopNo" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="DISTRIBUTION_RANGE" property="distributionRange" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap type="com.zjlp.face.web.server.user.shop.domain.dto.ShopDistributionDto" id="DtoResultMap" extends="BaseResultMap">
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, SHOP_NO, NAME, DISTRIBUTION_RANGE, CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from shop_distribution
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from shop_distribution
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.user.shop.domain.ShopDistribution" >
+    insert into shop_distribution (ID, SHOP_NO, NAME, 
+      DISTRIBUTION_RANGE, CREATE_TIME, UPDATE_TIME
+      )
+    values (#{id,jdbcType=BIGINT}, #{shopNo,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{distributionRange,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.user.shop.domain.ShopDistribution" >
+  	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into shop_distribution
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="shopNo != null" >
+        SHOP_NO,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="distributionRange != null" >
+        DISTRIBUTION_RANGE,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="shopNo != null" >
+        #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="distributionRange != null" >
+        #{distributionRange,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.user.shop.domain.ShopDistribution" >
+    update shop_distribution
+    <set >
+      <if test="shopNo != null" >
+        SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="distributionRange != null" >
+        DISTRIBUTION_RANGE = #{distributionRange,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.user.shop.domain.ShopDistribution" >
+    update shop_distribution
+    set SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      DISTRIBUTION_RANGE = #{distributionRange,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 分页查询的个数 -->
+  <select id="selectPsCount" parameterType="com.zjlp.face.web.server.user.shop.domain.dto.ShopDistributionDto" resultType="java.lang.Integer">
+       SELECT
+           count(1)
+       FROM
+           SHOP_DISTRIBUTION
+       WHERE
+           SHOP_NO = #{shopNo,jdbcType=VARCHAR}
+  </select>
+  
+  <!-- 分页查询 -->
+  <select id="selectPsPage" parameterType="com.zjlp.face.web.server.user.shop.domain.dto.ShopDistributionDto" resultMap="DtoResultMap">
+       SELECT
+            <include refid="Base_Column_List" />
+       FROM
+           SHOP_DISTRIBUTION
+       WHERE
+           SHOP_NO = #{shopNo,jdbcType=VARCHAR}
+       ORDER BY
+           CREATE_TIME DESC
+       LIMIT #{aide.startNum}, #{aide.pageSizeNum}
+  </select>
+  
+  <!-- 根据id和店铺编号查询 -->
+  <select id="selectByIdAndShopNo" resultMap="BaseResultMap" parameterType="com.zjlp.face.web.server.user.shop.domain.ShopDistribution">
+      SELECT
+          <include refid="Base_Column_List" />
+      FROM 
+          SHOP_DISTRIBUTION
+      WHERE
+          ID = #{id,jdbcType=BIGINT}
+          AND SHOP_NO = #{shopNo,jdbcType=VARCHAR}
+  </select>
+  
+  <!-- 查询店铺的列表 -->
+  <select id="findListByShopNo" resultMap="BaseResultMap" parameterType="java.lang.String">
+       SELECT
+           <include refid="Base_Column_List" />
+       FROM
+           SHOP_DISTRIBUTION
+       WHERE
+           SHOP_NO = #{shopNo,jdbcType=VARCHAR}
+  </select>
+</mapper>

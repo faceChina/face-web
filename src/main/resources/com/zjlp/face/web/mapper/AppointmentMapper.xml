@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.AppointmentMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.operation.appoint.domain.Appointment" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="TEMPLATE_ID" property="templateId" jdbcType="INTEGER" />
+    <result column="SHOP_NO" property="shopNo" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="INTEGER" />
+    <result column="IS_SHOW_SELLER_MEG" property="isShowSellerMeg" jdbcType="INTEGER" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="CELL" property="cell" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="MAX_VAL" property="maxVal" jdbcType="INTEGER" />
+    <result column="IS_START_SMS" property="isStartSms" jdbcType="INTEGER" />
+    <result column="SMS_PHONE" property="smsPhone" jdbcType="VARCHAR" />
+    <result column="NAVIGATION_TITLE" property="navigationTitle" jdbcType="VARCHAR" />
+    <result column="BUTTON_TITLE" property="buttonTitle" jdbcType="VARCHAR" />
+    <result column="PRICE" property="price" jdbcType="BIGINT" />
+    <result column="INVENTORY" property="inventory" jdbcType="BIGINT" />
+    <result column="PICTURE_PATH" property="picturePath" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.zjlp.face.web.server.operation.appoint.domain.Appointment" extends="BaseResultMap" >
+    <result column="CONTENT" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, TEMPLATE_ID, SHOP_NO, NAME, TYPE, IS_SHOW_SELLER_MEG, ADDRESS, CELL, STATUS, MAX_VAL, IS_START_SMS, 
+    SMS_PHONE, NAVIGATION_TITLE, BUTTON_TITLE, PRICE, INVENTORY, PICTURE_PATH, CREATE_TIME, 
+    UPDATE_TIME
+  </sql>
+  <sql id="Blob_Column_List" >
+    CONTENT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from appointment
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    update appointment set status = -1,update_time = now()
+    where ID = #{id,jdbcType=BIGINT} and <![CDATA[status <> -1]]>
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.operation.appoint.domain.Appointment" >
+  	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into appointment (ID, TEMPLATE_ID, SHOP_NO, NAME, 
+      TYPE, IS_SHOW_SELLER_MEG, ADDRESS, 
+      CELL, STATUS, MAX_VAL, 
+      IS_START_SMS, SMS_PHONE, NAVIGATION_TITLE, 
+      BUTTON_TITLE, PRICE, INVENTORY, 
+      PICTURE_PATH, CREATE_TIME, UPDATE_TIME, 
+      CONTENT)
+    values (#{id,jdbcType=BIGINT}, #{templateId}, #{shopNo,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{isShowSellerMeg,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, 
+      #{cell,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{maxVal,jdbcType=INTEGER}, 
+      #{isStartSms,jdbcType=INTEGER}, #{smsPhone,jdbcType=VARCHAR}, #{navigationTitle,jdbcType=VARCHAR}, 
+      #{buttonTitle,jdbcType=VARCHAR}, #{price,jdbcType=BIGINT}, #{inventory,jdbcType=BIGINT}, 
+      #{picturePath,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.operation.appoint.domain.Appointment" >
+    <selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into appointment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="templateId != null" >
+        TEMPLATE_ID,
+      </if>
+      <if test="shopNo != null" >
+        SHOP_NO,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="isShowSellerMeg != null" >
+        IS_SHOW_SELLER_MEG,
+      </if>
+      <if test="address != null" >
+        ADDRESS,
+      </if>
+      <if test="cell != null" >
+        CELL,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="maxVal != null" >
+        MAX_VAL,
+      </if>
+      <if test="isStartSms != null" >
+        IS_START_SMS,
+      </if>
+      <if test="smsPhone != null" >
+        SMS_PHONE,
+      </if>
+      <if test="navigationTitle != null" >
+        NAVIGATION_TITLE,
+      </if>
+      <if test="buttonTitle != null" >
+        BUTTON_TITLE,
+      </if>
+      <if test="price != null" >
+        PRICE,
+      </if>
+      <if test="inventory != null" >
+        INVENTORY,
+      </if>
+      <if test="picturePath != null" >
+        PICTURE_PATH,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="content != null" >
+        CONTENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="templateId != null" >
+        #{templateId,jdbcType=INTEGER},
+      </if>
+      <if test="shopNo != null" >
+        #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="isShowSellerMeg != null" >
+        #{isShowSellerMeg,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="cell != null" >
+        #{cell,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="maxVal != null" >
+        #{maxVal,jdbcType=INTEGER},
+      </if>
+      <if test="isStartSms != null" >
+        #{isStartSms,jdbcType=INTEGER},
+      </if>
+      <if test="smsPhone != null" >
+        #{smsPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="navigationTitle != null" >
+        #{navigationTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="buttonTitle != null" >
+        #{buttonTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=BIGINT},
+      </if>
+      <if test="inventory != null" >
+        #{inventory,jdbcType=BIGINT},
+      </if>
+      <if test="picturePath != null" >
+        #{picturePath,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.operation.appoint.domain.Appointment" >
+    update appointment
+    <set >
+      <if test="templateId != null" >
+        TEMPLATE_ID = #{templateId,jdbcType=INTEGER},
+      </if>
+      <if test="shopNo != null" >
+        SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="isShowSellerMeg != null" >
+        IS_SHOW_SELLER_MEG = #{isShowSellerMeg,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="cell != null" >
+        CELL = #{cell,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="maxVal != null" >
+        MAX_VAL = #{maxVal,jdbcType=INTEGER},
+      </if>
+      <if test="isStartSms != null" >
+        IS_START_SMS = #{isStartSms,jdbcType=INTEGER},
+      </if>
+      <if test="smsPhone != null" >
+        SMS_PHONE = #{smsPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="navigationTitle != null" >
+        NAVIGATION_TITLE = #{navigationTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="buttonTitle != null" >
+        BUTTON_TITLE = #{buttonTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        PRICE = #{price,jdbcType=BIGINT},
+      </if>
+      <if test="inventory != null" >
+        INVENTORY = #{inventory,jdbcType=BIGINT},
+      </if>
+      <if test="picturePath != null" >
+        PICTURE_PATH = #{picturePath,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null" >
+        CONTENT = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zjlp.face.web.server.operation.appoint.domain.Appointment" >
+    update appointment
+    set TEMPLATE_ID = #{templateId}, 
+      SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=INTEGER},
+      IS_SHOW_SELLER_MEG = #{isShowSellerMeg,jdbcType=INTEGER},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      CELL = #{cell,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=INTEGER},
+      MAX_VAL = #{maxVal,jdbcType=INTEGER},
+      IS_START_SMS = #{isStartSms,jdbcType=INTEGER},
+      SMS_PHONE = #{smsPhone,jdbcType=VARCHAR},
+      NAVIGATION_TITLE = #{navigationTitle,jdbcType=VARCHAR},
+      BUTTON_TITLE = #{buttonTitle,jdbcType=VARCHAR},
+      PRICE = #{price,jdbcType=BIGINT},
+      INVENTORY = #{inventory,jdbcType=BIGINT},
+      PICTURE_PATH = #{picturePath,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      CONTENT = #{content,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.operation.appoint.domain.Appointment" >
+    update appointment
+    set TEMPLATE_ID = #{templateId}, 
+      SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=INTEGER},
+      IS_SHOW_SELLER_MEG = #{isShowSellerMeg,jdbcType=INTEGER},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      CELL = #{cell,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=INTEGER},
+      MAX_VAL = #{maxVal,jdbcType=INTEGER},
+      IS_START_SMS = #{isStartSms,jdbcType=INTEGER},
+      SMS_PHONE = #{smsPhone,jdbcType=VARCHAR},
+      NAVIGATION_TITLE = #{navigationTitle,jdbcType=VARCHAR},
+      BUTTON_TITLE = #{buttonTitle,jdbcType=VARCHAR},
+      PRICE = #{price,jdbcType=BIGINT},
+      INVENTORY = #{inventory,jdbcType=BIGINT},
+      PICTURE_PATH = #{picturePath,jdbcType=VARCHAR},
+      <if test="content != null">
+      	CONTENT = #{content,jdbcType=LONGVARCHAR},
+      </if>
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="getCount" resultType="java.lang.Integer">
+  	select count(1) from appointment
+  	where shop_no = #{shopNo} and status >= 0
+  </select>
+  <select id="findAppointmentPage" resultMap="BaseResultMap">
+  	select <include refid="Base_Column_List"/>
+  	from appointment
+  	where shop_no = #{appointmentVo.shopNo} and status >= 0
+  	order by create_time desc
+  	limit #{start},#{pageSize}
+  </select>
+  <select id="findAllAppointmentByShopNo" resultMap="BaseResultMap">
+  	select 
+  	<include refid="Base_Column_List"/>
+  	from appointment
+  	where shop_no = #{shopNo,jdbcType=VARCHAR} 
+  	and status >= 0
+  	order by create_time desc
+  </select>
+</mapper>

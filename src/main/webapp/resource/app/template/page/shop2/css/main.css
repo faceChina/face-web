@@ -1,0 +1,154 @@
+@charset "utf-8";
+/*  
+* @description: 商城模板3
+* @author:sf
+* @update:
+*/
+body {
+	position:relative;
+}
+
+/*右上角个人中心*/
+
+.personal-icon{
+	position:absolute;
+	top:5px;
+	right:5px;
+	z-index: 10;
+}
+.personal-icon a{
+	float:left;
+	display:inline;
+	width:2rem;
+	margin-left:5px;
+	background:rgba(0,0,0,0.2);
+	border-radius:50%;
+}
+.personal-icon a img{
+	display:block;
+	width:100%;
+	padding:2px;
+	border-radius:50%;
+}
+
+/*右上角个人中心 end*/
+
+/* 模块 图片/标题 */
+
+.list-rowspan{}
+.list-colspan{
+	overflow:hidden;
+	border-top:1px solid #ccc;
+}
+.list-colspan ul{
+	margin-top:0.296rem;
+}
+.list-colspan ul li{
+	float:left;
+	display:inline;
+	width:5.728395061728395rem;
+	margin-left:0.2962962962962963rem;
+	margin-right:0.2962962962962963rem;
+	margin-top:0.296rem;
+	background: #cc0000;
+	border-radius:6px;
+	text-align:center;
+}
+.list-colspan ul li a{
+	display:block;
+	width:5.728395061728395rem;
+	height: 4.5rem;
+}
+.list-colspan ul li a span{
+	display:block;
+	width:2.37037037037037rem;
+	height:2.37037037037037rem;
+	margin:0 auto;
+	padding-top:5px;
+}
+.list-colspan ul li a span img{
+	display:block;
+	width:100%;
+}
+.list-colspan ul li a var{
+	display:block;
+	padding:.4rem 0; 
+	color:#fff;
+	font-size:0.75rem;
+}
+
+/* 模块 图片/标题  end*/
+
+/* 产品展示 */
+
+.list-rowspan{}
+.list-product{
+	margin-top:0.593rem;
+	overflow-x: auto;
+	width: 100%;
+	-webkit-overflow-scrolling:touch;
+	-moz-overflow-scrolling:touch;
+	-o-overflow-scrolling:touch;
+}
+.list-product ul{
+	width:200%;
+}
+.list-product ul li{
+	float:left;
+	display:inline;
+	width:5.728395061728395rem;
+	height:7.407407407407407rem;
+	margin-left:0.2962962962962963rem;
+	margin-right:0.2962962962962963rem;
+	text-align:center;
+}
+.list-product ul li a{
+	display: inline-block;
+	width: 98%;
+	margin: 0 auto;
+}
+.list-product ul li a .pic{
+	display:block;
+	width:5.62962962962963rem;
+	height:5.62962962962963rem;
+}
+.list-product ul li a .pic img{
+	display:block;
+	width:100%;
+}
+.list-product ul li a .info{
+	display:block;
+	height:1.777777777777778rem;
+	line-height:1.777777777777778rem;
+	background:#eee;
+	border-radius:6px;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+div::-webkit-scrollbar{
+	display: none;
+}
+
+#navbar{
+	height: 50px;
+}
+/* 产品展示 end*/
+
+
+/* 领积分 */
+#Fix-IntegralCollar{
+	max-width: 640px;
+	width: 100%;
+	display: block;
+	position: fixed;
+	bottom: 60px;
+}
+.fix-bt{
+	padding: 5px;
+	border-radius: 10px;
+	float: right;
+	margin-right: 0.5rem;
+	background-color: #ff9933;
+}

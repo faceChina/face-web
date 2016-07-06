@@ -1,0 +1,195 @@
+@charset "utf-8";
+
+/*----------用户登录/注册/找回密码/设置密码-------------*/
+html{
+	font-size: 10px;
+}
+.login{}
+.login-pic{}
+.login-pic img{
+	width:100%;
+	display:block;
+}
+/*----------用户登录/注册/找回密码/设置密码 end-------------*/
+
+/* 返回的成功页面样式  */
+.success{
+	padding:20px 0;
+	text-align:center;
+}
+.success i{
+	font-size:8rem;
+}
+.success-info{
+	margin-top:6px;
+	font-size:1.5rem;
+	font-family: 微软雅黑;
+}
+.success-info .small{
+	font-size: 15px;
+}
+/* 返回的成功页面样式  end */
+/* 详情页 样式 */
+.details {}
+
+.details-title {
+	margin-top: 15px;
+	padding: 0 4% 10px;
+	border-bottom: 1px solid #d0d0d0;
+}
+.details-title h3{
+   font-family: 微软雅黑;
+   font-size: 18px;
+   line-height: 26px;
+   padding-bottom: 5px;
+}
+.details-title h4 {
+	padding-top: 5px;
+	color: #999;
+	font-weight:normal;
+}
+.details-title h4 .time{
+	padding-right: 10px;
+}
+.details-center {
+	padding: 0 4% 10px;
+/* 	border-bottom: 1px solid #d0d0d0; */
+}
+.details-center p {
+	margin-top: 15px;
+	line-height: 25px;
+}
+.details-center * {
+	max-width: 100%;
+}
+
+/* 详情页 样式 end */
+/* 错误页面  */
+.error-info{
+	width:100%;
+	margin:3em auto 0;
+	overflow:hidden;
+}
+.error-info .error-info-tit{
+	width:75%;
+	margin:3em auto 0;
+	text-align:left;
+	line-height:1.5em;
+}
+.error-info img{
+	width:100%;
+}
+.error-info a{
+	display:block;
+	width:80%;
+	margin:0 auto;
+	text-align:center;
+}
+.empty{
+	width:100%;
+	margin:10em auto 0;
+	text-align:center;
+}
+.list-row{
+	margin-top: 0;
+	border-top: 0;
+}
+
+.errors-info{
+	width:100%;
+	margin:8em auto 0;
+	overflow:hidden;	
+}
+.errors-info .errors-info-tit{
+	width:100%;
+	margin:0 auto 0;
+	padding-top:6em;
+	background:url(../img/error1.jpg) no-repeat -10px center;
+	background-size:20rem;
+	text-align:center;
+	line-height:2em;
+}
+.errors-info .errors-info-tit .title{
+	font-size: 1rem;
+	padding-bottom: 0.2rem;
+}
+.errors-info .errors-info-tit .content{
+	font-size: 0.8rem;
+	padding-bottom: 0.2rem;
+}
+.errors-info .errors-info-tit a{
+	margin-top:5px;
+	padding:5px 20px;
+	background:#cc0000;
+}
+/*支付成功，下载刷脸app*/
+.btn-order{
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	background:-webkit-linear-gradient(top,#fff,#f3f3f3);
+	color: #575656;
+}
+.tip-uploadsl{
+	width: 94%;
+	margin:17px 0 7px;
+	margin-left:3%;
+	padding:20px 0;
+	text-align: center;
+	border: 1px solid #e5e5e5;
+	border-radius: 5px;
+	background-color: #fff;
+	line-height: 30px;
+	display: inline-block;
+	font-family: 微软雅黑;
+	font-size: 13px;
+}
+.list-inline .btn{
+	padding: 7px;
+}
+/* 底部导航引导页  */
+.goback{
+  	display: -moz-box;
+  	display: -webkit-box;
+	max-width:640px;
+	min-width:320px;
+	width:100%;
+	margin:10px auto 0;
+	padding:0.5em;
+}
+.goback a{
+	display: block;
+  	-moz-box-flex: 1.0;
+    -webkit-box-flex: 1.0;
+    border-right:1px solid #c4c4c4;
+    color:#c4c4c4;
+    text-align: center;
+}
+.goback a:last-child{
+	border-right:none;
+}
+/*底部阅读和点赞*/
+#box{
+	padding-bottom: 15px;
+}
+.footer-readpraise{
+	padding: 0 4% 15px 10px;
+	font-size: 16px;
+	color: #999;
+}
+.read{
+	display: inline-block;
+}
+.a-praise{
+	margin-left: 10px;
+	font-size: 16px;
+	color: #999;
+}
+.a-praise i{
+	color: #607fa6;
+	font-size: 13.5px;
+	position: relative;
+	top: -2px;
+}
+.rp-num{
+	padding-left: 3px;
+}

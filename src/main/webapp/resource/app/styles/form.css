@@ -1,0 +1,223 @@
+/*  
+* @description: web组件CSS 
+* @author: WMM
+* @update: 421543076@qq.com
+*/
+
+/* 分列布局 */
+
+.list-row{
+	font-size: 14px;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	margin:12px 0 0;
+	background: #fff;
+}
+.list-row-none{
+	border: none;
+}
+
+.list-row .list-col{
+	border-bottom: 1px solid #eee;
+	margin: 0 8px;
+}
+.list-row .list-col:last-child{
+	border-bottom: none;
+}
+.list-row-none .list-col:last-child{
+	border-bottom: 1px solid #ddd;
+}
+.list-col,
+.list-col .list-inline,
+.list-col .list-inline dl{
+	display: -webkit-box;
+}
+.list-col{
+	line-height: 38px;
+	padding:8px 0; 
+}
+.list-col.title{
+	margin: 0;
+	background: #fdfdfd;
+	padding: 0;
+	text-align: center;
+	display: block;
+}
+.list-row .list-clearpadding{
+	padding-top: 0;
+}
+.list-col:first-child{
+	padding-top:8px;
+}
+.list-col .list-inline{
+	-webkit-box-align:center; 
+}
+.list-col .list-top{
+	vertical-align: top;
+}
+.list-col .list-right,
+.list-col .list-center,
+.list-col .list-inline ul{
+	width: 100%;
+}
+.list-col .list-right{
+	text-align: right;
+}
+.list-col .list-center{
+	text-align: center;
+}
+.list-col .list-inline dd,
+.list-col .box-flex{
+	-webkit-box-flex: 1;
+}
+.list-col .list-inline li,
+.list-col .list-top li{
+	line-height: 1.8em;
+}
+.list-col .list-inline:first-child{
+	margin-right: 16px;
+}
+.list-col .list-inline:last-child{
+	margin-right: 4px;
+}
+.list-col img{
+	display: block;
+}
+.list-row-width .list-inline:first-child{
+	width: 56px;
+}
+.list-row .list-col .title{
+	margin-right: 8px;
+}
+.list-col .icon-round,
+.list-col .icon-roundcheckfill{
+	font-size: 24px;
+}
+.list-col [data-check="true"]{
+	color: #c00;	
+}
+.list-col .verify,
+.list-other{
+	margin: 0 4px 0 8px;
+}
+.list-col .verify .verify-main,
+.list-col .verify-icon,
+.list-col .list-other .other-main,
+.list-col .list-other .other-icon{
+	display: block;
+}
+.list-col .verify .verify-main,
+.list-col .list-other .other-main{
+	border-left: 1px solid #ddd;
+	padding: 0 8px;
+}
+.list-other .other-icon .iconfont
+.verify .verify-icon .iconfont{
+	font-size: 24px;
+}
+.list-row-line .list-col{
+	margin: 0;
+	padding: 8px;
+}
+
+/* form 组件 */
+.list-row select,
+.noneselect{
+	-webkit-appearance: none;
+	appearance: none;
+	border:none;
+}
+.form-control,
+.form-border{
+	padding: 10px 4px;
+	width: 100%;
+	display: block;
+	background: transparent;
+	font-size:14px;
+	border:1px solid transparent;
+/* 	line-height: 1em; */
+}
+.form-control[type="date"],
+.form-border[type="date"]{
+	height: 38px;
+	line-height:38px;
+	padding: 0 4px;
+}
+.form-border{
+	border:1px solid #ccc;
+	border-radius: 4px;
+}
+.form-select,
+.form-select-san{
+	position: relative;
+	display: block;
+	width: 100%;
+}
+.form-select select,
+.form-select-san select{
+	width: 100%;
+	padding: 0 4px;
+	height: 38px;
+	line-height: 1em;
+	font-size:14px;
+}
+.form-select:before,
+.form-select-san:before{
+	position: absolute;
+	font-family: "iconfont" !important;
+	font-size: 12px;
+	font-weight: bold;
+	right: 4px;
+}
+/* 下箭头 */
+.form-select:before{
+	content: "\e600";
+}
+/* 下三角 */
+.form-select-san:before{
+	content: "\e60c";
+}
+
+/* 没有下划线   */
+.list-row-clearborder,
+.list-row-clearborder .list-col{
+	border:none;
+}
+/* 没有下划线   end*/
+
+.form-textarea{
+	border:1px solid #ccc;
+	border-radius: 4px;
+	background: #eeeeee;
+	padding: 8px;
+	width: 100%;
+	display: block;
+}
+
+/* ul 文字左右排列*/
+.block-dbtext li{
+	display: -webkit-box;
+}
+.block-dbtext li p:last-child{
+	-webkit-box-flex: 1;
+}
+
+/* .form-control{ */
+/* 	display: block; */
+/* 	width: 100%; */
+/* 	height: 34px; */
+/* 	padding: 6px 12px; */
+/* 	/* padding: 6px 0; */ */
+/* 	font-size: 14px; */
+/* 	line-height: 1.428571429; */
+/* 	color: #555555; */
+/* 	vertical-align: middle; */
+/* 	background-color: #ffffff; */
+/* 	background-image: none; */
+/* 	border: 1px solid #cccccc; */
+/* 	border-radius: 4px; */
+/* 	/* -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); */ */
+/* 	/* box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); */ */
+/* 	-webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s; */
+/* 	transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s; */
+/* } */

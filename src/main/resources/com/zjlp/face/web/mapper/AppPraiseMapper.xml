@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.AppPraiseMapper">
+	<resultMap id="BaseResultMap" type="com.zjlp.face.web.server.social.businesscircle.domain.AppPraise">
+		<id column="ID" property="id" jdbcType="BIGINT" />
+		<result column="USER_ID" property="userId" jdbcType="BIGINT" />
+		<result column="CIRCLEMSG_ID" property="circleMsgId" jdbcType="BIGINT" />
+		<result column="USERNAME" property="userName" jdbcType="VARCHAR" />
+		<result column="HEADIMGURL" property="headimgurl" jdbcType="VARCHAR" />
+		<result column="USER_ACCOUNT" property="userAccount" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<insert id="insert" parameterType="com.zjlp.face.web.server.social.businesscircle.domain.AppPraise">
+		<selectKey keyProperty="id" resultType="long" order="AFTER">
+			SELECT
+			LAST_INSERT_ID();
+		</selectKey>
+		INSERT INTO app_praise (CIRCLEMSG_ID,USER_ID)
+		VALUES (
+		#{circleMsgId,jdbcType=BIGINT},
+		#{userId,jdbcType=BIGINT}
+		)
+	</insert>
+	<delete id="deleteByCircleMsgId" parameterType="java.lang.Long">
+		DELETE FROM
+		app_praise
+		WHERE CIRCLEMSG_ID = #{circleMsgId,jdbcType=BIGINT}
+	</delete>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		DELETE FROM
+		app_praise
+		WHERE ID = #{id,jdbcType=BIGINT}
+	</delete>
+	<select id="selectByCircleMsgId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		SELECT a.ID,a.CIRCLEMSG_ID,a.USER_ID,b.NICKNAME as username,b.HEADIMGURL,b.LOGIN_ACCOUNT AS USER_ACCOUNT
+		FROM app_praise a  JOIN USER b ON a.user_id = b.ID
+		WHERE CIRCLEMSG_ID = #{circleMsgId,jdbcType=BIGINT}
+	</select>
+	
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		SELECT a.ID,a.CIRCLEMSG_ID,a.USER_ID,b.NICKNAME as username,b.HEADIMGURL
+		FROM app_praise a  JOIN USER b ON a.user_id = b.ID
+		WHERE a.ID = #{id,jdbcType=BIGINT}
+	</select>
+	
+	
+</mapper>

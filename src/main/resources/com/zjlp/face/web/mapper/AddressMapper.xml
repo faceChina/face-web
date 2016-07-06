@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.AddressMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.user.user.domain.Address" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="USER_CODE" property="userCode" jdbcType="BIGINT" />
+    <result column="V_AREA_CODE" property="vAreaCode" jdbcType="INTEGER" />
+    <result column="ZIP_CODE" property="zipCode" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="CELL" property="cell" jdbcType="VARCHAR" />
+    <result column="TELEPHONE" property="telephone" jdbcType="VARCHAR" />
+    <result column="ADDRESS_DETAIL" property="addressDetail" jdbcType="VARCHAR" />
+    <result column="SORT" property="sort" jdbcType="INTEGER" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="IS_DEFAULT" property="isDefault" jdbcType="INTEGER" />
+    <result column="REAL_TYPE" property="realType" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, USER_CODE, V_AREA_CODE, ZIP_CODE, NAME, CELL, TELEPHONE, ADDRESS_DETAIL, SORT, 
+    STATUS, IS_DEFAULT, REAL_TYPE, CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from address
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from address
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.user.user.domain.Address" >
+   	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into address (ID, USER_CODE, V_AREA_CODE, 
+      ZIP_CODE, NAME, CELL, 
+      TELEPHONE, ADDRESS_DETAIL, SORT, 
+      STATUS, IS_DEFAULT, REAL_TYPE, 
+      CREATE_TIME, UPDATE_TIME)
+    values (#{id,jdbcType=BIGINT}, #{userCode,jdbcType=BIGINT}, #{vAreaCode,jdbcType=INTEGER}, 
+      #{zipCode,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{cell,jdbcType=VARCHAR}, 
+      #{telephone,jdbcType=VARCHAR}, #{addressDetail,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{isDefault,jdbcType=INTEGER}, #{realType,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.user.user.domain.Address" >
+    <selectKey keyProperty="id" resultType="long" order="AFTER">  
+        SELECT LAST_INSERT_ID();  
+    </selectKey>
+    insert into address
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="userCode != null" >
+        USER_CODE,
+      </if>
+      <if test="vAreaCode != null" >
+        V_AREA_CODE,
+      </if>
+      <if test="zipCode != null" >
+        ZIP_CODE,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="cell != null" >
+        CELL,
+      </if>
+      <if test="telephone != null" >
+        TELEPHONE,
+      </if>
+      <if test="addressDetail != null" >
+        ADDRESS_DETAIL,
+      </if>
+      <if test="sort != null" >
+        SORT,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="isDefault != null" >
+        IS_DEFAULT,
+      </if>
+      <if test="realType != null" >
+        REAL_TYPE,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userCode != null" >
+        #{userCode,jdbcType=BIGINT},
+      </if>
+      <if test="vAreaCode != null" >
+        #{vAreaCode,jdbcType=INTEGER},
+      </if>
+      <if test="zipCode != null" >
+        #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="cell != null" >
+        #{cell,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="addressDetail != null" >
+        #{addressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="isDefault != null" >
+        #{isDefault,jdbcType=INTEGER},
+      </if>
+      <if test="realType != null" >
+        #{realType,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.user.user.domain.Address" >
+    update address
+    <set >
+      <if test="userCode != null" >
+        USER_CODE = #{userCode,jdbcType=BIGINT},
+      </if>
+      <if test="vAreaCode != null" >
+        V_AREA_CODE = #{vAreaCode,jdbcType=INTEGER},
+      </if>
+      <if test="zipCode != null" >
+        ZIP_CODE = #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="cell != null" >
+        CELL = #{cell,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        TELEPHONE = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="addressDetail != null" >
+        ADDRESS_DETAIL = #{addressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        SORT = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="isDefault != null" >
+        IS_DEFAULT = #{isDefault,jdbcType=INTEGER},
+      </if>
+      <if test="realType != null" >
+        REAL_TYPE = #{realType,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.user.user.domain.Address" >
+    update address
+    set USER_CODE = #{userCode,jdbcType=BIGINT},
+      V_AREA_CODE = #{vAreaCode,jdbcType=INTEGER},
+      ZIP_CODE = #{zipCode,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      CELL = #{cell,jdbcType=VARCHAR},
+      TELEPHONE = #{telephone,jdbcType=VARCHAR},
+      ADDRESS_DETAIL = #{addressDetail,jdbcType=VARCHAR},
+      SORT = #{sort,jdbcType=INTEGER},
+      STATUS = #{status,jdbcType=INTEGER},
+      IS_DEFAULT = #{isDefault,jdbcType=INTEGER},
+      REAL_TYPE = #{realType,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 根据用户id查询用户收货地址 -->
+  <select id="selectAddressByUserId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+      SELECT
+          <include refid="Base_Column_List" />
+      FROM 
+          ADDRESS
+      WHERE
+          USER_CODE = #{userId,jdbcType=BIGINT}
+          AND STATUS = 1
+      ORDER BY IS_DEFAULT DESC, CREATE_TIME DESC
+  </select>
+  
+  <!-- 根据id查询记录 -->
+  <select id="selectAddressById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+      SELECT
+          <include refid="Base_Column_List" />
+      FROM 
+          ADDRESS
+      WHERE
+          ID = #{id,jdbcType=BIGINT}
+          AND STATUS = 1
+  </select>
+  
+  <!-- 逻辑删除记录 -->
+  <update id="removeAddressById" parameterType="java.lang.Long">
+      UPDATE
+          ADDRESS
+      SET
+          STATUS = -1,
+          UPDATE_TIME = NOW()
+      WHERE
+          ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 用户默认收货地址查询 -->
+  <select id="selectDefaultAddress" resultMap="BaseResultMap" parameterType="java.lang.Long">
+      SELECT
+          <include refid="Base_Column_List"/>
+      FROM
+          ADDRESS
+      WHERE
+          USER_CODE = #{userId,jdbcType=BIGINT}
+          AND STATUS = 1
+          AND IS_DEFAULT = 1
+      LIMIT 1
+  </select>
+  
+  <!-- 更新收货地址的默认类型 -->
+  <update id="updateAddressDefaultType" parameterType="com.zjlp.face.web.server.user.user.domain.Address">
+      UPDATE
+          ADDRESS
+      SET
+          IS_DEFAULT = #{isDefault,jdbcType=INTEGER},
+          UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+      WHERE
+          ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="selectMaxSortByUserId" parameterType="java.lang.Long" resultType="java.lang.Integer">
+      SELECT
+          MAX(sort)
+      FROM
+          ADDRESS 
+      WHERE
+          USER_CODE = #{userId,jdbcType=BIGINT}
+          AND STATUS = 1
+  </select>
+</mapper>

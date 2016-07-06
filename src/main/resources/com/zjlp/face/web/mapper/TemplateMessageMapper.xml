@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.TemplateMessageMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.user.weixin.domain.TemplateMessage" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="SHOP_NO" property="shopNo" jdbcType="VARCHAR" />
+    <result column="TEMPLATE_ID" property="templateId" jdbcType="VARCHAR" />
+    <result column="APP_ID" property="appId" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="INTEGER" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, SHOP_NO, TEMPLATE_ID, APP_ID, TYPE, STATUS, CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from template_message
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="getTemplateMessageCountByShopNo" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    select 
+    count(ID)
+    from template_message
+    where SHOP_NO = #{shopNo, jdbcType=VARCHAR}
+  </select>
+  <select id="getTemplateMessage" resultMap="BaseResultMap" parameterType="com.zjlp.face.web.server.user.weixin.domain.TemplateMessage" >
+    select 
+    <include refid="Base_Column_List" />
+    from template_message
+    <where>
+    	<if test="null != id">
+    		and ID = #{id,jdbcType=BIGINT}
+    	</if>
+    	<if test="null != shopNo">
+    		and SHOP_NO = #{shopNo, jdbcType=VARCHAR}
+    	</if>
+    	<if test="null != type">
+    		and TYPE = #{type, jdbcType=INTEGER}
+    	</if>
+    	<if test="null != status">
+    		and STATUS = #{status, jdbcType=INTEGER}
+    	</if>
+    </where>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from template_message
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.user.weixin.domain.TemplateMessage" >
+  	<selectKey keyProperty="id" resultType="long" order="AFTER">  
+        SELECT LAST_INSERT_ID();  
+    </selectKey> 
+    insert into template_message (ID, SHOP_NO, TEMPLATE_ID, 
+      APP_ID, TYPE, STATUS, 
+      CREATE_TIME, UPDATE_TIME)
+    values (#{id,jdbcType=BIGINT}, #{shopNo,jdbcType=VARCHAR}, #{templateId,jdbcType=VARCHAR}, 
+      #{appId,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.user.weixin.domain.TemplateMessage" >
+  	<selectKey keyProperty="id" resultType="long" order="AFTER">  
+        SELECT LAST_INSERT_ID();  
+    </selectKey> 
+    insert into template_message
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="shopNo != null" >
+        SHOP_NO,
+      </if>
+      <if test="templateId != null" >
+        TEMPLATE_ID,
+      </if>
+      <if test="appId != null" >
+        APP_ID,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="shopNo != null" >
+        #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="templateId != null" >
+        #{templateId,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null" >
+        #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.user.weixin.domain.TemplateMessage" >
+    update template_message
+    <set >
+      <if test="shopNo != null" >
+        SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="templateId != null" >
+        TEMPLATE_ID = #{templateId,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null" >
+        APP_ID = #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <where>
+	   	<if test="null != id">
+	   		and ID = #{id,jdbcType=BIGINT}
+	   	</if>
+	   	<if test="null != shopNo">
+	   		and SHOP_NO = #{shopNo,jdbcType=VARCHAR}
+	   	</if>
+	   	<if test="null != type">
+	   		and TYPE = #{type,jdbcType=INTEGER}
+	   	</if>
+	   	
+   </where>
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.user.weixin.domain.TemplateMessage" >
+    update template_message
+    set SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      TEMPLATE_ID = #{templateId,jdbcType=VARCHAR},
+      APP_ID = #{appId,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=INTEGER},
+      STATUS = #{status,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

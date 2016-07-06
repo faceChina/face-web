@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.ImFriendsMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.product.im.domain.ImFriends" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="IM_USER_ID" property="imUserId" jdbcType="BIGINT" />
+    <result column="FRIEND_ID" property="friendId" jdbcType="BIGINT" />
+    <result column="FRIEND_NAME" property="friendName" jdbcType="VARCHAR" />
+    <result column="IM_GROUP_ID" property="imGroupId" jdbcType="BIGINT" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <resultMap type="com.zjlp.face.web.server.product.im.domain.dto.ImFriendsDto" id="DtoResultMap" extends="BaseResultMap">
+  	<result column="USER_NAME" property="friendsUserName" jdbcType="VARCHAR"/>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, IM_USER_ID, FRIEND_ID, FRIEND_NAME, IM_GROUP_ID, CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from im_friends
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectListByUserId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from im_friends
+    where IM_USER_ID = #{userId,jdbcType=BIGINT}
+  </select>
+  
+  <select id="selectListDtoByUserId" resultMap="DtoResultMap" parameterType="java.lang.Long" >
+    SELECT IFS.IM_USER_ID,IFS.FRIEND_ID,
+		CASE WHEN IFS.FRIEND_NAME != '' THEN IFS.FRIEND_NAME
+			WHEN IU.NICKNAME != '' THEN IU.NICKNAME
+			ELSE U.NICKNAME END FRIEND_NAME,
+		IU.USER_NAME,IFS.CREATE_TIME 
+	FROM IM_FRIENDS IFS 
+	LEFT JOIN IM_USER IU ON IFS.FRIEND_ID = IU.ID
+	LEFT JOIN USER U ON IU.REMOTE_ID = U.ID
+		    WHERE IM_USER_ID  = #{userId,jdbcType=BIGINT}
+		    ORDER BY IFS.CREATE_TIME DESC;
+  </select>
+  
+  <select id="selectCountByFriends" resultType="java.lang.Integer" parameterType="com.zjlp.face.web.server.product.im.domain.ImFriends">
+  	select count(id) from im_friends where IM_USER_ID = #{imUserId,jdbcType=BIGINT} and FRIEND_ID = #{friendId,jdbcType=BIGINT}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from im_friends
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByUserId" parameterType="java.lang.Long" >
+    delete from im_friends
+    where IM_USER_ID = #{imUserId,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterType="com.zjlp.face.web.server.product.im.domain.ImFriends" >
+      <selectKey keyProperty="id" resultType="long" order="AFTER">  
+        SELECT LAST_INSERT_ID();  
+    </selectKey> 
+    insert into im_friends (ID, IM_USER_ID, FRIEND_ID, 
+      FRIEND_NAME, IM_GROUP_ID, CREATE_TIME, 
+      UPDATE_TIME)
+    values (#{id,jdbcType=BIGINT}, #{imUserId,jdbcType=BIGINT}, #{friendId,jdbcType=BIGINT}, 
+      #{friendName,jdbcType=VARCHAR}, #{imGroupId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.product.im.domain.ImFriends" >
+      <selectKey keyProperty="id" resultType="long" order="AFTER">  
+        SELECT LAST_INSERT_ID();  
+    </selectKey> 
+    insert into im_friends
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="imUserId != null" >
+        IM_USER_ID,
+      </if>
+      <if test="friendId != null" >
+        FRIEND_ID,
+      </if>
+      <if test="friendName != null" >
+        FRIEND_NAME,
+      </if>
+      <if test="imGroupId != null" >
+        IM_GROUP_ID,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="imUserId != null" >
+        #{imUserId,jdbcType=BIGINT},
+      </if>
+      <if test="friendId != null" >
+        #{friendId,jdbcType=BIGINT},
+      </if>
+      <if test="friendName != null" >
+        #{friendName,jdbcType=VARCHAR},
+      </if>
+      <if test="imGroupId != null" >
+        #{imGroupId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.product.im.domain.ImFriends" >
+    update im_friends
+    <set >
+      <if test="imUserId != null" >
+        IM_USER_ID = #{imUserId,jdbcType=BIGINT},
+      </if>
+      <if test="friendId != null" >
+        FRIEND_ID = #{friendId,jdbcType=BIGINT},
+      </if>
+      <if test="friendName != null" >
+        FRIEND_NAME = #{friendName,jdbcType=VARCHAR},
+      </if>
+      <if test="imGroupId != null" >
+        IM_GROUP_ID = #{imGroupId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.product.im.domain.ImFriends" >
+    update im_friends
+    set IM_USER_ID = #{imUserId,jdbcType=BIGINT},
+      FRIEND_ID = #{friendId,jdbcType=BIGINT},
+      FRIEND_NAME = #{friendName,jdbcType=VARCHAR},
+      IM_GROUP_ID = #{imGroupId,jdbcType=BIGINT},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="countIsFriend" resultType="java.lang.Integer">
+  	SELECT
+		COUNT(1)
+	FROM
+		view_ofroster
+	WHERE
+		username = #{loginAccount}
+	AND
+	 jid LIKE CONCAT("", #{toFindLoginAccount},'%' )  
+	AND sub = 3
+  </select>
+</mapper>

@@ -1,0 +1,364 @@
+@charset "utf-8";
+/*  
+* @description: MiniBossir后台  
+* @author:  
+* @update:
+*/
+/*左侧导航条*/
+.sidebar>li:first-child i{
+	background-position: -136px 0;/*我的管家*/
+}
+.sidebar>li:nth-child(2) i{
+	background-position: 0 0;/*账户管理*/
+}
+.sidebar>li:nth-child(3)  i{
+	background-position: -160px 0;	/*我的钱包*/
+}
+.sidebar>li:nth-child(4)  i{
+	background-position: -24px 0;	/*微站管理*/
+}
+.sidebar>li:nth-child(5)  i{
+	background-position: -205px -24px;	/*我的名片*/
+}
+.sidebar>li:nth-child(6)  i{
+	background-position: -205px 0;/*我要推荐*/
+}
+.sidebar>li:nth-child(7)  i{
+	background-position: -228px -24px;/*好友圈*/
+}
+.sidebar>li:nth-child(8)  i{
+	background-position: -114px 0;/*回复管理*/
+}
+/*IE8*/
+.sidebar>li:first-child +li i{
+	background-position: 0 0;
+}
+.sidebar>li:first-child +li+li i{
+	background-position: -160px 0;	
+}
+.sidebar>li:first-child +li+li+li i{
+	background-position: -24px 0;	
+}
+.sidebar>li:first-child +li+li+li+li i{
+	background-position: -205px -24px;;	
+}
+.sidebar>li:first-child +li+li+li+li+li i{
+	background-position: -205px 0;
+}
+.sidebar>li:first-child +li+li+li+li+li+li i{
+	background-position: -228px -24px;
+}
+.sidebar>li:first-child +li+li+li+li+li+li+li i{
+	background-position: -114px 0;
+}
+/*IE8 end*/
+
+.color-danger,.color-danger a{
+	color: #cc0033;
+}
+/*  
+* @description: MiniBossir后台  
+* @author:  wmm
+* @update:
+*/
+
+/* 公共样式 */
+.form-line{
+	line-height: 34px;
+}
+.cursor{
+	cursor: pointer;
+}
+
+/* 覆写bootstrap thumbnail排列 */
+.thumbnail{
+	border-radius:0;
+	padding:0;
+}
+.thumbnail h3{
+	height:40px;
+	overflow:hidden;
+	margin-bottom: 10px;
+	font-size: 14px;
+	word-break:break-all;
+	line-height: 1.4em;
+}
+.thumbnail p{
+	color: #999;
+	margin-bottom: 5px;
+	padding: 0;
+}
+/* 商品排列 */
+.thumbnail-goods{
+	height:370px;
+	border: 1px solid #ddd;
+}
+.thumbnail-goods:hover{
+	border:1px solid #aaa;
+	background:#f8f8f8;
+}
+.thumbnail-goods .goodsimg{
+	width: 100%;
+	text-align: center;
+}
+.thumbnail-goods .goodsimg a{
+	display:block;
+}
+.thumbnail-goods .caption strong{
+	font:18px/1.5 arial,tahoma,'Hiragino Sans GB',\5b8b\4f53,sans-serif;
+}
+/* 商品详情排列 */
+.thumbnail-details {
+	border: none;
+	padding: 0;
+}
+.thumbnail-details h3{
+	font-weight:bold;
+}
+.thumbnail-details strong{
+	display: block;
+	margin: 5px 0;
+}
+.thumbnail-details .goodsimg{
+	width: 240px;
+	height: 240px;
+	padding: 5px;
+	border: 1px solid #ccc;
+	margin: 0 auto;
+}
+.thumbnail-details small{
+	display: block;
+	margin-bottom: 20px;
+}
+.box .content-details{
+	padding: 15px 28px;
+}
+.content-details .detailsimg img{
+	width: 100%;
+}
+.content-details .caption strong{
+	font:18px/1.5 arial,tahoma,'Hiragino Sans GB',\5b8b\4f53,sans-serif;
+}
+
+/* 文本输入框 */
+.texttarea-def{
+	width: 100%;
+	min-height: 100px;
+	padding: 10px;
+	background: #efefef;
+	border: 1px solid #cbcbcb;
+	margin: 20px 0;
+}
+.texttarea-def textarea{
+	width: 100%;
+}
+.texttarea-def strong{
+	width: 100%;
+	text-align: right;
+	display: block;
+	margin-bottom: 10px;
+	color: #999;
+	font-weight: normal;
+}
+.texttarea-def .text-right{
+	margin-top:10px;	
+}
+
+.recommend-texttarea{
+
+}
+
+#j-addToPro .tab-title{
+	border-bottom: 1px solid #ccc;
+	padding: 0 10px 10px;
+	line-height: 31px;
+}
+/*  
+* @description: MiniBossir后台  
+* @author:  sf
+* @update:
+*/
+ .card-info{
+	padding:20px;
+	border:1px solid #d0d0d0;
+	text-align:center; 
+}
+.card-info p{
+	font-size:4em;
+	font-weight:bolder;
+}
+.table-noborder .help-blcok{
+	margin-top:120px;
+	margin-left:10px;
+}
+.friends{
+	margin-top:10px;
+}
+.friends li{
+	display:inline-block;
+	width:112px;
+	height:112px;
+	overflow:hidden;
+	padding:5px;
+	border:1px solid #d0d0d0;
+	position:relative;
+}
+.friends li em{
+	width:24px;
+	height:24px;
+	overflow:hidden;
+	background:#000;
+	color:#fff;
+	font-style: normal;
+	text-align:center;
+	font-weight:bold;
+	line-height:24px;
+	opacity:0.8;
+	position:absolute;
+	top:0;
+	right:0;
+	cursor:pointer;
+}
+.friends li em:hover{
+	background:#E52141;
+}
+.friends li.friends-upload{}
+.friends li.friends-upload:hover{
+	border:1px dashed #E52141;
+}
+.friends li.friends-upload b{
+	display:block;
+	text-align:center;
+	font-size:60px;
+}
+.friends li.friends-upload:hover b{
+	color:#E52141;
+}
+.friends li.friends-upload span{
+	display:block;
+	text-align:center;
+	line-height:0;
+}
+.friends li.friends-upload input{
+	width:200px;
+	height:200px;
+	position:absolute;
+	top:0;
+	left:0;
+	opacity:0;
+	z-index:9;
+	cursor:pointer;
+}
+.friends-cont{
+	margin:20px 0;
+	background:#efefef;
+	border:1px solid #d0d0d0;
+}
+.friends-cont h4{
+	text-align:right;
+	line-height:35px;
+	padding-right:15px;
+}
+.friends-cont p{
+	margin:0 10px 10px 10px;
+	padding:10px 0 0 10px;
+	height:150px;
+	background:#fff;
+}
+/* .friends-circle{
+	width:94%;
+	margin:10px auto 0;
+	cursor:pointer;
+}
+.friends-circle p{
+	line-height:25px;
+}
+.friends-circle p span{
+	padding-right:10px;
+}
+.friends-circle small,
+.friends-infor p small{
+	color:#787878;
+} 
+.friends-infor{
+	width:94%;
+	margin:20px auto;
+	background:#efefef;
+	border:1px solid #d0d0d0;
+	cursor:pointer;
+}
+.friends-infor p{
+	padding:10px 10px 0;
+}
+.friends-infor .text-right{
+	margin:10px 10px 10px 0;
+}*/
+.friends-msg{
+	margin-right: 25px;
+	margin-left: 25px;
+	font-size:12px;
+}
+.friends-msg dt{
+	width:100%;
+	height:22px;
+	overflow:hidden;
+	font-size:12px;
+	font-weight:normal;
+	line-height:22px;
+}
+.friends-msg dt small{
+	float:left;
+	display:inline;
+	color:#999;
+}
+.friends-msg dt span{
+	float:right;
+	display:inline;
+	cursor:pointer;
+}
+.friends-msg dd{
+	line-height:22px;
+}
+
+.friends-reply{
+	background:#EFEFEF;
+	border:1px solid #ccc;
+	padding:10px;
+	margin:10px 0;
+}
+.friends-reply dl{
+	border-bottom:1px dashed #ccc;
+	padding:6px 0;
+}
+.friends-reply dt{
+}
+.friends-reply dd{}
+.friends-reply-more{
+	padding-left:24px;
+}
+.friends-textarea{
+	margin-top:10px;
+}
+.friends-textarea .text-right{
+	margin-top:10px;
+}
+.friends-reply strong:hover,
+.friends-reply span:hover{
+	cursor: pointer;
+}
+.friends-reply dd span{
+	display: none;
+	padding: 0 10px;
+	float: right;
+	background-color: #ddd;
+}
+.friends-reply p:hover span,.friends-reply-more:hover span{
+	display: inline-block;
+}
+.friends-reply .onoff{
+
+}
+.friends-reply .message{
+	max-height: 300px;
+	overflow: auto;
+}

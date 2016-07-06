@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.AppCustomerGroupRelationMapper">
+	<resultMap id="BaseResultMap" type="com.zjlp.face.web.server.user.customer.domain.AppCustomerGroupRelation">
+		<id column="ID" property="id" jdbcType="BIGINT" />
+		<result column="TYPE" property="type" jdbcType="INTEGER" />
+		<result column="FRIEND_ID" property="friendId" jdbcType="BIGINT" />
+		<result column="CUSTOMER_ID" property="customerId" jdbcType="BIGINT" />
+		<result column="GROUP_ID" property="groupId" jdbcType="BIGINT" />
+		<result column="GROUP_NAME" property="groupName" jdbcType="VARCHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, TYPE, FRIEND_ID, CUSTOMER_ID, GROUP_ID,GROUP_NAME, CREATE_TIME, UPDATE_TIME
+	</sql>
+	<resultMap  id="BaseResultMapDto" type="com.zjlp.face.web.server.user.customer.domain.vo.AppCustomerGroupRelationVo">
+	    <result column="USER_ID" property="userId" jdbcType="BIGINT" />
+	</resultMap>
+	
+	<insert id="insertGroup" parameterType="com.zjlp.face.web.server.user.customer.domain.AppCustomerGroupRelation">
+	   <selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+      </selectKey>
+		INSERT INTO app_customer_group_relation 
+		   (TYPE,FRIEND_ID,CUSTOMER_ID,GROUP_ID,GROUP_NAME,CREATE_TIME,UPDATE_TIME)
+		VALUES (
+		  #{type,jdbcType=INTEGER},
+		  #{friendId,jdbcType=BIGINT},
+		  #{customerId,jdbcType=BIGINT},
+		  #{groupId,jdbcType=BIGINT},
+		  #{groupName,jdbcType=VARCHAR},
+		  #{createTime,jdbcType=TIMESTAMP},
+		  #{updateTime,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	
+	<select id="selectAppGroupRelationShipById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+	 SELECT 
+	 <include refid="Base_Column_List" />
+	 FROM app_customer_group_relation
+	 WHERE ID = #{id,jdbcType=BIGINT}
+	</select>
+	
+	<select id="selectCustomerGroups" resultMap="BaseResultMap" parameterType="java.lang.Long">
+	  SELECT ID,GROUP_NAME
+	  FROM app_customer_group_relation
+	  WHERE CUSTOMER_ID = #{customerId,jdbcType=BIGINT}
+	  AND TYPE = 0
+	</select>
+	
+	<select id="selectRelationByUserIdAndGrpId" resultMap="BaseResultMap" parameterType="com.zjlp.face.web.server.user.customer.domain.AppCustomerGroupRelation">
+	  SELECT 
+      <include refid="Base_Column_List" />
+       FROM app_customer_group_relation 
+       WHERE 1=1 
+       <if test="customerId != null">
+        AND CUSTOMER_ID = #{customerId,jdbcType=BIGINT}
+       </if>
+       <if test="friendId != null">
+        AND FRIEND_ID = #{friendId,jdbcType=BIGINT}
+       </if>
+       AND GROUP_ID = #{groupId,jdbcType=BIGINT}
+       AND TYPE = #{type,jdbcType=INTEGER}
+	</select>
+	
+	<delete id="deletedByPrimarykey" parameterType="java.lang.Long">
+	  DELETE FROM app_customer_group_relation WHERE ID =#{primarykey,jdbcType=BIGINT}
+	</delete>
+	
+	<delete id="deleteByGroupId" parameterType="java.util.Map">
+	  DELETE FROM app_customer_group_relation  WHERE GROUP_ID = #{groupId,jdbcType=BIGINT}
+	  <if test="type != null">
+	    AND TYPE = #{type,jdbcType=INTEGER}
+	  </if>
+	</delete>
+	
+	<update id="updateAppGroupRelationShip" parameterType="com.zjlp.face.web.server.user.customer.domain.AppCustomerGroupRelation">
+	 UPDATE app_customer_group_relation
+	   <set>
+	     <if test=" type != null">
+	       TYPE = #{type,jdbcType=INTEGER},
+	     </if>
+	     <if test="friendId != null">
+	       FRIEND_ID = #{friendId,jdbcType=BIGINT},
+	     </if>
+	     <if test="customerId != null">
+	       CUSTOMER_ID = #{customerId,jdbcType=BIGINT},
+	     </if>
+	     <if test="groupId != null">
+	       GROUP_ID = #{groupId,jdbcType=BIGINT},
+	     </if>
+	     <if test="groupName != null">
+	       GROUP_NAME =  #{groupName,jdbcType=VARCHAR},
+	     </if>
+	     <if test="createTime != null">
+	       CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+	     </if>
+	     <if test="updateTime != null">
+	       UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+	     </if>
+	   </set>
+	   WHERE ID = #{id,jdbcType=BIGINT}
+	</update>
+	
+	<select id="selectUserIsInGroup" resultMap="BaseResultMapDto" parameterType="com.zjlp.face.web.server.user.customer.domain.vo.AppCustomerGroupRelationVo">
+	   SELECT 
+	       cr.ID AS ID
+	       FROM app_customer_group_relation cr
+           INNER JOIN app_group ag ON (ag.ID = cr.GROUP_ID)
+           <if test="groupId != null">
+           AND cr.GROUP_ID  = #{groupId,jdbcType=BIGINT}
+           </if>
+           WHERE  1= 1
+           <if test="type == 0">
+           AND cr.CUSTOMER_ID =  #{customerId,jdbcType=BIGINT}
+           </if> 
+           <if test="type == 1">
+           AND cr.FRIEND_ID =  #{friendId,jdbcType=BIGINT}
+           </if> 
+           AND ag.USER_ID  =  #{userId,jdbcType=BIGINT}
+           AND cr.TYPE = #{type,jdbcType=INTEGER}
+	</select>
+	
+</mapper>

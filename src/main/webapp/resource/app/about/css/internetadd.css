@@ -1,0 +1,60 @@
+@charset "utf-8";
+/*  
+* @description:账户中心
+* @author:lmy
+* @update:
+*/
+html{
+	font-size: 10px;
+}
+.d-content{
+	float: left;
+	width: 100%;
+}
+.d-content dl{
+	float: left;
+	width: 100%;
+	margin-bottom: 0.6rem;
+	background: #fff;
+	padding: 0.8rem 0 0.5rem;
+}
+
+.d-content dl dt{
+	width: 4rem;
+	height: 4rem;
+	float: left;
+	margin:0 1rem 0 0.5rem;
+}
+.d-content dl dd{
+  line-height: 1rem;
+  color: #999;
+  font-size: 0.7rem;
+  font-family: 微软雅黑;
+}
+.d-content dl dd.d-title{
+	padding-bottom: 0.2rem;
+	font-size: 0.9rem;
+	color: #000;
+	font-family: 微软雅黑;
+	color: #333;
+}
+.d-content dl dt a{
+	width: 100%;
+	height: 100%;
+	line-height: 100%;
+	display: inline-block;
+	text-align: center;
+	margin-left: 5%;
+	overflow: hidden;
+}
+.d-content dl dt a img{
+	max-width: 100%;
+}
+.d-content dl dd a.goshoup{
+	float: right;
+	margin-right: 1rem;
+	border: 1px solid #09bb07;
+	color: #09bb07;
+	padding:2px 8px 3px 10px;
+	border-radius: 4px;
+}

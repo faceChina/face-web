@@ -1,0 +1,370 @@
+/*  
+* @description:CSS
+* @author: dhp
+* @update:
+*/
+
+/*  
+* @description:CSS
+* @author: sf
+* @update:
+*/
+.form-select select, .form-select-san select{
+	font-size:12px;	
+}
+
+/*  
+* @description:CSS
+* @author: wmm
+* @update:
+*/
+.list-inline img{
+	border-radius: 4px;
+}
+.list-row a:hover{
+	background-color: #fdfdfd;
+}
+.list-row .noborder{
+	border: 0;
+}
+
+.personal-iocn{
+	width: 40px;
+	height: 40px;
+	background: url(../img/personal-icon.png) no-repeat;
+	background-size: 100% auto;
+	display: block;
+	border-radius: 4px;
+}
+.personal-deal{
+	background-color: #e9535f;
+
+}
+.personal-subscribe{
+	background-color: #4bbfe6;
+	background-position: 0 -40px;
+}
+.personal-card{
+	background-color: #5c9bea;
+	background-position: 0 -80px;
+}
+.personal-wallet{
+	background-color: #5c9bea;
+	background-position: 0 -120px;
+}
+.personal-shop{
+	background-color: #f9684d;
+	background-position: 0 -160px;
+}
+.personal-safety{
+	background-color: #a1d267;
+	background-position: 0 -200px;
+}
+.personal-address{
+	background-color: #e7b222;
+	background-position: 0 -240px;
+}
+.back-btn{
+	text-align: center;
+	width: 100%;
+	font-size: 0;
+	margin-top: 12px;
+}
+.back-btn .btn{
+	min-width: 78px;
+	margin:0 8px;
+}
+
+.list-row-none{
+	background: transparent;
+}
+.amend-btn{
+	margin-top: 8px;
+}
+.amend-btn .btn{
+	margin-bottom: 12px;
+}
+.amend-btn .btn.btn-warning{
+	padding: 10px;
+}
+.head-pic{
+	text-align: center;
+}
+.head-pic{
+	margin:32px 0;
+}
+.head-pic img{
+	width: 100px;
+	height: 100px;
+	vertical-align: top;
+	border: 1px solid #ccc;
+
+}
+
+/* .group.active{ */
+/* 	border-image: url(../img/address-border.jpg) 4/2px round; */
+/* } */
+.group [data-address-phone]{
+	padding-left:15px;
+}
+/*收藏店铺*/
+.collect-goodsshop{
+	width: 100%;
+	height: 50px;
+	font-size: 15px;
+	margin-top: 10px;
+	border-top: 1px solid #ccc;
+}
+.collect-goodsshop a{
+	width: 50%;
+	height: 36px;
+	line-height: 36px;
+	float: left;
+	margin-top: 7px;
+	text-align: center;
+}
+.collect-goodsshop a.goodsshop-goods{
+	border-right: 1px solid #ccc;
+}
+.order-status{
+	width: 100%;
+	padding: 10px 0;
+	border-bottom: 1px solid #ccc;
+}
+.order-status a{
+	text-align: center;
+	display: inline-block;
+}
+.order-status a.o-s-daifukuan{
+	width: 31%;
+}
+
+.order-status a.o-s-daifahuo{
+	width: 33%;
+	padding: 6px 0;
+}
+.order-status a.o-s-daishouhuo{
+	width: 30%;
+}
+.order-status a i{
+	font-size: 26px;
+	color: #999;
+}
+.order-status a i.icon-daifukuan{
+	font-size: 23px;
+}
+.order-status a .status-font{
+	width: 100%;
+	display: inline-block;
+	text-align: center;
+	padding-top: 3px;
+}
+
+.span-icon{
+	position: relative;
+}
+.order-status a .status-num{
+    width: 17px;
+    height: 16px;
+    line-height: 16px;
+    padding: 0 2px;
+    background: #cc0001;
+    border-radius: 100%;
+    color: #fff;
+    font-size: 11px;
+    position: absolute;
+    top: -10px;
+    right: -5px;
+}
+.order-status .line{
+	width: 1px;
+	height: 32px;
+	border-left:1px solid #ccc;
+	display: inline-block;
+	position: relative;
+	top: -5px;
+}
+.btn-warning{
+	padding: 3px;
+}
+.all-order{
+	color: #999;
+}
+
+/*  
+* @description:CSS
+* @author: zzh
+* @update: 2015.09.18
+*/
+.personal-row {
+	font-size: 12px;
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+	margin-bottom: 10px;
+	background: #fff;
+}
+.noborder {
+	border: 0!important;
+}
+.personal-row .personal-center {
+	position: relative;
+	width: 100%;
+	background-image: url(../img/banner.jpg);
+	background-size: 100% 100%;
+	margin: 0;
+	color: #fff;
+	padding: 1rem 0 4.5rem;
+	font-size: 0.65rem;
+}
+.personal-row .list-col {
+	margin: 0 0 0 10px;
+	border: 0;
+	padding: 0;
+}
+.personal-row .list-col .list-inline:last-child {
+    margin-right: 0;
+    padding-right: 11px;
+}
+.personal-center a.head-pics {
+	border-radius: 100%;
+	border: 2px solid #fff !important;
+	padding: 0 !important;
+	overflow: hidden;
+}
+.personal-center .list-inline img {
+	border-radius: 100%;
+}
+.personal-info a {
+	display: inline-block;
+	width: 190px;
+	height: 24px;
+	color: #fff;
+	overflow: hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+}
+.personal-top-r{
+	display: -webkit-box;
+	-webkit-box-flex: 1;
+	margin-right: 10px;
+}
+.personal-set {
+	position: absolute;
+	top: -6px;
+	right: 0;
+	color: #fff;
+}
+.personal-qiandao {
+	position: absolute;
+	bottom: 6px;
+	right: 0;
+	padding: 0 9px;
+	border-radius: 3px;
+	color: #fff;
+	background: transparent;
+	border: 1px solid #fff;
+	
+}
+
+/*收藏店铺 new*/
+.j-collect-item {
+	display: table;
+	width: 100%;
+}
+.j-collect-item .j-collect-item-list {
+    display: table-cell;
+    width: 1%;
+    color: #000;
+    text-align: center;
+}
+.j-collect-item.j-collect-goodsshop {
+	position: absolute;
+	bottom: 0px;
+}
+.j-collect-item-list.goodsshop-goods, .j-collect-item-list.goodsshop-shop {
+	width: 49.8%;
+	padding: 6px 0 8px;
+	font-size: 12px;
+    color: #fff;
+	border-bottom: 1px solid #999;
+    background: rgba(0,0,0,.25);
+}
+.j-collect-item-list.goodsshop-goods p, 
+.j-collect-item-list.goodsshop-shop p {
+	line-height: 20px;
+}
+.j-order-status {
+	border-top: 1px solid #ddd;
+	padding: 5px 0 10px;
+}
+.j-order-status .iconfont {
+	color: #999;
+}
+.j-order-status .status-num{
+	width: 17px;
+	height: 16px;
+	line-height: 16px;
+	background: #e62929;
+	border-radius: 100%;
+	color: #fff;
+	font-size: 11px;
+	position: absolute;
+	top: -9px;
+	right: -7px;
+}
+.personal-row .list-col .list-inline {
+	border-bottom: 1px solid #ddd;
+	padding: 4px 0;
+}
+.personal-row .list-col .list-inline:first-child {
+	border: 0;
+	margin-right: 10px;
+}
+.member-integral {
+	color: #999;
+}
+.member-integral .icon-dian {
+	color: #e62929;
+}
+.clr-333 {
+	color: #333;
+}
+
+/* 分享箭头指向 */
+.personal-share-arrow {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.8);
+	z-index: 99;
+}
+.personal-share-set {
+    text-align: right;
+    margin: 14px 7px 2px 0;
+}
+.personal-share-set img {
+	border-radius: 100%;
+}
+.personal-share-prompt {
+	color: #fff;
+	font-size: 16px;
+	/*margin-left: 40px;*/
+	width: 240px;
+	margin: 0 auto;
+	line-height: 22px;
+}
+.personal-clr-yellow {
+	color: #ffd801;
+}
+.personal-share-btn {
+	margin-top: 13px;
+}
+.personal-share-btn .btn {
+	padding: 2px 14px;
+	border-radius: 15px;
+	border: 1px solid #fff;
+	color: #fff;
+	background-color: transparent;
+}

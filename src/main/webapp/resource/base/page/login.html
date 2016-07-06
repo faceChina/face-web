@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no" name="format-detection" />
+<title>用户登录</title>
+<script type="text/javascript" src="top.js"></script>
+<link rel="stylesheet" type="text/css"	href="../css/main.css">
+</head>
+<body>
+
+<div class="login">
+
+	<div class="login-pic"><img src="../img/login-pic.jpg"/></div>
+	
+	<form method="post"  id="jform" action="javascript:void(0);" data-form>
+	
+		<div class="list-row list-row-width">
+			<div class="list-col">
+				<div class="list-inline">账户</div>
+				<div class="list-inline box-flex">
+					<input type="text" class="form-control" placeholder="请输入注册时的手机号码" id="username" name="username" data-form-control/>
+				</div>
+			</div>
+			<div class="list-col">
+				<div class="list-inline">密码</div>
+				<div class="list-inline box-flex">
+					<input type="password" class="form-control" placeholder="请输入您的密码" id="password" name="password" data-form-control/>
+				</div>
+			</div>
+		</div>
+		
+		<div class="button">
+			<button type="submit" class="btn btn-danger btn-block" data-submit onclick="toLogin()">登录</button>
+		</div>
+		
+		<div class="button">
+			<a href="register.html" class="btn btn-link clr-light fnt-16">快速注册</a>
+			<a href="password-find.html" class="btn btn-link right clr-light fnt-16">找回密码</a>
+		</div>
+		
+	</form>
+	
+</div>
+
+<script type="text/javascript">
+	$("#jform").validate({
+		rules:{
+			username:{
+				required:true
+			},
+			password:{
+				required:true
+			}
+		},
+		messages:{
+			username : {
+				required : "请输入用户名"
+			},
+			password : {
+				required : "请输入密码"
+			}
+		}
+	});
+	
+	//静态页面专用 模拟账户登录
+	function toLogin(){
+		var username=$('#username').val();
+		if(username=='1'){
+			sessionStorage.user=1;
+			location.href="../../template/page/shop2/index.html";
+		}else if(username=='2'){
+			sessionStorage.user=2;
+			location.href="../../template/page/shop2/index.html";
+		}else{
+			location.href="../../template/page/shop2/index.html";
+		}
+	};
+	
+	
+	
+</script>
+</body>
+</html>

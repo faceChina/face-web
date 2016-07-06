@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.AppCustomerMapper">
+	<resultMap id="BaseResultMap" type="com.zjlp.face.web.server.user.customer.domain.AppCustomer">
+		<id column="ID" property="id" jdbcType="BIGINT" />
+		<result column="TYPE" property="type" jdbcType="INTEGER" />
+		<result column="USER_ID" property="userId" jdbcType="BIGINT" />
+		<result column="CUSTOMER_ID" property="customerId" jdbcType="BIGINT" />
+		<result column="CUSTOMER_NAME" property="customerName" jdbcType="VARCHAR" />
+		<result column="REMARK_NAME" property="remarkName" jdbcType="VARCHAR" />
+		<result column="REMARK" property="remark" jdbcType="LONGVARCHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<resultMap id="myCustomerDto" extends="BaseResultMap" type="com.zjlp.face.web.server.user.customer.domain.vo.MyCustomerVo" >
+	    <result column="HEADIMGURL" property="hearderPicture" jdbcType="VARCHAR" />
+	    <result column="TRADE_NO" property="tradeNo" jdbcType="INTEGER" />
+	    <result column="STATUS" property="status" jdbcType="INTEGER"/>
+	    <result column="PAY_PRICE" property="payPrice" jdbcType="BIGINT" />
+	    <result column="POST_FEE" property="postFree" jdbcType="BIGINT" />
+	    <result column="SUBBRANCH_ID" property="subbranchId" jdbcType="BIGINT" />
+	    <result column="SHOP_NO" property="shopNo" jdbcType="VARCHAR" />
+	    <result column="LATEST_TIME" property="latestTime" jdbcType="TIMESTAMP" />
+	    <result column="CUSTOMER_QUANTITY" property="customerQuantity" jdbcType="VARCHAR" />
+	     <result column="CELL" property="cell" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, TYPE, USER_ID, CUSTOMER_ID, CUSTOMER_NAME, REMARK_NAME, REMARK,CREATE_TIME, UPDATE_TIME
+	</sql>
+
+	<insert id="insert" parameterType="com.zjlp.face.web.server.user.customer.domain.AppCustomer">
+		<selectKey keyProperty="id" resultType="java.lang.Long" order="AFTER">
+			SELECT
+			LAST_INSERT_ID();
+		</selectKey>
+		INSERT INTO app_customer (TYPE, USER_ID, CUSTOMER_ID, CUSTOMER_NAME, REMARK_NAME ,REMARK, CREATE_TIME, UPDATE_TIME)
+		VALUES (
+		#{type,jdbcType=INTEGER},
+		#{userId,jdbcType=BIGINT},
+		#{customerId,jdbcType=BIGINT},
+		#{customerName,jdbcType=VARCHAR},
+		#{remarkName,jdbcType=VARCHAR},
+		#{remark,jdbcType=LONGVARCHAR},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{updateTime,jdbcType=TIMESTAMP}
+		)
+	</insert>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		DELETE FROM
+		app_customer
+		WHERE ID = #{id,jdbcType=BIGINT}
+	</delete>
+
+	<update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.user.customer.domain.AppCustomer">
+	  UPDATE
+	   app_customer
+	   <set>
+		<if test="userId != null">
+		  USER_ID = #{userId,jdbcType=BIGINT},
+		</if>
+		<if test="customerId != null">
+		  CUSTOMER_ID = #{customerId,jdbcType=BIGINT},
+		</if>
+		<if test="customerName != null">
+		  CUSTOMER_NAME = #{customerName,jdbcType=VARCHAR},
+		</if>
+		<if test="remarkName != null">
+		  REMARK_NAME = #{remarkName,jdbcType=VARCHAR},
+		</if>
+		<if test="remark != null">
+		  REMARK = #{remark,jdbcType=LONGVARCHAR},
+		</if>
+		<if test="createTime != null">
+		  CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+		</if>
+		<if test="updateTime != null">
+		  UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+		</if>
+	  </set> 
+	  WHERE ID = #{id,jdbcType=BIGINT}
+	  <if test="type != null">
+	  AND TYPE = #{type,jdbcType=INTEGER}
+	  </if>
+	</update>
+
+	<select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM app_customer
+		WHERE USER_ID = #{userId,jdbcType=BIGINT}
+	</select>
+	
+	<select id="selectUngroupCustomer" resultMap="BaseResultMap" parameterType="java.util.Map">
+	  SELECT 
+        ac.ID AS ID,
+        ac.CUSTOMER_ID AS CUSTOMER_ID,
+        ac.CUSTOMER_NAME AS CUSTOMER_NAME,
+        ac.REMARK_NAME as REMARK_NAME
+      FROM
+        app_customer ac 
+        WHERE ac.USER_ID = #{userId,jdbcType=BIGINT}
+        AND ac.ID NOT IN (SELECT cg.CUSTOMER_ID FROM app_customer_group_relation cg WHERE cg.CUSTOMER_ID IS NOT NULL)
+        AND ac.TYPE = #{type,jdbcType=INTEGER} 
+	</select>
+	
+	<select id="selectByUserIdAndCutsomerId" resultMap="BaseResultMap" parameterType="java.util.Map">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM app_customer
+		WHERE USER_ID = #{userId,jdbcType=BIGINT}
+		AND CUSTOMER_ID = #{customerId,jdbcType=BIGINT}
+		AND TYPE = 0
+	</select>
+	
+	<select id="selectByPrimarykeyAndUserId" resultMap="BaseResultMap" parameterType="java.util.Map">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM app_customer
+		WHERE ID = #{id,jdbcType=BIGINT}
+		AND USER_ID = #{userId,jdbcType=BIGINT}
+		<if test="type != null">
+	     AND TYPE = #{type,jdbcType=INTEGER}
+	    </if>
+	</select>
+	
+	<select id="selectCurrentGroupCustomers" resultMap="BaseResultMap" parameterType="java.util.Map">
+	 SELECT 
+	   <if test="type == 0">
+	   co.ID AS ID,
+	   gr.USER_ID  AS USER_ID,
+       co.CUSTOMER_ID AS CUSTOMER_ID,
+       co.CUSTOMER_NAME AS CUSTOMER_NAME
+	   </if>
+	   <if test="type == 1">
+	   us.ID AS ID,
+	   us.ID AS USER_ID,
+	   us.ID AS CUSTOMER_ID,
+       us.NICKNAME AS CUSTOMER_NAME
+	   </if>
+     FROM app_customer_group_relation  cr
+     <if test="type == 0">
+     INNER JOIN app_customer co ON (co.ID = cr.CUSTOMER_ID AND co.TYPE = #{type,jdbcType=INTEGER}) 
+     </if>
+     <if test="type == 1">
+      INNER JOIN USER us ON (FRIEND_ID = us.ID)
+     </if>
+     AND cr.GROUP_ID = #{groupId,jdbcType=BIGINT}
+     INNER JOIN app_group gr ON (gr.ID = cr.GROUP_ID AND gr.TYPE = #{type,jdbcType=INTEGER})
+     WHERE gr.USER_ID = #{userId,jdbcType=BIGINT}
+	 AND cr.TYPE = #{type,jdbcType=INTEGER}
+	</select>
+	
+	<sql id="fromCluase">
+	   <choose>
+       <when test="shopType == 1">
+       SELECT
+         ac.CUSTOMER_ID AS CUSTOMER_ID, 
+	     us.HEADIMGURL AS HEADIMGURL, 
+	     IFNULL(ac.CUSTOMER_NAME, us.NICKNAME) AS CUSTOMER_NAME,
+	     us.CELL AS CELL,
+         COUNT(so.ORDER_NO)  AS TRADE_NO, 
+         MAX(so.ORDER_TIME)   AS LATEST_TIME, 
+	     IFNULL(SUM(so.PAY_PRICE),0) AS PAY_PRICE
+	   FROM app_customer ac
+	     INNER JOIN USER AS us ON (ac.CUSTOMER_ID = us.ID)
+         INNER JOIN sales_order AS so ON(so.USER_ID = ac.CUSTOMER_ID) 
+         AND  so.SHOP_NO = (SELECT sh.NO FROM SHOP sh  WHERE USER_ID = #{userId,jdbcType=BIGINT} AND sh.STATUS IN (1,3))
+	     AND  so.STATUS IN (01, 02, 03, 05, 10 ,30)
+	     AND  so.ORDER_CATEGORY IN (1,4)
+         WHERE 
+             ac.USER_ID =  #{userId,jdbcType=BIGINT}
+             <if test="customerName != null">
+                 AND us.NICKNAME like concat('%',#{customerName},'%')
+             </if>
+         GROUP BY so.USER_ID
+         ORDER BY
+          <choose>
+	      <when test="orderBy == 2">
+	        TRADE_NO DESC
+	      </when>
+	      <when test="orderBy == 3">
+	        TRADE_NO ASC
+	      </when>
+	      <when test="orderBy == 0">
+	        SUM(so.PAY_PRICE) DESC 
+	      </when>
+	      <when test="orderBy == 1">
+	        SUM(so.PAY_PRICE) ASC 
+	      </when>
+	      <otherwise>
+	        SUM(so.PAY_PRICE) DESC 
+	      </otherwise>
+	    </choose>
+	    </when>
+	    <when test="shopType == 2">
+	   SELECT
+	     temp.CUSTOMER_ID AS CUSTOMER_ID,
+         us.HEADIMGURL AS HEADIMGURL,
+         us.NICKNAME AS CUSTOMER_NAME,
+         us.CELL AS CELL,
+         COUNT(temp.CUSTOMER_ID) AS TRADE_NO,
+         MAX(LATEST_TIME) AS LATEST_TIME,
+         SUM(IFNULL(temp.TOTAL_PROFIT_PRICE, 0)) AS PAY_PRICE 
+       FROM
+         (SELECT 
+            so.ORDER_NO AS ORDER_NO,
+            so.USER_ID AS CUSTOMER_ID,
+            so.ORDER_TIME AS LATEST_TIME,
+            CASE 
+             WHEN so.STATUS =1  THEN 0
+             ELSE  po.TOTAL_PROFIT_PRICE  
+            END  AS  TOTAL_PROFIT_PRICE
+          FROM
+            purchase_order po,
+            sales_order so,
+            subbranch sb 
+          WHERE sb.ID = (SELECT sb.ID FROM SUBBRANCH sb  WHERE sb.USER_ID = #{userId,jdbcType=BIGINT} AND sb.STATUS = 1)
+            AND po.SUBBRANCH_ID = (SELECT sb.ID FROM SUBBRANCH sb  WHERE sb.USER_ID = #{userId,jdbcType=BIGINT} AND sb.STATUS = 1)
+            AND so.SELLER_REMOTE_ID = sb.USER_CELL 
+            AND so.ORDER_NO = po.ORDER_NO 
+            AND so.ORDER_CATEGORY = 4 
+            AND so.STATUS != 11) AS temp
+            INNER JOIN USER AS us  ON (temp.CUSTOMER_ID = us.ID) 
+            GROUP BY temp.CUSTOMER_ID 
+            <if test="customerName != null">
+                 AND us.NICKNAME like concat('%',#{customerName},'%')
+            </if>
+            ORDER BY
+            <choose>
+	      <when test="orderBy == 2">
+	        TRADE_NO DESC
+	      </when>
+	      <when test="orderBy == 3">
+	        TRADE_NO ASC
+	      </when>
+	      <when test="orderBy == 0">
+	        PAY_PRICE DESC 
+	      </when>
+	      <when test="orderBy == 1">
+	        PAY_PRICE ASC 
+	      </when>
+	      <otherwise>
+	        PAY_PRICE DESC 
+	      </otherwise>
+	    </choose>
+	      </when>
+	      <otherwise>
+	      </otherwise>
+	      </choose>
+	</sql>
+	
+	<select id="selectPageCount" resultType="java.lang.Integer"  parameterType="java.util.Map">
+	    <choose>
+          <when test="shopType == 1">
+	      SELECT 
+            COUNT(temp.CUSTOMER_ID)
+          FROM (<include refid="fromCluase"/>) AS temp
+	      </when>
+	      <when test="shopType == 2">
+       	  SELECT 
+       	   COUNT( temp2.CUSTOMER_ID)
+          FROM (<include refid="fromCluase"/>) AS temp2
+	      </when>
+	      <otherwise>
+	      </otherwise>
+	     </choose>
+	</select>
+
+	<select id="selectMyCustomerById" resultMap="myCustomerDto" parameterType="java.util.Map">
+      <include refid="fromCluase"/>
+	   LIMIT #{start},#{pageSize}
+	</select>
+  
+    <sql id="staffFromCluase">
+    	  SELECT
+    	  user_temp.USER_ID AS CUSTOMER_ID, 
+		  user_temp.USER_NAME AS CUSTOMER_NAME,
+		  COUNT(order_temp.ORDER_NO) AS TRADE_NO,
+		  COUNT(order_temp.USER_ID) AS CUSTOMER_QUANTITY,
+		  SUM(order_temp.POST_FEE) AS POST_FEE,
+		  SUM(order_temp.PAY_PRICE) AS PAY_PRICE
+		  FROM 
+		 (SELECT
+		    dc.DISTRIBUTOR_ID AS USER_ID,
+		    dca.DISTRIBUTOR_NICK AS USER_NAME
+		  FROM
+		    DA_COOPERATION_AUTH AS dca
+		    LEFT JOIN DA_COOPERATION AS dc
+		    ON (dca.DISTRIBUTOR_SHOP_NO = dc.DISTRIBUTOR_SHOP_NO
+		    AND dc.STATUS > - 1)
+		  LEFT JOIN SHOP AS sp
+		    ON (dca.DISTRIBUTOR_SHOP_NO = sp.NO)
+		  LEFT JOIN DA_GRADE AS dg
+		    ON (dc.GRADE_ID = dg.ID)
+		  WHERE dca.SUPPLIER_SHOP_NO = #{shopNo,jdbcType=VARCHAR}
+		    AND dca.STATUS = 3) AS user_temp
+		  INNER JOIN SHOP AS s
+		    ON (s.USER_ID = user_temp.USER_ID)
+		  INNER JOIN
+		    (SELECT
+		       so.USER_ID AS USER_ID,
+		       so.ORDER_NO AS ORDER_NO,
+		       so.POST_FEE AS POST_FEE,
+		       so.PAY_PRICE AS PAY_PRICE,
+		       po.PURCHASER_NO AS PURCHASER_NO
+		     FROM
+		      SALES_ORDER AS so
+		      LEFT JOIN PURCHASE_ORDER AS po
+		         ON (so.ORDER_NO = po.ORDER_NO)
+		         WHERE po.SUPPLIER_SHOP_NO = #{shopNo,jdbcType=VARCHAR}
+		         AND so.ORDER_CATEGORY = 4
+		         AND so.STATUS IN (2, 3, 4, 5)) AS order_temp
+		         ON s.NO = order_temp.PURCHASER_NO
+		         GROUP BY user_temp.USER_ID
+    </sql>
+
+	<select id="selectStaffCount" resultMap="myCustomerDto" parameterType="java.util.Map">
+          <include refid="staffFromCluase"/>
+		  ORDER BY 
+		  <choose>
+	      <when test="orderBy == 0">
+	        CUSTOMER_QUANTITY DESC
+	      </when>
+	      <when test="orderBy == 1">
+	        TRADE_NO DESC
+	      </when>
+	      <when test="orderBy == 2">
+	        PAY_PRICE DESC
+	      </when>
+	      <otherwise>
+	        CUSTOMER_QUANTITY DESC 
+	      </otherwise>
+	    </choose>
+		  LIMIT #{start},#{pageSize}
+	</select>
+	
+	<select id="getStaffTotalRows" resultType="java.lang.Integer"  parameterType="java.util.Map"> 
+	      SELECT 
+          COUNT(staff_temp.CUSTOMER_ID)
+          FROM (
+	      <include refid="staffFromCluase"/>
+	      ) AS staff_temp
+	</select>
+	
+	<select id="findAppCustomerById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM app_customer
+		WHERE ID = #{id,jdbcType=BIGINT}
+	</select>
+	
+    <!--统计客户在我的总店下订单-->
+    <select id="selectMyShopOrder" resultMap="myCustomerDto" parameterType="java.util.Map" >
+      SELECT   
+        COUNT(so.ORDER_NO) AS TRADE_NO, 
+        so.SHOP_NO AS SHOP_NO,
+        IFNULL(SUM(IFNULL(so.PAY_PRICE, 0)),0) AS PAY_PRICE
+      FROM sales_order so  
+      WHERE 1=1
+      AND so.USER_ID =  #{customerId,jdbcType=BIGINT}
+      AND so.ORDER_CATEGORY IN (1, 2, 4) AND so.STATUS != 11
+      AND so.SHOP_NO IN (SELECT sh.NO  FROM shop sh WHERE sh.USER_ID = #{userId,jdbcType=BIGINT} AND sh.STATUS IN (1,3))
+    </select>
+    
+    <!--分页统计客户在我的分店、历史分下订单-分页-->
+    <select id="selectMySubbranchOrder" resultMap="myCustomerDto" parameterType="java.util.Map">
+      <include refid="customerFromCluase"/>
+      ORDER BY temp.STATUS DESC, temp.UPDATE_TIME DESC
+      LIMIT #{start},#{pageSize}
+    </select>
+    
+    <!--分页统计客户在我的分店、历史分下订单-统计-->
+    <select id="countMySubbranchOrder" resultType="java.lang.Integer" parameterType="java.util.Map">
+     SELECT 
+       COUNT(tem.TRADE_NO) 
+     FROM (
+     <include refid="customerFromCluase"/> 
+          ) AS tem
+    </select>
+    
+    <!--统计客户在我的所有分店、历史分下订单数和总金额-->
+    <select id="countAllMyShopOrder" resultMap="myCustomerDto" parameterType="java.util.Map">
+      SELECT 
+        SUM(tep.TRADE_NO) AS TRADE_NO,
+        SUM(tep.PAY_PRICE) AS PAY_PRICE
+      FROM (
+      <include refid="customerFromCluase"/> 
+           ) AS tep
+    </select>
+    
+    <sql id="customerFromCluase">
+     SELECT 
+        COUNT(temp.ORDER_NO) AS TRADE_NO,
+        SUM(IFNULL(temp.PAY_PRICE, 0)) AS PAY_PRICE,
+        temp.SUBBRANCH_ID AS SUBBRANCH_ID,
+        temp.STATUS AS STATUS
+     FROM 
+        (SELECT  
+          so.ORDER_NO, 
+          po.SUBBRANCH_ID, 
+          so.PAY_PRICE,
+          su2.STATUS,
+          su2.UPDATE_TIME    
+         FROM sales_order so 
+         INNER JOIN purchase_order po  ON (so.ORDER_NO = po.ORDER_NO  AND po.SUBBRANCH_ID IN (  SELECT su.ID FROM subbranch su WHERE  su.USER_ID =  #{userId,jdbcType=BIGINT} AND su.STATUS  IN(1,-1)))  
+         INNER JOIN subbranch su2 ON (po.SUBBRANCH_ID = su2.ID)
+         WHERE 1=1
+         AND so.USER_ID = #{customerId,jdbcType=BIGINT}
+         AND so.SELLER_REMOTE_ID=su2.USER_CELL 
+         AND so.ORDER_CATEGORY = 4 AND so.STATUS != 11) AS temp
+         GROUP BY temp.SUBBRANCH_ID
+    </sql>
+    
+</mapper>

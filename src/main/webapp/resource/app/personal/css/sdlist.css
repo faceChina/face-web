@@ -1,0 +1,182 @@
+/*  
+* @description:CSS
+* @author: lmy
+* @update:
+*/
+
+html{
+	font-size: 10px;
+}
+/*商品和店铺收藏导航和操作*/
+.nav-sort{
+	position: absolute;
+	top: 0;
+	width: 100%;
+	display: inline-block;
+	z-index: 101;
+	height: 3rem;
+	border-bottom: 1px solid #ccc;
+	background: #fff;
+}
+.nav-sort li{
+	width: 49.5%;
+	float: left;
+	height: 1.6rem;
+	line-height: 1.6rem;
+	margin-top: 0.7rem;
+	text-align: center;
+}
+.nav-sort li.line{
+	width: 1px;
+	border-left: 1px solid #ccc;
+}
+.nav-sort li a{
+	padding: 0.5rem;
+	padding-left: 1rem;
+	font-size: 0.9rem;
+}
+.nav-sort i.iconfont{
+	padding-left: 0.5rem;
+}
+.tool{
+	width: 100%;
+	display: inline-block;
+	padding: 0.3rem 0;
+	margin-top: 3rem;
+}
+.tool span{
+	width: 80%;
+	float: left;
+	font-size: 0.75rem;
+	padding: 0.2rem 0;
+	padding-left: 0.5rem;
+	border-right: 1px solid #ccc;
+}
+.tool span i{
+	color: #ea2b3a;
+	padding: 0 0.1rem;
+}
+.tool a{
+	width: 19%;
+	font-size: 0.9rem;
+	float: left;
+	padding: 0.15rem 0;
+	text-align: center;
+	color: #ea2b3a; 
+}
+.selectType{
+	width: 100%;
+	position: absolute;
+	top: 3rem;
+	background: #fff;
+	z-index: 10000;
+}
+.selectType li{
+	display: inline-block;
+	width: 100%;
+	height: 2.2rem;
+	text-align: center;
+	line-height: 2.2rem;
+}
+.selectType li.btline{
+	border-bottom: 1px solid #ccc;
+}
+.selectType li a{
+ 	width: 100%;
+ 	display: inline-block;
+}
+
+/*商品和店铺收藏列表*/
+.group{
+	margin-top: 0.1rem;
+
+}
+.boxOpacity{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 100;
+	top: 6rem;
+	opacity:.4;
+	filter: alpha(opacity=);
+	background:#000;
+}
+.group-item{
+	margin: 0;
+	padding: 0 10px;
+}
+.group-colspan-product{
+	padding: 0.5rem;
+}
+
+.group-colspan-product{
+	width: 17rem;
+}
+.group-colspan-product .product-item{
+	width: 14.2rem;
+}
+
+.group-others .group-rowspan .group-colspan-single{
+	width:1.8rem;
+	text-align: center;
+	padding: 0.5rem;
+}
+.font-null{
+	width: 0.72rem;
+	display: inline-block;
+}
+
+.productlist i.iconfont{
+	font-size: 1.1rem;
+}
+.group-rowspan span.font-sx{
+	font-size: 0.6rem;
+	color: #fff;
+	border-radius: 0;
+	background-color: #999;
+	line-height: 0.8rem;
+	padding: 0.1rem 0;
+
+}
+.icon-roundcheckfill{
+	color: #c80303;
+}
+.null-font{
+	background: #fff;
+}
+.product img{
+  width: 4.5rem;
+  height: 4.5rem;
+  display: inline-block;
+  border: 1px solid #ccc;
+}
+.product .product-title{
+	padding-top: 0.3rem;
+	font-size: 0.8rem;
+	height: 2.5rem;
+}
+.product .product-other{
+	margin-top: 0.5rem;
+	margin-bottom: 0;
+	font-size: 0.8rem;
+	color: #c80303;
+}
+.delShopGoods{
+	width: 100%;
+	height: 2.8rem;
+	line-height: 2.8rem;
+	font-size:1rem;
+	text-align: center;
+	color: #fff;
+	float: left;
+	background: #c80303;
+}
+/*店铺列表*/
+.shoplist .product img{
+	width: 3rem;
+	height: 3rem;
+}
+.shoplist .product .product-title{
+	-webkit-line-clamp:1;
+	padding-top: 1rem;
+}

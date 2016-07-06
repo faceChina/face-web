@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.ArticleCategoryMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.product.material.domain.ArticleCategory" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="SHOP_NO" property="shopNo" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="PIC_PATH" property="picPath" jdbcType="VARCHAR" />
+    <result column="ARTICLE_TEMPLATE_TYPE" property="articleTemplateType" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="BaseResultMapDto" type="com.zjlp.face.web.server.product.material.domain.dto.ArticleCategoryDto" extends="BaseResultMap">
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, SHOP_NO, NAME, PIC_PATH, ARTICLE_TEMPLATE_TYPE, STATUS, CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from article_category
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from article_category
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.product.material.domain.ArticleCategory" >
+  	<selectKey keyProperty="id" resultType="long" order="AFTER">  
+        SELECT LAST_INSERT_ID();  
+    </selectKey>
+    insert into article_category (ID, SHOP_NO, NAME, 
+      PIC_PATH, ARTICLE_TEMPLATE_TYPE, STATUS, 
+      CREATE_TIME, UPDATE_TIME)
+    values (#{id,jdbcType=BIGINT}, #{shopNo,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{picPath,jdbcType=VARCHAR}, #{articleTemplateType,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.product.material.domain.ArticleCategory" >
+  	<selectKey keyProperty="id" resultType="long" order="AFTER">  
+        SELECT LAST_INSERT_ID();  
+    </selectKey>
+    insert into article_category
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="shopNo != null" >
+        SHOP_NO,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="picPath != null" >
+        PIC_PATH,
+      </if>
+      <if test="articleTemplateType != null" >
+        ARTICLE_TEMPLATE_TYPE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="shopNo != null" >
+        #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="picPath != null" >
+        #{picPath,jdbcType=VARCHAR},
+      </if>
+      <if test="articleTemplateType != null" >
+        #{articleTemplateType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.product.material.domain.ArticleCategory" >
+    update article_category
+    <set >
+      <if test="shopNo != null" >
+        SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="picPath != null" >
+        PIC_PATH = #{picPath,jdbcType=VARCHAR},
+      </if>
+      <if test="articleTemplateType != null" >
+        ARTICLE_TEMPLATE_TYPE = #{articleTemplateType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.product.material.domain.ArticleCategory" >
+    update article_category
+    set SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      PIC_PATH = #{picPath,jdbcType=VARCHAR},
+      ARTICLE_TEMPLATE_TYPE = #{articleTemplateType,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectListByShopNo" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from article_category
+    where SHOP_NO = #{shopNo,jdbcType=VARCHAR}
+    order by CREATE_TIME
+  </select>
+  <select id="selectListByArticleId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    ac.id, ac.name, ac.pic_path picPath, ac.ARTICLE_TEMPLATE_TYPE articleTemplateType
+    from article_category ac left join article_category_news_reference acnr
+    on ac.ID = acnr.ARTICLE_CATEGORY_ID
+    where acnr.news_id = #{articleId, jdbcType=BIGINT}
+    order by CREATE_TIME
+  </select>
+  <select id="getCount" resultType="java.lang.Integer" parameterType="com.zjlp.face.web.server.product.material.domain.dto.ArticleCategoryDto">
+  	select
+  	count(id)
+  	from article_category
+  	where SHOP_NO = #{shopNo,jdbcType=VARCHAR}
+  </select>
+  <select id="selectPageList" resultMap="BaseResultMapDto" parameterType="java.util.Map">
+  	select
+  	<include refid="Base_Column_List" />
+  	from article_category
+  	where SHOP_NO = #{dto.shopNo,jdbcType=VARCHAR}
+  	order by UPDATE_TIME desc
+  	limit ${start}, ${pageSize};
+  </select>
+  
+  <select id="findArticleCategoryList" parameterType="com.zjlp.face.web.server.product.material.domain.ArticleCategory" resultMap="BaseResultMap">
+  	SELECT 
+ 	<include refid="Base_Column_List" />
+  	FROM ARTICLE_CATEGORY
+  	WHERE SHOP_NO = #{shopNo,jdbcType=VARCHAR}
+    <if test="name != null">
+    	AND NAME LIKE CONCAT('%',#{name,jdbcType=VARCHAR},'%')
+    </if>
+  </select>
+  
+  
+  <select id="findCategoryAndSortByColumn" parameterType="java.lang.Long" resultMap="BaseResultMapDto">
+  	SELECT 
+  	  ac.ID, ac.SHOP_NO, ac.NAME, ac.PIC_PATH, ac.ARTICLE_TEMPLATE_TYPE, ac.STATUS, ac.CREATE_TIME, ac.UPDATE_TIME,acacr.SORT AS SORT
+  	FROM ARTICLE_CATEGORY ac
+  	JOIN ARTICLE_CATEGORY_ARTICLE_COLUMN_REFERENCE acacr
+  	ON ac.ID = acacr.ARTICLE_CATEGORY_ID
+  	WHERE acacr.ARICLE_COLUMN_ID = #{columnId,jdbcType=BIGINT}
+  	ORDER BY acacr.SORT
+  </select>
+  
+</mapper>

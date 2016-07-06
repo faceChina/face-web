@@ -1,0 +1,240 @@
+.m-wordcrumbs{
+	width: 16px;
+	position: fixed;
+	top: 0;
+	right: 0;
+	text-align: center;
+	height: 100%;
+}
+.m-wordcrumbs ul{
+	display: table;
+	height: 100%;
+}
+.m-wordcrumbs li{
+	display: table-row;
+}
+/*  
+* @description:
+* @author: SF
+* @update:
+*/
+.m-form{}
+.m-form .info{
+	margin-top:1em;
+	padding:0 1em;
+	background:#fff;
+	border-top:1px solid #ccc;
+	border-bottom:1px solid #ccc;
+	overflow:hidden;
+}
+.m-form .form-group{
+	padding:0 0 0.5em 0;
+	border-bottom:1px solid #e6e6e6;
+}
+.m-form .form-group:last-child{
+	padding-bottom:0;
+	border-bottom:none;
+}
+.m-form .form-group .form-control{
+	border:0;
+}
+.m-form button{
+	width:96%;
+	margin:1em auto;
+	text-align:center;
+}
+
+
+/*  
+* @description:
+* @author: WMM
+* @update:
+*/
+
+.page-collect,
+.page-padding{
+	padding: 8px;
+	background-color: #fff;
+}
+
+.m-wordcrumbs{
+	width: 16px;
+	position: fixed;
+	top: 0;
+	right: 0;
+	text-align: center;
+	height: 100%;
+	padding-top: 60px;
+}
+.m-wordcrumbs ul{
+	display: table;
+	height: 100%;
+}
+.m-wordcrumbs li{
+	display: table-row;
+}
+.m-wordcrumbs li a{
+	display: block;
+}
+
+/* 粉丝 收藏 栏目*/
+.m-btn-round{
+	width: 100%;
+	text-align: center;
+	margin-top: 8px;
+	background: #fff;
+}
+.m-btn-round .m-btn-row{
+	border-radius: 20px;
+	border: 1px solid #3478df;
+	overflow: hidden;
+}
+.m-btn-round .m-btn-col{
+	width: 50%;
+	float: left;
+
+}
+.m-btn-round .m-btn-col .m-btn-item{
+	display: block;
+	line-height: 40px;
+	font-size: 16px;
+}
+.m-btn-round .m-btn-col .color-prop{
+	color: #ff6600;
+}
+.m-btn-round .m-btn-col .active{
+	background: #4e95ff;
+	border-radius: 20px;
+	color: #fff;
+}
+.m-btn-round .m-btn-col .active .color-prop{
+	color: #fff;
+}
+/* 粉丝 收藏 栏目 end */
+
+.page-collect-info{
+	margin-right: 16px;
+}
+.m-search-hum{
+	margin: 16px 0;
+	overflow: hidden;
+}
+.m-search-hum .m-search-in{
+	display: block;
+	border-bottom: 1px solid #ccc;
+
+}
+.m-search-hum[search-btn="true"] .m-search-in{
+	margin-right: 60px;
+
+}
+.m-search-hum  .m-search-btn{
+	float: right;
+	vertical-align: top;
+}
+.m-search-hum  .m-search-btn button{
+	padding: 8px 12px;
+	border-radius: 4px;
+	border:1px solid #ccc;
+	background-color: #fff;
+}
+.m-search-hum .m-search-in .m-search-icon{
+	width: 20px;
+	height: 32px;
+	background: url(../img/search-icon.png) no-repeat center;
+	background-size: 100%;
+	float: left;
+	margin: 0 14px;
+}
+.m-search-hum .m-search-input{
+	vertical-align: top;
+	display: block;
+	margin-left: 60px;
+}
+.m-search-hum .m-search-input input{
+	line-height: 32px;
+	width: 100%;
+
+}
+.m-contacts-list .m-contacts-item{
+	display: block;
+	margin: 20px 0;
+}
+.m-contacts-list .m-contacts-key{
+	background-color: #eee;
+	border-radius: 20px;
+	padding: 4px 18px;
+	line-height: 1em;
+}
+.m-contacts-list .m-contacts-item .m-contacts-poto{
+	float: left;
+	border-radius: 50%;
+	background-color: #ffa800;
+}
+.m-contacts-list .m-contacts-poto img{
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	display: block;
+}
+.m-contacts-list .m-contacts-item .m-contacts-txt{
+	line-height: 24px;
+	display: block;
+	border-bottom: 1px solid #eee;
+	margin-left: 50px;
+	padding-left: 16px;
+	padding-bottom: 8px;
+}
+.m-contacts-list .m-contacts-txt .contacts-txt-item{
+	display: block;
+}
+.m-contacts-list .m-contacts-item .contacts-txt-name{
+	color: #4e95ff;
+	font-size: 16px;
+	margin-right: 8px;
+}
+.m-contacts-list .m-contacts-item .contacts-txt-job{
+	color: #999;
+	font-style: normal;
+}
+.m-contacts-item .m-contacts-btn{
+	float: right;
+	margin-top: 4px;
+	display: none;
+
+}
+.m-contacts-item .m-contacts-btn .m-contacts-del{
+	width: 32px;
+	height: 32px;
+	background: url(../img/graydel-icon.png) no-repeat;
+	background-size: 100%;
+	display: inline-block;
+
+}
+
+.m-contacts-time{
+	float: right;
+	margin-top: 16px;
+}
+.m-contacts-time .m-contacts-icon{
+	width: 14px;
+	height: 14px;
+	background: url(../img/time-icon.png) no-repeat;
+	background-size: 100%;
+	display: inline-block;
+}
+.m-contacts-time .m-contacts-val{
+	color: #999;
+	vertical-align: top;
+	line-height: 1em;
+}
+
+.m-slogan-praise{
+	border-bottom: 1px solid #ccc;
+	font-size: 16px;
+	padding: 8px;
+}
+.slogan-praise-gary{
+	color: #999;
+	margin-left: 8px;
+}

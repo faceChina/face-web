@@ -1,0 +1,47 @@
+@CHARSET "UTF-8";
+/*  
+* @description:按钮
+* @author: 
+* @update:
+*/
+
+.btn-default {
+	background:#f6f6f6\0;/*IE8*/
+	background: -webkit-linear-gradient(#f6f6f6 0%, #ddd 100%);
+	background: -o-linear-gradient(#f6f6f6 0%, #ddd 100%);
+	background: linear-gradient(#f6f6f6 0%, #ddd 100%);
+	border: 1px solid #bbb;
+	font-size: 12px;
+	color: #5b5b5b;
+}
+.btn-default.active,
+.btn-default:hover,
+.btn-danger{
+	background:#E52141\0;/*IE8*/
+	background: -webkit-linear-gradient(#EF2646 5%, #DC1534 40%);
+	background: -o-linear-gradient(#EF2646 5%, #DC1534 40%);
+	background: linear-gradient(#EF2646 5%, #DC1534 40%);
+	border: 1px solid #BF041F;
+	color: #fff;
+}
+.pager li>a.btn-default:hover {
+	background:#E52141\0;/*IE8*/
+}
+.btn-default:active, .btn.active {
+    -webkit-box-shadow:none;
+	box-shadow:none;
+}
+.btn-danger {
+	background:#E52141\0;/*IE8*/
+	background: -webkit-linear-gradient(#EF2646 5%, #DC1534 40%);
+	background: -o-linear-gradient(#EF2646 5%, #DC1534 40%);
+	background: linear-gradient(#EF2646 5%, #DC1534 40%);
+	border: 1px solid #BF041F;
+	font-size: 12px;
+}
+
+.pager .previous>a{
+	padding: 6px 12px;
+	border: 1px solid #bbb;
+	border-radius: 4px;
+}

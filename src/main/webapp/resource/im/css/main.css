@@ -1,0 +1,307 @@
+﻿@charset "utf-8";
+/*  
+* @description: 公共  
+* @author:  
+* @update:
+*/
+body{
+	background:#f5f5f5;
+}
+.phone-im{
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 90%;
+	z-index:10;
+}
+.icon-loading{
+	width: 100%;
+	line-height:35px;
+	background: none repeat scroll 0% 0% #E9E9E9;
+	border-radius: 12px;
+	text-align: center;
+	color: #999;
+}
+.phone-im .user{
+	line-height: 47px;
+	background: #cc0000;
+	color: #fff;
+	text-align: center;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 47px;
+	z-index: 10;
+}
+.phone-im .user .colse{
+	float: left;
+	padding-left: 25px;
+	background: url(../img/arrows.png) no-repeat left 58%;
+	background-size: auto 70%;
+	position: absolute;
+	left: 0;
+}
+.send-message textarea{
+	width: 100%;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.428571429;
+	color: #555;
+	vertical-align: middle;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+	box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+	-webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+	transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+
+
+}
+.send-message{
+	font-size: 14px;
+	margin: auto;
+	padding: 10px;
+	background-color: #ccc;
+	overflow: hidden;
+	zoom: 1;
+	position:fixed;
+	bottom: 0;
+	width: 100%;
+	z-index:11;
+}
+.send-text{
+	overflow: hidden;
+	zoom: 1
+}
+.send-button{	
+
+	float: right;
+}
+.btn-default{
+	
+	padding: 6px 12px;
+	margin-bottom: 0;
+	font-size: 14px;
+	font-weight: normal;
+	line-height: 1.428571429;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	cursor: pointer;
+	background-image: none;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+	background: #f6f6f6\0;
+	background: -moz-linear-gradient(#f6f6f6 0%, #ddd 100%);
+	background: -webkit-gradient(linear, center top, center bottom, from(#f6f6f6), to(#ddd));
+	background: -o-linear-gradient(#f6f6f6 0%, #ddd 100%);
+	background: linear-gradient(#f6f6f6 0%, #ddd 100%);
+	border: 1px solid #bbb;
+	font-size: 12px;
+	color: #5b5b5b;
+
+}
+.receive-message{
+	padding:0 15px 65px;;
+	background: #f5f5f5;
+	width: 100%;
+	min-height:100%;
+	margin-top:47px;
+	overflow:auto;
+	word-wrap:break-word;
+	-webkit-overflow-scrolling: touch;
+	position: absolute;
+}
+.receive-message .time{
+	color: #666;
+	text-align: center;
+	padding: 10px;
+	width: 100%;
+	float: left;
+}
+.receive-message .you,.receive-message .me{
+ 	max-width: 80%; 
+	min-height: 30px;
+	line-height: 30px;
+	padding: 5px 10px;
+	border-radius: 10px;
+	position: relative;
+}
+.receive-message .you{
+	background: #fff;
+	float: left;
+}
+.receive-message .me{
+	background: #18aaf2;
+	float: right;
+	color: #fff;
+
+}
+.receive-message .me:after,.receive-message .you:after{
+	content: '';
+	width: 0;
+    height: 0;
+    position: absolute;
+}
+.receive-message .me:after{	
+    border-top: 1px solid transparent;
+    border-left: 7px solid #18aaf2;
+    border-bottom: 8px solid transparent; 
+    right: -6px;
+    top: 7px;
+
+}
+.receive-message .you:after{
+    border-top: 1px solid transparent;
+    border-right: 7px solid #fff;
+    border-bottom: 8px solid transparent;
+    left: -6px;
+    top: 7px;
+
+}
+/*  
+* @description:IM   
+* @author: sf 
+* @update:
+*/
+
+/* 列表切换 样式 */
+.m-tabs{
+	width:100%;
+	margin:0 auto 0px;
+	overflow:hidden;
+}
+.m-tabs li{
+	width:50%;
+	float:left;
+}
+.m-tabs li a{
+	display: block;
+	width: 100%;
+	color:#999;
+	font-weight: bold;
+	text-align: center;
+	line-height:2.5em;
+	background:#eee;
+	color:#333;
+	font-size:1.2em;
+	font-weight:normal;
+}
+.m-tabs li.active a,
+.m-tabs li.active a:hover,
+.m-tabs li.active a:focus {
+  background:#e00000;
+  color:#fff;
+}
+/* 列表切换 样式 end */
+.chat-message{
+	
+}
+.chat-info{
+/* 	margin:1em; */
+/* 	border:1px solid #ccc; */
+}
+.chat-info p{
+	padding-left:1em;
+	padding-top:0.25em;
+	padding-bottom:1em;
+	background:#fff;
+	border-bottom:1px solid #ccc;
+	color:#666;
+	height: 2em;
+}
+.chat-info p span{
+font-size: 11px;
+text-overflow:ellipsis; overflow:hidden; white-space:nowrap; 
+height: 16px;
+float: left;
+width: 90%;
+	line-height: 18px;
+}
+.chat-info p i{
+	width: 18px;
+	height: 18px;
+	float: right;
+	margin-right: 4%;
+	background-color: red;
+	color: white;
+	line-height: 18px;
+	border-radius: 100%;
+	font-size: 11px;
+	text-align: center;
+}
+.chat-info p small{
+	float:right;
+	color:#999;
+}
+.chat-info h4{
+	background:#fff;
+	padding-left:1em;
+	padding-top:1em;
+	padding-bottom:0.25em;
+}
+.chat-info small{
+	font-size:12px;
+	color:#999;
+	float:right;
+	font-weight: normal;
+	padding-right: 1em;
+}
+/* 搜索  */
+.chat-contacts{
+/* 	margin:1em; */
+}
+.m-search{
+	overflow:hidden;
+	margin: 0.5em;
+	margin-bottom:0em;
+}
+.m-search input{
+	 width:100%;
+	 height:49px;
+	 padding-left:10px;
+	 line-hieght:48px;
+	 border:1px solid #ccc;
+}
+.m-search span{
+	float:right;
+	width:19%;
+	height:49px;
+	background:#ccc;
+}
+.m-search span i{
+	display:block;
+	width:4em;
+	margin:0 auto;
+	padding:0.2em 0.5em 0.5em 0.5em;
+}
+.m-search span i img{
+	width:100%;
+}
+.contacts{
+	margin-top:0.5em;
+	background:#fafafa;
+}
+.contacts li{
+	padding:1.5em;
+	border-bottom:1px solid #ccc;
+}
+/* 移动端IM窗口中的商品信息 */
+.commodity{float:left;width:100%;background:#fff;border:1px solid #ccc;padding:1em;margin-top:1em;color:#333;}
+.commodity dl{padding:0;margin:0;zoom:1;margin-bottom:1em;}
+.commodity dl:before,
+.commodity dl:after{display:table;clear:both;content:"";}
+.commodity dl dt{float:left;margin-right:1em;}
+.commodity dl dt img{display:block;width:60px;height:60px;}
+.commodity dl dd{overflow: hidden;zoom: 1;}
+.commodity dl dd h3{font-weight:normal;font-size:12px;line-height:16px;}
+.commodity dl dd code{font-weight:bold;font-size:16px;font-family: "微软雅黑","Helvetica Neue",Helvetica,Arial,sans-serif;}
+.commodity dl dd a{display: block;}
+.commodity .btn{text-decoration:none;display:block;margin: 0 auto;width: 50%;}

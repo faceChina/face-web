@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.ShopPopularizeSettingMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.operation.popularize.domain.ShopPopularizeSetting" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="SHOP_NO" property="shopNo" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="INTEGER" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="COMMISSION_RATE" property="commissionRate" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, SHOP_NO, TYPE, STATUS, COMMISSION_RATE, CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from shop_popularize_setting
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+   <select id="selectShopPopularizeSetting" resultMap="BaseResultMap" parameterType="com.zjlp.face.web.server.operation.popularize.domain.ShopPopularizeSetting" >
+    select 
+    <include refid="Base_Column_List" />
+    from shop_popularize_setting
+   	where 
+   		SHOP_NO = #{shopNo,jdbcType=VARCHAR} 
+   	AND TYPE = #{type,jdbcType=INTEGER}
+ 	<if test="status != null" >
+    AND STATUS = #{status,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="selectByParam" parameterType="com.zjlp.face.web.server.operation.popularize.domain.ShopPopularizeSetting" resultMap="BaseResultMap" >
+  	select <include refid="Base_Column_List" /> from shop_popularize_setting where 1 = 1
+	 <if test="id != null">
+	 	and id = #{id,jdbcType=BIGINT}
+	 </if>
+    <if test="shopNo != null" >
+      and SHOP_NO = #{shopNo,jdbcType=VARCHAR}
+    </if>
+    <if test="type != null" >
+      and TYPE = #{type,jdbcType=INTEGER}
+    </if>
+    <if test="status != null" >
+      and STATUS = #{status,jdbcType=INTEGER}
+    </if>
+    <if test="commissionRate != null" >
+      and COMMISSION_RATE = #{commissionRate,jdbcType=INTEGER}
+    </if>
+    <if test="createTime != null" >
+      and CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updateTime != null" >
+      and UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from shop_popularize_setting
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.operation.popularize.domain.ShopPopularizeSetting" >
+    insert into shop_popularize_setting (ID, SHOP_NO, TYPE, 
+      STATUS, COMMISSION_RATE, CREATE_TIME, 
+      UPDATE_TIME)
+    values (#{id,jdbcType=BIGINT}, #{shopNo,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{commissionRate,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.operation.popularize.domain.ShopPopularizeSetting" >
+    insert into shop_popularize_setting
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="shopNo != null" >
+        SHOP_NO,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="commissionRate != null" >
+        COMMISSION_RATE,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="shopNo != null" >
+        #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="commissionRate != null" >
+        #{commissionRate,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.operation.popularize.domain.ShopPopularizeSetting" >
+    update shop_popularize_setting
+    <set >
+      <if test="shopNo != null" >
+        SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="commissionRate != null" >
+        COMMISSION_RATE = #{commissionRate,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.operation.popularize.domain.ShopPopularizeSetting" >
+    update shop_popularize_setting
+    set SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=INTEGER},
+      STATUS = #{status,jdbcType=INTEGER},
+      COMMISSION_RATE = #{commissionRate,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

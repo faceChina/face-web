@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.AppUserMsgRelationMapper">
+	<resultMap id="BaseResultMap" type="com.zjlp.face.web.server.social.businesscircle.domain.AppUserMsgRelation">
+		<id column="ID" property="id" jdbcType="BIGINT" />
+		<result column="USER_ID" property="userId" jdbcType="BIGINT" />
+		<result column="CIRCLEMSG_ID" property="circleMsgId" jdbcType="BIGINT" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	
+	<insert id="insert" parameterType="com.zjlp.face.web.server.social.businesscircle.domain.AppUserMsgRelation">
+		<selectKey keyProperty="id" resultType="long" order="AFTER">
+			SELECT
+			LAST_INSERT_ID();
+		</selectKey>
+		INSERT INTO APP_USER_MSG_RELATION (USER_ID,CIRCLEMSG_ID,CREATE_TIME)
+		VALUES (
+		#{userId,jdbcType=BIGINT},
+		#{circleMsgId,jdbcType=BIGINT},
+		#{createTime,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		DELETE FROM
+		APP_USER_MSG_RELATION
+		WHERE ID = #{id,jdbcType=BIGINT}
+	</delete>
+	<delete id="deleteByUserId" parameterType="java.lang.Long">
+		DELETE FROM
+		APP_USER_MSG_RELATION
+		WHERE  USER_ID= #{userId,jdbcType=BIGINT}
+	</delete>
+	<delete id="deleteByCircleMsgId" parameterType="java.lang.Long">
+		DELETE FROM
+		APP_USER_MSG_RELATION
+		WHERE CIRCLEMSG_ID = #{circleMsgId,jdbcType=BIGINT}
+	</delete>
+	
+	<select id="selectAppUserMsgRelation" resultMap="BaseResultMap" parameterType="java.util.Map">
+		SELECT ID,USER_ID,CIRCLEMSG_ID,CREATE_TIME
+		FROM APP_USER_MSG_RELATION 
+		WHERE USER_ID = #{userId,jdbcType=BIGINT}
+		<if test="#{startId != null}">
+		AND CIRCLEMSG_ID > #{startId,jdbcType=BIGINT}
+		</if>
+		ORDER BY CREATE_TIME DESC
+		limit #{resultNumber}
+	</select>
+</mapper>

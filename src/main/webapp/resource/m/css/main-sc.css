@@ -1,0 +1,77 @@
+@charset "utf-8";
+/*  
+* @description: 商城后台  
+* @author:  
+* @update:
+*/
+
+/*左侧导航条*/
+.sidebar>li:first-child i{
+	background-position: -136px 0;/*我的管家*/
+}
+.sidebar>li:nth-child(2) i{
+	background-position: 0 0;/*账户管理*/
+}
+.sidebar>li:nth-child(3)  i{
+	background-position: -160px 0;	/*我的钱包*/
+}
+.sidebar>li:nth-child(4)  i{
+	background-position: -24px -24px; 	/* 基础设置 */
+}
+.sidebar>li:nth-child(5)  i{
+	background-position: -24px 0;	/*微站管理*/
+}
+.sidebar>li:nth-child(6)  i{
+	background-position: -46px 0;	/*店铺管理*/
+}
+.sidebar>li:nth-child(7)  i{
+	background-position: -205px 0;/*我要推广*/
+}
+.sidebar>li:nth-child(8)  i{
+	background-position: -92px 0;/*活动管理*/
+}
+.sidebar>li:nth-child(9)  i{
+	background-position: -114px 0;/*回复管理*/
+}
+
+/*IE8*/
+.sidebar>li:first-child +li i{
+	background-position: 0 0;
+}
+.sidebar>li:first-child +li+li i{
+	background-position: -160px 0;	
+}
+.sidebar>li:first-child +li+li+li i{
+	background-position: -24px -24px;	
+}
+.sidebar>li:first-child +li+li+li+li i{
+	background-position: -24px 0;	
+}
+.sidebar>li:first-child +li+li+li+li+li i{
+	background-position: -46px 0;	
+}
+.sidebar>li:first-child +li+li+li+li+li+li i{
+	background-position: -205px 0;
+}
+.sidebar>li:first-child +li+li+li+li+li+li+li i{
+	background-position: -92px 0;
+}
+.sidebar>li:first-child +li+li+li+li+li+li+li+li i{
+	background-position: -114px 0;
+} 
+/*IE8 end*/
+
+
+/*  
+* @description: MiniBossir后台  
+* @author:  wmm
+* @update:
+*/
+
+
+
+/*  
+* @description: MiniBossir后台  
+* @author:  sf
+* @update:
+*/

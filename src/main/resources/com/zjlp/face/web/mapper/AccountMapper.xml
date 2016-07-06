@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.AccountMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.trade.account.domain.Account" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="USER_ID" property="userId" jdbcType="BIGINT" />
+    <result column="SHOP_NO" property="shopNo" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="INTEGER" />
+    <result column="WITHDRAW_AMOUNT" property="withdrawAmount" jdbcType="BIGINT" />
+    <result column="WITHDRAW_COMMISSION" property="withdrawCommission" jdbcType="BIGINT" />
+    <result column="CONSUME_AMOUNT" property="consumeAmount" jdbcType="BIGINT" />
+    <result column="FREEZE_AMOUNT" property="freezeAmount" jdbcType="BIGINT" />
+    <result column="MARGIN" property="margin" jdbcType="BIGINT" />
+    <result column="PAYMENT_CODE" property="paymentCode" jdbcType="VARCHAR" />
+    <result column="WITHDRAW_DATE" property="withdrawDate" jdbcType="VARCHAR" />
+    <result column="WITHDRAW_COUNT" property="withdrawCount" jdbcType="INTEGER" />
+    <result column="SYSTEM_CODE" property="systemCode" jdbcType="CHAR" />
+    <result column="INVITATION_CODE" property="invitationCode" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="TELEPHONE" property="telephone" jdbcType="VARCHAR" />
+    <result column="CELL" property="cell" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="TOSEND_AMOUNT" property="tosendAmount" jdbcType="BIGINT" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, USER_ID, SHOP_NO, TYPE, WITHDRAW_AMOUNT, WITHDRAW_COMMISSION, CONSUME_AMOUNT, 
+    FREEZE_AMOUNT, MARGIN, PAYMENT_CODE, WITHDRAW_DATE, WITHDRAW_COUNT, SYSTEM_CODE, 
+    INVITATION_CODE, NAME, TELEPHONE, CELL, EMAIL, TOSEND_AMOUNT, UPDATE_TIME, CREATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from account
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from account
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.trade.account.domain.Account" >
+   	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into account (ID, USER_ID, SHOP_NO, 
+      TYPE, WITHDRAW_AMOUNT, WITHDRAW_COMMISSION, 
+      CONSUME_AMOUNT, FREEZE_AMOUNT, MARGIN, 
+      PAYMENT_CODE, WITHDRAW_DATE, WITHDRAW_COUNT, 
+      SYSTEM_CODE, INVITATION_CODE, NAME, 
+      TELEPHONE, CELL, EMAIL, 
+      TOSEND_AMOUNT, UPDATE_TIME, CREATE_TIME
+      )
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{shopNo,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{withdrawAmount,jdbcType=BIGINT}, #{withdrawCommission,jdbcType=BIGINT}, 
+      #{consumeAmount,jdbcType=BIGINT}, #{freezeAmount,jdbcType=BIGINT}, #{margin,jdbcType=BIGINT}, 
+      #{paymentCode,jdbcType=VARCHAR}, #{withdrawDate,jdbcType=VARCHAR}, #{withdrawCount,jdbcType=INTEGER}, 
+      #{systemCode,jdbcType=CHAR}, #{invitationCode,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{telephone,jdbcType=VARCHAR}, #{cell,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{tosendAmount,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.trade.account.domain.Account" >
+   	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into account
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="shopNo != null" >
+        SHOP_NO,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="withdrawAmount != null" >
+        WITHDRAW_AMOUNT,
+      </if>
+      <if test="withdrawCommission != null" >
+        WITHDRAW_COMMISSION,
+      </if>
+      <if test="consumeAmount != null" >
+        CONSUME_AMOUNT,
+      </if>
+      <if test="freezeAmount != null" >
+        FREEZE_AMOUNT,
+      </if>
+      <if test="margin != null" >
+        MARGIN,
+      </if>
+      <if test="paymentCode != null" >
+        PAYMENT_CODE,
+      </if>
+      <if test="withdrawDate != null" >
+        WITHDRAW_DATE,
+      </if>
+      <if test="withdrawCount != null" >
+        WITHDRAW_COUNT,
+      </if>
+      <if test="systemCode != null" >
+        SYSTEM_CODE,
+      </if>
+      <if test="invitationCode != null" >
+        INVITATION_CODE,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="telephone != null" >
+        TELEPHONE,
+      </if>
+      <if test="cell != null" >
+        CELL,
+      </if>
+      <if test="email != null" >
+        EMAIL,
+      </if>
+      <if test="tosendAmount != null" >
+        TOSEND_AMOUNT,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="shopNo != null" >
+        #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="withdrawAmount != null" >
+        #{withdrawAmount,jdbcType=BIGINT},
+      </if>
+      <if test="withdrawCommission != null" >
+        #{withdrawCommission,jdbcType=BIGINT},
+      </if>
+      <if test="consumeAmount != null" >
+        #{consumeAmount,jdbcType=BIGINT},
+      </if>
+      <if test="freezeAmount != null" >
+        #{freezeAmount,jdbcType=BIGINT},
+      </if>
+      <if test="margin != null" >
+        #{margin,jdbcType=BIGINT},
+      </if>
+      <if test="paymentCode != null" >
+        #{paymentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="withdrawDate != null" >
+        #{withdrawDate,jdbcType=VARCHAR},
+      </if>
+      <if test="withdrawCount != null" >
+        #{withdrawCount,jdbcType=INTEGER},
+      </if>
+      <if test="systemCode != null" >
+        #{systemCode,jdbcType=CHAR},
+      </if>
+      <if test="invitationCode != null" >
+        #{invitationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="cell != null" >
+        #{cell,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="tosendAmount != null" >
+        #{tosendAmount,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.trade.account.domain.Account" >
+    update account
+    <set >
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="shopNo != null" >
+        SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="withdrawAmount != null" >
+        WITHDRAW_AMOUNT = #{withdrawAmount,jdbcType=BIGINT},
+      </if>
+      <if test="withdrawCommission != null" >
+        WITHDRAW_COMMISSION = #{withdrawCommission,jdbcType=BIGINT},
+      </if>
+      <if test="consumeAmount != null" >
+        CONSUME_AMOUNT = #{consumeAmount,jdbcType=BIGINT},
+      </if>
+      <if test="freezeAmount != null" >
+        FREEZE_AMOUNT = #{freezeAmount,jdbcType=BIGINT},
+      </if>
+      <if test="margin != null" >
+        MARGIN = #{margin,jdbcType=BIGINT},
+      </if>
+      <if test="paymentCode != null" >
+        PAYMENT_CODE = #{paymentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="withdrawDate != null" >
+        WITHDRAW_DATE = #{withdrawDate,jdbcType=VARCHAR},
+      </if>
+      <if test="withdrawCount != null" >
+        WITHDRAW_COUNT = #{withdrawCount,jdbcType=INTEGER},
+      </if>
+      <if test="systemCode != null" >
+        SYSTEM_CODE = #{systemCode,jdbcType=CHAR},
+      </if>
+      <if test="invitationCode != null" >
+        INVITATION_CODE = #{invitationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        TELEPHONE = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="cell != null" >
+        CELL = #{cell,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="tosendAmount != null" >
+        TOSEND_AMOUNT = #{tosendAmount,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.trade.account.domain.Account" >
+    update account
+    set USER_ID = #{userId,jdbcType=BIGINT},
+      SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=INTEGER},
+      WITHDRAW_AMOUNT = #{withdrawAmount,jdbcType=BIGINT},
+      WITHDRAW_COMMISSION = #{withdrawCommission,jdbcType=BIGINT},
+      CONSUME_AMOUNT = #{consumeAmount,jdbcType=BIGINT},
+      FREEZE_AMOUNT = #{freezeAmount,jdbcType=BIGINT},
+      MARGIN = #{margin,jdbcType=BIGINT},
+      PAYMENT_CODE = #{paymentCode,jdbcType=VARCHAR},
+      WITHDRAW_DATE = #{withdrawDate,jdbcType=VARCHAR},
+      WITHDRAW_COUNT = #{withdrawCount,jdbcType=INTEGER},
+      SYSTEM_CODE = #{systemCode,jdbcType=CHAR},
+      INVITATION_CODE = #{invitationCode,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      TELEPHONE = #{telephone,jdbcType=VARCHAR},
+      CELL = #{cell,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      TOSEND_AMOUNT = #{tosendAmount,jdbcType=BIGINT},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

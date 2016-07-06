@@ -1,0 +1,46 @@
+@charset "utf-8";
+/*  
+* @description:商品列表模板1
+* @author: sf
+* @update:
+*/
+/* 产品列表  */
+.list-rowspan{
+	margin:10px 0;
+	background:#fff;
+	border-top:1px solid #ccc;
+	border-bottom:1px solid #ccc;
+}
+.list-product{
+	margin:0 10px;
+}
+.list-product-col{
+	width:100%;
+	display:table;
+	padding:10px 0;
+}
+.list-product-col span{
+	display:table-cell;
+	vertical-align:middle;
+}
+.list-product-col .pic{
+	width:35%;
+}
+.list-product-col .pic img{
+	display:block;
+	width:100%;
+	padding-right:10px;
+}
+.list-product-col .info{
+	border-bottom: 1px solid #eee;
+	-webkit-box-shadow: 0 1px 1px #fff;
+	box-shadow: 0 1px 1px #fff;
+}
+.list-product-col .info .tit{
+	display: -webkit-box;
+	-webkit-line-clamp:1;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	word-break: break-word;
+	font-size:14px;
+}

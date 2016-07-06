@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.AlbumMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.product.material.domain.Album" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="SHOP_NO" property="shopNo" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="PATH" property="path" jdbcType="VARCHAR" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+    <result column="IS_DEFAULT" property="isDefault" jdbcType="BIT" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <resultMap id="BaseResultMapDto" type="com.zjlp.face.web.server.product.material.domain.dto.AlbumDto" extends="BaseResultMap">
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, SHOP_NO, NAME, PATH, MEMO, IS_DEFAULT, CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from album
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from album
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.product.material.domain.Album" >
+   	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into album (ID, SHOP_NO, NAME, 
+      PATH, MEMO, IS_DEFAULT, 
+      CREATE_TIME, UPDATE_TIME)
+    values (#{id,jdbcType=BIGINT}, #{shopNo,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{path,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}, #{isDefault,jdbcType=BIT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.product.material.domain.Album" >
+   	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into album
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="shopNo != null" >
+        SHOP_NO,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="path != null" >
+        PATH,
+      </if>
+      <if test="memo != null" >
+        MEMO,
+      </if>
+      <if test="isDefault != null" >
+        IS_DEFAULT,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="shopNo != null" >
+        #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null" >
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefault != null" >
+        #{isDefault,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.product.material.domain.Album" >
+    update album
+    <set >
+      <if test="shopNo != null" >
+        SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null" >
+        PATH = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        MEMO = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefault != null" >
+        IS_DEFAULT = #{isDefault,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.product.material.domain.Album" >
+    update album
+    set SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      PATH = #{path,jdbcType=VARCHAR},
+      MEMO = #{memo,jdbcType=VARCHAR},
+      IS_DEFAULT = #{isDefault,jdbcType=BIT},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+  
+  <select id="getCount" resultType="java.lang.Integer" parameterType="com.zjlp.face.web.server.product.material.domain.Album">
+  	SELECT
+  	COUNT(id)
+  	FROM ALBUM
+  	WHERE SHOP_NO = #{shopNo,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="findPageList" resultMap="BaseResultMapDto" parameterType="java.util.Map">
+  	SELECT
+   		ID, SHOP_NO, NAME, PATH, MEMO, IS_DEFAULT, CREATE_TIME, UPDATE_TIME,
+   	(select count(p.id) from photo p where p.album_id = ID) AS COUNT_PHOTO
+  	FROM ALBUM
+  	WHERE SHOP_NO = #{shopNo,jdbcType=VARCHAR}
+  	ORDER BY UPDATE_TIME desc
+  	LIMIT ${start}, ${pageSize};
+  </select>
+  
+  <select id="getWapCount" resultType="java.lang.Integer" parameterType="com.zjlp.face.web.server.product.material.domain.Album">
+  	SELECT
+  	COUNT(a.id)
+  	FROM ALBUM a
+  	<if test="photoAlbumId!=null">
+  		JOIN ALBUM_PHOTO_ALBUM_RELATION apar ON a.ID = apar.ALBUM_ID
+  	</if>
+  	<where>
+  		<if test="shopNo!=null">
+  			AND a.SHOP_NO = #{shopNo,jdbcType=VARCHAR}
+  		</if>
+  		<if test="photoAlbumId!=null">
+  			AND apar.PHOTO_ALBUM_ID = #{photoAlbumId,jdbcType=BIGINT}
+  		</if>
+  	</where>
+  </select>
+  
+  <select id="findWapPageList" resultMap="BaseResultMapDto" parameterType="java.util.Map">
+  	SELECT
+   		a.ID, a.SHOP_NO, a.NAME, a.PATH, a.MEMO, a.IS_DEFAULT, a.CREATE_TIME, a.UPDATE_TIME
+  	FROM ALBUM a 
+  	<if test="photoAlbumId!=null">
+  		JOIN ALBUM_PHOTO_ALBUM_RELATION apar ON a.ID = apar.ALBUM_ID
+  	</if>
+  	<where>
+  		<if test="shopNo!=null">
+  			AND a.SHOP_NO = #{shopNo,jdbcType=VARCHAR}
+  		</if>
+  		<if test="photoAlbumId!=null">
+  			AND apar.PHOTO_ALBUM_ID = #{photoAlbumId,jdbcType=BIGINT}
+  		</if>
+  	</where>
+  	LIMIT ${start}, ${pageSize}
+  </select>
+  
+  <select id="findDefaultAlbumByShopNo" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	SELECT 
+  	 <include refid="Base_Column_List" />
+  	FROM ALBUM
+  	WHERE SHOP_NO = #{shopNo,jdbcType=VARCHAR}
+  	AND IS_DEFAULT = true
+  	ORDER BY CREATE_TIME desc
+  </select>
+  
+  
+  <select id="getCountPhoto" resultType="java.lang.Integer" parameterType="java.lang.Long">
+  	SELECT COUNT(id) 
+  	FROM PHOTO
+  	WHERE ALBUM_ID = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <select id="findAlbumByShopNo" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	SELECT 
+  	<include refid="Base_Column_List" />
+  	FROM ALBUM
+  	WHERE SHOP_NO = #{shopNo,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="findAlbumByName" resultMap="BaseResultMap" parameterType="com.zjlp.face.web.server.product.material.domain.Album">
+  	SELECT 
+  	<include refid="Base_Column_List" />
+  	FROM ALBUM
+  	WHERE SHOP_NO = #{shopNo,jdbcType=VARCHAR}
+  	<if test="name!=null">
+  		AND NAME LIKE CONCAT(CONCAT('%', #{name,jdbcType=VARCHAR}),'%')
+  	</if>
+  </select>
+  
+  <select id="findByIdList" resultMap="BaseResultMapDto">
+  	select 
+    <include refid="Base_Column_List" />
+    from album
+    <where>
+    	ID in 
+    	<foreach item="id" collection="ids" open="(" separator="," close=")">
+                        #{id,jdbcType=BIGINT}
+        </foreach>
+    </where>
+  </select>
+</mapper>

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.SubbranchGoodRelationMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.operation.subbranch.domain.SubbranchGoodRelation" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="USER_ID" property="userId" jdbcType="BIGINT" />
+    <result column="SUBBRANCH_ID" property="subbranchId" jdbcType="BIGINT" />
+    <result column="GOOD_ID" property="goodId" jdbcType="BIGINT" />
+    <result column="RATE" property="rate" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    ID, USER_ID, SUBBRANCH_ID, GOOD_ID, RATE, CREATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from subbranch_good_relation
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from subbranch_good_relation
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.operation.subbranch.domain.SubbranchGoodRelation" >
+  	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+   </selectKey>
+    insert into subbranch_good_relation (USER_ID, SUBBRANCH_ID, 
+      GOOD_ID, RATE, CREATE_TIME
+      )
+    values ( #{userId,jdbcType=BIGINT}, #{subbranchId,jdbcType=BIGINT}, 
+      #{goodId,jdbcType=BIGINT}, #{rate,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.operation.subbranch.domain.SubbranchGoodRelation" >
+    insert into subbranch_good_relation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="subbranchId != null" >
+        SUBBRANCH_ID,
+      </if>
+      <if test="goodId != null" >
+        GOOD_ID,
+      </if>
+      <if test="rate != null" >
+        RATE,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="subbranchId != null" >
+        #{subbranchId,jdbcType=BIGINT},
+      </if>
+      <if test="goodId != null" >
+        #{goodId,jdbcType=BIGINT},
+      </if>
+      <if test="rate != null" >
+        #{rate,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.operation.subbranch.domain.SubbranchGoodRelation" >
+    update subbranch_good_relation
+    <set >
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="subbranchId != null" >
+        SUBBRANCH_ID = #{subbranchId,jdbcType=BIGINT},
+      </if>
+      <if test="goodId != null" >
+        GOOD_ID = #{goodId,jdbcType=BIGINT},
+      </if>
+      <if test="rate != null" >
+        RATE = #{rate,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.operation.subbranch.domain.SubbranchGoodRelation" >
+    update subbranch_good_relation
+    set USER_ID = #{userId,jdbcType=BIGINT},
+      SUBBRANCH_ID = #{subbranchId,jdbcType=BIGINT},
+      GOOD_ID = #{goodId,jdbcType=BIGINT},
+      RATE = #{rate,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+  	<select id="isExist" parameterType="com.zjlp.face.web.server.operation.subbranch.domain.SubbranchGoodRelation" resultType="java.lang.Integer">
+  		select count(1) from subbranch_good_relation where subbranch_id = #{subbranchId,jdbcType=BIGINT} and good_id = #{goodId,jdbcType=BIGINT}
+  	</select>
+  
+  	<select id="getTotalCount" parameterType="com.zjlp.face.web.server.operation.subbranch.domain.vo.SubbranchGoodRelationVo" resultType="java.lang.Integer">
+  		<choose>
+  			<when test="type == 0">
+  				select COUNT(1) from good g where g.ID not in 
+  					(
+  						select g.ID from subbranch s 
+  							join good g on (g.SHOP_NO = s.SUPPLIER_SHOP_NO) 
+  							join subbranch_good_relation sgr on sgr.GOOD_ID = g.ID  and s.ID  = sgr.SUBBRANCH_ID
+    							where s.id = #{subbranchId,jdbcType=BIGINT}
+    				) and g.SHOP_NO = #{shopNo,jdbcType=VARCHAR} and g.status = 1 and g.service_id = 1
+    				<if test="name != null">
+    					and g.name LIKE CONCAT('%',#{name, jdbcType=VARCHAR},'%') 
+    				</if>
+  			</when>
+  			<otherwise>
+		  		select COUNT(1)
+		    		from subbranch_good_relation sgr join subbranch s on (s.id = sgr.SUBBRANCH_ID) 
+		    			join good g on (g.shop_no = s.SUPPLIER_SHOP_NO and g.id = sgr.good_id and g.shop_no = #{shopNo,jdbcType=VARCHAR})
+		    			where sgr.SUBBRANCH_ID = #{subbranchId,jdbcType=BIGINT} and g.status = 1 and g.service_id = 1
+    				<if test="name != null">
+    					and g.name LIKE CONCAT('%',#{name, jdbcType=VARCHAR},'%') 
+    				</if>
+  			</otherwise>
+  		</choose>
+  	</select>
+  	
+  	<select id="findPageSubbracheGood" parameterType="java.util.Map" resultType="com.zjlp.face.web.server.operation.subbranch.domain.vo.SubbranchGoodRelationVo">
+  		<choose>
+  			<when test="subbranchGoodRelationVo.type == 0">
+  				select g.name as name,g.MARKET_PRICE as marketPrice,g.SALES_PRICE as salesPrice ,g.pic_url as picUrl ,g.id as goodId
+  					from good g where g.ID not in 
+	  					(
+	  						select g.ID from subbranch s 
+	  							join good g on (g.SHOP_NO = s.SUPPLIER_SHOP_NO) 
+	  							join subbranch_good_relation sgr on sgr.GOOD_ID = g.ID  and s.ID  = sgr.SUBBRANCH_ID
+	    							where s.id = #{subbranchGoodRelationVo.subbranchId,jdbcType=BIGINT}
+	    				) and g.SHOP_NO = #{subbranchGoodRelationVo.shopNo,jdbcType=VARCHAR} and g.status = 1 and g.service_id = 1
+	    				<if test="subbranchGoodRelationVo.name != null">
+	    					and g.name LIKE CONCAT('%',#{subbranchGoodRelationVo.name, jdbcType=VARCHAR},'%') 
+	    				</if>
+	    			ORDER BY g.LIST_TIME desc
+    				LIMIT #{start},#{pageSize}
+  			</when>
+  			<otherwise>
+		  		select g.name as name,g.MARKET_PRICE as marketPrice,g.SALES_PRICE as salesPrice, g.pic_url as picUrl,
+		  				sgr.ID as id, sgr.USER_ID as userId, sgr.SUBBRANCH_ID as subbranchId,sgr.GOOD_ID goodId, sgr.RATE as rate, sgr.CREATE_TIME as createTime
+		    		from subbranch_good_relation sgr join subbranch s on (s.id = sgr.SUBBRANCH_ID) 
+		    			join good g on (g.shop_no = s.SUPPLIER_SHOP_NO and g.id = sgr.good_id and g.shop_no = #{subbranchGoodRelationVo.shopNo,jdbcType=VARCHAR})
+		    			where sgr.SUBBRANCH_ID = #{subbranchGoodRelationVo.subbranchId,jdbcType=BIGINT} and g.status = 1 and g.service_id = 1
+		    			<if test="subbranchGoodRelationVo.name != null">
+	    					and g.name LIKE CONCAT('%',#{subbranchGoodRelationVo.name, jdbcType=VARCHAR},'%') 
+	    				</if>
+    					ORDER BY g.LIST_TIME desc
+    					LIMIT #{start},#{pageSize}
+  			</otherwise>
+  		</choose>
+  	</select>
+  
+  <!-- 根据 分店ID&商品ID 获取单品的佣金率 -->
+  <select id="findSubbranchGoodRate" parameterType="com.zjlp.face.web.server.operation.subbranch.domain.SubbranchGoodRelation" resultType="Integer">
+  	SELECT 
+  		RATE 
+  	FROM 
+  		subbranch_good_relation 
+  	WHERE 
+  		SUBBRANCH_ID = #{subbranchId,jdbcType=BIGINT} AND GOOD_ID = #{goodId,jdbcType=BIGINT}
+  </select>
+  
+  	<!-- 查询商品sku销售价最大,最小值 -->
+  	<select id="querySkuDifference" parameterType="java.lang.Long" resultType="com.zjlp.face.web.server.operation.subbranch.domain.vo.GoodSkuDifferenceVo">
+  		select MAX(gs.SALES_PRICE) as max,MIN(gs.SALES_PRICE) as min from good_sku gs where gs.GOOD_ID = #{goodId,jdbcType=BIGINT} and gs.STATUS > -1
+  	</select>
+</mapper>

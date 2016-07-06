@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.PaymentMemoMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.trade.payment.domain.PaymentMemo" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="USER_ID" property="userId" jdbcType="BIGINT" />
+    <result column="PAY_TYPE" property="payType" jdbcType="INTEGER" />
+    <result column="TYPE" property="type" jdbcType="INTEGER" />
+    <result column="TRANSACTION_SERIAL_NUMBER" property="transactionSerialNumber" jdbcType="VARCHAR" />
+    <result column="SHOP_NO" property="shopNo" jdbcType="VARCHAR" />
+    <result column="TOTAL_PRICE" property="totalPrice" jdbcType="BIGINT" />
+    <result column="PREFERENTIAL_PRICE" property="preferentialPrice" jdbcType="BIGINT" />
+    <result column="BANK_CARD_PAY" property="bankCardPay" jdbcType="BIGINT" />
+    <result column="WALLET_PAY" property="walletPay" jdbcType="BIGINT" />
+    <result column="COMMISSION_REFEREE" property="commissionReferee" jdbcType="BIGINT" />
+    <result column="COMMISSION_ON_PERSON" property="commissionOnPerson" jdbcType="BIGINT" />
+    <result column="COMMISSION_PLATFORM" property="commissionPlatform" jdbcType="BIGINT" />
+    <result column="FEE_PLATFORM" property="feePlatform" jdbcType="BIGINT" />
+    <result column="FEE_PAYMENT" property="feePayment" jdbcType="BIGINT" />
+    <result column="BUSINESSES_INTEREST" property="businessesInterest" jdbcType="BIGINT" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, USER_ID, PAY_TYPE, TYPE, TRANSACTION_SERIAL_NUMBER, SHOP_NO, TOTAL_PRICE, PREFERENTIAL_PRICE, 
+    BANK_CARD_PAY, WALLET_PAY, COMMISSION_REFEREE, COMMISSION_ON_PERSON, COMMISSION_PLATFORM, 
+    FEE_PLATFORM, FEE_PAYMENT, BUSINESSES_INTEREST, STATUS, CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from payment_memo
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from payment_memo
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.trade.payment.domain.PaymentMemo" >
+   	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into payment_memo (ID, USER_ID, PAY_TYPE, 
+      TYPE, TRANSACTION_SERIAL_NUMBER, SHOP_NO, 
+      TOTAL_PRICE, PREFERENTIAL_PRICE, BANK_CARD_PAY, 
+      WALLET_PAY, COMMISSION_REFEREE, COMMISSION_ON_PERSON, 
+      COMMISSION_PLATFORM, FEE_PLATFORM, FEE_PAYMENT, 
+      BUSINESSES_INTEREST, STATUS, CREATE_TIME, 
+      UPDATE_TIME)
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{payType,jdbcType=INTEGER}, 
+      #{type,jdbcType=INTEGER}, #{transactionSerialNumber,jdbcType=VARCHAR}, #{shopNo,jdbcType=VARCHAR}, 
+      #{totalPrice,jdbcType=BIGINT}, #{preferentialPrice,jdbcType=BIGINT}, #{bankCardPay,jdbcType=BIGINT}, 
+      #{walletPay,jdbcType=BIGINT}, #{commissionReferee,jdbcType=BIGINT}, #{commissionOnPerson,jdbcType=BIGINT}, 
+      #{commissionPlatform,jdbcType=BIGINT}, #{feePlatform,jdbcType=BIGINT}, #{feePayment,jdbcType=BIGINT}, 
+      #{businessesInterest,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.trade.payment.domain.PaymentMemo" >
+   	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into payment_memo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="payType != null" >
+        PAY_TYPE,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="transactionSerialNumber != null" >
+        TRANSACTION_SERIAL_NUMBER,
+      </if>
+      <if test="shopNo != null" >
+        SHOP_NO,
+      </if>
+      <if test="totalPrice != null" >
+        TOTAL_PRICE,
+      </if>
+      <if test="preferentialPrice != null" >
+        PREFERENTIAL_PRICE,
+      </if>
+      <if test="bankCardPay != null" >
+        BANK_CARD_PAY,
+      </if>
+      <if test="walletPay != null" >
+        WALLET_PAY,
+      </if>
+      <if test="commissionReferee != null" >
+        COMMISSION_REFEREE,
+      </if>
+      <if test="commissionOnPerson != null" >
+        COMMISSION_ON_PERSON,
+      </if>
+      <if test="commissionPlatform != null" >
+        COMMISSION_PLATFORM,
+      </if>
+      <if test="feePlatform != null" >
+        FEE_PLATFORM,
+      </if>
+      <if test="feePayment != null" >
+        FEE_PAYMENT,
+      </if>
+      <if test="businessesInterest != null" >
+        BUSINESSES_INTEREST,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="payType != null" >
+        #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="transactionSerialNumber != null" >
+        #{transactionSerialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="shopNo != null" >
+        #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="totalPrice != null" >
+        #{totalPrice,jdbcType=BIGINT},
+      </if>
+      <if test="preferentialPrice != null" >
+        #{preferentialPrice,jdbcType=BIGINT},
+      </if>
+      <if test="bankCardPay != null" >
+        #{bankCardPay,jdbcType=BIGINT},
+      </if>
+      <if test="walletPay != null" >
+        #{walletPay,jdbcType=BIGINT},
+      </if>
+      <if test="commissionReferee != null" >
+        #{commissionReferee,jdbcType=BIGINT},
+      </if>
+      <if test="commissionOnPerson != null" >
+        #{commissionOnPerson,jdbcType=BIGINT},
+      </if>
+      <if test="commissionPlatform != null" >
+        #{commissionPlatform,jdbcType=BIGINT},
+      </if>
+      <if test="feePlatform != null" >
+        #{feePlatform,jdbcType=BIGINT},
+      </if>
+      <if test="feePayment != null" >
+        #{feePayment,jdbcType=BIGINT},
+      </if>
+      <if test="businessesInterest != null" >
+        #{businessesInterest,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.trade.payment.domain.PaymentMemo" >
+    update payment_memo
+    <set >
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="payType != null" >
+        PAY_TYPE = #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="transactionSerialNumber != null" >
+        TRANSACTION_SERIAL_NUMBER = #{transactionSerialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="shopNo != null" >
+        SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="totalPrice != null" >
+        TOTAL_PRICE = #{totalPrice,jdbcType=BIGINT},
+      </if>
+      <if test="preferentialPrice != null" >
+        PREFERENTIAL_PRICE = #{preferentialPrice,jdbcType=BIGINT},
+      </if>
+      <if test="bankCardPay != null" >
+        BANK_CARD_PAY = #{bankCardPay,jdbcType=BIGINT},
+      </if>
+      <if test="walletPay != null" >
+        WALLET_PAY = #{walletPay,jdbcType=BIGINT},
+      </if>
+      <if test="commissionReferee != null" >
+        COMMISSION_REFEREE = #{commissionReferee,jdbcType=BIGINT},
+      </if>
+      <if test="commissionOnPerson != null" >
+        COMMISSION_ON_PERSON = #{commissionOnPerson,jdbcType=BIGINT},
+      </if>
+      <if test="commissionPlatform != null" >
+        COMMISSION_PLATFORM = #{commissionPlatform,jdbcType=BIGINT},
+      </if>
+      <if test="feePlatform != null" >
+        FEE_PLATFORM = #{feePlatform,jdbcType=BIGINT},
+      </if>
+      <if test="feePayment != null" >
+        FEE_PAYMENT = #{feePayment,jdbcType=BIGINT},
+      </if>
+      <if test="businessesInterest != null" >
+        BUSINESSES_INTEREST = #{businessesInterest,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.trade.payment.domain.PaymentMemo" >
+    update payment_memo
+    set USER_ID = #{userId,jdbcType=BIGINT},
+      PAY_TYPE = #{payType,jdbcType=INTEGER},
+      TYPE = #{type,jdbcType=INTEGER},
+      TRANSACTION_SERIAL_NUMBER = #{transactionSerialNumber,jdbcType=VARCHAR},
+      SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      TOTAL_PRICE = #{totalPrice,jdbcType=BIGINT},
+      PREFERENTIAL_PRICE = #{preferentialPrice,jdbcType=BIGINT},
+      BANK_CARD_PAY = #{bankCardPay,jdbcType=BIGINT},
+      WALLET_PAY = #{walletPay,jdbcType=BIGINT},
+      COMMISSION_REFEREE = #{commissionReferee,jdbcType=BIGINT},
+      COMMISSION_ON_PERSON = #{commissionOnPerson,jdbcType=BIGINT},
+      COMMISSION_PLATFORM = #{commissionPlatform,jdbcType=BIGINT},
+      FEE_PLATFORM = #{feePlatform,jdbcType=BIGINT},
+      FEE_PAYMENT = #{feePayment,jdbcType=BIGINT},
+      BUSINESSES_INTEREST = #{businessesInterest,jdbcType=BIGINT},
+      STATUS = #{status,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

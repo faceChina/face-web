@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.MemberTransactionRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.trade.payment.domain.MemberTransactionRecord" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="MEMBER_CARD_ID" property="memberCardId" jdbcType="BIGINT" />
+    <result column="SELLER_ID" property="sellerId" jdbcType="VARCHAR" />
+    <result column="TRANSACTION_SERIAL_NUMBER" property="transactionSerialNumber" jdbcType="VARCHAR" />
+    <result column="CHANNEL" property="channel" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="INTEGER" />
+    <result column="GOOD_INFO" property="goodInfo" jdbcType="VARCHAR" />
+    <result column="TRANS_PRICE" property="transPrice" jdbcType="BIGINT" />
+    <result column="AMOUNT" property="amount" jdbcType="BIGINT" />
+    <result column="BEFORE_AMOUNT" property="beforeAmount" jdbcType="BIGINT" />
+    <result column="TRANS_TIME" property="transTime" jdbcType="TIMESTAMP" />
+    <result column="TRANS_YEAR" property="transYear" jdbcType="VARCHAR" />
+    <result column="TRANS_MONTH" property="transMonth" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" type="com.zjlp.face.web.server.trade.payment.domain.dto.MemberTransactionRecordDto" id="DtoResultMap">
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, MEMBER_CARD_ID, SELLER_ID, TRANSACTION_SERIAL_NUMBER, CHANNEL, TYPE, GOOD_INFO, 
+    TRANS_PRICE, AMOUNT, BEFORE_AMOUNT, TRANS_TIME, TRANS_YEAR, TRANS_MONTH, CREATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from member_transaction_record
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectByTSN" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from member_transaction_record
+    where TRANSACTION_SERIAL_NUMBER = #{transactionSerialNumber,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from member_transaction_record
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.trade.payment.domain.MemberTransactionRecord" >
+    insert into member_transaction_record (ID, MEMBER_CARD_ID, SELLER_ID, 
+      TRANSACTION_SERIAL_NUMBER, CHANNEL, TYPE, 
+      GOOD_INFO, TRANS_PRICE, AMOUNT, 
+      BEFORE_AMOUNT, TRANS_TIME, TRANS_YEAR, 
+      TRANS_MONTH, CREATE_TIME)
+    values (#{id,jdbcType=BIGINT}, #{memberCardId,jdbcType=BIGINT}, #{sellerId,jdbcType=VARCHAR}, 
+      #{transactionSerialNumber,jdbcType=VARCHAR}, #{channel,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
+      #{goodInfo,jdbcType=VARCHAR}, #{transPrice,jdbcType=BIGINT}, #{amount,jdbcType=BIGINT}, 
+      #{beforeAmount,jdbcType=BIGINT}, #{transTime,jdbcType=TIMESTAMP}, #{transYear,jdbcType=VARCHAR}, 
+      #{transMonth,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.trade.payment.domain.MemberTransactionRecord" >
+  	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into member_transaction_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="memberCardId != null" >
+        MEMBER_CARD_ID,
+      </if>
+      <if test="sellerId != null" >
+        SELLER_ID,
+      </if>
+      <if test="transactionSerialNumber != null" >
+        TRANSACTION_SERIAL_NUMBER,
+      </if>
+      <if test="channel != null" >
+        CHANNEL,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="goodInfo != null" >
+        GOOD_INFO,
+      </if>
+      <if test="transPrice != null" >
+        TRANS_PRICE,
+      </if>
+      <if test="amount != null" >
+        AMOUNT,
+      </if>
+      <if test="beforeAmount != null" >
+        BEFORE_AMOUNT,
+      </if>
+      <if test="transTime != null" >
+        TRANS_TIME,
+      </if>
+      <if test="transYear != null" >
+        TRANS_YEAR,
+      </if>
+      <if test="transMonth != null" >
+        TRANS_MONTH,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="memberCardId != null" >
+        #{memberCardId,jdbcType=BIGINT},
+      </if>
+      <if test="sellerId != null" >
+        #{sellerId,jdbcType=VARCHAR},
+      </if>
+      <if test="transactionSerialNumber != null" >
+        #{transactionSerialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null" >
+        #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="goodInfo != null" >
+        #{goodInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="transPrice != null" >
+        #{transPrice,jdbcType=BIGINT},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=BIGINT},
+      </if>
+      <if test="beforeAmount != null" >
+        #{beforeAmount,jdbcType=BIGINT},
+      </if>
+      <if test="transTime != null" >
+        #{transTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="transYear != null" >
+        #{transYear,jdbcType=VARCHAR},
+      </if>
+      <if test="transMonth != null" >
+        #{transMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.trade.payment.domain.MemberTransactionRecord" >
+    update member_transaction_record
+    <set >
+      <if test="memberCardId != null" >
+        MEMBER_CARD_ID = #{memberCardId,jdbcType=BIGINT},
+      </if>
+      <if test="sellerId != null" >
+        SELLER_ID = #{sellerId,jdbcType=VARCHAR},
+      </if>
+      <if test="transactionSerialNumber != null" >
+        TRANSACTION_SERIAL_NUMBER = #{transactionSerialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null" >
+        CHANNEL = #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="goodInfo != null" >
+        GOOD_INFO = #{goodInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="transPrice != null" >
+        TRANS_PRICE = #{transPrice,jdbcType=BIGINT},
+      </if>
+      <if test="amount != null" >
+        AMOUNT = #{amount,jdbcType=BIGINT},
+      </if>
+      <if test="beforeAmount != null" >
+        BEFORE_AMOUNT = #{beforeAmount,jdbcType=BIGINT},
+      </if>
+      <if test="transTime != null" >
+        TRANS_TIME = #{transTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="transYear != null" >
+        TRANS_YEAR = #{transYear,jdbcType=VARCHAR},
+      </if>
+      <if test="transMonth != null" >
+        TRANS_MONTH = #{transMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.trade.payment.domain.MemberTransactionRecord" >
+    update member_transaction_record
+    set MEMBER_CARD_ID = #{memberCardId,jdbcType=BIGINT},
+      SELLER_ID = #{sellerId,jdbcType=VARCHAR},
+      TRANSACTION_SERIAL_NUMBER = #{transactionSerialNumber,jdbcType=VARCHAR},
+      CHANNEL = #{channel,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=INTEGER},
+      GOOD_INFO = #{goodInfo,jdbcType=VARCHAR},
+      TRANS_PRICE = #{transPrice,jdbcType=BIGINT},
+      AMOUNT = #{amount,jdbcType=BIGINT},
+      BEFORE_AMOUNT = #{beforeAmount,jdbcType=BIGINT},
+      TRANS_TIME = #{transTime,jdbcType=TIMESTAMP},
+      TRANS_YEAR = #{transYear,jdbcType=VARCHAR},
+      TRANS_MONTH = #{transMonth,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="selectTransactionRecordList" resultMap="DtoResultMap" parameterType="com.zjlp.face.web.server.trade.payment.domain.dto.MemberTransactionRecordDto">
+       SELECT
+           <include refid="Base_Column_List"/>
+       FROM
+           MEMBER_TRANSACTION_RECORD
+       WHERE
+           MEMBER_CARD_ID = #{memberCardId,jdbcType=BIGINT}
+           AND SELLER_ID = #{sellerId,jdbcType=VARCHAR}
+           AND TYPE = #{type,jdbcType=INTEGER}
+       LIMIT #{aide.startNum}, #{aide.pageSizeNum}
+  </select>
+  
+  <select id="selectTransactionCount" resultType="java.lang.Integer" parameterType="com.zjlp.face.web.server.trade.payment.domain.dto.MemberTransactionRecordDto">
+       SELECT
+           COUNT(1)
+       FROM
+           MEMBER_TRANSACTION_RECORD
+       WHERE
+           MEMBER_CARD_ID = #{memberCardId,jdbcType=BIGINT}
+           AND SELLER_ID = #{sellerId,jdbcType=VARCHAR}
+           AND TYPE = #{type,jdbcType=INTEGER}
+  </select>
+  <select id="findMemberTransactionRecordListByTime" resultMap="BaseResultMap">
+  	select <include refid="Base_Column_List"/> from member_transaction_record
+  	where member_card_id = #{memberCardId}
+  	<if test="beginTime != null and endTime != null">
+  		and trans_time between #{beginTime} and #{endTime}
+  	</if>
+  	order by trans_time desc
+  </select>
+</mapper>

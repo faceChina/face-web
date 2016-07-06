@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.PurchaseOrderItemMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.trade.order.domain.PurchaseOrderItem" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="PURCHASE_ORDER_ID" property="purchaseOrderId" jdbcType="BIGINT" />
+    <result column="GOOD_ID" property="goodId" jdbcType="BIGINT" />
+    <result column="GOOD_NAME" property="goodName" jdbcType="VARCHAR" />
+    <result column="GOOD_SKU_ID" property="goodSkuId" jdbcType="BIGINT" />
+    <result column="SKU_PROPERTY_NAME" property="skuPropertyName" jdbcType="VARCHAR" />
+    <result column="SKU_PICTURE_PATH" property="skuPicturePath" jdbcType="VARCHAR" />
+    <result column="QUANTITY" property="quantity" jdbcType="BIGINT" />
+    <result column="PURCHASE_PRICE" property="purchasePrice" jdbcType="BIGINT" />
+    <result column="SUB_PURCHASE_PRICE" property="subPurchasePrice" jdbcType="BIGINT" />
+    <result column="SALES_PRICE" property="salesPrice" jdbcType="BIGINT" />
+    <result column="SUB_SALES_PRICE" property="subSalesPrice" jdbcType="BIGINT" />
+    <result column="SUB_PROFIT_PRICE" property="subProfitPrice" jdbcType="BIGINT" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap type="com.zjlp.face.web.server.trade.order.domain.dto.PurchaseOrderItemDto" id="DtoResultMap" extends="BaseResultMap">
+     <result column="SKU_PRICE" property="skuPrice" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, PURCHASE_ORDER_ID, GOOD_ID, GOOD_NAME, GOOD_SKU_ID, SKU_PROPERTY_NAME, SKU_PICTURE_PATH, 
+    QUANTITY, PURCHASE_PRICE, SUB_PURCHASE_PRICE, SALES_PRICE, SUB_SALES_PRICE, SUB_PROFIT_PRICE, 
+    CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from purchase_order_item
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from purchase_order_item
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.trade.order.domain.PurchaseOrderItem" >
+   	    <selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into purchase_order_item (ID, PURCHASE_ORDER_ID, GOOD_ID, 
+      GOOD_NAME, GOOD_SKU_ID, SKU_PROPERTY_NAME, 
+      SKU_PICTURE_PATH, QUANTITY, PURCHASE_PRICE, 
+      SUB_PURCHASE_PRICE, SALES_PRICE, SUB_SALES_PRICE, 
+      SUB_PROFIT_PRICE, CREATE_TIME, UPDATE_TIME
+      )
+    values (#{id,jdbcType=BIGINT}, #{purchaseOrderId,jdbcType=BIGINT}, #{goodId,jdbcType=BIGINT}, 
+      #{goodName,jdbcType=VARCHAR}, #{goodSkuId,jdbcType=BIGINT}, #{skuPropertyName,jdbcType=VARCHAR}, 
+      #{skuPicturePath,jdbcType=VARCHAR}, #{quantity,jdbcType=BIGINT}, #{purchasePrice,jdbcType=BIGINT}, 
+      #{subPurchasePrice,jdbcType=BIGINT}, #{salesPrice,jdbcType=BIGINT}, #{subSalesPrice,jdbcType=BIGINT}, 
+      #{subProfitPrice,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.trade.order.domain.PurchaseOrderItem" >
+    <selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into purchase_order_item
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="purchaseOrderId != null" >
+        PURCHASE_ORDER_ID,
+      </if>
+      <if test="goodId != null" >
+        GOOD_ID,
+      </if>
+      <if test="goodName != null" >
+        GOOD_NAME,
+      </if>
+      <if test="goodSkuId != null" >
+        GOOD_SKU_ID,
+      </if>
+      <if test="skuPropertyName != null" >
+        SKU_PROPERTY_NAME,
+      </if>
+      <if test="skuPicturePath != null" >
+        SKU_PICTURE_PATH,
+      </if>
+      <if test="quantity != null" >
+        QUANTITY,
+      </if>
+      <if test="purchasePrice != null" >
+        PURCHASE_PRICE,
+      </if>
+      <if test="subPurchasePrice != null" >
+        SUB_PURCHASE_PRICE,
+      </if>
+      <if test="salesPrice != null" >
+        SALES_PRICE,
+      </if>
+      <if test="subSalesPrice != null" >
+        SUB_SALES_PRICE,
+      </if>
+      <if test="subProfitPrice != null" >
+        SUB_PROFIT_PRICE,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="purchaseOrderId != null" >
+        #{purchaseOrderId,jdbcType=BIGINT},
+      </if>
+      <if test="goodId != null" >
+        #{goodId,jdbcType=BIGINT},
+      </if>
+      <if test="goodName != null" >
+        #{goodName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodSkuId != null" >
+        #{goodSkuId,jdbcType=BIGINT},
+      </if>
+      <if test="skuPropertyName != null" >
+        #{skuPropertyName,jdbcType=VARCHAR},
+      </if>
+      <if test="skuPicturePath != null" >
+        #{skuPicturePath,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null" >
+        #{quantity,jdbcType=BIGINT},
+      </if>
+      <if test="purchasePrice != null" >
+        #{purchasePrice,jdbcType=BIGINT},
+      </if>
+      <if test="subPurchasePrice != null" >
+        #{subPurchasePrice,jdbcType=BIGINT},
+      </if>
+      <if test="salesPrice != null" >
+        #{salesPrice,jdbcType=BIGINT},
+      </if>
+      <if test="subSalesPrice != null" >
+        #{subSalesPrice,jdbcType=BIGINT},
+      </if>
+      <if test="subProfitPrice != null" >
+        #{subProfitPrice,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.trade.order.domain.PurchaseOrderItem" >
+    update purchase_order_item
+    <set >
+      <if test="purchaseOrderId != null" >
+        PURCHASE_ORDER_ID = #{purchaseOrderId,jdbcType=BIGINT},
+      </if>
+      <if test="goodId != null" >
+        GOOD_ID = #{goodId,jdbcType=BIGINT},
+      </if>
+      <if test="goodName != null" >
+        GOOD_NAME = #{goodName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodSkuId != null" >
+        GOOD_SKU_ID = #{goodSkuId,jdbcType=BIGINT},
+      </if>
+      <if test="skuPropertyName != null" >
+        SKU_PROPERTY_NAME = #{skuPropertyName,jdbcType=VARCHAR},
+      </if>
+      <if test="skuPicturePath != null" >
+        SKU_PICTURE_PATH = #{skuPicturePath,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null" >
+        QUANTITY = #{quantity,jdbcType=BIGINT},
+      </if>
+      <if test="purchasePrice != null" >
+        PURCHASE_PRICE = #{purchasePrice,jdbcType=BIGINT},
+      </if>
+      <if test="subPurchasePrice != null" >
+        SUB_PURCHASE_PRICE = #{subPurchasePrice,jdbcType=BIGINT},
+      </if>
+      <if test="salesPrice != null" >
+        SALES_PRICE = #{salesPrice,jdbcType=BIGINT},
+      </if>
+      <if test="subSalesPrice != null" >
+        SUB_SALES_PRICE = #{subSalesPrice,jdbcType=BIGINT},
+      </if>
+      <if test="subProfitPrice != null" >
+        SUB_PROFIT_PRICE = #{subProfitPrice,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.trade.order.domain.PurchaseOrderItem" >
+    update purchase_order_item
+    set PURCHASE_ORDER_ID = #{purchaseOrderId,jdbcType=BIGINT},
+      GOOD_ID = #{goodId,jdbcType=BIGINT},
+      GOOD_NAME = #{goodName,jdbcType=VARCHAR},
+      GOOD_SKU_ID = #{goodSkuId,jdbcType=BIGINT},
+      SKU_PROPERTY_NAME = #{skuPropertyName,jdbcType=VARCHAR},
+      SKU_PICTURE_PATH = #{skuPicturePath,jdbcType=VARCHAR},
+      QUANTITY = #{quantity,jdbcType=BIGINT},
+      PURCHASE_PRICE = #{purchasePrice,jdbcType=BIGINT},
+      SUB_PURCHASE_PRICE = #{subPurchasePrice,jdbcType=BIGINT},
+      SALES_PRICE = #{salesPrice,jdbcType=BIGINT},
+      SUB_SALES_PRICE = #{subSalesPrice,jdbcType=BIGINT},
+      SUB_PROFIT_PRICE = #{subProfitPrice,jdbcType=BIGINT},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectListByPurchaseOrderId" resultMap="DtoResultMap" parameterType="java.lang.Long">
+       SELECT
+           poi.ID, poi.PURCHASE_ORDER_ID, poi.GOOD_ID, poi.GOOD_NAME, poi.GOOD_SKU_ID, poi.SKU_PROPERTY_NAME, poi.SKU_PICTURE_PATH, 
+		   poi.QUANTITY, poi.PURCHASE_PRICE, poi.SUB_PURCHASE_PRICE, poi.SALES_PRICE, poi.SUB_SALES_PRICE, poi.SUB_PROFIT_PRICE, 
+		   poi.CREATE_TIME, poi.UPDATE_TIME, gs.SALES_PRICE AS skuPrice
+       FROM
+           PURCHASE_ORDER_ITEM AS poi
+       LEFT JOIN
+           GOOD_SKU AS gs ON (poi.GOOD_SKU_ID = gs.id)
+       WHERE
+           poi.PURCHASE_ORDER_ID = #{purchaseOrderId,jdbcType=BIGINT}
+  </select>
+  
+  <select id="selectAll"  resultMap="DtoResultMap">
+      SELECT
+          <include refid="Base_Column_List" />
+      FROM
+          PURCHASE_ORDER_ITEM
+  </select>
+</mapper>

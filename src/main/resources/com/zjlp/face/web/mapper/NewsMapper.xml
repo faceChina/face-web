@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.NewsMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.product.material.domain.News" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="SHOP_NO" property="shopNo" jdbcType="VARCHAR" />
+    <result column="TITLE" property="title" jdbcType="VARCHAR" />
+    <result column="INTRODUCTION" property="introduction" jdbcType="VARCHAR" />
+    <result column="PIC_PATH" property="picPath" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="INTEGER" />
+    <result column="HYPERLINK" property="hyperlink" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.zjlp.face.web.server.product.material.domain.News" extends="BaseResultMap" >
+    <result column="ARTICLE_CONTENT" property="articleContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapDto" type="com.zjlp.face.web.server.product.material.domain.dto.NewsDto" extends="ResultMapWithBLOBs" >
+ 	<result column="SORT" property="sort" jdbcType="INTEGER" />
+ 	<result column="RELATION_ID" property="relationId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, SHOP_NO, TITLE, INTRODUCTION, PIC_PATH, TYPE, HYPERLINK, CREATE_TIME, UPDATE_TIME
+  </sql>
+  <sql id="Blob_Column_List" >
+    ARTICLE_CONTENT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from news
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectList" resultMap="ResultMapDto" parameterType="java.util.Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from news
+    where shop_no = #{dto.shopNo,jdbcType=BIGINT}
+    <if test="dto.soso != null">
+    	and title like CONCAT('%',#{dto.soso,jdbcType=VARCHAR},'%')
+    </if>
+    order by UPDATE_TIME desc
+    limit #{start}, #{pageSize}
+  </select>
+  <select id="getCount" resultType="java.lang.Integer" parameterType="com.zjlp.face.web.server.product.material.domain.dto.NewsDto" >
+    select 
+    count(id)
+    from news
+    where shop_no = #{shopNo,jdbcType=BIGINT}
+    <if test="soso != null">
+    	and title like CONCAT('%',#{soso,jdbcType=VARCHAR},'%')
+    </if>
+  </select>
+  <select id="getMaxSortByShopNo" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    select 
+    case when max(sort) is null then 0 else max(sort) end 
+    from news
+    where shop_no = #{shopNo,jdbcType=VARCHAR}
+  </select>
+  <select id="selectListForModular" resultMap="ResultMapDto" parameterType="java.util.Map" >
+    select
+    <include refid="Base_Column_List" />
+    from news
+    where shop_no = #{dto.shopNo,jdbcType=VARCHAR}
+    and id in (select part_id from group_list where group_id = #{dto.groupId, jdbcType=BIGINT} and  ASSOCIATION_TABLE='NEWS')
+    order by UPDATE_TIME desc
+    limit #{start}, #{pageSize}
+  </select>
+  <select id="getCountForModular" resultType="java.lang.Integer" parameterType="com.zjlp.face.web.server.product.material.domain.dto.NewsDto" >
+    select
+    count(id)
+    from news
+    where shop_no = #{shopNo,jdbcType=VARCHAR}
+    and id in (select part_id from group_list where group_id = #{groupId, jdbcType=BIGINT} and  ASSOCIATION_TABLE='NEWS')
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from news
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.product.material.domain.News" >
+    <selectKey keyProperty="id" resultType="long" order="AFTER">  
+        SELECT LAST_INSERT_ID();  
+    </selectKey> 
+    insert into news (ID, SHOP_NO, TITLE, 
+      INTRODUCTION, PIC_PATH, TYPE, HYPERLINK,  
+      CREATE_TIME, UPDATE_TIME, ARTICLE_CONTENT
+      )
+    values (#{id,jdbcType=BIGINT}, #{shopNo,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{introduction,jdbcType=VARCHAR}, #{picPath,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
+      #{hyperlink,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{articleContent,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.product.material.domain.News" >
+    <selectKey keyProperty="id" resultType="long" order="AFTER">  
+        SELECT LAST_INSERT_ID();  
+    </selectKey> 
+    insert into news
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="shopNo != null" >
+        SHOP_NO,
+      </if>
+      <if test="title != null" >
+        TITLE,
+      </if>
+      <if test="introduction != null" >
+        INTRODUCTION,
+      </if>
+      <if test="picPath != null" >
+        PIC_PATH,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="hyperlink != null" >
+        HYPERLINK,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="articleContent != null" >
+        ARTICLE_CONTENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="shopNo != null" >
+        #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null" >
+        #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="picPath != null" >
+        #{picPath,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="hyperlink != null" >
+        #{hyperlink,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="articleContent != null" >
+        #{articleContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.product.material.domain.News" >
+    update news
+    <set >
+      <if test="shopNo != null" >
+        SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        TITLE = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null" >
+        INTRODUCTION = #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="picPath != null" >
+        PIC_PATH = #{picPath,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="hyperlink != null" >
+        HYPERLINK = #{hyperlink,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="articleContent != null" >
+        ARTICLE_CONTENT = #{articleContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zjlp.face.web.server.product.material.domain.News" >
+    update news
+    set SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      TITLE = #{title,jdbcType=VARCHAR},
+      INTRODUCTION = #{introduction,jdbcType=VARCHAR},
+      PIC_PATH = #{picPath,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=INTEGER},
+      HYPERLINK = #{hyperlink,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      ARTICLE_CONTENT = #{articleContent,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.product.material.domain.News" >
+    update news
+    set SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      TITLE = #{title,jdbcType=VARCHAR},
+      INTRODUCTION = #{introduction,jdbcType=VARCHAR},
+      PIC_PATH = #{picPath,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=INTEGER},
+      HYPERLINK = #{hyperlink,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateNewsById" parameterType="com.zjlp.face.web.server.product.material.domain.News" >
+    update news
+    set TITLE = #{title,jdbcType=VARCHAR},
+      INTRODUCTION = #{introduction,jdbcType=VARCHAR},
+      PIC_PATH = #{picPath,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=INTEGER},
+      HYPERLINK = #{hyperlink,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      ARTICLE_CONTENT = #{articleContent,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="selectByShopNo" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from news
+    where SHOP_NO = #{shopNo,jdbcType=VARCHAR}
+    order by UPDATE_TIME desc
+  </select>
+  <select id="selectByArticleCategoryId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+  	select 
+    n.id, n.shop_no shopNo, n.title, n.introduction, n.pic_path picPath,
+     n.type,n.hyperlink,n.create_time createTime
+    from news as n left join article_category_news_reference as acnr on 
+    n.id = acnr.NEWS_ID
+    where acnr.ARTICLE_CATEGORY_ID = #{articleCategoryId, jdbcType=BIGINT}
+    order by acnr.sort desc
+  </select>
+  <select id="selectNewsDtoById" resultMap="ResultMapDto" parameterType="java.lang.Long">
+  	select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from news
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <select id="selectNewsList" resultMap="ResultMapWithBLOBs" parameterType="com.zjlp.face.web.server.product.material.domain.News">
+  	select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from news
+    where SHOP_NO = #{shopNo,jdbcType=VARCHAR}
+    <if test="title != null">
+    	and title like CONCAT('%',#{title,jdbcType=VARCHAR},'%')
+    </if>
+    order by UPDATE_TIME desc
+  </select>
+  
+  <select id="findNewsAndSortByCategoryId" parameterType="java.lang.Long" resultMap="ResultMapDto">
+  	SELECT acnr.SORT,n.type,n.ID,n.TITLE,n.hyperlink,n.pic_path,acnr.ID AS RELATION_ID
+  	FROM ARTICLE_CATEGORY_NEWS_REFERENCE acnr
+	JOIN NEWS n
+	ON acnr.NEWS_ID = n.ID
+	WHERE ARTICLE_CATEGORY_ID = #{categoryId,jdbcType=BIGINT}
+	ORDER BY acnr.SORT DESC
+  </select>
+  
+  
+  
+</mapper>

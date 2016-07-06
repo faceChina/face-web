@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.TemplateMessageSettingMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.user.weixin.domain.TemplateMessageSetting" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="SHOP_NO" property="shopNo" jdbcType="VARCHAR" />
+    <result column="MEMBER_CARD_SWITCH" property="memberCardSwitch" jdbcType="INTEGER" />
+    <result column="ORDER_STATUS_SWITCH" property="orderStatusSwitch" jdbcType="INTEGER" />
+    <result column="COMMISSION_SWITCH" property="commissionSwitch" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, SHOP_NO, MEMBER_CARD_SWITCH, ORDER_STATUS_SWITCH, COMMISSION_SWITCH, CREATE_TIME, 
+    UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from template_message_setting
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="getTemplateMessageSettingByShopNo" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from template_message_setting
+    <where>
+    	<if test="_parameter != null">
+    		and SHOP_NO = #{_parameter,jdbcType=VARCHAR}
+    	</if>
+    </where>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from template_message_setting
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.user.weixin.domain.TemplateMessageSetting" >
+  	<selectKey keyProperty="id" resultType="long" order="AFTER">  
+        SELECT LAST_INSERT_ID();  
+    </selectKey> 
+    insert into template_message_setting (ID, SHOP_NO, MEMBER_CARD_SWITCH, 
+      ORDER_STATUS_SWITCH, COMMISSION_SWITCH, CREATE_TIME, 
+      UPDATE_TIME)
+    values (#{id,jdbcType=BIGINT}, #{shopNo,jdbcType=VARCHAR}, #{memberCardSwitch,jdbcType=INTEGER}, 
+      #{orderStatusSwitch,jdbcType=INTEGER}, #{commissionSwitch,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.user.weixin.domain.TemplateMessageSetting" >
+  	<selectKey keyProperty="id" resultType="long" order="AFTER">  
+        SELECT LAST_INSERT_ID();  
+    </selectKey> 
+    insert into template_message_setting
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="shopNo != null" >
+        SHOP_NO,
+      </if>
+      <if test="memberCardSwitch != null" >
+        MEMBER_CARD_SWITCH,
+      </if>
+      <if test="orderStatusSwitch != null" >
+        ORDER_STATUS_SWITCH,
+      </if>
+      <if test="commissionSwitch != null" >
+        COMMISSION_SWITCH,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="shopNo != null" >
+        #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="memberCardSwitch != null" >
+        #{memberCardSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="orderStatusSwitch != null" >
+        #{orderStatusSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="commissionSwitch != null" >
+        #{commissionSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.user.weixin.domain.TemplateMessageSetting" >
+    update template_message_setting
+    <set >
+      <if test="shopNo != null" >
+        SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="memberCardSwitch != null" >
+        MEMBER_CARD_SWITCH = #{memberCardSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="orderStatusSwitch != null" >
+        ORDER_STATUS_SWITCH = #{orderStatusSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="commissionSwitch != null" >
+        COMMISSION_SWITCH = #{commissionSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+   <where>
+   	<if test="null != id">
+   		and ID = #{id,jdbcType=BIGINT}
+   	</if>
+   	<if test="null != shopNo">
+   		and SHOP_NO = #{shopNo,jdbcType=VARCHAR}
+   	</if>
+   </where>
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.user.weixin.domain.TemplateMessageSetting" >
+    update template_message_setting
+    set SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      MEMBER_CARD_SWITCH = #{memberCardSwitch,jdbcType=INTEGER},
+      ORDER_STATUS_SWITCH = #{orderStatusSwitch,jdbcType=INTEGER},
+      COMMISSION_SWITCH = #{commissionSwitch,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

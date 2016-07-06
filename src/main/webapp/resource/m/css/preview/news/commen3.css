@@ -1,0 +1,23 @@
+
+body{background-color: #f7f7f7;width: 100%;}
+.wgw3-main {
+    width: 320px;
+    margin: 0 auto;
+}
+.main{width: 100%;
+    width: 320px;
+    margin: 0 auto;
+    background: #fff;
+}
+
+.wgw3-nav{width: 100%;font-size: 1.2rem;}
+.wgw3-nav-module{width: 160px;height:77px;float: left;position: relative;}
+.wgw3-nav-module:nth-child(7),.wgw3-nav-module:nth-child(8){margin-bottom: 0.715rem;}
+.wgw3-nav-module a{width: 144px;height: 69px; color:#fff;display: block;margin: 10px auto 4px;background: url(../images/nav_bj.png) no-repeat;}
+
+.wgw3-nav-module a span{margin:10px;font-size: 18px;display: block;float: left;width: 72px;line-height: 40px;}
+.wgw3-nav-module i{width:51px;height:51px;float: left;}
+.wgw3-nav-module img{width:46px;height:46px;margin:8px 6px;display: block;}
+
+.wgw3-news-list{width: 100%;}
+.wgw3-news-list li{width: 90%;margin: 2% 5%; border-radius: 0.2rem;border: 1px solid #cecece;height:3.142rem;line-height:3.142rem; text-indent: 0.8rem;background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fff), color-stop(1, #dfdfdf));}

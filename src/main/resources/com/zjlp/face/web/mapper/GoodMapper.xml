@@ -1,0 +1,845 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.GoodMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.product.good.domain.Good" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="SERVICE_ID" property="serviceId" jdbcType="BIGINT" />
+    <result column="SHOP_NO" property="shopNo" jdbcType="VARCHAR" />
+    <result column="CLASSIFICATION_ID" property="classificationId" jdbcType="BIGINT" />
+    <result column="SHOP_NAME" property="shopName" jdbcType="VARCHAR" />
+    <result column="NICK" property="nick" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="PRODUCT_NUMBER" property="productNumber" jdbcType="VARCHAR" />
+    <result column="NO" property="no" jdbcType="VARCHAR" />
+    <result column="MARKET_PRICE" property="marketPrice" jdbcType="BIGINT" />
+    <result column="SALES_PRICE" property="salesPrice" jdbcType="BIGINT" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="INVENTORY" property="inventory" jdbcType="BIGINT" />
+    <result column="PREFERENTIAL_POLICY" property="preferentialPolicy" jdbcType="INTEGER" />
+    <result column="SALES_VOLUME" property="salesVolume" jdbcType="BIGINT" />
+    <result column="BROWER_TIME" property="browerTime" jdbcType="BIGINT" />
+    <result column="SORT" property="sort" jdbcType="INTEGER" />
+    <result column="DETAIL_WAP_URL" property="detailWapUrl" jdbcType="VARCHAR" />
+    <result column="PIC_URL" property="picUrl" jdbcType="VARCHAR" />
+    <result column="IS_OFFLINE" property="isOffline" jdbcType="INTEGER" />
+    <result column="IS_SPREAD_INDEX" property="isSpreadIndex" jdbcType="INTEGER" />
+    <result column="LIST_TIME" property="listTime" jdbcType="TIMESTAMP" />
+    <result column="LOGISTICS_MODE" property="logisticsMode" jdbcType="INTEGER" />
+    <result column="POST_FEE" property="postFee" jdbcType="BIGINT" />
+    <result column="DELIST_TIME" property="delistTime" jdbcType="TIMESTAMP" />
+    <result column="OUTER_LINK" property="outerLink" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+        <result column="SOLR_TIME" property="solrTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.zjlp.face.web.server.product.good.domain.Good" extends="BaseResultMap" >
+    <result column="GOOD_CONTENT" property="goodContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <resultMap id="ResultVoMap" type="com.zjlp.face.web.server.product.good.domain.vo.GoodVo" extends="BaseResultMap">
+  	<result column="PRODUCT_LINE_ID" property="productLineId" jdbcType="BIGINT" />
+  	<result column="PRODUCT_LINE_NAME" property="productLineName" jdbcType="VARCHAR" />
+  	<result column="RETAIL_LOW_PERCENT" property="retailLowPercent" jdbcType="INTEGER" />
+  	<result column="RETAIL_HIGH_PERCENT" property="retailHighPercent" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultVoMapWithBLOBs" type="com.zjlp.face.web.server.product.good.domain.vo.GoodVo" extends="ResultVoMap" >
+    <result column="GOOD_CONTENT" property="goodContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <resultMap id="GoodProfitVoMap" type="com.zjlp.face.web.server.product.good.domain.vo.GoodProfitVo"  extends="BaseResultMap">
+    <result column="PROFIT" property="profit" jdbcType="INTEGER"/>
+    <result column="FAVORITES_QUANTITY" property="favoritesQuantity" jdbcType="INTEGER"/>
+    <result column="SUBBRANCH_ID" property="subbranchId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, SERVICE_ID, SHOP_NO, CLASSIFICATION_ID, SHOP_NAME, NICK, NAME, PRODUCT_NUMBER, NO, MARKET_PRICE, 
+    SALES_PRICE, STATUS, INVENTORY, PREFERENTIAL_POLICY, SALES_VOLUME, BROWER_TIME, SORT, 
+    DETAIL_WAP_URL, PIC_URL, IS_OFFLINE, IS_SPREAD_INDEX, LIST_TIME, DELIST_TIME, OUTER_LINK, CREATE_TIME, 
+    LOGISTICS_MODE, POST_FEE,UPDATE_TIME,SOLR_TIME
+  </sql>
+  <sql id="Join_Base_Column_List" >
+    g.ID, g.SERVICE_ID, g.SHOP_NO, g.CLASSIFICATION_ID, g.SHOP_NAME, g.NICK, g.NAME, g.PRODUCT_NUMBER, g.NO, g.MARKET_PRICE, 
+    g.SALES_PRICE, g.STATUS, g.INVENTORY, g.PREFERENTIAL_POLICY, g.SALES_VOLUME, g.BROWER_TIME, g.SORT, 
+    g.DETAIL_WAP_URL, g.PIC_URL, g.IS_OFFLINE, g.IS_SPREAD_INDEX, g.LIST_TIME, g.DELIST_TIME,
+    g.LOGISTICS_MODE, g.POST_FEE, g.OUTER_LINK, g.CREATE_TIME, g.UPDATE_TIME,SOLR_TIME
+  </sql>
+  <sql id="Blob_Column_List" >
+    GOOD_CONTENT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from good
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <select id="selectList" resultMap="BaseResultMap" parameterType="com.zjlp.face.web.server.product.good.domain.Good" >
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM 
+    	good
+    <where>
+    	<if test="shopNo != null">
+    	AND SHOP_NO = #{shopNo,jdbcType=VARCHAR}
+    	</if>
+    	<choose>
+    		<when test="serviceId != null">
+    			and SERVICE_ID  = #{serviceId}
+    		</when>
+    		<otherwise>
+    			and SERVICE_ID  = 1
+    		</otherwise>
+    	</choose>
+    	<if test="status != null">
+    	AND STATUS = #{status,jdbcType=INTEGER}
+    	</if>
+    </where>
+  </select>
+  
+  <select id="selectPageCount" resultType="java.lang.Integer"  parameterType="java.util.Map" >
+    select 
+   	COUNT(1)
+    from 
+    	good g
+   	<if test="goodVo.groupId != null">
+		join group_list gl on g.id=gl.part_id
+	</if>
+    WHERE
+   		g.SHOP_NO = #{goodVo.shopNo,jdbcType=VARCHAR}
+   		<choose>
+    		<when test="goodVo.serviceId != null">
+    			and SERVICE_ID  = #{goodVo.serviceId}
+    		</when>
+    		<otherwise>
+    			and SERVICE_ID  = 1
+    		</otherwise>
+    	</choose>
+    	<if test="goodVo.status != null">
+    		AND g.STATUS = #{goodVo.status,jdbcType=INTEGER}
+    	</if>
+		<if test="goodVo.shopTypeId != null">
+			AND exists (select gstr.good_id from good_shop_type_relation  gstr where  gstr.shop_type_id= #{goodVo.shopTypeId,jdbcType=BIGINT} and gstr.good_id = g.id)
+		</if>
+    	<if test="goodVo.name != null">
+    		AND g.NAME  LIKE CONCAT('%',#{goodVo.name, jdbcType=VARCHAR},'%')
+    	</if>
+    	<if test="goodVo.newGoodMark != null">
+    		<![CDATA[AND DATE_SUB(CURDATE(), INTERVAL 1 MONTH) <= date(g.CREATE_TIME)]]>
+    	</if>
+    	<if test="goodVo.groupId != null">
+			and gl.association_table='GOOD' and gl.group_id=#{goodVo.groupId,jdbcType=BIGINT}
+		</if>
+		<if test="goodVo.isSpreadIndex != null">
+			AND g.IS_SPREAD_INDEX = #{goodVo.isSpreadIndex,jdbcType=INTEGER}
+		</if>
+		<if test="goodVo.inventory != null">
+			AND g.INVENTORY = #{goodVo.inventory,jdbcType=BIGINT}
+		</if>
+		<choose>
+			<when test="goodVo.isPcGoods == 0">
+				and g.CLASSIFICATION_ID = 14
+			</when>
+			<when test="goodVo.isPcGoods == 1">
+				and g.CLASSIFICATION_ID  <![CDATA[<>]]>	14
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+  </select>
+  
+  <select id="selectPageList" resultMap="ResultVoMap"  parameterType="java.util.Map" >
+    select 
+     <include refid="Join_Base_Column_List" />
+    from 
+    	good g
+    	<if test="goodVo.groupId != null">
+			join group_list gl on g.id=gl.part_id
+		</if>
+    WHERE
+   		g.SHOP_NO = #{goodVo.shopNo,jdbcType=VARCHAR}
+   		<choose>
+    		<when test="goodVo.serviceId != null">
+    			and SERVICE_ID  = #{goodVo.serviceId}
+    		</when>
+    		<otherwise>
+    			and SERVICE_ID  = 1
+    		</otherwise>
+    	</choose>
+		<if test="goodVo.shopTypeId != null">
+			AND exists (select gstr.good_id from good_shop_type_relation  gstr where  gstr.shop_type_id= #{goodVo.shopTypeId,jdbcType=BIGINT} and gstr.good_id = g.id)
+		</if>
+ 		<if test="goodVo.status != null">
+    		AND g.STATUS = #{goodVo.status,jdbcType=INTEGER}
+    	</if>
+    	<if test="goodVo.name != null">
+    		AND g.NAME  LIKE CONCAT('%',#{goodVo.name, jdbcType=VARCHAR},'%')
+    	</if>
+    	<if test="goodVo.newGoodMark != null">
+    		<![CDATA[AND DATE_SUB(CURDATE(), INTERVAL 1 MONTH) <= date(g.CREATE_TIME)]]>
+    	</if>
+    	<if test="goodVo.groupId != null">
+			and gl.association_table='GOOD' and gl.group_id=#{goodVo.groupId,jdbcType=BIGINT}
+		</if>
+		<if test="goodVo.isSpreadIndex != null">
+			AND g.IS_SPREAD_INDEX = #{goodVo.isSpreadIndex,jdbcType=INTEGER}
+		</if>
+		<if test="goodVo.inventory != null">
+			AND g.INVENTORY = #{goodVo.inventory,jdbcType=BIGINT}
+		</if>
+		<choose>
+			<when test="goodVo.isPcGoods == 0">
+				and g.CLASSIFICATION_ID = 14
+			</when>
+			<when test="goodVo.isPcGoods == 1">
+				and g.CLASSIFICATION_ID  <![CDATA[<>]]>	14
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+    	ORDER BY
+	  	<choose>
+	  		<when test="goodVo.priceSort == 'ASC'">
+	  			 g.SALES_PRICE ASC,
+	  		</when>
+	  		<when test="goodVo.priceSort == 'DESC'">
+	  			 g.SALES_PRICE DESC,
+	  		</when>
+	  		<when test="goodVo.volumeSort == 'DESC'">
+	  			 g.SALES_VOLUME DESC,
+	  		</when>
+	  		<otherwise>
+	  		</otherwise>
+	  	</choose>
+	  	g.SORT DESC
+    limit #{start},#{pageSize}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from good
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.product.good.domain.Good" >
+ 	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into good (ID, SERVICE_ID, SHOP_NO, CLASSIFICATION_ID, 
+      SHOP_NAME, NICK, NAME, 
+      PRODUCT_NUMBER, NO, MARKET_PRICE, 
+      SALES_PRICE, STATUS, INVENTORY, 
+      PREFERENTIAL_POLICY, SALES_VOLUME, BROWER_TIME, 
+      SORT, DETAIL_WAP_URL, PIC_URL, 
+      IS_OFFLINE, IS_SPREAD_INDEX, LIST_TIME, 
+      DELIST_TIME, SOLR_TIME, LOGISTICS_MODE, 
+      POST_FEE, OUTER_LINK, CREATE_TIME, UPDATE_TIME, 
+      GOOD_CONTENT)
+    values (#{id,jdbcType=BIGINT}, #{serviceId,jdbcType=BIGINT}, #{shopNo,jdbcType=VARCHAR}, #{classificationId,jdbcType=BIGINT}, 
+      #{shopName,jdbcType=VARCHAR}, #{nick,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{productNumber,jdbcType=VARCHAR}, #{no,jdbcType=VARCHAR}, #{marketPrice,jdbcType=BIGINT}, 
+      #{salesPrice,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, #{inventory,jdbcType=BIGINT}, 
+      #{preferentialPolicy,jdbcType=INTEGER}, #{salesVolume,jdbcType=BIGINT}, #{browerTime,jdbcType=BIGINT}, 
+      #{sort,jdbcType=INTEGER}, #{detailWapUrl,jdbcType=VARCHAR}, #{picUrl,jdbcType=VARCHAR}, 
+      #{isOffline,jdbcType=INTEGER}, #{isSpreadIndex,jdbcType=INTEGER}, #{listTime,jdbcType=TIMESTAMP}, 
+      #{delistTime,jdbcType=TIMESTAMP}, #{solrTime,jdbcType=TIMESTAMP}, #{logisticsMode,jdbcType=INTEGER}, 
+      #{postFee,jdbcType=BIGINT}, #{outerLink,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{goodContent,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.product.good.domain.Good" >
+  	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+     insert into good
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="serviceId != null" >
+        SERVICE_ID,
+      </if>
+      <if test="shopNo != null" >
+        SHOP_NO,
+      </if>
+      <if test="classificationId != null" >
+        CLASSIFICATION_ID,
+      </if>
+      <if test="shopName != null" >
+        SHOP_NAME,
+      </if>
+      <if test="nick != null" >
+        NICK,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="productNumber != null" >
+        PRODUCT_NUMBER,
+      </if>
+      <if test="no != null" >
+        NO,
+      </if>
+      <if test="marketPrice != null" >
+        MARKET_PRICE,
+      </if>
+      <if test="salesPrice != null" >
+        SALES_PRICE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="inventory != null" >
+        INVENTORY,
+      </if>
+      <if test="preferentialPolicy != null" >
+        PREFERENTIAL_POLICY,
+      </if>
+      <if test="salesVolume != null" >
+        SALES_VOLUME,
+      </if>
+      <if test="browerTime != null" >
+        BROWER_TIME,
+      </if>
+      <if test="sort != null" >
+        SORT,
+      </if>
+      <if test="detailWapUrl != null" >
+        DETAIL_WAP_URL,
+      </if>
+      <if test="picUrl != null" >
+        PIC_URL,
+      </if>
+      <if test="isOffline != null" >
+        IS_OFFLINE,
+      </if>
+      <if test="isSpreadIndex != null" >
+        IS_SPREAD_INDEX,
+      </if>
+      <if test="listTime != null" >
+        LIST_TIME,
+      </if>
+      <if test="delistTime != null" >
+        DELIST_TIME,
+      </if>
+      <if test="solrTime != null" >
+        SOLR_TIME,
+      </if>
+      <if test="logisticsMode != null" >
+        LOGISTICS_MODE,
+      </if>
+      <if test="postFee != null" >
+        POST_FEE,
+      </if>
+      <if test="outerLink != null" >
+        OUTER_LINK,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="goodContent != null" >
+        GOOD_CONTENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="serviceId != null" >
+        #{serviceId,jdbcType=BIGINT},
+      </if>
+      <if test="shopNo != null" >
+        #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="classificationId != null" >
+        #{classificationId,jdbcType=BIGINT},
+      </if>
+      <if test="shopName != null" >
+        #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="nick != null" >
+        #{nick,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="productNumber != null" >
+        #{productNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no != null" >
+        #{no,jdbcType=VARCHAR},
+      </if>
+      <if test="marketPrice != null" >
+        #{marketPrice,jdbcType=BIGINT},
+      </if>
+      <if test="salesPrice != null" >
+        #{salesPrice,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="inventory != null" >
+        #{inventory,jdbcType=BIGINT},
+      </if>
+      <if test="preferentialPolicy != null" >
+        #{preferentialPolicy,jdbcType=INTEGER},
+      </if>
+      <if test="salesVolume != null" >
+        #{salesVolume,jdbcType=BIGINT},
+      </if>
+      <if test="browerTime != null" >
+        #{browerTime,jdbcType=BIGINT},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="detailWapUrl != null" >
+        #{detailWapUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="picUrl != null" >
+        #{picUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isOffline != null" >
+        #{isOffline,jdbcType=INTEGER},
+      </if>
+      <if test="isSpreadIndex != null" >
+        #{isSpreadIndex,jdbcType=INTEGER},
+      </if>
+      <if test="listTime != null" >
+        #{listTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delistTime != null" >
+        #{delistTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="solrTime != null" >
+        #{solrTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logisticsMode != null" >
+        #{logisticsMode,jdbcType=INTEGER},
+      </if>
+      <if test="postFee != null" >
+        #{postFee,jdbcType=BIGINT},
+      </if>
+      <if test="outerLink != null" >
+        #{outerLink,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodContent != null" >
+        #{goodContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+   <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.product.good.domain.Good" >
+    update good
+    <set >
+      <if test="serviceId != null" >
+        SERVICE_ID = #{serviceId,jdbcType=BIGINT},
+      </if>
+      <if test="shopNo != null" >
+        SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="classificationId != null" >
+        CLASSIFICATION_ID = #{classificationId,jdbcType=BIGINT},
+      </if>
+      <if test="shopName != null" >
+        SHOP_NAME = #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="nick != null" >
+        NICK = #{nick,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="productNumber != null" >
+        PRODUCT_NUMBER = #{productNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no != null" >
+        NO = #{no,jdbcType=VARCHAR},
+      </if>
+      <if test="marketPrice != null" >
+        MARKET_PRICE = #{marketPrice,jdbcType=BIGINT},
+      </if>
+      <if test="salesPrice != null" >
+        SALES_PRICE = #{salesPrice,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="inventory != null" >
+        INVENTORY = #{inventory,jdbcType=BIGINT},
+      </if>
+      <if test="preferentialPolicy != null" >
+        PREFERENTIAL_POLICY = #{preferentialPolicy,jdbcType=INTEGER},
+      </if>
+      <if test="salesVolume != null" >
+        SALES_VOLUME = #{salesVolume,jdbcType=BIGINT},
+      </if>
+      <if test="browerTime != null" >
+        BROWER_TIME = #{browerTime,jdbcType=BIGINT},
+      </if>
+      <if test="sort != null" >
+        SORT = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="detailWapUrl != null" >
+        DETAIL_WAP_URL = #{detailWapUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="picUrl != null" >
+        PIC_URL = #{picUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isOffline != null" >
+        IS_OFFLINE = #{isOffline,jdbcType=INTEGER},
+      </if>
+      <if test="isSpreadIndex != null" >
+        IS_SPREAD_INDEX = #{isSpreadIndex,jdbcType=INTEGER},
+      </if>
+      <if test="listTime != null" >
+        LIST_TIME = #{listTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delistTime != null" >
+        DELIST_TIME = #{delistTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="solrTime != null" >
+        SOLR_TIME = #{solrTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logisticsMode != null" >
+        LOGISTICS_MODE = #{logisticsMode,jdbcType=INTEGER},
+      </if>
+      <if test="postFee != null" >
+        POST_FEE = #{postFee,jdbcType=BIGINT},
+      </if>
+      <if test="outerLink != null" >
+        OUTER_LINK = #{outerLink,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodContent != null" >
+        GOOD_CONTENT = #{goodContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zjlp.face.web.server.product.good.domain.Good" >
+    update good
+    set SERVICE_ID = #{serviceId,jdbcType=BIGINT}, 
+      SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      CLASSIFICATION_ID = #{classificationId,jdbcType=BIGINT},
+      SHOP_NAME = #{shopName,jdbcType=VARCHAR},
+      NICK = #{nick,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      PRODUCT_NUMBER = #{productNumber,jdbcType=VARCHAR},
+      NO = #{no,jdbcType=VARCHAR},
+      MARKET_PRICE = #{marketPrice,jdbcType=BIGINT},
+      SALES_PRICE = #{salesPrice,jdbcType=BIGINT},
+      STATUS = #{status,jdbcType=INTEGER},
+      INVENTORY = #{inventory,jdbcType=BIGINT},
+      PREFERENTIAL_POLICY = #{preferentialPolicy,jdbcType=INTEGER},
+      SALES_VOLUME = #{salesVolume,jdbcType=BIGINT},
+      BROWER_TIME = #{browerTime,jdbcType=BIGINT},
+      SORT = #{sort,jdbcType=INTEGER},
+      DETAIL_WAP_URL = #{detailWapUrl,jdbcType=VARCHAR},
+      PIC_URL = #{picUrl,jdbcType=VARCHAR},
+      IS_OFFLINE = #{isOffline,jdbcType=INTEGER},
+      IS_SPREAD_INDEX = #{isSpreadIndex,jdbcType=INTEGER},
+      LIST_TIME = #{listTime,jdbcType=TIMESTAMP},
+      DELIST_TIME = #{delistTime,jdbcType=TIMESTAMP},
+      SOLR_TIME = #{solrTime,jdbcType=TIMESTAMP},
+      LOGISTICS_MODE = #{logisticsMode,jdbcType=INTEGER},
+      POST_FEE = #{postFee,jdbcType=BIGINT},
+      OUTER_LINK = #{outerLink,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      GOOD_CONTENT = #{goodContent,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.product.good.domain.Good" >
+    update good
+    set SERVICE_ID = #{serviceId,jdbcType=BIGINT}, 
+      SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      CLASSIFICATION_ID = #{classificationId,jdbcType=BIGINT},
+      SHOP_NAME = #{shopName,jdbcType=VARCHAR},
+      NICK = #{nick,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      PRODUCT_NUMBER = #{productNumber,jdbcType=VARCHAR},
+      NO = #{no,jdbcType=VARCHAR},
+      MARKET_PRICE = #{marketPrice,jdbcType=BIGINT},
+      SALES_PRICE = #{salesPrice,jdbcType=BIGINT},
+      STATUS = #{status,jdbcType=INTEGER},
+      INVENTORY = #{inventory,jdbcType=BIGINT},
+      PREFERENTIAL_POLICY = #{preferentialPolicy,jdbcType=INTEGER},
+      SALES_VOLUME = #{salesVolume,jdbcType=BIGINT},
+      BROWER_TIME = #{browerTime,jdbcType=BIGINT},
+      SORT = #{sort,jdbcType=INTEGER},
+      DETAIL_WAP_URL = #{detailWapUrl,jdbcType=VARCHAR},
+      PIC_URL = #{picUrl,jdbcType=VARCHAR},
+      IS_OFFLINE = #{isOffline,jdbcType=INTEGER},
+      IS_SPREAD_INDEX = #{isSpreadIndex,jdbcType=INTEGER},
+      LIST_TIME = #{listTime,jdbcType=TIMESTAMP},
+      DELIST_TIME = #{delistTime,jdbcType=TIMESTAMP},
+      SOLR_TIME = #{solrTime,jdbcType=TIMESTAMP},
+      LOGISTICS_MODE = #{logisticsMode,jdbcType=INTEGER},
+      POST_FEE = #{postFee,jdbcType=BIGINT},
+      OUTER_LINK = #{outerLink,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="removeById" parameterType="java.lang.Long" >
+    UPDATE 
+    	good
+    SET  
+    	STATUS = -1,
+    	UPDATE_TIME = now()
+    WHERE 
+    	ID = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="findGoodByShopTypeId" resultType="com.zjlp.face.web.server.product.good.domain.vo.GoodVo"
+		parameterType="java.util.Map">
+		SELECT 
+		g.ID AS id, g.SHOP_NO AS shopNo,g.NAME AS name, 
+		g.MARKET_PRICE AS marketPrice,g.SALES_PRICE as salesPrice,g.SORT,
+		g.PIC_URL picUrl
+  		FROM GOOD g
+		WHERE g.STATUS = 1
+		<if test="shopTypeId != null">
+			AND exists (select gstr.good_id from good_shop_type_relation  gstr where  gstr.shop_type_id= #{shopTypeId,jdbcType=BIGINT} and gstr.good_id = g.id)
+		</if>
+		ORDER BY g.SORT DESC
+		Limit 0,#{goodNum}
+  </select>
+  <select id="countGoodNum" resultType="java.lang.Integer">
+  	select count(1) 
+  	from good
+  	where shop_no = #{shopNo} 
+  	<choose>
+  		<when test="status != null">
+  			and status = #{status}
+  		</when>
+  		<otherwise>
+  			and status>0
+  		</otherwise>
+  	</choose>
+  	<choose>
+   		<when test="serviceId != null">
+   			and SERVICE_ID  = #{serviceId}
+   		</when>
+   		<otherwise>
+   			and SERVICE_ID  = 1
+   		</otherwise>
+   	</choose>
+  	
+  </select>
+  <select id="findGoodByIds" resultMap="BaseResultMap">
+  	select <include refid="Base_Column_List"/>
+ 	from good g
+	where g.status = 1
+	and id in <foreach collection="goodIdList" item="id" open="(" close=")" separator=",">#{id}</foreach>
+	order by g.sort desc
+  </select>
+  
+  <!-- 查询商品列表,包括自有商品和代理商品 -->
+  <select id="countGoodVoNum" resultType="java.lang.Integer">
+  	select count(1)
+  	from good g
+  	<if test="shopTypeId != null">
+  		join good_shop_type_relation gstr on g.id=gstr.good_id
+  	</if>
+  	where
+  	<choose>
+  		<when test="status==3">
+	  		g.status=3 
+  		</when>
+  		<otherwise>
+		  	g.status=1 
+  		</otherwise>
+  	</choose>
+  	and g.service_id=1 and g.shop_no=#{shopNo}
+  	<if test="shopTypeId != null">
+		and gstr.shop_type_id=#{shopTypeId}
+	</if>
+  	<if test="newGoodMark != null">
+   		<![CDATA[AND DATE_SUB(CURDATE(), INTERVAL 1 MONTH) <= date(g.CREATE_TIME)]]>
+   	</if>
+  </select>
+  <select id="findGoodVoPageForWap" resultMap="ResultVoMap">
+  	select <include refid="Join_Base_Column_List"/> 
+  	from good g
+  	<if test="goodVo.shopTypeId != null">
+  		join good_shop_type_relation gstr on g.id=gstr.good_id  
+  	</if>
+  	where g.status=1
+  	and g.service_id=1 and g.shop_no=#{goodVo.shopNo}
+  	<if test="goodVo.isSpreadIndex != null">
+		AND g.IS_SPREAD_INDEX = #{goodVo.isSpreadIndex,jdbcType=INTEGER}
+	</if>
+	<if test="goodVo.shopTypeId != null">
+		and gstr.shop_type_id=#{goodVo.shopTypeId}
+	</if>
+	<if test="goodVo.name != null">
+		and g.name like concat("%",#{goodVo.name},"%")
+	</if>
+  	order by 
+  	<choose>
+  		<when test="goodVo.priceSort != null">sales_price ${goodVo.priceSort}</when>
+  		<when test="goodVo.volumeSort != null">sales_volume ${goodVo.volumeSort}</when>
+  		<otherwise>g.sort DESC</otherwise>
+  	</choose>
+  	limit #{start},#{pageSize} 
+  </select>
+  <select id="findGoodVoForWapByShopTypeId" resultMap="ResultVoMap">
+  	select <include refid="Join_Base_Column_List"/> from good g
+  	join good_shop_type_relation gstr on g.id =gstr.good_id 
+  	where g.status=1
+  	and g.service_id=1 
+  	and gstr.shop_type_id=#{shopTypeId}
+  	order by g.sort DESC
+  	limit #{goodNum}
+  </select>
+  <!-- 查询商品列表,包括自有商品和代理商品 -->
+  <select id="getCountByStatus" resultType="integer">
+	SELECT
+		COUNT(1)
+	FROM
+		good
+	WHERE
+		SERVICE_ID = 1
+	AND SHOP_NO = #{shopNo}
+	AND STATUS = #{status}
+  </select>
+  <update id="editBrowerTimeById">
+	update good set brower_time=brower_time+1 where id=#{id}  
+  </update>
+  
+  <!-- 推荐商品 -->
+  <select id="getRecommendGood" resultType="com.zjlp.face.web.server.product.good.domain.vo.RecommendGoodVo" parameterType="java.util.Map">
+  	SELECT 
+  		go.ID id,
+  		go.`NAME` `name`,
+  		go.PIC_URL picUrl,
+  		go.DETAIL_WAP_URL wapUrl,
+  		go.SHOP_NO shopNo,
+  		go.SALES_VOLUME salesCount,
+  		go.INVENTORY inventory,
+  		MIN(sku.SALES_PRICE) minPrice,
+  		MAX(sku.SALES_PRICE) maxPrice,
+  		temp1.isSubbranch,
+  		temp1.subbranchId 
+  	FROM 
+  		good go RIGHT JOIN 
+		(
+			SELECT 0 as isSubbranch,0 as subbranchId,sh.`NO` FROM shop sh WHERE sh.USER_ID = #{userId} AND sh.`STATUS` = 1 
+			UNION 
+			SELECT 1 as isSubbranch,su.ID,su.SUPPLIER_SHOP_NO `NO` FROM subbranch su WHERE su.USER_ID = #{userId} AND su.`STATUS` = 1 
+		) temp1 ON go.SHOP_NO = temp1.`NO` 
+		LEFT JOIN good_sku sku ON go.ID = sku.GOOD_ID  
+	WHERE sku.`STATUS` = 1 AND go.`STATUS` = 1 AND go.SERVICE_ID = 1  
+		<if test="goodName != null and goodName != '' ">
+			AND go.`name` LIKE CONCAT('%',#{goodName,jdbcType=VARCHAR},'%') 
+    	</if>
+	GROUP BY go.ID 
+	ORDER BY `name` ASC 
+	LIMIT #{start}, #{pageSize} 
+  </select>
+  
+  <!-- 推荐商品 ：统计记录数 -->
+  <select id="getRecommendGoodCount" resultType="java.lang.Integer" parameterType="java.util.Map">
+  	SELECT 
+  		COUNT(1) 
+  	FROM 
+  	(
+		SELECT go.ID,go.`NAME`,go.SHOP_NO FROM good go RIGHT JOIN 
+		(
+			SELECT sh.`NO` FROM shop sh WHERE sh.USER_ID = #{userId} AND sh.`STATUS` = 1 
+			UNION 
+			SELECT su.SUPPLIER_SHOP_NO `NO` FROM subbranch su WHERE su.USER_ID = #{userId} AND su.`STATUS` = 1  
+		) temp1 ON go.SHOP_NO = temp1.`NO` LEFT JOIN good_sku sku ON go.ID = sku.GOOD_ID  
+		WHERE sku.`STATUS` = 1 AND go.`STATUS` = 1 AND go.SERVICE_ID = 1 
+			<if test="goodName != null and goodName != '' ">
+				AND go.`name` LIKE CONCAT('%',#{goodName,jdbcType=VARCHAR},'%') 
+	    	</if>
+		GROUP BY go.ID 
+	) temp1
+  </select>
+  
+  <!--   查询分店商品(单品佣金)-统计-->
+  <select id="countProfitGoods" resultType="java.lang.Integer" parameterType="java.util.Map">
+   SELECT
+    COUNT(tem.ID)
+    FROM (
+    <include refid="profitGoodsFrom"/>
+         ) AS tem
+  </select>
+  
+  <!--   查询分店商品(单品佣金)-分页-->
+  <select id="selectProfitGoods" resultMap="GoodProfitVoMap" parameterType="java.util.Map">
+    <include refid="profitGoodsFrom"/>
+    <choose>
+      <!-- 上架时间 -->
+      <when test="sortBy == 0">
+        ORDER BY temp.CREATE_TIME DESC 
+      </when>
+      <!--预计佣金,销量,收藏,上架时间 -->
+      <when test="sortBy == 1">
+        ORDER BY temp.PROFIT * temp.SALES_PRICE DESC, temp.SALES_VOLUME DESC,FAVORITES_QUANTITY DESC ,temp.CREATE_TIME DESC  
+      </when>
+      <!--销量,佣金,收藏,上架时间 -->
+      <when test="sortBy == 2">
+        ORDER BY temp.SALES_VOLUME DESC, temp.PROFIT DESC,FAVORITES_QUANTITY DESC ,temp.CREATE_TIME DESC  
+      </when>
+      <!--收藏,佣金,销量,上架时间 -->
+      <when test="sortBy == 3">
+        ORDER BY FAVORITES_QUANTITY DESC, temp.PROFIT DESC, temp.SALES_VOLUME DESC, temp.CREATE_TIME DESC 
+      </when>
+      <otherwise>
+        ORDER BY temp.CREATE_TIME DESC 
+       </otherwise>
+    </choose>
+    LIMIT #{start}, #{pageSize}
+  </select>
+  
+  <sql id="profitGoodsFrom">
+  SELECT 
+     temp.ID AS ID, 
+     temp.PIC_URL AS PIC_URL, 
+     temp.NAME AS NAME, 
+     IFNULL(MIN(gs.SALES_PRICE),temp.SALES_PRICE) AS MARKET_PRICE, 
+     temp.SALES_VOLUME AS SALES_VOLUME, 
+     IFNULL(COUNT(fa.REMOTE_ID),0) AS FAVORITES_QUANTITY,
+     temp.PROFIT AS PROFIT,
+     temp.SHOP_NO AS SHOP_NO,
+     #{subbranchId,jdbcType=BIGINT} AS SUBBRANCH_ID
+  FROM 
+   (SELECT 
+      go.ID AS ID, 
+      go.PIC_URL AS PIC_URL,
+      go.NAME AS NAME,
+      go.SALES_PRICE AS SALES_PRICE,
+      go.SALES_VOLUME AS SALES_VOLUME, 
+      go.CREATE_TIME AS CREATE_TIME,
+      go.SHOP_NO AS SHOP_NO,
+      IFNULL(sg.RATE, (SELECT su.PROFIT FROM subbranch su WHERE  su.STATUS = 1 AND su.USER_ID = #{userId,jdbcType=INTEGER} )) AS PROFIT
+    FROM
+      good go
+      LEFT JOIN subbranch_good_relation sg ON (sg.GOOD_ID = go.ID AND sg.SUBBRANCH_ID = #{subbranchId,jdbcType=BIGINT})
+    WHERE 1=1
+      AND go.SHOP_NO = (SELECT sh.NO FROM shop sh WHERE sh.USER_ID = (SELECT sh2.USER_ID FROM shop sh2 WHERE  sh2.NO = (SELECT su.SUPPLIER_SHOP_NO FROM subbranch su WHERE su.STATUS = 1 AND su.USER_ID = #{userId,jdbcType=INTEGER}) AND sh2.STATUS = 1)  AND sh.STATUS = 1)  
+     AND go.STATUS = 1 AND go.SERVICE_ID = 1
+    ) AS temp      
+   LEFT JOIN favorites fa ON (fa.REMOTE_ID = temp.ID AND fa.REMOTE_TYPE = 1 AND fa.STATUS = 1)
+   INNER JOIN good_sku gs ON(gs.GOOD_ID = temp.ID AND gs.STATUS = 1) 
+   WHERE 1=1
+   <if test="searchKey != null ">
+     AND temp.NAME LIKE CONCAT('%',#{searchKey, jdbcType=VARCHAR},'%')
+   </if>
+   GROUP BY temp.ID
+  </sql>
+</mapper>

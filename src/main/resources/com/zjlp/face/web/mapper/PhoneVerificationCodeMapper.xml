@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.PhoneVerificationCodeMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.product.phone.domain.PhoneVerificationCode" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="CELL" property="cell" jdbcType="VARCHAR" />
+    <result column="CODE" property="code" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="VALID_TIME" property="validTime" jdbcType="TIMESTAMP" />
+    <result column="TYPE" property="type" jdbcType="INTEGER" />
+    <result column="CHECK_COUNT" property="checkCount" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, CELL, CODE, STATUS, VALID_TIME, TYPE, CHECK_COUNT, CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from phone_verification_code
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from phone_verification_code
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.product.phone.domain.PhoneVerificationCode" >
+   	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into phone_verification_code (ID, CELL, CODE, 
+      STATUS, VALID_TIME, TYPE, CHECK_COUNT,
+      CREATE_TIME, UPDATE_TIME)
+    values (#{id,jdbcType=BIGINT}, #{cell,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{validTime,jdbcType=TIMESTAMP}, #{type,jdbcType=INTEGER}, #{checkCount,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.product.phone.domain.PhoneVerificationCode" >
+   	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into phone_verification_code
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="cell != null" >
+        CELL,
+      </if>
+      <if test="code != null" >
+        CODE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="validTime != null" >
+        VALID_TIME,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="checkCount != null" >
+        CHECK_COUNT,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="cell != null" >
+        #{cell,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="validTime != null" >
+        #{validTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="checkCount != null" >
+        #{checkCount,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.product.phone.domain.PhoneVerificationCode" >
+    update phone_verification_code
+    <set >
+      <if test="cell != null" >
+        CELL = #{cell,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        CODE = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="validTime != null" >
+        VALID_TIME = #{validTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="checkCount != null" >
+        CHECK_COUNT = #{checkCount,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.product.phone.domain.PhoneVerificationCode" >
+    update phone_verification_code
+    set CELL = #{cell,jdbcType=VARCHAR},
+      CODE = #{code,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=INTEGER},
+      VALID_TIME = #{validTime,jdbcType=TIMESTAMP},
+      TYPE = #{type,jdbcType=INTEGER},
+      CHECK_COUNT = #{checkCount,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+  
+  <select id="selectByPhone" resultMap="BaseResultMap" parameterType="com.zjlp.face.web.server.product.phone.domain.PhoneVerificationCode"  >
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM PHONE_VERIFICATION_CODE
+    WHERE STATUS >0 
+	    AND CREATE_TIME=(SELECT max(create_time) FROM PHONE_VERIFICATION_CODE WHERE CELL = #{cell,jdbcType=VARCHAR} AND TYPE = #{type,jdbcType=INTEGER} ) 
+  </select>
+  
+  
+  <select id="queryByPhone" resultMap="BaseResultMap" parameterType="com.zjlp.face.web.server.product.phone.domain.PhoneVerificationCode"  >
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM PHONE_VERIFICATION_CODE
+    WHERE STATUS = 0 
+    	AND
+   		CREATE_TIME=(SELECT max(create_time) FROM PHONE_VERIFICATION_CODE WHERE CELL = #{cell,jdbcType=VARCHAR} ) 
+  </select>
+  
+  
+  <select id="getPhoneCodeCount" resultType="java.lang.Integer" parameterType="java.util.Map"  >
+    SELECT  COUNT(id)
+    FROM PHONE_VERIFICATION_CODE
+    WHERE CELL = #{cell,jdbcType=VARCHAR} 
+    	AND
+   		CREATE_TIME BETWEEN  #{start,jdbcType=TIMESTAMP} And #{end,jdbcType=TIMESTAMP}
+   		and status=1 
+  </select>
+  
+  <select id="selectValidMobilecode" resultMap="BaseResultMap" parameterType="com.zjlp.face.web.server.product.phone.domain.PhoneVerificationCode">
+      SELECT 
+          <include refid="Base_Column_List" />
+      FROM
+          PHONE_VERIFICATION_CODE
+      WHERE 
+          STATUS > 0 
+	      AND CREATE_TIME=(SELECT max(create_time) FROM PHONE_VERIFICATION_CODE WHERE CELL = #{cell,jdbcType=VARCHAR} AND TYPE = #{type,jdbcType=INTEGER} ) 
+  </select>
+  
+  <update id="unvalidMobilecode" parameterType="com.zjlp.face.web.server.product.phone.domain.PhoneVerificationCode">
+       update
+           PHONE_VERIFICATION_CODE
+       set
+           STATUS = -1,
+           UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+       where
+           CELL = #{cell,jdbcType=VARCHAR}
+           AND TYPE = #{type,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectPhoneCodeByCell" parameterType="java.util.Map" resultType="com.zjlp.face.web.server.product.phone.domain.PhoneVerificationCode">
+   SELECT 
+    <include refid="Base_Column_List" />
+   FROM
+     PHONE_VERIFICATION_CODE 
+     WHERE CELL = #{cell,jdbcType=VARCHAR}
+     AND CREATE_TIME >= #{createTime,jdbcType=TIMESTAMP}
+     AND TYPE = 1
+  </select>
+  
+  <select id="selectValidMobilecodeList" parameterType="com.zjlp.face.web.server.product.phone.domain.PhoneVerificationCode" resultMap="BaseResultMap">
+       SELECT
+            <include refid="Base_Column_List" />
+       FROM
+            PHONE_VERIFICATION_CODE
+       where
+            STATUS > 0 
+	        AND CELL = #{cell,jdbcType=VARCHAR} 
+	        AND TYPE = #{type,jdbcType=INTEGER}
+  </select>
+  <update id="minusCount" parameterType="java.lang.Long">
+       UPDATE
+           PHONE_VERIFICATION_CODE
+       SET
+           CHECK_COUNT = CHECK_COUNT - 1
+       WHERE 
+           ID = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectStatisticCount" parameterType="com.zjlp.face.web.server.product.phone.domain.PhoneVerificationCode" resultType="java.lang.Integer">
+       SELECT
+           COUNT(1)
+       FROM
+           PHONE_VERIFICATION_CODE
+       WHERE
+            CELL = #{cell,jdbcType=VARCHAR}
+            <if test="type != null">
+                AND TYPE = #{type,jdbcType=INTEGER}
+            </if>
+            AND CREATE_TIME >= #{createTime,jdbcType=TIMESTAMP}
+  </select>
+</mapper>

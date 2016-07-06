@@ -1,0 +1,65 @@
+@CHARSET "UTF-8";
+/*  
+* @description:表格
+* @author: 
+* @update:
+*/
+
+/*表格--基类*/
+.table thead {background: #efefef;}
+.table>thead>tr>th, 
+.table>tbody>tr>th, 
+.table>tfoot>tr>th, 
+.table>thead>tr>td, 
+.table>tbody>tr>td, 
+.table>tfoot>tr>td {
+	vertical-align: middle;
+	text-align: center;
+	font-size:12px;
+}
+
+.table>tfoot>tr>th,
+.table>tfoot>tr>td {
+	border: none;
+	text-align: center;
+}
+
+/*表格--斑马线*/
+.table-striped>tbody>tr>td {
+	text-align:left;
+}
+/*表格--左右排列*/
+.table-thleft {}
+.table-thleft tbody tr th {
+	text-align: right;
+	white-space: nowrap;
+}
+
+/*表格--无边框线*/
+.table-noborder>thead>tr>th, 
+.table-noborder>tbody>tr>th, 
+.table-noborder>tfoot>tr>th, 
+.table-noborder>thead>tr>td, 
+.table-noborder>tbody>tr>td, 
+.table-noborder>tfoot>tr>td {border:none;	}
+.table-noborder>tbody>tr>td {text-align: left;}
+
+/*表格--大型*/
+.table-lg thead tr th,
+.table-lg thead tr td,
+.table-lg tbody tr th,
+.table-lg tbody tr td,
+.table-lg tfoot tr th,
+.table-lg tfoot tr td{padding:10px;}
+
+
+.table-help{
+	padding:10px;
+	border:1px solid #d0d0d0;
+	box-shadow:0 2px 4px #d0d0d0;
+	line-height:25px;
+}
+
+.table>thead>tr>td.text-left, .table>tbody>tr>td.text-left, .table>tfoot>tr>td.text-left {
+	text-align:left;
+}

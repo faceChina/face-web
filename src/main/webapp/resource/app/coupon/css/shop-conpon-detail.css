@@ -1,0 +1,211 @@
+@charset "utf-8";
+.shopcoupon-detail{
+	font-family: 微软雅黑;
+	color: #fff;
+}
+.detail-coupon{
+	width: 15rem;
+	height: 8.7rem;
+	display: inline-block;
+	background-image: url(../img/detail-lq-bg.png);
+	background-size: 100% 100%;
+	margin:0.5rem;
+	position: relative;
+}
+.counpon-name,.counpon-price,.counpon-other,.counpon-time{
+	width: 100%;
+	float: left;
+}
+.counpon-name{
+	font-size: 0.75rem;
+	height: 3rem;
+	line-height: 3rem;
+	font-weight: 700;
+}
+.counpon-price{
+	height: 1.7rem;
+	line-height: 1.7rem;
+}
+.price-sign{
+	font-weight: 700;
+	font-size: 1.1rem;
+}
+.price-num{
+	font-size: 2rem;
+	font-weight: 700;
+}
+.counpon-other{
+	height: 2.25rem;
+	line-height: 2.25rem;
+	font-size: 0.6rem;
+	font-weight: 700;
+}
+.counpon-time{
+	height: 1.75rem;
+	line-height: 1.75rem;
+	font-size: 0.55rem;
+}
+.detail-shop{
+	width: 100%;
+	height: 2.5rem;
+	line-height: 2.5rem;
+	background: #fff;
+	display:inline-block;
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+}
+.detail-shop a{
+	display: inline-block;
+	width: 100%;
+}
+.detail-shop img{
+	width: 1.75rem;
+	height: 1.75rem;
+	overflow: hidden;
+	margin-left: 0.5rem;
+	margin-top: 0.35rem;
+	float: left;
+}
+.shop-name{
+	color: #000;
+	font-size: 0.65rem;
+	font-weight: 700;
+	padding-left: 0.7rem;
+}
+.detail-shop i{
+	color: #ccc;
+	float: right;
+	margin-right: 0.5rem
+}
+.detail-footer{
+	position: absolute;
+	bottom: 0.75rem;
+}
+.a-lingqu{
+	width: 15rem;
+	height: 2rem;
+	line-height: 2rem;
+	text-align: center;
+	font-size: 0.75rem;
+	font-weight: 700;
+	border-radius: 0.11rem;
+	color: #fff;
+	background: #d51c1c;
+	margin-left: 0.5rem;
+	display: inline-block;
+	border: 0;
+}
+.a-lingqu-disabled{
+	background: #ccc;
+}
+.detail-other{
+	width: 100%;
+	text-align: center;
+	padding-top: 4rem;
+	font-size: 0.6rem;
+	color: #999;
+}
+.icon-yinzhang{
+	position: absolute;
+	width: 3.2rem;
+	height: 3.2rem;
+	display: inline-block;
+	background-size: 100% 100%;
+	z-index: 1000;
+	bottom: 2rem;
+	right: 2rem;
+}
+.icon-yilinwang{
+	background-image: url(../img/icon-yilingwang.png);
+}
+.icon-yilingqu{
+	background-image: url(../img/icon-yilingqu.png);
+}
+/*失效*/
+.detail-coupon-sx{
+	background-image: url(../img/detail-sx-bg.png);
+}
+.icon-yishixiao{
+	background-image: url(../img/icon-yishixiao.png);
+}
+.detail-coupon-sx .counpon-time{
+	color: #999
+}
+
+/*分享*/
+.c-s-title{
+	width: 100%;
+	text-align: center;
+	padding-top: 4.4rem;
+	padding-bottom: 2.9rem;
+	font-size: 0.9rem;
+}
+.c-s-shopinfo a{
+	width: 6rem;
+	height: 2rem;
+	line-height: 2rem;
+	color: #fff;
+	background: #cc0000;
+	text-align: center;
+	display: inline-block;
+	border-radius: 5px;
+	font-size: 0.75rem;
+}
+.c-s-shopinfo a.golookshop{
+	color: #cc0000;
+	background: #fff;
+	border: 0.05rem solid #cc0000;
+	margin-left: 1.55rem;
+	margin-right: 0.75rem;
+}
+.usermode{
+	padding-left: 1.55rem;
+	color: #333;
+	font-size: 0.6rem;
+	padding-top: 0.6rem;
+}
+/*分享*/
+.box-opacity{
+	width: 100%;
+	height: 100%;
+	opacity: .8;
+	background: #000;
+	position: absolute;
+	top: 0;
+}
+.share-box{
+	width: 100%;
+	position: absolute;
+	z-index: 100;
+	top: 0;
+	color: #fff;
+}
+.weixin-arrow{
+	width: 100%;
+	display: inline-block;
+}
+.weixin-arrow a{
+	float: right;
+	width: 4.65rem;
+	height: 4.8rem;
+	margin-right: 0.9rem;
+	background-image: url(../img/weixin-arrow.png);
+	background-size: 100% 100%;
+}
+.share-box .share-tile{
+	width: 100%;
+	text-align: center;
+}
+.a-iknow{
+	width: 4.7rem;
+	height: 1.4rem;
+	line-height: 1.36rem;
+	text-align: center;
+	border: 0.05rem solid #fff;
+	color: #fff;
+	display: inline-block;
+	border-radius: 20px;
+	margin-top: 0.55rem;
+	margin-left: 3.4rem;
+	font-size: 0.75rem;
+}

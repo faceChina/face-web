@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.GroupListMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.product.material.domain.GroupList" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="GROUP_ID" property="groupId" jdbcType="BIGINT" />
+    <result column="PART_ID" property="partId" jdbcType="BIGINT" />
+    <result column="ASSOCIATION_TABLE" property="associationTable" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, GROUP_ID, PART_ID, ASSOCIATION_TABLE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from group_list
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectList" resultMap="BaseResultMap" parameterType="com.zjlp.face.web.server.product.material.domain.GroupList" >
+    select 
+    <include refid="Base_Column_List" />
+    from group_list
+    where PART_ID = #{partId,jdbcType=BIGINT}
+    and ASSOCIATION_TABLE = #{associationTable,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from group_list
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByGroupId" parameterType="com.zjlp.face.web.server.product.material.domain.GroupList" >
+    delete from group_list
+    where GROUP_ID = #{groupId,jdbcType=BIGINT}
+    and ASSOCIATION_TABLE = #{associationTable,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.product.material.domain.GroupList" >
+   <selectKey keyProperty="id" resultType="long" order="AFTER">  
+        SELECT LAST_INSERT_ID();  
+    </selectKey> 
+    insert into group_list (ID, GROUP_ID, PART_ID, 
+      ASSOCIATION_TABLE)
+    values (#{id,jdbcType=BIGINT}, #{groupId,jdbcType=BIGINT}, #{partId,jdbcType=BIGINT}, 
+      #{associationTable,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.product.material.domain.GroupList" >
+    <selectKey keyProperty="id" resultType="long" order="AFTER">  
+        SELECT LAST_INSERT_ID();  
+    </selectKey> 
+    insert into group_list
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="groupId != null" >
+        GROUP_ID,
+      </if>
+      <if test="partId != null" >
+        PART_ID,
+      </if>
+      <if test="associationTable != null" >
+        ASSOCIATION_TABLE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="groupId != null" >
+        #{groupId,jdbcType=BIGINT},
+      </if>
+      <if test="partId != null" >
+        #{partId,jdbcType=BIGINT},
+      </if>
+      <if test="associationTable != null" >
+        #{associationTable,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.product.material.domain.GroupList" >
+    update group_list
+    <set >
+      <if test="groupId != null" >
+        GROUP_ID = #{groupId,jdbcType=BIGINT},
+      </if>
+      <if test="partId != null" >
+        PART_ID = #{partId,jdbcType=BIGINT},
+      </if>
+      <if test="associationTable != null" >
+        ASSOCIATION_TABLE = #{associationTable,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.product.material.domain.GroupList" >
+    update group_list
+    set GROUP_ID = #{groupId,jdbcType=BIGINT},
+      PART_ID = #{partId,jdbcType=BIGINT},
+      ASSOCIATION_TABLE = #{associationTable,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="selectMaxGroupId" resultType="java.lang.Long">
+  	select case when max(GROUP_ID) is null then 0 else max(GROUP_ID) end from group_list
+  </select>
+  <select id="selectByGroupId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  	select 
+    <include refid="Base_Column_List" />
+    from group_list
+    where GROUP_ID = #{groupId,jdbcType=BIGINT}
+  </select>
+</mapper>

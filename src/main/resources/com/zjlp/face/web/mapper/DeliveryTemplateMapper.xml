@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.DeliveryTemplateMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.user.shop.domain.DeliveryTemplate" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="SHOP_NO" property="shopNo" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="ASSUMER" property="assumer" jdbcType="INTEGER" />
+    <result column="VALUATION" property="valuation" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap type="com.zjlp.face.web.server.user.shop.domain.dto.DeliveryTemplateDto" 
+       id="DtoResultResult" extends="BaseResultMap" >
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    ID, SHOP_NO, NAME, ASSUMER, VALUATION, CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from delivery_template
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from delivery_template
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.user.shop.domain.DeliveryTemplate" >
+    insert into delivery_template (ID, SHOP_NO, NAME, 
+      ASSUMER, VALUATION, CREATE_TIME, 
+      UPDATE_TIME)
+    values (#{id,jdbcType=BIGINT}, #{shopNo,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{assumer,jdbcType=INTEGER}, #{valuation,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.user.shop.domain.DeliveryTemplate" >
+  	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into delivery_template
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="shopNo != null" >
+        SHOP_NO,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="assumer != null" >
+        ASSUMER,
+      </if>
+      <if test="valuation != null" >
+        VALUATION,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="shopNo != null" >
+        #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="assumer != null" >
+        #{assumer,jdbcType=INTEGER},
+      </if>
+      <if test="valuation != null" >
+        #{valuation,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.user.shop.domain.DeliveryTemplate" >
+    update delivery_template
+    <set >
+      <if test="shopNo != null" >
+        SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="assumer != null" >
+        ASSUMER = #{assumer,jdbcType=INTEGER},
+      </if>
+      <if test="valuation != null" >
+        VALUATION = #{valuation,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.user.shop.domain.DeliveryTemplate" >
+    update delivery_template
+    set SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      ASSUMER = #{assumer,jdbcType=INTEGER},
+      VALUATION = #{valuation,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 根据店铺编号查询快递模板 -->
+  <select id="selectListByShopNo" resultMap="DtoResultResult" parameterType="java.lang.String">
+      SELECT
+          <include refid="Base_Column_List" />
+      FROM
+          DELIVERY_TEMPLATE
+      WHERE
+          SHOP_NO = #{shopNo,jdbcType=VARCHAR}
+  </select>
+  
+  <!-- 根据主键和店铺编号查询快递模板 -->
+  <select id="selectByIdAndShopNo" resultMap="BaseResultMap" parameterType="com.zjlp.face.web.server.user.shop.domain.DeliveryTemplate">
+      SELECT
+          <include refid="Base_Column_List" />
+      FROM
+          DELIVERY_TEMPLATE 
+      WHERE
+          ID = #{id,jdbcType=BIGINT}
+          AND SHOP_NO = #{shopNo,jdbcType=VARCHAR}
+  </select>
+</mapper>

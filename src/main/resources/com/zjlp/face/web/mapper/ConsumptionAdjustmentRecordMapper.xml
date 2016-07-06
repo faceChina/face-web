@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.ConsumptionAdjustmentRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.operation.member.domain.ConsumptionAdjustmentRecord" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="MEMBER_CARD_ID" property="memberCardId" jdbcType="BIGINT" />
+    <result column="ADJUSTMENT_AMOUNT" property="adjustmentAmount" jdbcType="BIGINT" />
+    <result column="TYPE" property="type" jdbcType="INTEGER" />
+    <result column="INTEGRAL_AMOUT" property="integralAmout" jdbcType="BIGINT" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, MEMBER_CARD_ID, ADJUSTMENT_AMOUNT, TYPE, INTEGRAL_AMOUT, CREATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from consumption_adjustment_record
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from consumption_adjustment_record
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.operation.member.domain.ConsumptionAdjustmentRecord" >
+    insert into consumption_adjustment_record (ID, MEMBER_CARD_ID, ADJUSTMENT_AMOUNT, 
+      TYPE, INTEGRAL_AMOUT, CREATE_TIME
+      )
+    values (#{id,jdbcType=BIGINT}, #{memberCardId,jdbcType=BIGINT}, #{adjustmentAmount,jdbcType=BIGINT}, 
+      #{type,jdbcType=INTEGER}, #{integralAmout,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.operation.member.domain.ConsumptionAdjustmentRecord" >
+    insert into consumption_adjustment_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="memberCardId != null" >
+        MEMBER_CARD_ID,
+      </if>
+      <if test="adjustmentAmount != null" >
+        ADJUSTMENT_AMOUNT,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="integralAmout != null" >
+        INTEGRAL_AMOUT,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="memberCardId != null" >
+        #{memberCardId,jdbcType=BIGINT},
+      </if>
+      <if test="adjustmentAmount != null" >
+        #{adjustmentAmount,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="integralAmout != null" >
+        #{integralAmout,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.operation.member.domain.ConsumptionAdjustmentRecord" >
+    update consumption_adjustment_record
+    <set >
+      <if test="memberCardId != null" >
+        MEMBER_CARD_ID = #{memberCardId,jdbcType=BIGINT},
+      </if>
+      <if test="adjustmentAmount != null" >
+        ADJUSTMENT_AMOUNT = #{adjustmentAmount,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="integralAmout != null" >
+        INTEGRAL_AMOUT = #{integralAmout,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.operation.member.domain.ConsumptionAdjustmentRecord" >
+    update consumption_adjustment_record
+    set MEMBER_CARD_ID = #{memberCardId,jdbcType=BIGINT},
+      ADJUSTMENT_AMOUNT = #{adjustmentAmount,jdbcType=BIGINT},
+      TYPE = #{type,jdbcType=INTEGER},
+      INTEGRAL_AMOUT = #{integralAmout,jdbcType=BIGINT},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

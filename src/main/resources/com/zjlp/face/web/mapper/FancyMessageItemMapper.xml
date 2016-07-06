@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.FancyMessageItemMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.product.material.domain.FancyMessageItem" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="FANCY_MESSAGE_ID" property="fancyMessageId" jdbcType="BIGINT" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="PICTURE_PATH" property="picturePath" jdbcType="VARCHAR" />
+    <result column="AUTHOR" property="author" jdbcType="VARCHAR" />
+    <result column="BRIEF" property="brief" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="INTEGER" />
+    <result column="LINK" property="link" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="page_views" property="pageViews" jdbcType="BIGINT" />
+    <result column="like_num" property="likeNum" jdbcType="BIGINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.zjlp.face.web.server.product.material.domain.FancyMessageItem" extends="BaseResultMap" >
+    <result column="CONTENT" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, FANCY_MESSAGE_ID, NAME, PICTURE_PATH, AUTHOR, BRIEF, TYPE, LINK, STATUS, CREATE_TIME, 
+    UPDATE_TIME, page_views, like_num
+  </sql>
+  <sql id="Blob_Column_List" >
+    CONTENT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from fancy_message_item
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from fancy_message_item
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.product.material.domain.FancyMessageItem" >
+  	<selectKey keyProperty="id" resultType="long" order="AFTER">
+			SELECT
+			LAST_INSERT_ID();
+		</selectKey>
+    insert into fancy_message_item (ID, FANCY_MESSAGE_ID, NAME, 
+      PICTURE_PATH, AUTHOR, BRIEF, 
+      TYPE, LINK, STATUS, 
+      CREATE_TIME, UPDATE_TIME, CONTENT
+      )
+    values (#{id,jdbcType=BIGINT}, #{fancyMessageId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
+      #{picturePath,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, #{brief,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{link,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.product.material.domain.FancyMessageItem" >
+  	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into fancy_message_item
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="fancyMessageId != null" >
+        FANCY_MESSAGE_ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="picturePath != null" >
+        PICTURE_PATH,
+      </if>
+      <if test="author != null" >
+        AUTHOR,
+      </if>
+      <if test="brief != null" >
+        BRIEF,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="link != null" >
+        LINK,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="content != null" >
+        CONTENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="fancyMessageId != null" >
+        #{fancyMessageId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="picturePath != null" >
+        #{picturePath,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="brief != null" >
+        #{brief,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="link != null" >
+        #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.product.material.domain.FancyMessageItem" >
+    update fancy_message_item
+    <set >
+      <if test="fancyMessageId != null" >
+        FANCY_MESSAGE_ID = #{fancyMessageId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="picturePath != null" >
+        PICTURE_PATH = #{picturePath,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        AUTHOR = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="brief != null" >
+        BRIEF = #{brief,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="link != null" >
+        LINK = #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null" >
+        CONTENT = #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="pageViews != null" >
+        page_views = #{pageViews,jdbcType=BIGINT},
+      </if>
+      <if test="likeNum != null" >
+        like_num = #{likeNum,jdbcType=BIGINT},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zjlp.face.web.server.product.material.domain.FancyMessageItem" >
+    update fancy_message_item
+    set FANCY_MESSAGE_ID = #{fancyMessageId,jdbcType=BIGINT},
+      NAME = #{name,jdbcType=VARCHAR},
+      PICTURE_PATH = #{picturePath,jdbcType=VARCHAR},
+      AUTHOR = #{author,jdbcType=VARCHAR},
+      BRIEF = #{brief,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=INTEGER},
+      LINK = #{link,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      CONTENT = #{content,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="deleteByFancyMessageId">
+  	update fancy_message_item set status=-1,update_time=now() where fancy_message_id=#{fancyMessageId}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.product.material.domain.FancyMessageItem" >
+    update fancy_message_item
+    set FANCY_MESSAGE_ID = #{fancyMessageId,jdbcType=BIGINT},
+      NAME = #{name,jdbcType=VARCHAR},
+      PICTURE_PATH = #{picturePath,jdbcType=VARCHAR},
+      AUTHOR = #{author,jdbcType=VARCHAR},
+      BRIEF = #{brief,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=INTEGER},
+      LINK = #{link,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  	<select id="selectByFancyMessageId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+	 select 
+	    <include refid="Base_Column_List" />
+	    ,
+	    <include refid="Blob_Column_List" />
+	    from fancy_message_item
+	    where FANCY_MESSAGE_ID = #{id,jdbcType=BIGINT}
+	    and STATUS= 1
+	</select>
+
+  <delete id="removeByFancyMessageId" parameterType="java.lang.Long" >
+    delete from fancy_message_item
+    where FANCY_MESSAGE_ID = #{fancyMessageId,jdbcType=BIGINT}
+  </delete>
+</mapper>

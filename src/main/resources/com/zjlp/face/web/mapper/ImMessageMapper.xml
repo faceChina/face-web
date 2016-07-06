@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.ImMessageMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.product.im.domain.ImMessage" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="SENDER" property="sender" jdbcType="BIGINT" />
+    <result column="RECEIVER" property="receiver" jdbcType="BIGINT" />
+    <result column="STATES" property="states" jdbcType="INTEGER" />
+    <result column="SEND_TIME" property="sendTime" jdbcType="TIMESTAMP" />
+    <result column="RECEIVE_TIME" property="receiveTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.zjlp.face.web.server.product.im.domain.ImMessage" extends="BaseResultMap" >
+    <result column="MESSAGE" property="message" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, SENDER, RECEIVER, STATES, SEND_TIME, RECEIVE_TIME
+  </sql>
+  <sql id="Blob_Column_List" >
+    MESSAGE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from im_message
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectImUserMessage" resultMap="ResultMapWithBLOBs" parameterType="java.util.Map">
+  	select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    
+    from im_message
+    where (SENDER = #{dto.sender,jdbcType=BIGINT} or SENDER = #{dto.receiver,jdbcType=BIGINT}) 
+    	and (RECEIVER = #{dto.receiver,jdbcType=BIGINT} or RECEIVER = #{dto.sender,jdbcType=BIGINT})
+    	<![CDATA[ and SEND_TIME < #{dto.currentDateTime} ]]>
+		order by SEND_TIME DESC
+	limit #{start},#{pageSize}
+  </select>
+  <select id="selectImUserMessageCount" resultType="java.lang.Integer">
+  	select count(id) from im_message
+    where (SENDER = #{sender,jdbcType=BIGINT} or SENDER = #{receiver,jdbcType=BIGINT}) 
+    	and (RECEIVER = #{receiver,jdbcType=BIGINT} or RECEIVER = #{sender,jdbcType=BIGINT})
+    	<![CDATA[ and SEND_TIME < #{currentDateTime} ]]>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from im_message
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByUserId" parameterType="java.lang.Long" >
+    delete from im_message
+    where SENDER = #{userId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.product.im.domain.ImMessage" >
+      <selectKey keyProperty="id" resultType="long" order="AFTER">  
+        SELECT LAST_INSERT_ID();  
+    </selectKey> 
+    insert into im_message (ID, SENDER, RECEIVER, 
+      STATES, SEND_TIME, RECEIVE_TIME, 
+      MESSAGE)
+    values (#{id,jdbcType=BIGINT}, #{sender,jdbcType=BIGINT}, #{receiver,jdbcType=BIGINT}, 
+      #{states,jdbcType=INTEGER}, #{sendTime,jdbcType=TIMESTAMP}, #{receiveTime,jdbcType=TIMESTAMP}, 
+      <![CDATA[#{message,jdbcType=LONGVARCHAR}  ]]>)
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.product.im.domain.ImMessage" >
+      <selectKey keyProperty="id" resultType="long" order="AFTER">  
+        SELECT LAST_INSERT_ID();  
+    </selectKey> 
+    insert into im_message
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="sender != null" >
+        SENDER,
+      </if>
+      <if test="receiver != null" >
+        RECEIVER,
+      </if>
+      <if test="states != null" >
+        STATES,
+      </if>
+      <if test="sendTime != null" >
+        SEND_TIME,
+      </if>
+      <if test="receiveTime != null" >
+        RECEIVE_TIME,
+      </if>
+      <if test="message != null" >
+        MESSAGE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="sender != null" >
+        #{sender,jdbcType=BIGINT},
+      </if>
+      <if test="receiver != null" >
+        #{receiver,jdbcType=BIGINT},
+      </if>
+      <if test="states != null" >
+        #{states,jdbcType=INTEGER},
+      </if>
+      <if test="sendTime != null" >
+        #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receiveTime != null" >
+        #{receiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="message != null" >
+       <![CDATA[#{message,jdbcType=LONGVARCHAR}]]>,
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.product.im.domain.ImMessage" >
+    update im_message
+    <set >
+      <if test="sender != null" >
+        SENDER = #{sender,jdbcType=BIGINT},
+      </if>
+      <if test="receiver != null" >
+        RECEIVER = #{receiver,jdbcType=BIGINT},
+      </if>
+      <if test="states != null" >
+        STATES = #{states,jdbcType=INTEGER},
+      </if>
+      <if test="sendTime != null" >
+        SEND_TIME = #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receiveTime != null" >
+        RECEIVE_TIME = #{receiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="message != null" >
+        MESSAGE = #{message,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zjlp.face.web.server.product.im.domain.ImMessage" >
+    update im_message
+    set SENDER = #{sender,jdbcType=BIGINT},
+      RECEIVER = #{receiver,jdbcType=BIGINT},
+      STATES = #{states,jdbcType=INTEGER},
+      SEND_TIME = #{sendTime,jdbcType=TIMESTAMP},
+      RECEIVE_TIME = #{receiveTime,jdbcType=TIMESTAMP},
+      MESSAGE = #{message,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.product.im.domain.ImMessage" >
+    update im_message
+    set SENDER = #{sender,jdbcType=BIGINT},
+      RECEIVER = #{receiver,jdbcType=BIGINT},
+      STATES = #{states,jdbcType=INTEGER},
+      SEND_TIME = #{sendTime,jdbcType=TIMESTAMP},
+      RECEIVE_TIME = #{receiveTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

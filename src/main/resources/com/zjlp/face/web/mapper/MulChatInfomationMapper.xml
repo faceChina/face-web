@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.MulChatInfomationMapper">
+	<resultMap id="BaseResultMap"
+		type="com.zjlp.face.web.server.user.mulchat.domain.MulChatInformation">
+		<id column="GROUP_ID" property="groupId" jdbcType="VARCHAR" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="PIC_URL" property="pictureUrl" jdbcType="VARCHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		GROUP_ID, NAME, PIC_URL, CREATE_TIME, UPDATE_TIME
+	</sql>
+	
+	<insert id="insert" parameterType="com.zjlp.face.web.server.user.mulchat.domain.MulChatInformation">
+	  INSERT INTO mul_chat_inf (GROUP_ID,NAME,PIC_URL,CREATE_TIME, UPDATE_TIME)
+	  VALUES (
+	    #{groupId,jdbcType=VARCHAR},
+		#{name,jdbcType=VARCHAR},
+		#{pictureUrl,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{updateTime,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	
+	<delete id="deleteByPrimarykey" parameterType="java.lang.String">
+	  DELETE FROM
+	  mul_chat_inf
+	  WHERE GROUP_ID = #{groupId,jdbcType=VARCHAR}
+	</delete>
+	
+	<select id="selectByPrimarykey" resultMap="BaseResultMap" parameterType="java.lang.String">
+	  SELECT
+	  <include refid="Base_Column_List" />
+	  FROM mul_chat_inf
+	  WHERE GROUP_ID = #{groupId,jdbcType=VARCHAR}
+	</select>
+
+	<update id="updateByPrimaryKey"
+		parameterType="com.zjlp.face.web.server.user.mulchat.domain.MulChatInformation">
+		UPDATE
+		mul_chat_inf
+		<set>
+			<if test="name != null">
+				NAME = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="pictureUrl != null">
+				PIC_URL = #{pictureUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		WHERE GROUP_ID= #{groupId,jdbcType=VARCHAR}
+	</update>
+	
+</mapper>

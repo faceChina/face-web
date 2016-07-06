@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.PurchaseOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.trade.order.domain.PurchaseOrder" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="ORDER_NO" property="orderNo" jdbcType="VARCHAR" />
+    <result column="SUPPLIER_NO" property="supplierNo" jdbcType="VARCHAR" />
+    <result column="SUPPLIER_NICK" property="supplierNick" jdbcType="VARCHAR" />
+    <result column="SUPPLIER_TYPE" property="supplierType" jdbcType="INTEGER" />
+    <result column="SUBBRANCH_ID" property="subbranchId" jdbcType="BIGINT" />
+    <result column="PURCHASER_NO" property="purchaserNo" jdbcType="VARCHAR" />
+    <result column="PURCHASER_NICK" property="purchaserNick" jdbcType="VARCHAR" />
+    <result column="TOTAL_PURCHASE_QUANTITY" property="totalPurchaseQuantity" jdbcType="BIGINT" />
+    <result column="TOTAL_PURCHASE_PRICE" property="totalPurchasePrice" jdbcType="BIGINT" />
+    <result column="TOTAL_SALES_PRICE" property="totalSalesPrice" jdbcType="BIGINT" />
+    <result column="TOTAL_PROFIT_PRICE" property="totalProfitPrice" jdbcType="BIGINT" />
+    <result column="PICTURE_PATH" property="picturePath" jdbcType="VARCHAR" />
+    <result column="COOPERATION_WAY" property="cooperationWay" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap type="com.zjlp.face.web.server.trade.order.domain.dto.PurchaseOrderDto" id="DtoResultMap" extends="BaseResultMap">
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ORDER_NO, SUPPLIER_NO, SUPPLIER_NICK,SUPPLIER_TYPE, PURCHASER_NO, PURCHASER_NICK, 
+    TOTAL_PURCHASE_QUANTITY, TOTAL_PURCHASE_PRICE, TOTAL_SALES_PRICE, TOTAL_PROFIT_PRICE, 
+    PICTURE_PATH, COOPERATION_WAY, CREATE_TIME, UPDATE_TIME, SUBBRANCH_ID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from purchase_order
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectPurchaseOrderCountByOrderNOAndCooperationWay" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    select count(ID)
+    from purchase_order
+    where ORDER_NO = #{orderNo,jdbcType=VARCHAR} and COOPERATION_WAY = #{cooperationWay,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from purchase_order
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.trade.order.domain.PurchaseOrder" >
+     	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into purchase_order (ID, ORDER_NO, SUPPLIER_NO, 
+      SUPPLIER_NICK, SUPPLIER_TYPE, PURCHASER_NO, PURCHASER_NICK, 
+      TOTAL_PURCHASE_QUANTITY, TOTAL_PURCHASE_PRICE, 
+      TOTAL_SALES_PRICE, TOTAL_PROFIT_PRICE, PICTURE_PATH, 
+      COOPERATION_WAY, CREATE_TIME, UPDATE_TIME,SUBBRANCH_ID
+      )
+    values (#{id,jdbcType=BIGINT}, #{orderNo,jdbcType=VARCHAR}, #{supplierNo,jdbcType=VARCHAR}, 
+      #{supplierNick,jdbcType=VARCHAR}, #{supplierType,jdbcType=INTEGER}, #{purchaserNo,jdbcType=VARCHAR}, #{purchaserNick,jdbcType=VARCHAR}, 
+      #{totalPurchaseQuantity,jdbcType=BIGINT}, #{totalPurchasePrice,jdbcType=BIGINT}, 
+      #{totalSalesPrice,jdbcType=BIGINT}, #{totalProfitPrice,jdbcType=BIGINT}, #{picturePath,jdbcType=VARCHAR}, 
+      #{cooperationWay,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      , #{subbranchId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.trade.order.domain.PurchaseOrder" >
+     	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into purchase_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="orderNo != null" >
+        ORDER_NO,
+      </if>
+      <if test="supplierNo != null" >
+        SUPPLIER_NO,
+      </if>
+      <if test="supplierNick != null" >
+        SUPPLIER_NICK,
+      </if>
+      <if test="supplierType != null" >
+        SUPPLIER_TYPE,
+      </if>
+      <if test="purchaserNo != null" >
+        PURCHASER_NO,
+      </if>
+      <if test="purchaserNick != null" >
+        PURCHASER_NICK,
+      </if>
+      <if test="totalPurchaseQuantity != null" >
+        TOTAL_PURCHASE_QUANTITY,
+      </if>
+      <if test="totalPurchasePrice != null" >
+        TOTAL_PURCHASE_PRICE,
+      </if>
+      <if test="totalSalesPrice != null" >
+        TOTAL_SALES_PRICE,
+      </if>
+      <if test="totalProfitPrice != null" >
+        TOTAL_PROFIT_PRICE,
+      </if>
+      <if test="picturePath != null" >
+        PICTURE_PATH,
+      </if>
+      <if test="cooperationWay != null" >
+        COOPERATION_WAY,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="subbranchId != null" >
+        SUBBRANCH_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierNo != null" >
+        #{supplierNo,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierNick != null" >
+        #{supplierNick,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierType != null" >
+      	#{supplierType,jdbcType=INTEGER},
+      </if>
+      <if test="purchaserNo != null" >
+        #{purchaserNo,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaserNick != null" >
+        #{purchaserNick,jdbcType=VARCHAR},
+      </if>
+      <if test="totalPurchaseQuantity != null" >
+        #{totalPurchaseQuantity,jdbcType=BIGINT},
+      </if>
+      <if test="totalPurchasePrice != null" >
+        #{totalPurchasePrice,jdbcType=BIGINT},
+      </if>
+      <if test="totalSalesPrice != null" >
+        #{totalSalesPrice,jdbcType=BIGINT},
+      </if>
+      <if test="totalProfitPrice != null" >
+        #{totalProfitPrice,jdbcType=BIGINT},
+      </if>
+      <if test="picturePath != null" >
+        #{picturePath,jdbcType=VARCHAR},
+      </if>
+      <if test="cooperationWay != null" >
+        #{cooperationWay,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="subbranchId != null" >
+        #{subbranchId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.trade.order.domain.PurchaseOrder" >
+    update purchase_order
+    <set >
+      <if test="orderNo != null" >
+        ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierNo != null" >
+        SUPPLIER_NO = #{supplierNo,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierNick != null" >
+        SUPPLIER_NICK = #{supplierNick,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierType != null" >
+      	SUPPLIER_TYPE = #{supplierNick,jdbcType=INTEGER},
+      </if>
+      <if test="purchaserNo != null" >
+        PURCHASER_NO = #{purchaserNo,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaserNick != null" >
+        PURCHASER_NICK = #{purchaserNick,jdbcType=VARCHAR},
+      </if>
+      <if test="totalPurchaseQuantity != null" >
+        TOTAL_PURCHASE_QUANTITY = #{totalPurchaseQuantity,jdbcType=BIGINT},
+      </if>
+      <if test="totalPurchasePrice != null" >
+        TOTAL_PURCHASE_PRICE = #{totalPurchasePrice,jdbcType=BIGINT},
+      </if>
+      <if test="totalSalesPrice != null" >
+        TOTAL_SALES_PRICE = #{totalSalesPrice,jdbcType=BIGINT},
+      </if>
+      <if test="totalProfitPrice != null" >
+        TOTAL_PROFIT_PRICE = #{totalProfitPrice,jdbcType=BIGINT},
+      </if>
+      <if test="picturePath != null" >
+        PICTURE_PATH = #{picturePath,jdbcType=VARCHAR},
+      </if>
+      <if test="cooperationWay != null" >
+        COOPERATION_WAY = #{cooperationWay,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="subbranchId != null" >
+        SUBBRANCH_ID = #{subbranchId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.trade.order.domain.PurchaseOrder" >
+    update purchase_order
+    set ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+      SUPPLIER_NO = #{supplierNo,jdbcType=VARCHAR},
+      SUPPLIER_NICK = #{supplierNick,jdbcType=VARCHAR},
+      SUPPLIER_TYPE = #{supplierNick,jdbcType=INTEGER},
+      PURCHASER_NO = #{purchaserNo,jdbcType=VARCHAR},
+      PURCHASER_NICK = #{purchaserNick,jdbcType=VARCHAR},
+      TOTAL_PURCHASE_QUANTITY = #{totalPurchaseQuantity,jdbcType=BIGINT},
+      TOTAL_PURCHASE_PRICE = #{totalPurchasePrice,jdbcType=BIGINT},
+      TOTAL_SALES_PRICE = #{totalSalesPrice,jdbcType=BIGINT},
+      TOTAL_PROFIT_PRICE = #{totalProfitPrice,jdbcType=BIGINT},
+      PICTURE_PATH = #{picturePath,jdbcType=VARCHAR},
+      COOPERATION_WAY = #{cooperationWay,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      SUBBRANCH_ID = #{subbranchId,jdbcType=BIGINT}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectPurchaseOrder" parameterType="java.util.Map" resultMap="DtoResultMap">
+      SELECT
+          <include refid="Base_Column_List" />
+      FROM
+          PURCHASE_ORDER
+      WHERE
+          ORDER_NO = #{orderNo,jdbcType=VARCHAR}
+          AND PURCHASER_NO = #{purchaserNo,jdbcType=VARCHAR}
+  </select>
+  <select id="selectSupplierOrder" parameterType="java.util.Map" resultMap="BaseResultMap">
+      SELECT
+          <include refid="Base_Column_List" />
+      FROM
+          PURCHASE_ORDER
+      WHERE
+          ORDER_NO = #{orderNo,jdbcType=VARCHAR}
+          AND SUPPLIER_NO = #{supplierNo,jdbcType=VARCHAR}
+  </select>
+  <select id="selectPopularizeSkuIdList" parameterType="java.util.Map" resultType="java.lang.Long">
+       SELECT
+           poi.GOOD_SKU_ID
+       FROM
+           PURCHASE_ORDER AS po
+       INNER JOIN
+           PURCHASE_ORDER_ITEM AS poi ON (po.ID = poi.PURCHASE_ORDER_ID)
+       WHERE
+           po.COOPERATION_WAY = 2
+           and po.order_no = #{orderNo}
+           AND poi.GOOD_SKU_ID IN
+           <foreach collection="skuIdList" item="skuId" open="(" close=")" separator=",">
+                #{skuId}
+           </foreach>
+  </select>
+  <select id="selectList" parameterType="java.util.Map" resultMap="DtoResultMap">
+  	SELECT
+          <include refid="Base_Column_List" />
+      FROM
+          PURCHASE_ORDER
+      WHERE
+          ORDER_NO = #{orderNo,jdbcType=VARCHAR}
+          AND COOPERATION_WAY = #{cooperationWay,jdbcType=INTEGER}
+  </select>
+  <select id="selectPromoteOrdersByOrderNo" parameterType="java.lang.String" resultMap="DtoResultMap">
+      SELECT
+          <include refid="Base_Column_List" />
+      FROM
+          PURCHASE_ORDER
+      WHERE
+          ORDER_NO = #{orderNo,jdbcType=VARCHAR}
+          AND COOPERATION_WAY = 2
+  </select>
+  
+  <select id="selectAll"  resultMap="DtoResultMap">
+      SELECT
+          <include refid="Base_Column_List" />
+      FROM
+          PURCHASE_ORDER
+  </select>
+  
+  <select id="selectSubbranchOrderTDPCount" resultType="java.lang.Integer">
+       SELECT
+           COUNT(1)
+       FROM
+           PURCHASE_ORDER AS po
+       LEFT JOIN
+           SALES_ORDER AS so ON (so.ORDER_NO = po.ORDER_NO)
+       WHERE
+           po.PURCHASER_NO = #{cell}
+           <![CDATA[ AND so.PAYMENT_TIME > #{today} ]]>
+           
+  </select>
+  
+  <!-- 经营数据统计 start -->
+  <select id="selectSupplierpayCommissions" parameterType="com.zjlp.face.web.server.trade.order.domain.dto.SalesOrderVo" 
+         resultType="com.zjlp.face.web.server.trade.order.domain.vo.OperateData">
+      SELECT 
+          DATE_FORMAT(so.PAYMENT_TIME,'%Y-%m-%d') AS timeStamp, SUM(po.TOTAL_PROFIT_PRICE) as price
+      FROM 
+          PURCHASE_ORDER AS po 
+      LEFT JOIN
+          sales_order as so on (po.order_no = so.order_no)
+      WHERE 
+          so.shop_no = #{shopNo}
+          and so.ORDER_CATEGORY = 4
+          and so.PAYMENT_TIME IS NOT NULL
+          <![CDATA[ and so.PAYMENT_TIME >= #{paymentTime} ]]>
+      GROUP BY 
+          timeStamp
+  </select>
+  
+  <select id="selectSupplierpayCommission" parameterType="com.zjlp.face.web.server.trade.order.domain.dto.SalesOrderVo" 
+         resultType="java.lang.Long">
+      SELECT 
+          sum(po.TOTAL_PROFIT_PRICE)
+      FROM 
+          PURCHASE_ORDER AS po 
+      LEFT JOIN
+          sales_order as so on (po.order_no = so.order_no)
+      WHERE 
+          so.shop_no = #{shopNo}
+          and so.ORDER_CATEGORY = 4
+          and so.PAYMENT_TIME IS NOT NULL
+          <![CDATA[ and so.PAYMENT_TIME >= #{paymentTime} ]]>
+  </select>
+  <!-- 经营数据统计 end -->
+  <select id="selectOrderSourceByPrimaryKey" parameterType="java.lang.Long" resultType="java.lang.String">
+	SELECT
+		IFNULL(lpo.PURCHASER_NICK, po.PURCHASER_NICK)
+	FROM
+		purchase_order po
+	LEFT JOIN
+		purchase_order lpo ON lpo.SUPPLIER_NO = po.PURCHASER_NO AND lpo.ORDER_NO = po.ORDER_NO
+	WHERE
+		po.ID = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <select id="getCommissionByTime" resultType="java.lang.Long">
+  	SELECT IFNULL(SUM(TOTAL_PROFIT_PRICE), 0) FROM purchase_order 
+	INNER JOIN (SELECT ORDER_NO FROM sales_order WHERE `STATUS` = 5 AND ORDER_CATEGORY = 4 AND CONFIRM_TIME > #{countDay}) so ON so.ORDER_NO = purchase_order.ORDER_NO 
+	WHERE SUBBRANCH_ID = #{subbranchId}
+	AND COOPERATION_WAY = 1
+  </select>
+  
+   <!-- 分店佣金排行榜 Top10 -->
+  <select id="selectSubbranchRaningList" resultType="com.zjlp.face.web.server.trade.order.domain.vo.SubbranchRankingListVo">
+	SELECT s.ID,s.CREATE_TIME,s.STATUS, s.USER_NAME AS userName,u.HEADIMGURL AS headUrl,IFNULL(SUM(lj.TOTAL_PROFIT_PRICE),0) AS totalCommissionLong FROM subbranch s 
+	LEFT JOIN user u ON  u.ID = s.user_id 
+	LEFT JOIN (SELECT ORDER_NO, SUBBRANCH_ID, TOTAL_PROFIT_PRICE FROM purchase_order WHERE COOPERATION_WAY = 1) lj ON  lj.SUBBRANCH_ID = s.ID
+	LEFT JOIN (SELECT ORDER_NO,CONFIRM_TIME FROM sales_order WHERE `STATUS` = 5 AND ORDER_CATEGORY = 4 AND SHOP_NO = #{shopNo} AND <![CDATA[ CONFIRM_TIME < curdate()]]> ) lj2 ON lj2.ORDER_NO = lj.ORDER_NO
+	WHERE 
+		s.SUPPLIER_SHOP_NO = #{shopNo} AND s.STATUS = 1 AND 
+		<if test="days == 1" >
+			TO_DAYS(date_sub(curdate(),interval 1 day)) - TO_DAYS(lj2.CONFIRM_TIME) = 0 
+		</if>
+		<if test="days > 1" >
+			<![CDATA[ TO_DAYS(date_sub(curdate(),interval 1 day)) - TO_DAYS(lj2.CONFIRM_TIME) < #{days} ]]>
+		</if>
+	GROUP BY 
+		s.ID HAVING <![CDATA[ totalCommissionLong > 0 ]]>
+	ORDER BY totalCommissionLong DESC,CREATE_TIME ASC 
+	LIMIT 10
+  </select>
+  
+   <!-- 我的当前佣金 -->
+  <select id="selectSubbranchMyCommission" resultType="java.lang.Long">
+	SELECT 
+		SUM(TOTAL_PROFIT_PRICE) COMMISSION 
+	FROM 
+		purchase_order po 
+		LEFT JOIN (SELECT ORDER_NO,CONFIRM_TIME FROM sales_order WHERE `STATUS` = 5 AND ORDER_CATEGORY = 4 AND SHOP_NO = #{shopNo} AND <![CDATA[ CONFIRM_TIME < curdate()]]>) so ON so.ORDER_NO = po.ORDER_NO 
+	WHERE po.SUBBRANCH_ID = #{subbranchId} AND po.COOPERATION_WAY = 1 AND  
+		<if test="days == 1" >
+			TO_DAYS(date_sub(curdate(),interval 1 day)) - TO_DAYS(so.CONFIRM_TIME) = 0
+		</if>
+		<if test="days > 1" >
+			<![CDATA[ TO_DAYS(date_sub(curdate(),interval 1 day)) - TO_DAYS(so.CONFIRM_TIME) < #{days} ]]>
+		</if>
+  </select>
+  
+   <!-- 我的当前排名 -->
+  <select id="selectSubbranchMyRaning" resultType="java.lang.Integer">
+	SELECT temp2.number FROM(
+		SELECT temp.sid, @ranking:=@ranking + 1 as number FROM(
+			SELECT s.ID as sid ,s.CREATE_TIME, IFNULL(SUM(lj.TOTAL_PROFIT_PRICE),0) AS commission FROM subbranch s 
+			LEFT JOIN (SELECT ORDER_NO, SUBBRANCH_ID, TOTAL_PROFIT_PRICE FROM purchase_order WHERE COOPERATION_WAY = 1) lj ON  lj.SUBBRANCH_ID = s.ID 
+			LEFT JOIN (SELECT ORDER_NO,CONFIRM_TIME FROM sales_order WHERE `STATUS` = 5 AND ORDER_CATEGORY = 4 AND SHOP_NO = #{shopNo} AND <![CDATA[  CONFIRM_TIME < curdate()]]>) lj2 ON lj2.ORDER_NO = lj.ORDER_NO 
+			WHERE s.SUPPLIER_SHOP_NO = #{shopNo} AND s.STATUS = 1 AND 
+			<if test="days == 1" >
+				TO_DAYS(date_sub(curdate(),interval 1 day)) - TO_DAYS(lj2.CONFIRM_TIME) = 0 
+			</if>
+			<if test="days > 1" >
+				<![CDATA[ TO_DAYS(date_sub(curdate(),interval 1 day)) - TO_DAYS(lj2.CONFIRM_TIME) < #{days} ]]>
+			</if>
+			GROUP BY s.ID HAVING commission <![CDATA[  > 0 ]]>
+			ORDER BY commission DESC,CREATE_TIME ASC 
+		) as temp , (SELECT @ranking:= 0) as b 
+	) temp2 where temp2.sid = #{subbranchId} 
+  </select>
+  
+  <select id="getOrderPayCommission" resultType="java.lang.Long">
+  	SELECT
+		TOTAL_PROFIT_PRICE
+	FROM
+		purchase_order
+	WHERE
+		ORDER_NO = #{orderNo}
+	AND SUPPLIER_TYPE = #{supplierType}
+	AND SUPPLIER_NO = #{supplierNo}
+	AND COOPERATION_WAY = 1
+  </select>
+</mapper>

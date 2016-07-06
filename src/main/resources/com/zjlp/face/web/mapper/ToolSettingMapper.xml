@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.ToolSettingMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.user.weixin.domain.ToolSetting" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="SHOP_NO" property="shopNo" jdbcType="VARCHAR" />
+    <result column="ATTENTION_SWITCH" property="attentionSwitch" jdbcType="INTEGER" />
+    <result column="REPLY_SWITCH" property="replySwitch" jdbcType="INTEGER" />
+    <result column="KEYWORD_RECOVERY_SWITCH" property="keywordRecoverySwitch" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, SHOP_NO, ATTENTION_SWITCH, REPLY_SWITCH, KEYWORD_RECOVERY_SWITCH, CREATE_TIME, 
+    UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tool_setting
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="getByShopNo" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tool_setting
+    where SHOP_NO = #{shopNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tool_setting
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.user.weixin.domain.ToolSetting" >
+   	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into tool_setting (ID, SHOP_NO, ATTENTION_SWITCH, 
+      REPLY_SWITCH, KEYWORD_RECOVERY_SWITCH, CREATE_TIME, 
+      UPDATE_TIME)
+    values (#{id,jdbcType=BIGINT}, #{shopNo,jdbcType=VARCHAR}, #{attentionSwitch,jdbcType=INTEGER}, 
+      #{replySwitch,jdbcType=INTEGER}, #{keywordRecoverySwitch,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.user.weixin.domain.ToolSetting" >
+   	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into tool_setting
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="shopNo != null" >
+        SHOP_NO,
+      </if>
+      <if test="attentionSwitch != null" >
+        ATTENTION_SWITCH,
+      </if>
+      <if test="replySwitch != null" >
+        REPLY_SWITCH,
+      </if>
+      <if test="keywordRecoverySwitch != null" >
+        KEYWORD_RECOVERY_SWITCH,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="shopNo != null" >
+        #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="attentionSwitch != null" >
+        #{attentionSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="replySwitch != null" >
+        #{replySwitch,jdbcType=INTEGER},
+      </if>
+      <if test="keywordRecoverySwitch != null" >
+        #{keywordRecoverySwitch,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.user.weixin.domain.ToolSetting" >
+    update tool_setting
+    <set >
+      <if test="shopNo != null" >
+        SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="attentionSwitch != null" >
+        ATTENTION_SWITCH = #{attentionSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="replySwitch != null" >
+        REPLY_SWITCH = #{replySwitch,jdbcType=INTEGER},
+      </if>
+      <if test="keywordRecoverySwitch != null" >
+        KEYWORD_RECOVERY_SWITCH = #{keywordRecoverySwitch,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <where>
+    	<if test="id != null">
+    		ID = #{id,jdbcType=BIGINT}
+    	</if>
+    	<if test="shopNo != null">
+    		shop_no = #{shopNo,jdbcType=VARCHAR}
+    	</if>
+    </where>
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.user.weixin.domain.ToolSetting" >
+    update tool_setting
+    set SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      ATTENTION_SWITCH = #{attentionSwitch,jdbcType=INTEGER},
+      REPLY_SWITCH = #{replySwitch,jdbcType=INTEGER},
+      KEYWORD_RECOVERY_SWITCH = #{keywordRecoverySwitch,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

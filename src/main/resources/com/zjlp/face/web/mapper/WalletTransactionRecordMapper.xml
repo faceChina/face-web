@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.WalletTransactionRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.trade.payment.domain.WalletTransactionRecord" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="USER_ID" property="userId" jdbcType="BIGINT" />
+    <result column="TRANSACTION_SERIAL_NUMBER" property="transactionSerialNumber" jdbcType="VARCHAR" />
+    <result column="CASH" property="cash" jdbcType="BIGINT" />
+    <result column="TYPE" property="type" jdbcType="INTEGER" />
+    <result column="ACCOUNT_TYPE" property="accountType" jdbcType="INTEGER" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="SETTLE_DATE" property="settleDate" jdbcType="VARCHAR" />
+    <result column="TRANSACTION_TIME" property="transactionTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, USER_ID, TRANSACTION_SERIAL_NUMBER, CASH, TYPE, ACCOUNT_TYPE, STATUS, SETTLE_DATE, 
+    TRANSACTION_TIME, CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from wallet_transaction_record
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from wallet_transaction_record
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.trade.payment.domain.WalletTransactionRecord" >
+   	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into wallet_transaction_record (ID, USER_ID, TRANSACTION_SERIAL_NUMBER, 
+      CASH, TYPE, ACCOUNT_TYPE, 
+      STATUS, SETTLE_DATE, TRANSACTION_TIME, 
+      CREATE_TIME, UPDATE_TIME)
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{transactionSerialNumber,jdbcType=VARCHAR}, 
+      #{cash,jdbcType=BIGINT}, #{type,jdbcType=INTEGER}, #{accountType,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{settleDate,jdbcType=VARCHAR}, #{transactionTime,jdbcType=TIMESTAMP}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.trade.payment.domain.WalletTransactionRecord" >
+   	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into wallet_transaction_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="transactionSerialNumber != null" >
+        TRANSACTION_SERIAL_NUMBER,
+      </if>
+      <if test="cash != null" >
+        CASH,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="accountType != null" >
+        ACCOUNT_TYPE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="settleDate != null" >
+        SETTLE_DATE,
+      </if>
+      <if test="transactionTime != null" >
+        TRANSACTION_TIME,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="transactionSerialNumber != null" >
+        #{transactionSerialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cash != null" >
+        #{cash,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="accountType != null" >
+        #{accountType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="settleDate != null" >
+        #{settleDate,jdbcType=VARCHAR},
+      </if>
+      <if test="transactionTime != null" >
+        #{transactionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.trade.payment.domain.WalletTransactionRecord" >
+    update wallet_transaction_record
+    <set >
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="transactionSerialNumber != null" >
+        TRANSACTION_SERIAL_NUMBER = #{transactionSerialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cash != null" >
+        CASH = #{cash,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="accountType != null" >
+        ACCOUNT_TYPE = #{accountType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="settleDate != null" >
+        SETTLE_DATE = #{settleDate,jdbcType=VARCHAR},
+      </if>
+      <if test="transactionTime != null" >
+        TRANSACTION_TIME = #{transactionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.trade.payment.domain.WalletTransactionRecord" >
+    update wallet_transaction_record
+    set USER_ID = #{userId,jdbcType=BIGINT},
+      TRANSACTION_SERIAL_NUMBER = #{transactionSerialNumber,jdbcType=VARCHAR},
+      CASH = #{cash,jdbcType=BIGINT},
+      TYPE = #{type,jdbcType=INTEGER},
+      ACCOUNT_TYPE = #{accountType,jdbcType=INTEGER},
+      STATUS = #{status,jdbcType=INTEGER},
+      SETTLE_DATE = #{settleDate,jdbcType=VARCHAR},
+      TRANSACTION_TIME = #{transactionTime,jdbcType=TIMESTAMP},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

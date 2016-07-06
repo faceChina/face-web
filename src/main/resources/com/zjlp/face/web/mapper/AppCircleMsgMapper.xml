@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.AppCircleMsgMapper">
+	<resultMap id="BaseResultMap" type="com.zjlp.face.web.server.social.businesscircle.domain.AppCircleMsg">
+		<id column="ID" property="id" jdbcType="BIGINT" />
+		<result column="USER_ID" property="userId" jdbcType="BIGINT" />
+		<result column="CONTENT" property="content" jdbcType="VARCHAR" />
+		<result column="URL" property="url" jdbcType="VARCHAR" />
+		<result column="IMG_1" property="img1" jdbcType="VARCHAR" />
+		<result column="IMG_2" property="img2" jdbcType="VARCHAR" />
+		<result column="IMG_3" property="img3" jdbcType="VARCHAR" />
+		<result column="IMG_4" property="img4" jdbcType="VARCHAR" />
+		<result column="IMG_5" property="img5" jdbcType="VARCHAR" />
+		<result column="IMG_6" property="img6" jdbcType="VARCHAR" />
+		<result column="IMG_7" property="img7" jdbcType="VARCHAR" />
+		<result column="IMG_8" property="img8" jdbcType="VARCHAR" />
+		<result column="IMG_9" property="img9" jdbcType="VARCHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<resultMap id="VoResultMap" type="com.zjlp.face.web.server.social.businesscircle.domain.vo.AppCircleMsgVo" extends="BaseResultMap">
+		<result column="HEADIMGURL" property="headimgurl" jdbcType="VARCHAR" />
+		<result column="NICKNAME" property="userName" jdbcType="VARCHAR" />
+		<result column="LOGIN_ACCOUNT" property="userAccount" jdbcType="VARCHAR" />
+		
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, USER_ID,CONTENT, URL,IMG_1,IMG_2,IMG_3,IMG_4,IMG_5,IMG_6,IMG_7,IMG_8,IMG_9, CREATE_TIME
+	</sql>
+	
+	<insert id="insert" parameterType="com.zjlp.face.web.server.social.businesscircle.domain.AppCircleMsg">
+	 	<selectKey keyProperty="id" resultType="long" order="AFTER">
+			SELECT
+			LAST_INSERT_ID();
+		</selectKey>
+		INSERT INTO app_circle_msg (USER_ID,CONTENT, URL,IMG_1,IMG_2,IMG_3,IMG_4,IMG_5,IMG_6,IMG_7,IMG_8,IMG_9, CREATE_TIME)
+		VALUES (
+		#{userId,jdbcType=BIGINT},
+		#{content,jdbcType=VARCHAR},
+		#{url,jdbcType=VARCHAR},
+		#{img1,jdbcType=VARCHAR},
+		#{img2,jdbcType=VARCHAR},
+		#{img3,jdbcType=VARCHAR},
+		#{img4,jdbcType=VARCHAR},
+		#{img5,jdbcType=VARCHAR},
+		#{img6,jdbcType=VARCHAR},
+		#{img7,jdbcType=VARCHAR},
+		#{img8,jdbcType=VARCHAR},
+		#{img9,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	
+	<update id="update" parameterType="com.zjlp.face.web.server.social.businesscircle.domain.AppCircleMsg" >
+    update app_circle_msg
+    <set >
+      <if test="img1 != null" >
+        CONTENT = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="img1 != null" >
+        URL = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="img1 != null" >
+        IMG_1 = #{img1,jdbcType=VARCHAR},
+      </if>
+    </set>
+   WHERE ID = #{id,jdbcType=BIGINT}
+  </update>
+	
+	
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		DELETE FROM
+		app_circle_msg
+		WHERE ID = #{id,jdbcType=BIGINT}
+	</delete>
+	<select id="selectByPrimaryKey" resultMap="VoResultMap" parameterType="java.lang.Long">
+		SELECT
+		a.*,b.NICKNAME ,b.HEADIMGURL
+		FROM app_circle_msg a  JOIN USER b ON a.USER_ID = b.ID
+		WHERE a.ID = #{id,jdbcType=BIGINT}
+	</select>
+	<select id="selectAppCircleMsgByUserId" resultMap="VoResultMap" parameterType="java.util.Map">
+	   SELECT
+	   <include refid="Base_Column_List" />
+	   FROM app_circle_msg
+	   WHERE USER_ID = #{userId,jdbcType=BIGINT}
+	   order by create_time desc
+  	   limit #{start},#{pageSize}
+	</select>
+	<select id="getCount" resultType="java.lang.Integer">
+  	select count(1)
+  	from app_circle_msg
+  	 WHERE USER_ID = #{userId,jdbcType=BIGINT}
+  	</select>
+  	
+  	
+  	<select id="getCountByTimes" resultType="java.lang.Integer" parameterType="java.util.Map">
+	SELECT count(1) FROM (
+		SELECT
+		 m.*,me.NICKNAME,me.HEADIMGURL
+			FROM app_circle_msg m,
+			( SELECT u.ID,u.NICKNAME,u.HEADIMGURL
+				FROM USER u WHERE u.LOGIN_ACCOUNT=#{username,jdbcType=VARCHAR}
+			) AS me
+			WHERE  m.USER_ID = me.id
+	UNION 
+	    SELECT
+		  m.*,t.NICKNAME,t.HEADIMGURL
+		FROM app_circle_msg m,
+		  (SELECT
+		     a.ID,a.NICKNAME,a.HEADIMGURL
+		   FROM USER a,
+		     (SELECT DISTINCT
+		        SUBSTRING_INDEX(b.jid,'@',1) AS firends
+		      FROM view_ofroster b,
+		        (SELECT
+		           SUBSTRING_INDEX(a.jid,'@',1) AS n
+		         FROM view_ofroster a
+		         WHERE a.username = #{username,jdbcType=VARCHAR} AND a.sub=3) AS c
+		      WHERE (b.username = c.n 
+		              OR b.username = #{username,jdbcType=VARCHAR}) AND b.sub=3) AS p
+		   WHERE a.LOGIN_ACCOUNT = p.firends) AS t
+		WHERE m.USER_ID = t.ID
+	) AS result
+	<where>
+	<if test="upMsgId != null" >
+	 <![CDATA[result.id < #{upMsgId}]]>
+	</if>
+	 <if test="downMsgId != null" >
+		and result.id > #{downMsgId}
+	</if>
+	</where>
+  	</select>
+  	<select id="selectAppCircleMsgPage" resultMap="VoResultMap" parameterType="java.util.Map">
+	SELECT * FROM (
+		SELECT
+		 m.*,me.NICKNAME,me.HEADIMGURL,me.LOGIN_ACCOUNT
+			FROM app_circle_msg m,
+			( SELECT u.ID,u.NICKNAME,u.HEADIMGURL,u.LOGIN_ACCOUNT
+				FROM USER u WHERE u.LOGIN_ACCOUNT=#{username,jdbcType=VARCHAR}
+			) AS me
+			WHERE  m.USER_ID = me.id
+	UNION 
+	    SELECT
+		  m.*,t.NICKNAME,t.HEADIMGURL,t.LOGIN_ACCOUNT
+		FROM app_circle_msg m,
+		  (SELECT
+		     a.ID,a.NICKNAME,a.HEADIMGURL,a.LOGIN_ACCOUNT
+		   FROM USER a,
+		     (SELECT DISTINCT
+		        SUBSTRING_INDEX(b.jid,'@',1) AS firends
+		      FROM view_ofroster b,
+		        (SELECT
+		           SUBSTRING_INDEX(a.jid,'@',1) AS n
+		         FROM view_ofroster a
+		         WHERE a.username = #{username,jdbcType=VARCHAR} AND a.sub=3) AS c
+		      WHERE (b.username = c.n 
+		              OR b.username = #{username,jdbcType=VARCHAR}) AND b.sub=3) AS p
+		   WHERE a.LOGIN_ACCOUNT = p.firends) AS t
+		WHERE m.USER_ID = t.ID
+	) AS result
+	<where>
+	<if test="upMsgId != null" >
+	 <![CDATA[result.id < #{upMsgId}]]>
+	</if>
+	 <if test="downMsgId != null" >
+		and result.id > #{downMsgId}
+	</if>
+	</where>
+	ORDER BY result.CREATE_TIME DESC
+  	limit #{start},#{pageSize}
+	</select>
+</mapper>

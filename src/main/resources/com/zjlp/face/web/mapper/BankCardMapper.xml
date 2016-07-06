@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.BankCardMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.user.bankcard.domain.BankCard" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="REMOTE_ID" property="remoteId" jdbcType="VARCHAR" />
+    <result column="REMOTE_TYPE" property="remoteType" jdbcType="INTEGER" />
+    <result column="BANK_CODE" property="bankCode" jdbcType="VARCHAR" />
+    <result column="BANK_CARD" property="bankCard" jdbcType="VARCHAR" />
+    <result column="BANK_NAME" property="bankName" jdbcType="VARCHAR" />
+    <result column="CELL" property="cell" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="BANK_TYPE" property="bankType" jdbcType="INTEGER" />
+    <result column="TYPE" property="type" jdbcType="INTEGER" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="END_TIME" property="endTime" jdbcType="VARCHAR" />
+    <result column="CVV" property="cvv" jdbcType="VARCHAR" />
+    <result column="IDENTITY" property="identity" jdbcType="VARCHAR" />
+    <result column="PAY_TYPE" property="payType" jdbcType="INTEGER" />
+    <result column="NO_AGREE" property="noAgree" jdbcType="VARCHAR" />
+    <result column="IS_DEFAULT" property="isDefault" jdbcType="INTEGER" />
+    <result column="BIND_ID" property="bindId" jdbcType="VARCHAR" />
+    <result column="LKL_SIGN" property="lklSign" jdbcType="INTEGER"/>
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, REMOTE_ID, REMOTE_TYPE, BANK_CODE, BANK_CARD, BANK_NAME, CELL, NAME, BANK_TYPE, 
+    TYPE, STATUS, END_TIME, CVV, IDENTITY, PAY_TYPE, NO_AGREE, IS_DEFAULT,BIND_ID, LKL_SIGN, CREATE_TIME, 
+    UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from bank_card
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from bank_card
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.user.bankcard.domain.BankCard" >
+   	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into bank_card (ID, REMOTE_ID, REMOTE_TYPE, 
+      BANK_CODE, BANK_CARD, BANK_NAME, 
+      CELL, NAME, BANK_TYPE, 
+      TYPE, STATUS, END_TIME, 
+      CVV, IDENTITY, PAY_TYPE, 
+      NO_AGREE, IS_DEFAULT, BIND_ID, LKL_SIGN, CREATE_TIME, 
+      UPDATE_TIME)
+    values (#{id,jdbcType=BIGINT}, #{remoteId,jdbcType=VARCHAR}, #{remoteType,jdbcType=INTEGER}, 
+      #{bankCode,jdbcType=VARCHAR}, #{bankCard,jdbcType=VARCHAR}, #{bankName,jdbcType=VARCHAR}, 
+      #{cell,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{bankType,jdbcType=INTEGER}, 
+      #{type,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{endTime,jdbcType=VARCHAR}, 
+      #{cvv,jdbcType=VARCHAR}, #{identity,jdbcType=VARCHAR}, #{payType,jdbcType=INTEGER}, 
+      #{noAgree,jdbcType=VARCHAR}, #{isDefault,jdbcType=INTEGER}, #{bindId,jdbcType=VARCHAR}, #{lklSign},#{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.user.bankcard.domain.BankCard" >
+  	<selectKey keyProperty="id" resultType="long" order="AFTER">  
+        SELECT LAST_INSERT_ID();  
+    </selectKey>
+    insert into bank_card
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="remoteId != null" >
+        REMOTE_ID,
+      </if>
+      <if test="remoteType != null" >
+        REMOTE_TYPE,
+      </if>
+      <if test="bankCode != null" >
+        BANK_CODE,
+      </if>
+      <if test="bankCard != null" >
+        BANK_CARD,
+      </if>
+      <if test="bankName != null" >
+        BANK_NAME,
+      </if>
+      <if test="cell != null" >
+        CELL,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="bankType != null" >
+        BANK_TYPE,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="endTime != null" >
+        END_TIME,
+      </if>
+      <if test="cvv != null" >
+        CVV,
+      </if>
+      <if test="identity != null" >
+        IDENTITY,
+      </if>
+      <if test="payType != null" >
+        PAY_TYPE,
+      </if>
+      <if test="noAgree != null" >
+        NO_AGREE,
+      </if>
+      <if test="isDefault != null" >
+        IS_DEFAULT,
+      </if>
+      <if test="bindId != null" >
+        BIND_ID,
+      </if>
+      <if test="lklSign != null">
+      	LKL_SIGN,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="remoteId != null" >
+        #{remoteId,jdbcType=VARCHAR},
+      </if>
+      <if test="remoteType != null" >
+        #{remoteType,jdbcType=INTEGER},
+      </if>
+      <if test="bankCode != null" >
+        #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCard != null" >
+        #{bankCard,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null" >
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="cell != null" >
+        #{cell,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="bankType != null" >
+        #{bankType,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="cvv != null" >
+        #{cvv,jdbcType=VARCHAR},
+      </if>
+      <if test="identity != null" >
+        #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null" >
+        #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="noAgree != null" >
+        #{noAgree,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefault != null" >
+        #{isDefault,jdbcType=INTEGER},
+      </if>
+      <if test="bindId != null" >
+        #{bindId,jdbcType=VARCHAR},
+      </if>
+      <if test="lklSign != null">
+      	#{lklSign},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.user.bankcard.domain.BankCard" >
+    update bank_card
+    <set >
+      <if test="remoteId != null" >
+        REMOTE_ID = #{remoteId,jdbcType=VARCHAR},
+      </if>
+      <if test="remoteType != null" >
+        REMOTE_TYPE = #{remoteType,jdbcType=INTEGER},
+      </if>
+      <if test="bankCode != null" >
+        BANK_CODE = #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCard != null" >
+        BANK_CARD = #{bankCard,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null" >
+        BANK_NAME = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="cell != null" >
+        CELL = #{cell,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="bankType != null" >
+        BANK_TYPE = #{bankType,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="endTime != null" >
+        END_TIME = #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="cvv != null" >
+        CVV = #{cvv,jdbcType=VARCHAR},
+      </if>
+      <if test="identity != null" >
+        IDENTITY = #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null" >
+        PAY_TYPE = #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="noAgree != null" >
+        NO_AGREE = #{noAgree,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefault != null" >
+        IS_DEFAULT = #{isDefault,jdbcType=INTEGER},
+      </if>
+      <if test="bindId != null" >
+        BIND_ID = #{bindId,jdbcType=VARCHAR},
+      </if>
+      <if test="lklSign != null">
+      	LKL_SIGN = #{lklSign},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.user.bankcard.domain.BankCard" >
+    update bank_card
+    set REMOTE_ID = #{remoteId,jdbcType=VARCHAR},
+      REMOTE_TYPE = #{remoteType,jdbcType=INTEGER},
+      BANK_CODE = #{bankCode,jdbcType=VARCHAR},
+      BANK_CARD = #{bankCard,jdbcType=VARCHAR},
+      BANK_NAME = #{bankName,jdbcType=VARCHAR},
+      CELL = #{cell,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      BANK_TYPE = #{bankType,jdbcType=INTEGER},
+      TYPE = #{type,jdbcType=INTEGER},
+      STATUS = #{status,jdbcType=INTEGER},
+      END_TIME = #{endTime,jdbcType=VARCHAR},
+      CVV = #{cvv,jdbcType=VARCHAR},
+      IDENTITY = #{identity,jdbcType=VARCHAR},
+      PAY_TYPE = #{payType,jdbcType=INTEGER},
+      NO_AGREE = #{noAgree,jdbcType=VARCHAR},
+      IS_DEFAULT = #{isDefault,jdbcType=INTEGER},
+      BIND_ID = #{bindId,jdbcType=VARCHAR},
+      LKL_SIGN = #{lklSign},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 查询有效的银行卡 -->
+  <select id="selectValidById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+      SELECT
+          <include refid="Base_Column_List" />
+      FROM
+          BANK_CARD
+      WHERE
+          ID = #{id,jdbcType=BIGINT}
+          AND STATUS = 1
+  </select>
+  
+  <!-- 逻辑删除银行卡 -->
+  <update id="removeBankCardById" parameterType="java.lang.Long" >
+      UPDATE
+          BANK_CARD
+      SET
+          STATUS = -1,
+          UPDATE_TIME = NOW()
+      WHERE
+          ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 查询银行卡列表 -->
+  <select id="selectBankCardList" resultMap="BaseResultMap" parameterType="com.zjlp.face.web.server.user.bankcard.domain.BankCard">
+      SELECT
+          <include refid="Base_Column_List" />
+      FROM
+          BANK_CARD
+      WHERE
+          REMOTE_ID = #{remoteId,jdbcType=VARCHAR}
+          AND REMOTE_TYPE = #{remoteType,jdbcType=INTEGER}
+          <if test="bankType != null">
+              AND BANK_TYPE = #{bankType,jdbcType=INTEGER}
+          </if>
+          AND TYPE = #{type,jdbcType=INTEGER}
+          AND STATUS = #{status,jdbcType=INTEGER}
+  </select>
+  
+  <!-- 查询对应默认类型的银行卡 -->
+  <select id="selectCardForDfType" resultMap="BaseResultMap" parameterType="com.zjlp.face.web.server.user.bankcard.domain.BankCard" >
+       SELECT
+           <include refid="Base_Column_List" />
+       FROM
+           BANK_CARD
+       WHERE
+           REMOTE_ID = #{remoteId,jdbcType=VARCHAR}
+           AND REMOTE_TYPE = #{remoteType,jdbcType=INTEGER}
+           AND TYPE = #{type,jdbcType=INTEGER}
+           AND STATUS = #{status,jdbcType=INTEGER}
+           AND IS_DEFAULT = #{isDefault,jdbcType=INTEGER}
+  </select>
+  
+  <!-- 编辑银行的默认类型 -->
+  <update id="updateCardDfTypeById" parameterType="com.zjlp.face.web.server.user.bankcard.domain.BankCard">
+      UPDATE
+          BANK_CARD
+      SET
+          UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+          IS_DEFAULT = #{isDefault,jdbcType=INTEGER}
+      WHERE
+          ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 查询有效的（正常，冻结），唯一的银行卡（一般情况下，固定的卡号对应唯一的银行卡类型和银行卡编号） -->
+  <select id="selectIdenticalValidCard" resultMap="BaseResultMap" parameterType="com.zjlp.face.web.server.user.bankcard.domain.BankCard">
+      SELECT
+           <include refid="Base_Column_List" />
+       FROM
+           BANK_CARD
+       WHERE
+           BANK_CARD = #{bankCard,jdbcType=VARCHAR}
+           AND REMOTE_ID = #{remoteId,jdbcType=VARCHAR}
+           AND REMOTE_TYPE = #{remoteType,jdbcType=INTEGER}
+           AND TYPE = #{type,jdbcType=INTEGER}
+           <if test="bankType != null">
+               AND BANK_TYPE = #{bankType,jdbcType=INTEGER}
+           </if>
+           <if test="bankCode">
+               AND BANK_CODE = #{bankCode,jdbcType=VARCHAR}
+           </if>
+           AND STATUS IN (0, 1)
+  </select>
+  
+  <!-- 更新银行卡状态 -->
+  <update id="updateCardStatusById" parameterType="com.zjlp.face.web.server.user.bankcard.domain.BankCard">
+      UPDATE
+          BANK_CARD
+      SET
+          UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+          STATUS = #{status,jdbcType=INTEGER}
+      WHERE
+          ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 更新银行卡签约卡号 -->
+  <update id="updateCardNoAgreeById" parameterType="com.zjlp.face.web.server.user.bankcard.domain.BankCard">
+      UPDATE
+          BANK_CARD
+      SET
+          UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+          NO_AGREE = #{noAgree,jdbcType=VARCHAR}
+      WHERE
+          ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="selectCardNumber" resultType="java.lang.Integer" parameterType="com.zjlp.face.web.server.user.bankcard.domain.BankCard">
+      SELECT
+          COUNT(1)
+      FROM
+          BANK_CARD
+      WHERE
+          REMOTE_ID = #{remoteId,jdbcType=VARCHAR}
+          AND REMOTE_TYPE = #{remoteType,jdbcType=INTEGER}
+          AND STATUS = 1
+          <if test="type != null">
+              AND TYPE = #{type,jdbcType=INTEGER}
+          </if>
+          
+  </select>
+  <select id="getBankCard" resultMap="BaseResultMap">
+  	select <include refid="Base_Column_List"/> 
+  	from bank_card
+  	where remote_id=#{remoteId} and remote_type=#{remoteType} and bank_card=#{bankCard} and status>-1
+  	limit 1
+  </select>
+  <select id="findBankCardListByUserId" resultMap="BaseResultMap">
+  	select <include refid="Base_Column_List"/>
+  	from bank_card
+  	where remote_id=#{userId} and remote_type=1 and status>-1 and lkl_sign>0
+  	order by is_default desc
+  </select>
+  <select id="getDefaultBankCardByUserId" resultMap="BaseResultMap">
+  	select <include refid="Base_Column_List"/>
+  	from bank_card
+  	where remote_id=#{userId} and remote_type=1 and status>-1 and is_default=1
+  	limit 1
+  </select>
+</mapper>

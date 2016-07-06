@@ -1,0 +1,134 @@
+﻿@charset "utf-8";
+/*  
+* @description:IM   
+* @author: wmm
+* @update:
+*/
+.phone-im{
+}
+
+.send-message{
+	font-size: 14px;
+	margin: auto;
+	padding: 10px;
+	background-color: #fff;
+	overflow: hidden;
+	zoom: 1;
+	position:fixed;
+	bottom: 0;
+	width: 100%;
+	left: 0;
+	border-top:1px solid #ccc;
+	
+}
+.send-text{
+	overflow: hidden;
+	zoom: 1
+}
+.send-text textarea{
+	border-radius: 30px;
+	background-color: #e2e5eb;
+	width: 100%;
+	padding: 8px 12px;
+	font-size: 14px;
+	color: #333;
+	vertical-align: middle;
+	line-height: 1.428571429;
+	border:none;
+}
+.send-button{	
+	margin-left: 12px;
+	float: right;
+}
+.receive-message{
+	padding: 12px 0 60px;;
+	background: #f5f5f5;
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	overflow-y:auto;
+	word-wrap:break-word;
+	word-break: break-all;
+	left: 0;
+	-webkit-overflow-scrolling:touch;
+	-moz-overflow-scrolling:touch;
+	-o-overflow-scrolling:touch;
+}
+.receive-message .you,
+.receive-message .me{
+	display: -webkit-box;
+	margin:12px 0;
+}
+.receive-message .time{
+	color: #666;
+	text-align: center;
+	width: 100%;
+	font-size: 12px;
+}
+.receive-message .head img{
+	border-radius: 50%;
+	background: #eee;
+}
+.receive-message .head{
+	margin: 0 12px;
+}
+.receive-message .me .head{
+	margin-left: 8px;
+}
+.receive-message .message{
+	min-height: 30px;
+	line-height: 30px;
+	padding: 5px 10px;
+	border-radius: 10px;
+	position: relative;
+	-webkit-box-flex: 1;
+}
+.receive-message .you .message{
+	background: #e3e6ec;
+	color: #556893;
+	margin-right: 20px;
+}
+.receive-message .me .message{
+	background: #4f95ff;
+	color: #fff;
+	margin-left: 20px;
+
+}
+.receive-message .you .message:after,.receive-message .me .message:after{
+	content: '';
+	width: 0;
+    height: 0;
+    position: absolute;
+}
+.receive-message .me .message:after{	
+    border-top: 1px solid transparent;
+    border-left: 7px solid #4f95ff;
+    border-bottom: 8px solid transparent; 
+    right: -6px;
+    top: 7px;
+
+}
+.receive-message .you .message:after{
+    border-top: 1px solid transparent;
+    border-right: 7px solid #e3e6ec;
+    border-bottom: 8px solid transparent;
+    left: -6px;
+    top: 7px;
+}
+
+.list-row{
+	border-color: #a2c6fd;
+	margin-bottom: 12px;
+}
+.btn-shoplink{
+	color: #4f95ff;
+	border-color: #4f95ff;
+}
+.btn-send{
+	background: url(../img/send-icon.png) no-repeat;
+	background-size: 100%;
+	width: 61px;
+	height: 35px;
+	border:none;
+	font-size: 0;
+}

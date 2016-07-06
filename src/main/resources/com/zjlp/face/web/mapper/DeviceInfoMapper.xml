@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.DeviceInfoMapper" >
+   <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.product.phone.domain.DeviceInfo" >
+   <id column="ID" property="id" jdbcType="BIGINT" />
+   <result column="DEVICE_INFO" property="deviceInfo" jdbcType="VARCHAR" />
+   <result column="REPLAY" property="replay" jdbcType="INTEGER" />
+   <result column="STATUS" property="status" jdbcType="INTEGER" />
+   <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+   <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+   </resultMap>
+   
+   <sql id="Base_Column_List" >
+    ID, DEVICE_INFO, REPLAY, STATUS, CREATE_TIME, UPDATE_TIME
+   </sql>
+   
+   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    SELECT 
+     <include refid="Base_Column_List" />
+    FROM device_info
+    WHERE ID = #{id,jdbcType=BIGINT}
+   </select>
+   
+   <insert id="insert" parameterType="com.zjlp.face.web.server.product.phone.domain.DeviceInfo" >
+     <selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+	 INSERT INTO device_info (ID, DEVICE_INFO, REPLAY, STATUS, CREATE_TIME, UPDATE_TIME) 
+	 VALUES (
+	 #{id,jdbcType=BIGINT},
+	 #{deviceInfo,jdbcType=VARCHAR},
+	 #{replay,jdbcType=INTEGER},
+	 #{status,jdbcType=INTEGER},
+	 #{createTime,jdbcType=TIMESTAMP}, 
+	 #{updateTime,jdbcType=TIMESTAMP}
+	 )
+   </insert>
+   
+   <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.product.phone.domain.DeviceInfo" >
+    UPDATE device_info
+    <set>
+     <if test="deviceInfo!= null">
+      DEVICE_INFO = #{deviceInfo,jdbcType=VARCHAR},
+     </if>
+     <if test="replay!= null">
+      REPLAY = #{replay,jdbcType=INTEGER},
+     </if>
+     <if test="status!= null">
+      STATUS = #{status,jdbcType=INTEGER},
+     </if>
+     <if test="createTime!= null">
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}, 
+     </if>
+     <if test="updateTime!= null">
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+     </if>
+    </set>
+     WHERE ID = #{id,jdbcType=BIGINT}
+   </update>
+   
+   <select id="selectByDeviceId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    SELECT 
+     <include refid="Base_Column_List" />
+    FROM device_info
+    WHERE DEVICE_INFO = #{deviceId,jdbcType=VARCHAR} 
+          AND STATUS != -1
+   </select>
+
+</mapper>

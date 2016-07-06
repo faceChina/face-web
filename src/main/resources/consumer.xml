@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans        
+    http://www.springframework.org/schema/beans/spring-beans.xsd        
+    http://code.alibabatech.com/schema/dubbo        
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+ 
+<!--  消费方应用名，用于计算依赖关系，不是匹配条件，不要与提供方一样 -->
+ 	<dubbo:application name="wgjconsumer-service"  />
+ 
+    <dubbo:registry address="${dubbo.registry.address}" />
+    <dubbo:consumer check="false"></dubbo:consumer>
+    	<dubbo:protocol name="dubbo" port="${dubbo.protocol.port}" />
+	
+	<!-- 生成远程服务代理，可以和本地bean一样使用demoService -->
+	<dubbo:reference id="shopExternalService" interface="com.zjlp.face.shop.service.ShopExternalService" version="${dubbo.shopExternalService.version}" timeout="10000"/>
+	
+	<dubbo:reference id="umsService" interface="com.zjlp.face.ums.service.UmsService" version="${dubbo.umsService.version}" timeout="60000"/>
+	
+	<dubbo:reference id="imageService" interface="com.zjlp.face.file.service.ImageService" version="${dubbo.fileService.version}" timeout="60000" retries="0"/>
+	
+	<!-- 钱包服务 -->
+ 	<dubbo:reference id="accountService" interface="com.zjlp.face.account.service.AccountService" version="${dubbo.accountService.version}" timeout="10000"/>
+ 	
+ 	<!-- 支付服务 -->
+ 	<dubbo:reference id="paymentService" interface="com.zjlp.face.account.service.PaymentService" version="${dubbo.payService.version}" timeout="10000"/>
+ 	
+ 	<!-- 绑定支付 -->
+ 	<dubbo:reference id="bindPayService" interface="com.zjlp.face.account.service.BindPayService" version="${dubbo.bindPayService.version}" timeout="10000"/>
+ 	
+ 	<!-- 支付宝服务 -->
+ 	<dubbo:reference id="alipayService" interface="com.zjlp.face.account.service.AlipayService" version="${dubbo.alipayService.version}" timeout="10000"/>
+ 	
+ 	<!-- 拉卡拉服务 -->
+ 	<dubbo:reference id="lakalaService" interface="com.zjlp.face.account.service.LakalaService" version="${dubbo.lakalaService.version}" timeout="30000"/>
+ 	
+ 	<!-- 提现服务 -->
+ 	<dubbo:reference id="withdrawService" interface="com.zjlp.face.account.service.WithdrawService" version="${dubbo.payService.version}" timeout="10000"/>
+ 	
+ 	<!-- metaq -->
+	<dubbo:reference id="metaQProviderClinet" interface="com.jzwgj.metaq.client.MetaQProviderClinet"  version="${dubbo.metaQProviderClinet.version}" timeout="10000"/>
+	
+	<import resource="classpath:provider.xml" />
+	
+</beans>

@@ -1,0 +1,303 @@
+@charset "utf-8";
+
+/* 会员卡分享页面-朋友分享进来  */
+.member-card{
+	display:block;
+	width:100%;
+	padding-bottom:10px;
+}
+.member-card .card{
+	display:block;
+	position:relative;
+	width:95%;
+	margin:0 auto; 
+	padding:10px 0;
+}
+.member-card .card img{
+	display:block;
+	width:100%;
+}
+.member-card .cardname{
+	display:block;
+	position: absolute;
+	left: 0;
+	top: 0;
+	padding:20px 10px;
+	font-size:20px;
+	font-weight:bold;
+/* 	letter-spacing:2px; */
+}
+.member-card .cardcode{
+	display:block;
+	position: absolute;
+	width: 100%;
+	text-align: center;
+	bottom:20px;
+	font-size:14px;
+	line-height: 2.2857em;
+}
+.member-card .info{
+	display:block;
+	width:100%;
+	margin:0 auto;
+	text-align:center;
+}
+
+.member-info{
+	width:100%;
+	max-width:640px;
+	min-width:320px;
+	min-height:300px;
+	position:absolute;
+	top:22%;
+}
+.member-info .group{
+	min-height:200px;
+	padding-top:5px;
+}
+.member-attention{}
+.member-attention ul{
+	width:100%;
+	display:table;
+}
+.member-attention ul li{
+	display:table-cell;
+	vertical-align:middle;
+	text-align:left;
+}
+.member-attention ul li img{
+	margin-right:10px;
+	border-radius:100%;
+}
+
+/* 关注成功页面  */
+
+
+
+/* 会员卡充值页面   */
+.member-recharge{
+	margin:10px 3% 0;
+	background:#fff;
+	border:1px solid #ccc;
+	border-radius:6px;
+	cursor:pointer;
+}
+.member-recharge ul{}
+.member-recharge ul li{
+	padding:10px;
+	border-bottom:1px solid #ccc;
+}
+.member-recharge ul li:last-child{
+	border-bottom:none;
+}
+.member-recharge ul li i{
+	display:inline-block;
+	width:16%;
+	text-align:center;
+	vertical-align:middle;
+	line-height:1em;
+}
+.member-recharge ul li span{
+	display:inline-block;
+	width:60%;
+	text-align:center;
+	vertical-align:middle;
+	font-weight:bold;
+} 
+.member-recharge-info{
+	margin:20px;
+	color:#666;
+	font-size:14px;
+	line-height:25px;
+}
+
+/* 没有发行充值卡的情况  */
+.member-norecharge{
+	width:100%;
+	margin:30% auto 10%;
+	text-align:center;
+}
+.member-norecharge i{
+	vertical-align:middle;
+}
+.member-norecharge span{
+	vertical-align:middle;
+}
+
+/* 消费记录样式  */
+
+.list-tabs{
+	width: 100%;
+/* 	height:59px; */
+	margin:20px 0 10px;
+	overflow-x: auto;
+	-webkit-overflow-scrolling:touch;
+	-moz-overflow-scrolling:touch;
+	-o-overflow-scrolling:touch;
+	text-align: center;
+	vertical-align: middle;
+	background-color: #fff;
+	border-top:1px solid #ddd;
+	border-bottom:1px solid #ddd;
+}
+.list-tabs ul{
+	width:240%;
+}
+.list-tabs ul li{
+	width:8.333%;
+	float:left;
+	display:inline;
+}
+.list-tabs ul li a{
+	display:block;
+	padding: 6px 0;
+}
+.list-tabs ul li a span{
+	display:block;
+	text-align:center;
+	font-weight:600;
+}
+.list-tabs ul li a span + span{
+	padding-top:5px;
+	font-weight:normal;
+}
+.list-tabs .active{
+	border-bottom: 2px solid #FA944B;
+	
+}
+.list-tabs .active a span{
+	color: #FA944B;
+}
+
+div::-webkit-scrollbar{
+	display: none;
+}
+
+.purchase-tit{
+	margin:0 0 10px 6%;
+	color:#FA944B;
+}
+
+.purchase-info{
+	width:95%;
+	margin:0 auto;
+}
+
+/* 表格  */
+
+.table {
+  width: 100%;
+  margin-bottom: 20px;
+}
+.table .table {
+  background-color: #ffffff;
+}
+.table thead tr th,
+.table tbody tr th,
+.table tfoot tr th,
+.table thead tr td,
+.table tbody tr td,
+.table tfoot tr td {
+  padding: 8px;
+  line-height: 1.428571429;
+  vertical-align: top;
+  border-top: 1px solid #dddddd;
+  text-align:center;
+}
+.table thead tr th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dddddd;
+}
+
+.table-bordered {
+  border: 1px solid #dddddd;
+}
+
+.table-bordered thead tr th,
+.table-bordered tbody tr th,
+.table-bordered tfoot tr th,
+.table-bordered thead tr td,
+.table-bordered tbody tr td,
+.table-bordered tfoot tr td {
+  border: 1px solid #dddddd;
+}
+.table-bordered thead tr th:first-child{
+	border-radius:6px 0 0 0;
+}
+.table-bordered thead tr th,
+.table-bordered thead tr td {
+  border-bottom-width: 2px;
+}
+.table thead tr .active,
+.table tbody tr .active,
+.table tfoot tr .active,
+.table thead .active td,
+.table tbody .active td,
+.table tfoot .active td,
+.table thead .active th,
+.table tbody .active th,
+.table tfoot .active th {
+  background-color:#ECECEC;
+}
+
+.member-nobalance{
+	margin:15% 0 2% 0;
+	text-align:center;
+}
+
+/* 会员卡列表  */
+.member-list{}
+.member-list ul{}
+.member-list ul li{
+	margin:10px;
+	padding:10px;
+	background:#fff;
+	border:1px solid #ddd;
+	overflow:hidden;
+}
+.member-list ul li a{
+	display:block;
+}
+.member-list ul li .tit{
+	padding-bottom:5px;
+	font-size:16px;
+}
+.member-list ul li .pic{}
+.member-list ul li .pic img{
+	display:block;
+	width:100%;
+}
+.member-list ul li .price{
+	display:block;
+	color:#333;
+	margin-top:5px;
+}
+.member-list .member-card{
+	padding-bottom:0;
+}
+.member-list .member-card .card{
+	width:100%;
+	padding-bottom:0;
+}
+.member-list .member-card .card img{}
+.member-list .member-card .card .cardname{}
+.member-list .member-card .card .cardcode{
+	text-align:left;
+	padding-left:10px;
+	bottom:8px;
+}
+.lace-line{
+	position:relative;
+	top:5px;
+	display:block;
+	width:100%;
+	height:10px;
+	margin:0 auto;
+	background:-moz-radial-gradient(#fff 4px,transparent 4px);
+	background:-o-radial-gradient(#fff 4px,transparent 4px);
+	background:-webkit-radial-gradient(#fff 4px,transparent 4px);
+	background: radial-gradient(#fff 4px,transparent 4px);
+	background-size:8px 8px;
+	z-index:9;
+	overflow:hidden;
+}

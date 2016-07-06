@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.CouponSetMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.trade.coupon.domain.CouponSet" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="SELLER_ID" property="sellerId" jdbcType="BIGINT" />
+    <result column="SHOP_NO" property="shopNo" jdbcType="VARCHAR" />
+    <result column="FACE_VALUE" property="faceValue" jdbcType="BIGINT" />
+    <result column="FACE_VALUE_TYPE" property="faceValueType" jdbcType="INTEGER" />
+    <result column="MIN_VALUE" property="minValue" jdbcType="BIGINT" />
+    <result column="MAX_VALUE" property="maxValue" jdbcType="BIGINT" />
+    <result column="CIRCULATION" property="circulation" jdbcType="BIGINT" />
+    <result column="CIRCULATION_TYPE" property="circulationType" jdbcType="INTEGER" />
+    <result column="ORDER_PRICE" property="orderPrice" jdbcType="BIGINT" />
+    <result column="LIMIT_NUMBER" property="limitNumber" jdbcType="INTEGER" />
+    <result column="CAN_JOIN" property="canJoin" jdbcType="INTEGER" />
+    <result column="CURRENCY_TYPE" property="currencyType" jdbcType="INTEGER" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="EFFECTIVE_TIME" property="effectiveTime" jdbcType="TIMESTAMP" />
+    <result column="END_TIME" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="DtoResultMap" extends="BaseResultMap" type="com.zjlp.face.web.server.trade.coupon.domain.dto.CouponSetDto" >
+  	<result column="RECEIVE_NUMBER" property="receiveNumber" jdbcType="INTEGER"/>
+  	<result column="USED_NUMBER" property="usedNumber" jdbcType="INTEGER"/>
+  	<result column="USER_UNUSE_NUMBER" property="userUnuseNumber" jdbcType="INTEGER"/>
+  	<result column="USER_RECEIVE_NUMBER" property="userReceiveNumber" jdbcType="INTEGER"/>
+  </resultMap> 
+  <sql id="Base_Column_List" >
+    ID, SELLER_ID, SHOP_NO, FACE_VALUE, FACE_VALUE_TYPE, MIN_VALUE, MAX_VALUE, CIRCULATION, 
+    CIRCULATION_TYPE, ORDER_PRICE, LIMIT_NUMBER, CAN_JOIN, CURRENCY_TYPE, STATUS, EFFECTIVE_TIME, 
+    END_TIME, CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from coupon_set
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from coupon_set
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.trade.coupon.domain.CouponSet" >
+    insert into coupon_set (ID, SELLER_ID, SHOP_NO, 
+      FACE_VALUE, FACE_VALUE_TYPE, MIN_VALUE, 
+      MAX_VALUE, CIRCULATION, CIRCULATION_TYPE, 
+      ORDER_PRICE, LIMIT_NUMBER, CAN_JOIN, 
+      CURRENCY_TYPE, STATUS, EFFECTIVE_TIME, 
+      END_TIME, CREATE_TIME, UPDATE_TIME
+      )
+    values (#{id,jdbcType=BIGINT}, #{sellerId,jdbcType=BIGINT}, #{shopNo,jdbcType=VARCHAR}, 
+      #{faceValue,jdbcType=BIGINT}, #{faceValueType,jdbcType=INTEGER}, #{minValue,jdbcType=BIGINT}, 
+      #{maxValue,jdbcType=BIGINT}, #{circulation,jdbcType=BIGINT}, #{circulationType,jdbcType=INTEGER}, 
+      #{orderPrice,jdbcType=BIGINT}, #{limitNumber,jdbcType=INTEGER}, #{canJoin,jdbcType=INTEGER}, 
+      #{currencyType,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{effectiveTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.trade.coupon.domain.CouponSet" >
+   <selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+   </selectKey>
+    insert into coupon_set
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="sellerId != null" >
+        SELLER_ID,
+      </if>
+      <if test="shopNo != null" >
+        SHOP_NO,
+      </if>
+      <if test="faceValue != null" >
+        FACE_VALUE,
+      </if>
+      <if test="faceValueType != null" >
+        FACE_VALUE_TYPE,
+      </if>
+      <if test="minValue != null" >
+        MIN_VALUE,
+      </if>
+      <if test="maxValue != null" >
+        MAX_VALUE,
+      </if>
+      <if test="circulation != null" >
+        CIRCULATION,
+      </if>
+      <if test="circulationType != null" >
+        CIRCULATION_TYPE,
+      </if>
+      <if test="orderPrice != null" >
+        ORDER_PRICE,
+      </if>
+      <if test="limitNumber != null" >
+        LIMIT_NUMBER,
+      </if>
+      <if test="canJoin != null" >
+        CAN_JOIN,
+      </if>
+      <if test="currencyType != null" >
+        CURRENCY_TYPE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="effectiveTime != null" >
+        EFFECTIVE_TIME,
+      </if>
+      <if test="endTime != null" >
+        END_TIME,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="sellerId != null" >
+        #{sellerId,jdbcType=BIGINT},
+      </if>
+      <if test="shopNo != null" >
+        #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="faceValue != null" >
+        #{faceValue,jdbcType=BIGINT},
+      </if>
+      <if test="faceValueType != null" >
+        #{faceValueType,jdbcType=INTEGER},
+      </if>
+      <if test="minValue != null" >
+        #{minValue,jdbcType=BIGINT},
+      </if>
+      <if test="maxValue != null" >
+        #{maxValue,jdbcType=BIGINT},
+      </if>
+      <if test="circulation != null" >
+        #{circulation,jdbcType=BIGINT},
+      </if>
+      <if test="circulationType != null" >
+        #{circulationType,jdbcType=INTEGER},
+      </if>
+      <if test="orderPrice != null" >
+        #{orderPrice,jdbcType=BIGINT},
+      </if>
+      <if test="limitNumber != null" >
+        #{limitNumber,jdbcType=INTEGER},
+      </if>
+      <if test="canJoin != null" >
+        #{canJoin,jdbcType=INTEGER},
+      </if>
+      <if test="currencyType != null" >
+        #{currencyType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="effectiveTime != null" >
+        #{effectiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.trade.coupon.domain.CouponSet" >
+    update coupon_set
+    <set >
+      <if test="sellerId != null" >
+        SELLER_ID = #{sellerId,jdbcType=BIGINT},
+      </if>
+      <if test="shopNo != null" >
+        SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="faceValue != null" >
+        FACE_VALUE = #{faceValue,jdbcType=BIGINT},
+      </if>
+      <if test="faceValueType != null" >
+        FACE_VALUE_TYPE = #{faceValueType,jdbcType=INTEGER},
+      </if>
+      <if test="minValue != null" >
+        MIN_VALUE = #{minValue,jdbcType=BIGINT},
+      </if>
+      <if test="maxValue != null" >
+        MAX_VALUE = #{maxValue,jdbcType=BIGINT},
+      </if>
+      <if test="circulation != null" >
+        CIRCULATION = #{circulation,jdbcType=BIGINT},
+      </if>
+      <if test="circulationType != null" >
+        CIRCULATION_TYPE = #{circulationType,jdbcType=INTEGER},
+      </if>
+      <if test="orderPrice != null" >
+        ORDER_PRICE = #{orderPrice,jdbcType=BIGINT},
+      </if>
+      <if test="limitNumber != null" >
+        LIMIT_NUMBER = #{limitNumber,jdbcType=INTEGER},
+      </if>
+      <if test="canJoin != null" >
+        CAN_JOIN = #{canJoin,jdbcType=INTEGER},
+      </if>
+      <if test="currencyType != null" >
+        CURRENCY_TYPE = #{currencyType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="effectiveTime != null" >
+        EFFECTIVE_TIME = #{effectiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.trade.coupon.domain.CouponSet" >
+    update coupon_set
+    set SELLER_ID = #{sellerId,jdbcType=BIGINT},
+      SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      FACE_VALUE = #{faceValue,jdbcType=BIGINT},
+      FACE_VALUE_TYPE = #{faceValueType,jdbcType=INTEGER},
+      MIN_VALUE = #{minValue,jdbcType=BIGINT},
+      MAX_VALUE = #{maxValue,jdbcType=BIGINT},
+      CIRCULATION = #{circulation,jdbcType=BIGINT},
+      CIRCULATION_TYPE = #{circulationType,jdbcType=INTEGER},
+      ORDER_PRICE = #{orderPrice,jdbcType=BIGINT},
+      LIMIT_NUMBER = #{limitNumber,jdbcType=INTEGER},
+      CAN_JOIN = #{canJoin,jdbcType=INTEGER},
+      CURRENCY_TYPE = #{currencyType,jdbcType=INTEGER},
+      STATUS = #{status,jdbcType=INTEGER},
+      EFFECTIVE_TIME = #{effectiveTime,jdbcType=TIMESTAMP},
+      END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="countCouponSetByTimeStatus" resultType="java.lang.Integer">
+  	SELECT
+		COUNT(1)
+	FROM
+		coupon_set
+	WHERE SHOP_NO = #{shopNo}
+	<if test="timeStatus == 1">
+		<![CDATA[AND EFFECTIVE_TIME > ]]> NOW()
+		AND STATUS = 1
+	</if>
+	<if test="timeStatus == 2">
+		<![CDATA[AND EFFECTIVE_TIME <=]]> NOW()
+		<![CDATA[AND END_TIME >= ]]> NOW()
+		AND STATUS = 1
+	</if>
+  	<if test="timeStatus == 3">
+		<![CDATA[AND ((END_TIME < ]]> NOW() AND STATUS = 1)
+		OR STATUS = 0)
+	</if>
+  </select>
+  
+  <select id="findCouponSetPage" resultMap="DtoResultMap">
+  	SELECT
+		cs.ID, cs.SELLER_ID, cs.SHOP_NO, cs.FACE_VALUE, cs.FACE_VALUE_TYPE, cs.MIN_VALUE, cs.MAX_VALUE, cs.CIRCULATION, 
+	    cs.CIRCULATION_TYPE, cs.ORDER_PRICE, cs.LIMIT_NUMBER, cs.CAN_JOIN, cs.CURRENCY_TYPE, cs.STATUS, cs.EFFECTIVE_TIME, cs.END_TIME, 
+	    (SELECT COUNT(1) FROM coupon WHERE coupon.STATUS = 2 AND coupon.COUPON_SET_ID = cs.ID) AS USED_NUMBER,
+		(SELECT COUNT(1) FROM coupon WHERE coupon.COUPON_SET_ID = cs.ID) AS RECEIVE_NUMBER
+	FROM
+		coupon_set cs
+	WHERE cs.SHOP_NO = #{shopNo}
+	<if test="timeStauts == 1">
+		<![CDATA[AND cs.EFFECTIVE_TIME > ]]> NOW()
+		AND cs.STATUS = 1
+	</if>
+	<if test="timeStauts == 2">
+		<![CDATA[AND cs.EFFECTIVE_TIME <= ]]> NOW()
+		<![CDATA[AND cs.END_TIME >= ]]> NOW()
+		AND cs.STATUS = 1
+	</if>
+  	<if test="timeStauts == 3">
+		<![CDATA[AND ((END_TIME < ]]> NOW() AND cs.STATUS = 1)
+		OR cs.STATUS = 0)
+	</if>
+	ORDER BY cs.CREATE_TIME DESC
+	LIMIT #{start}, #{pageSize}
+  </select>
+  
+  <select id="countAllCouponSetByUserId" resultType="java.lang.Integer" parameterType="java.lang.Long">
+  	SELECT COUNT(1) FROM  coupon_set WHERE SELLER_ID = #{userId}
+  </select>
+  <select id="countCouponSetForBuyer" parameterType="java.lang.String" resultType="java.lang.Integer">
+  	SELECT COUNT(1) FROM coupon_set WHERE SHOP_NO = #{shopNo}
+	AND END_TIME > NOW()
+	AND `STATUS` = 1
+	AND CURRENCY_TYPE = 2				
+  </select>
+  <select id="findCouponSetForBuyer" resultMap="DtoResultMap" parameterType="java.util.Map">
+  	SELECT
+		cs.*,
+	(SELECT COUNT(1) FROM coupon WHERE USER_ID = #{buyerUserId} AND COUPON_SET_ID = cs.ID AND `STATUS` = 1) AS USER_UNUSE_NUMBER
+	,
+	(SELECT COUNT(1) FROM coupon WHERE COUPON_SET_ID = cs.ID ) AS RECEIVE_NUMBER
+	,
+	<![CDATA[CASE WHEN (EFFECTIVE_TIME <=]]> NOW()) THEN 1
+	<![CDATA[WHEN ( EFFECTIVE_TIME >]]> NOW()) THEN 2
+	END AS VALID
+	FROM
+		coupon_set as cs
+	WHERE
+		cs.SHOP_NO = #{shopNo}
+	AND cs.CURRENCY_TYPE = 2
+	AND cs.`STATUS` = 1
+	AND cs.END_TIME > NOW()
+	ORDER BY cs.FACE_VALUE ASC, cs.CREATE_TIME
+	LIMIT #{start}, #{pageSize}
+  </select>
+  <select id="findShopAllValidCoupon" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	SELECT
+		<include refid="Base_Column_List"/>
+	FROM
+		coupon_set 
+	WHERE
+		SHOP_NO = #{shopNo}
+	AND CURRENCY_TYPE = 2
+	AND STATUS = 1
+	AND END_TIME > NOW()
+	ORDER BY FACE_VALUE ASC
+  </select>
+  <select id="countShopValidCouponSet" parameterType="java.lang.String" resultType="java.lang.Integer">
+  	SELECT COUNT(1) FROM coupon_set WHERE SHOP_NO = #{shopNo} AND CURRENCY_TYPE = 2 AND END_TIME > NOW() AND STATUS = 1
+  </select>
+  <select id="findAllCouponSetForBuyer" resultMap="DtoResultMap">
+  	SELECT
+		cs.*,
+	(SELECT COUNT(1) FROM coupon WHERE USER_ID = #{userId} AND COUPON_SET_ID = cs.ID AND `STATUS` = 1) AS USER_UNUSE_NUMBER
+	,
+	(SELECT COUNT(1) FROM coupon WHERE COUPON_SET_ID = cs.ID ) AS RECEIVE_NUMBER
+	,
+	(SELECT COUNT(1) FROM coupon WHERE COUPON_SET_ID = cs.ID AND USER_ID = ${userId}) AS USER_RECEIVE_NUMBER
+	FROM
+		coupon_set as cs
+	WHERE
+		cs.SHOP_NO = #{shopNo}
+	AND cs.CURRENCY_TYPE = 2
+	AND cs.`STATUS` = 1
+	AND cs.END_TIME > NOW()
+	ORDER BY cs.FACE_VALUE ASC, cs.CREATE_TIME DESC
+  </select>
+</mapper>

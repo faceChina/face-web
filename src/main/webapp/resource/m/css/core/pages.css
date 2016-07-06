@@ -1,0 +1,32 @@
+@CHARSET "UTF-8";
+/*  
+* @description:页码
+* @author: 
+* @update:
+*/
+
+.pagination{font-size:12px;margin:0 0 10px 0;}
+.pagination>li>a, 
+.pagination>li>span {padding: 3px 6px;}
+.pager li>a,
+.pager li>span{border-radius:0;}
+.pagination input {height: 17px;width: 40px;}
+.pagination select{height: 17px;padding: 0;display: block;}
+
+.pagination>.active>a,
+.pagination>.active>a:hover,
+.pagination>.active>a:focus,
+.pagination>.active>span,
+.pagination>.active>span:hover,
+.pagination>.active>span:focus{background-color: #E52141;border-color: #E52141;}
+
+/*顶页码*/
+.pager {margin: 10px 0;zoom:1;}
+.pager:before,
+.pager:after{display:table;content:"";clear:both;}
+.pager .previous>button,
+.pager .previous>a, 
+.pager .previous>input {float: left;margin-right:6px;}
+.pager .next>button, 
+.pager .next>a,
+.pager .next>input {float: right;margin-left:6px;}

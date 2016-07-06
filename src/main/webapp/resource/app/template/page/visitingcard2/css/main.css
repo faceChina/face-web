@@ -1,0 +1,336 @@
+@charset "utf-8";
+/*  
+* @description:名片模板2
+* @author:lmy
+* @update:
+*/
+.opacitybg{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 20000;
+}
+/* 头部信息  */
+
+#visttincard .vc-header{
+	width: 100%;
+	height: 9.15rem;
+	display: inline-block;
+	font-family: 微软雅黑;
+	color: #fff;
+	position: relative;
+	z-index: 100;
+}
+i, a{
+	color: #fff;
+}
+.vc-header-opacity{
+	width: 100%;
+	height: 9.15rem;
+	display: inline-block;
+	position: absolute;
+	bottom: 0;
+	background:url(../img/headeropacity.png);
+	background-size: 100% 100%;
+}
+.vc-header .userheader{
+	padding-top: 1.12rem;
+	padding-bottom: 0.85rem;
+	width: 10.5rem;
+	display: inline-table;
+	margin-left: 2.75rem;
+	position: relative;
+	z-index: 100;
+}
+.vc-header .userheader a{
+	display: table-cell;
+	vertical-align: middle;
+}
+.userheader .uh-shopdefault,.userheader .uh-qrcode{
+	width: 2.05rem;
+	height: 2.05rem;
+	display: inline-block;
+}
+.userheader .uh-shopdefault i,.userheader .uh-qrcode i{
+	display: inline-block;
+	font-size: 2.05rem;
+}
+.userheader .uh-a-img{
+	width: 3.5rem;
+	height: 3.5rem;
+	border-radius: 100%;
+	overflow: hidden;
+	background-color: #fff;
+	margin: 0 1.4rem;
+	float: left;
+}
+.userheader .uh-a-img img{
+	width: 3.3rem;
+	height: 3.3rem;
+	margin-top: 0.1rem;
+	margin-left: 0.1rem;
+	border-radius: 100%;
+}
+
+.userinfo,.userother{
+	width: 100%;
+	text-align: center;
+	position: relative;
+	z-index: 100;
+}
+.userinfo{
+	padding-bottom: 0.45rem;
+}
+.userinfo .ui-name{
+	color: #fff;
+	font-size: 0.725rem;
+	padding-right: 0.4rem;
+	font-weight: bold;
+}
+.userinfo .ui-name i{
+	font-size: 0.75rem;
+	font-weight: normal;
+}
+.userinfo .ui-dl{
+	position: relative;
+	border: 1px solid #fff;
+	border-radius: 30px;
+	padding: 0.15rem 0.5rem;
+	font-size: 0.45rem;
+	top: -0.15rem;
+}
+.userother{
+	font-size: 0.5rem;
+}
+.userother p{
+	font-weight: bold;
+	padding-bottom: 0.1rem;
+}
+.vc-content{
+	width: 100%;
+	height: 28.25rem;
+	color: #fff;
+	position: relative;
+
+}
+.companyopacity,#canvas{
+	width: 100%;
+	display: inline-block;
+	position: absolute;
+	background-size: 100% 100%;
+	z-index: 0;
+	left: 0;
+	top: 0;
+}
+#canvas{
+	width: 100%;
+	background-size: 100% 100%;
+	z-index: 10;
+}
+/*公司相关信息*/
+
+/*左边-时光轴*/
+.vc-c-shiguanline{
+	width: 1.2rem;
+	display: inline-block;
+	position: relative;
+	margin-top: 1rem;
+	margin-left: 0.55rem;
+	text-align: center;
+	z-index: 100;
+}
+.sg-round{
+	width: 1.2rem;
+	height: 1.2rem;
+	display: block;
+	background-image:url(../img/round.png);
+	background-size:100% 100%;
+	position: absolute;
+	top: 0;
+}
+.round2{
+	top: 10.3rem;
+}
+.round3{
+	top: 17.3rem;
+}
+.vc-c-shiguanline .sg-line{
+	width: 1px;
+	height: 26.54rem;
+	display: inline-block;
+	margin-top: 0.6rem;
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #ffffff), color-stop(1, #ecd7f2));
+}
+
+/*左边-公司信息*/
+.vc-c-companyinfo{
+   width: 13.45rem;
+   margin-right: 0.6rem;
+   float: right;
+   font-size: 0.62rem;
+   position: relative;
+   z-index: 100;
+}
+.companyinfobg{
+	position: absolute;
+	z-index: 1000;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	display: inline-block;
+	background-color: #fff;
+	border-radius: 5px;
+	opacity: .15;
+	filter: alpha(opacity=15);
+
+}
+.vc-c-companyinfo .companyinfo{
+	position: relative;
+	width: 13.4rem;
+	height: 8.7rem;
+	display: inline-block;
+	margin-top: 0.55rem;
+	margin-bottom: 0.6rem;
+	
+}
+
+.companyinfo div.lifont{
+	display: inline-block;
+	height: 2.15rem;
+	line-height: 2.15rem;
+	width: 12.5rem;
+	position: relative;
+}
+
+.companyinfo div.lifont span{
+	display: inline-block;
+	width: 3.4rem;
+	text-align: right;
+	opacity:.5;
+	vertical-align: top;
+}
+.shopiphone{
+	position: absolute;
+	z-index: 1001;
+	right: 0;
+}
+.shopiphone i{
+	font-size: 0.75rem;
+}
+.companyinfo div.lifont samp{
+	padding-left: 1.1rem;
+	width:8.8rem;
+	height: 2rem;
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+	display: inline-block;
+
+}
+.companyinfo div.lifont samp.lable-iphone{
+	width: 8rem;
+}
+.companyinfo li.lifont a{
+	float: right;
+}
+.companyinfo div.line,.supplydemandinfo li.line{
+	height: 1px;
+	width: 100%;
+	background-color: #fff;
+	opacity: .15;
+	filter: alpha(opacity=15);
+}
+
+.vc-c-companyinfo .supplydemandinfo{
+	position: relative;
+	width: 13.4rem;
+	height: 6.25rem;
+	display: inline-block;
+	margin-top: 0.55rem;
+	margin-bottom: 0.6rem;
+}
+.vc-c-companyinfo .supplydemandinfo li.lifont{
+	display: inline-block;
+	width: 100%;
+	height: 3rem;
+	font-size: 0.6rem;
+}
+.vc-c-companyinfo .supplydemandinfo li a{
+	width: 1.4rem;
+	height: 1.4rem;
+	float: left;
+	margin-top: 0.7rem;
+	margin-left: 0.85rem;
+}
+.vc-c-companyinfo .supplydemandinfo li a.demand-iconfont{
+	margin-top: 0.55rem;
+}
+.vc-c-companyinfo .supplydemandinfo li a i{
+	font-size: 1.6rem;
+}
+.vc-c-companyinfo .supplydemandinfo li span{
+	width: 10.4rem;
+	display: table;
+	padding-left: 0.77rem;
+	margin-top: 0.25rem;
+	line-height: 0.7rem;
+	height:2.5rem;
+	overflow:hidden;
+}
+.vc-c-companyinfo .supplydemandinfo li span samp{
+	display: table-cell;
+	vertical-align: middle;
+ }
+/*联系我们*/
+.contactinfo{
+	width: 10.4rem;
+	margin: 0 auto;
+}
+.contactinfo a{
+	float: left;
+	width: 100%;
+	height: 1.6rem;
+	line-height: 1.5rem;
+	border: 1px solid #fff;
+	border-radius: 30px;
+	font-size: 0.75rem;
+	text-align: center;
+	margin-top: 0.75rem;
+}
+/*logo*/
+.logobox{
+	width: 5.3rem;
+	margin: 0 auto;
+
+}
+.logobox img{
+	display: inline-block;
+	margin-top: 1.2rem;
+	width: 100%;
+	height: 1.7rem;
+}
+
+/* 二维码样式  */
+.artDialogAlert{
+	width: 80%!important;
+}
+#QRCodeBox{
+	padding-top: 2rem;
+}
+#QRCodeBox span{
+	width:70%;
+	display:block;
+	margin:0 auto;
+}
+#QRCodeBox span img{
+	width:100%;
+	display:block;
+}
+#QRCodeBox p{
+	color: #999;
+	font-size:0.75rem;
+	font-family: 微软雅黑;
+	padding: 0.8rem 0;
+}
+/* 二维码样式  end*/

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.OfRosterMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.social.businesscircle.domain.OfRoster" >
+    <id column="rosterID" property="rosterID" jdbcType="BIGINT" />
+    <result column="username" property="userName" jdbcType="VARCHAR" />
+    <result column="jid" property="jid" jdbcType="VARCHAR" />
+    <result column="sub" property="sub" jdbcType="TINYINT" />
+    <result column="ask" property="ask" jdbcType="TINYINT" />
+    <result column="recv" property="recv" jdbcType="TINYINT" />
+    <result column="nick" property="nick" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    rosterID, username, jid, sub, ask, recv, nick
+  </sql>
+  
+  <select id="selectByUserName" parameterType="java.util.Map" resultMap="BaseResultMap">
+  select
+  <include refid="Base_Column_List"/>
+  from view_ofroster 
+  where username = #{userName,jdbcType=BIGINT}
+  AND sub=3 AND jid NOT LIKE CONCAT(#{userName, jdbcType=VARCHAR},'@%')
+  
+  <if test="excludeName != null">
+  AND jid NOT LIKE CONCAT(#{excludeName, jdbcType=VARCHAR},'@%')
+  </if>
+  </select>
+  
+</mapper>

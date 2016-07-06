@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.GoodPropertyMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.product.good.domain.GoodProperty" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="GOOD_ID" property="goodId" jdbcType="BIGINT" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="IS_COLOR_PROP" property="isColorProp" jdbcType="BIT" />
+    <result column="IS_ENUM_PROP" property="isEnumProp" jdbcType="BIT" />
+    <result column="IS_INPUT_PROP" property="isInputProp" jdbcType="BIT" />
+    <result column="IS_KEY_PROP" property="isKeyProp" jdbcType="BIT" />
+    <result column="IS_STANDARD" property="isStandard" jdbcType="BIT" />
+    <result column="IS_SALES_PROP" property="isSalesProp" jdbcType="BIT" />
+    <result column="PROP_ID" property="propId" jdbcType="BIGINT" />
+    <result column="PROP_NAME" property="propName" jdbcType="VARCHAR" />
+    <result column="PROP_VALUE_ID" property="propValueId" jdbcType="BIGINT" />
+    <result column="PROP_VALUE_NAME" property="propValueName" jdbcType="VARCHAR" />
+    <result column="PROP_VALUE_CODE" property="propValueCode" jdbcType="VARCHAR" />
+    <result column="PROP_VALUE_ALIAS" property="propValueAlias" jdbcType="VARCHAR" />
+    <result column="PICTURE_PATH" property="picturePath" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, GOOD_ID, NAME, IS_COLOR_PROP, IS_ENUM_PROP, IS_INPUT_PROP, IS_KEY_PROP, IS_STANDARD, 
+    IS_SALES_PROP, PROP_ID, PROP_NAME, PROP_VALUE_ID, PROP_VALUE_NAME, PROP_VALUE_CODE, 
+    PROP_VALUE_ALIAS, PICTURE_PATH, STATUS, CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from good_property
+    where ID = #{id,jdbcType=BIGINT} AND STATUS > 0
+  </select>
+  <select id="selectByGoodIdAndPropValueId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from good_property
+    where GOOD_ID = #{goodId,jdbcType=BIGINT} AND STATUS > 0 and PROP_VALUE_ID= #{propValueId,jdbcType=BIGINT} limit 1
+  </select> 
+  <!-- 查询商品属性 -->
+  <select id="selectList" resultMap="BaseResultMap" parameterType="com.zjlp.face.web.server.product.good.domain.GoodProperty" >
+    select 
+    <include refid="Base_Column_List" />
+    from good_property
+    where GOOD_ID = #{goodId,jdbcType=BIGINT} AND STATUS> 0
+    AND IS_COLOR_PROP = #{isColorProp,jdbcType=BIT}
+    AND IS_ENUM_PROP = #{isEnumProp,jdbcType=BIT}
+    AND IS_SALES_PROP = #{isSalesProp,jdbcType=BIT}
+  </select>
+  <!-- 查询商品销售属性 -->
+  <select id="selectSalesList" resultMap="BaseResultMap" parameterType="com.zjlp.face.web.server.product.good.domain.GoodProperty" >
+    select 
+    <include refid="Base_Column_List" />
+    from good_property 
+    where GOOD_ID = #{goodId,jdbcType=BIGINT} AND STATUS> 0
+    AND IS_SALES_PROP = #{isSalesProp,jdbcType=BIT}
+  </select>
+   <!-- 查询商品输入非关键非销售属性 -->
+  <select id="selectInputNotKeyGoodProperties" resultMap="BaseResultMap" parameterType="com.zjlp.face.web.server.product.good.domain.GoodProperty" >
+    select 
+    <include refid="Base_Column_List" />
+    from good_property
+    where GOOD_ID = #{goodId,jdbcType=BIGINT} AND STATUS> 0
+    AND IS_COLOR_PROP = #{isColorProp,jdbcType=BIT}
+    AND IS_ENUM_PROP = #{isEnumProp,jdbcType=BIT}
+    AND IS_INPUT_PROP = #{isInputProp,jdbcType=BIT}
+    AND IS_KEY_PROP = #{isKeyProp,jdbcType=BIT}
+    AND IS_ENUM_PROP = #{isEnumProp,jdbcType=BIT}
+    AND IS_STANDARD = #{isStandard,jdbcType=BIT}
+    AND IS_SALES_PROP = #{isSalesProp,jdbcType=BIT}
+  </select>
+   <!-- 查询商品输入非关键非销售属性 -->
+  <select id="selectSalesInputKeyGoodProperties" resultMap="BaseResultMap" parameterType="com.zjlp.face.web.server.product.good.domain.GoodProperty" >
+    select 
+    <include refid="Base_Column_List" />
+    from good_property
+    where GOOD_ID = #{goodId,jdbcType=BIGINT} AND STATUS> 0
+    AND IS_COLOR_PROP = #{isColorProp,jdbcType=BIT}
+    AND IS_ENUM_PROP = #{isEnumProp,jdbcType=BIT}
+    AND IS_INPUT_PROP = #{isInputProp,jdbcType=BIT}
+    AND IS_KEY_PROP = #{isKeyProp,jdbcType=BIT}
+    AND IS_ENUM_PROP = #{isEnumProp,jdbcType=BIT}
+    AND IS_STANDARD = #{isStandard,jdbcType=BIT}
+    AND IS_SALES_PROP = #{isSalesProp,jdbcType=BIT}
+  </select>
+  <!-- 根据商品ID查询商品属性 -->
+  <select id="selectListByGoodId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from good_property
+    where GOOD_ID = #{goodId,jdbcType=BIGINT} AND STATUS> 0
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from good_property
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.product.good.domain.GoodProperty" >
+   	<selectKey keyProperty="id" resultType="long" order="AFTER">
+			SELECT
+			LAST_INSERT_ID();
+	</selectKey> 	
+  insert into good_property (ID, GOOD_ID, NAME, 
+      IS_COLOR_PROP, IS_ENUM_PROP, IS_INPUT_PROP, 
+      IS_KEY_PROP, IS_STANDARD, IS_SALES_PROP, 
+      PROP_ID, PROP_NAME, PROP_VALUE_ID, 
+      PROP_VALUE_NAME, PROP_VALUE_CODE, PROP_VALUE_ALIAS, 
+      PICTURE_PATH, STATUS, CREATE_TIME, 
+      UPDATE_TIME)
+    values (#{id,jdbcType=BIGINT}, #{goodId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
+      #{isColorProp,jdbcType=BIT}, #{isEnumProp,jdbcType=BIT}, #{isInputProp,jdbcType=BIT}, 
+      #{isKeyProp,jdbcType=BIT}, #{isStandard,jdbcType=BIT}, #{isSalesProp,jdbcType=BIT}, 
+      #{propId,jdbcType=BIGINT}, #{propName,jdbcType=VARCHAR}, #{propValueId,jdbcType=BIGINT}, 
+      #{propValueName,jdbcType=VARCHAR}, #{propValueCode,jdbcType=VARCHAR}, #{propValueAlias,jdbcType=VARCHAR}, 
+      #{picturePath,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.product.good.domain.GoodProperty" >
+    	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+   insert into good_property
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="goodId != null" >
+        GOOD_ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="isColorProp != null" >
+        IS_COLOR_PROP,
+      </if>
+      <if test="isEnumProp != null" >
+        IS_ENUM_PROP,
+      </if>
+      <if test="isInputProp != null" >
+        IS_INPUT_PROP,
+      </if>
+      <if test="isKeyProp != null" >
+        IS_KEY_PROP,
+      </if>
+      <if test="isStandard != null" >
+        IS_STANDARD,
+      </if>
+      <if test="isSalesProp != null" >
+        IS_SALES_PROP,
+      </if>
+      <if test="propId != null" >
+        PROP_ID,
+      </if>
+      <if test="propName != null" >
+        PROP_NAME,
+      </if>
+      <if test="propValueId != null" >
+        PROP_VALUE_ID,
+      </if>
+      <if test="propValueName != null" >
+        PROP_VALUE_NAME,
+      </if>
+      <if test="propValueCode != null" >
+        PROP_VALUE_CODE,
+      </if>
+      <if test="propValueAlias != null" >
+        PROP_VALUE_ALIAS,
+      </if>
+      <if test="picturePath != null" >
+        PICTURE_PATH,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="goodId != null" >
+        #{goodId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="isColorProp != null" >
+        #{isColorProp,jdbcType=BIT},
+      </if>
+      <if test="isEnumProp != null" >
+        #{isEnumProp,jdbcType=BIT},
+      </if>
+      <if test="isInputProp != null" >
+        #{isInputProp,jdbcType=BIT},
+      </if>
+      <if test="isKeyProp != null" >
+        #{isKeyProp,jdbcType=BIT},
+      </if>
+      <if test="isStandard != null" >
+        #{isStandard,jdbcType=BIT},
+      </if>
+      <if test="isSalesProp != null" >
+        #{isSalesProp,jdbcType=BIT},
+      </if>
+      <if test="propId != null" >
+        #{propId,jdbcType=BIGINT},
+      </if>
+      <if test="propName != null" >
+        #{propName,jdbcType=VARCHAR},
+      </if>
+      <if test="propValueId != null" >
+        #{propValueId,jdbcType=BIGINT},
+      </if>
+      <if test="propValueName != null" >
+        #{propValueName,jdbcType=VARCHAR},
+      </if>
+      <if test="propValueCode != null" >
+        #{propValueCode,jdbcType=VARCHAR},
+      </if>
+      <if test="propValueAlias != null" >
+        #{propValueAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="picturePath != null" >
+        #{picturePath,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+   <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.product.good.domain.GoodProperty" >
+    update good_property
+    <set >
+      <if test="goodId != null" >
+        GOOD_ID = #{goodId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="isColorProp != null" >
+        IS_COLOR_PROP = #{isColorProp,jdbcType=BIT},
+      </if>
+      <if test="isEnumProp != null" >
+        IS_ENUM_PROP = #{isEnumProp,jdbcType=BIT},
+      </if>
+      <if test="isInputProp != null" >
+        IS_INPUT_PROP = #{isInputProp,jdbcType=BIT},
+      </if>
+      <if test="isKeyProp != null" >
+        IS_KEY_PROP = #{isKeyProp,jdbcType=BIT},
+      </if>
+      <if test="isStandard != null" >
+        IS_STANDARD = #{isStandard,jdbcType=BIT},
+      </if>
+      <if test="isSalesProp != null" >
+        IS_SALES_PROP = #{isSalesProp,jdbcType=BIT},
+      </if>
+      <if test="propId != null" >
+        PROP_ID = #{propId,jdbcType=BIGINT},
+      </if>
+      <if test="propName != null" >
+        PROP_NAME = #{propName,jdbcType=VARCHAR},
+      </if>
+      <if test="propValueId != null" >
+        PROP_VALUE_ID = #{propValueId,jdbcType=BIGINT},
+      </if>
+      <if test="propValueName != null" >
+        PROP_VALUE_NAME = #{propValueName,jdbcType=VARCHAR},
+      </if>
+      <if test="propValueCode != null" >
+        PROP_VALUE_CODE = #{propValueCode,jdbcType=VARCHAR},
+      </if>
+      <if test="propValueAlias != null" >
+        PROP_VALUE_ALIAS = #{propValueAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="picturePath != null" >
+        PICTURE_PATH = #{picturePath,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.product.good.domain.GoodProperty" >
+    update good_property
+    set GOOD_ID = #{goodId,jdbcType=BIGINT},
+      NAME = #{name,jdbcType=VARCHAR},
+      IS_COLOR_PROP = #{isColorProp,jdbcType=BIT},
+      IS_ENUM_PROP = #{isEnumProp,jdbcType=BIT},
+      IS_INPUT_PROP = #{isInputProp,jdbcType=BIT},
+      IS_KEY_PROP = #{isKeyProp,jdbcType=BIT},
+      IS_STANDARD = #{isStandard,jdbcType=BIT},
+      IS_SALES_PROP = #{isSalesProp,jdbcType=BIT},
+      PROP_ID = #{propId,jdbcType=BIGINT},
+      PROP_NAME = #{propName,jdbcType=VARCHAR},
+      PROP_VALUE_ID = #{propValueId,jdbcType=BIGINT},
+      PROP_VALUE_NAME = #{propValueName,jdbcType=VARCHAR},
+      PROP_VALUE_CODE = #{propValueCode,jdbcType=VARCHAR},
+      PROP_VALUE_ALIAS = #{propValueAlias,jdbcType=VARCHAR},
+      PICTURE_PATH = #{picturePath,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="removeById" parameterType="java.lang.Long" >
+    UPDATE 
+    	good_property
+    SET  
+    	STATUS = -1,
+    	UPDATE_TIME = now()
+    WHERE 
+    	ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

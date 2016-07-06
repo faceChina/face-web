@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.CardCaseMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.user.businesscard.domain.CardCase" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="USER_ID" property="userId" jdbcType="BIGINT" />
+    <result column="USER_PINGYIN" property="userPingyin" jdbcType="VARCHAR" />
+    <result column="CARD_ID" property="cardId" jdbcType="BIGINT" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap type="com.zjlp.face.web.server.user.businesscard.domain.dto.BusinessCardVo" id="VoResultMap" extends="BaseResultMap">
+	
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, USER_ID, USER_PINGYIN, CARD_ID, CREATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from card_case
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from card_case
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.user.businesscard.domain.CardCase" >
+    insert into card_case (ID, USER_ID, USER_PINGYIN, 
+      CARD_ID, CREATE_TIME)
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{userPingyin,jdbcType=VARCHAR}, 
+      #{cardId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.user.businesscard.domain.CardCase" >
+    insert into card_case
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="userPingyin != null" >
+        USER_PINGYIN,
+      </if>
+      <if test="cardId != null" >
+        CARD_ID,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userPingyin != null" >
+        #{userPingyin,jdbcType=VARCHAR},
+      </if>
+      <if test="cardId != null" >
+        #{cardId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.user.businesscard.domain.CardCase" >
+    update card_case
+    <set >
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userPingyin != null" >
+        USER_PINGYIN = #{userPingyin,jdbcType=VARCHAR},
+      </if>
+      <if test="cardId != null" >
+        CARD_ID = #{cardId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.user.businesscard.domain.CardCase" >
+    update card_case
+    set USER_ID = #{userId,jdbcType=BIGINT},
+      USER_PINGYIN = #{userPingyin,jdbcType=VARCHAR},
+      CARD_ID = #{cardId,jdbcType=BIGINT},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="getCardCaseByUserId" resultMap="BaseResultMap">
+  	SELECT
+		<include refid="Base_Column_List" />
+	FROM
+		CARD_CASE
+	WHERE 
+		USER_ID = #{userId}
+	AND
+	    CARD_ID = #{cardId}
+  </select>
+  
+  <select id="selectCardCaseCount" resultType="java.lang.Integer" parameterType="com.zjlp.face.web.server.user.businesscard.domain.dto.BusinessCardVo">
+       SELECT
+           COUNT(1)
+       FROM
+           CARD_CASE
+       WHERE
+           USER_ID = #{userId,jdbcType=BIGINT} 
+  </select>
+  
+  <select id="queryCardCase" resultMap="VoResultMap" parameterType="com.zjlp.face.web.server.user.businesscard.domain.dto.BusinessCardVo">
+       SELECT users.nickName, users.LOGIN_ACCOUNT as loginAccount, users.HEADIMGURL, bus.BACKGROUND_PIC as backgroundPic,  
+              bus.COMPANY_NAME as companyName, bus.POSITION, bus.INDUSTRY_NAME as industryName
+       FROM  
+             CARD_CASE AS c 
+       LEFT JOIN 
+             BUSINESS_CARD AS bus ON (bus.id =c.card_id ) 
+       LEFT JOIN 
+             USER AS users ON (users.id = bus.user_id)
+       WHERE
+             c.USER_ID = #{userId,jdbcType=BIGINT} 
+       ORDER BY c.CREATE_TIME DESC
+  </select>
+  
+  <select id="selectCardCase" resultMap="BaseResultMap">
+       SELECT 
+           <include refid="Base_Column_List" />
+	   FROM CARD_CASE
+	   WHERE USER_ID = #{userId,jdbcType=BIGINT}
+	   AND CARD_ID = #{cardId,jdbcType=BIGINT}
+  </select>
+</mapper>

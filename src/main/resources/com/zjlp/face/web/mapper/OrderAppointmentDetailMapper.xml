@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.OrderAppointmentDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.operation.appoint.domain.OrderAppointmentDetail" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="ORDER_NO" property="orderNo" jdbcType="VARCHAR" />
+    <result column="ATTR_NAME" property="attrName" jdbcType="VARCHAR" />
+    <result column="ATTR_VALUE" property="attrValue" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ORDER_NO, ATTR_NAME, ATTR_VALUE, CREATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_appointment_detail
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from order_appointment_detail
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.operation.appoint.domain.OrderAppointmentDetail" >
+    insert into order_appointment_detail (ID, ORDER_NO, ATTR_NAME, 
+      ATTR_VALUE, CREATE_TIME)
+    values (#{id,jdbcType=BIGINT}, #{orderNo,jdbcType=VARCHAR}, #{attrName,jdbcType=VARCHAR}, 
+      #{attrValue,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.operation.appoint.domain.OrderAppointmentDetail" >
+    insert into order_appointment_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="orderNo != null" >
+        ORDER_NO,
+      </if>
+      <if test="attrName != null" >
+        ATTR_NAME,
+      </if>
+      <if test="attrValue != null" >
+        ATTR_VALUE,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="attrName != null" >
+        #{attrName,jdbcType=VARCHAR},
+      </if>
+      <if test="attrValue != null" >
+        #{attrValue,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.operation.appoint.domain.OrderAppointmentDetail" >
+    update order_appointment_detail
+    <set >
+      <if test="orderNo != null" >
+        ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="attrName != null" >
+        ATTR_NAME = #{attrName,jdbcType=VARCHAR},
+      </if>
+      <if test="attrValue != null" >
+        ATTR_VALUE = #{attrValue,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.operation.appoint.domain.OrderAppointmentDetail" >
+    update order_appointment_detail
+    set ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+      ATTR_NAME = #{attrName,jdbcType=VARCHAR},
+      ATTR_VALUE = #{attrValue,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="findOrderAppointmentDetailListByOrderNo" resultMap="BaseResultMap">
+  	select <include refid="Base_Column_List"/>
+  	from order_appointment_detail
+  	where order_no = #{orderNo}
+  </select>
+</mapper>

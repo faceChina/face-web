@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.MessageContentMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.user.weixin.domain.MessageContent" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="MESSAGE_BODY_ID" property="messageBodyId" jdbcType="BIGINT" />
+    <result column="PIC_PATH" property="picPath" jdbcType="VARCHAR" />
+    <result column="TITLE" property="title" jdbcType="VARCHAR" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="SORT" property="sort" jdbcType="INTEGER" />
+    <result column="LINK_PATH" property="linkPath" jdbcType="VARCHAR" />
+    <result column="LINK_TYPE" property="linkType" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.zjlp.face.web.server.user.weixin.domain.MessageContent" extends="BaseResultMap" >
+    <result column="CONTENT" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, MESSAGE_BODY_ID, PIC_PATH, TITLE, DESCRIPTION, SORT, LINK_PATH, LINK_TYPE, CREATE_TIME, 
+    UPDATE_TIME
+  </sql>
+  <sql id="Blob_Column_List" >
+    CONTENT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from message_content
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectByMessageBodyId" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from message_content
+    where MESSAGE_BODY_ID = #{messageBodyId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from message_content
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByMessageBodyId" parameterType="java.lang.Long" >
+    delete from message_content
+     where MESSAGE_BODY_ID = #{messageBodyId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.user.weixin.domain.MessageContent" >
+    <selectKey keyProperty="id" resultType="long" order="AFTER">  
+        SELECT LAST_INSERT_ID();  
+    </selectKey> 
+    insert into message_content (ID, MESSAGE_BODY_ID, PIC_PATH, 
+      TITLE, DESCRIPTION, SORT, 
+      LINK_PATH, LINK_TYPE, CREATE_TIME, 
+      UPDATE_TIME, CONTENT)
+    values (#{id,jdbcType=BIGINT}, #{messageBodyId,jdbcType=BIGINT}, #{picPath,jdbcType=VARCHAR}, 
+      #{title,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, 
+      #{linkPath,jdbcType=VARCHAR}, #{linkType,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.user.weixin.domain.MessageContent" >
+    <selectKey keyProperty="id" resultType="long" order="AFTER">  
+        SELECT LAST_INSERT_ID();  
+    </selectKey> 
+    insert into message_content
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="messageBodyId != null" >
+        MESSAGE_BODY_ID,
+      </if>
+      <if test="picPath != null" >
+        PIC_PATH,
+      </if>
+      <if test="title != null" >
+        TITLE,
+      </if>
+      <if test="description != null" >
+        DESCRIPTION,
+      </if>
+      <if test="sort != null" >
+        SORT,
+      </if>
+      <if test="linkPath != null" >
+        LINK_PATH,
+      </if>
+      <if test="linkType != null" >
+        LINK_TYPE,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="content != null" >
+        CONTENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="messageBodyId != null" >
+        #{messageBodyId,jdbcType=BIGINT},
+      </if>
+      <if test="picPath != null" >
+        #{picPath,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="linkPath != null" >
+        #{linkPath,jdbcType=VARCHAR},
+      </if>
+      <if test="linkType != null" >
+        #{linkType,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.user.weixin.domain.MessageContent" >
+    update message_content
+    <set >
+      <if test="messageBodyId != null" >
+        MESSAGE_BODY_ID = #{messageBodyId,jdbcType=BIGINT},
+      </if>
+      <if test="picPath != null" >
+        PIC_PATH = #{picPath,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        TITLE = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        SORT = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="linkPath != null" >
+        LINK_PATH = #{linkPath,jdbcType=VARCHAR},
+      </if>
+      <if test="linkType != null" >
+        LINK_TYPE = #{linkType,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null" >
+        CONTENT = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zjlp.face.web.server.user.weixin.domain.MessageContent" >
+    update message_content
+    set MESSAGE_BODY_ID = #{messageBodyId,jdbcType=BIGINT},
+      PIC_PATH = #{picPath,jdbcType=VARCHAR},
+      TITLE = #{title,jdbcType=VARCHAR},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      SORT = #{sort,jdbcType=INTEGER},
+      LINK_PATH = #{linkPath,jdbcType=VARCHAR},
+      LINK_TYPE = #{linkType,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      CONTENT = #{content,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.user.weixin.domain.MessageContent" >
+    update message_content
+    set MESSAGE_BODY_ID = #{messageBodyId,jdbcType=BIGINT},
+      PIC_PATH = #{picPath,jdbcType=VARCHAR},
+      TITLE = #{title,jdbcType=VARCHAR},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      SORT = #{sort,jdbcType=INTEGER},
+      LINK_PATH = #{linkPath,jdbcType=VARCHAR},
+      LINK_TYPE = #{linkType,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateMessageContent" parameterType="com.zjlp.face.web.server.user.weixin.domain.MessageContent" >
+    update message_content
+    set PIC_PATH = #{picPath,jdbcType=VARCHAR},
+      TITLE = #{title,jdbcType=VARCHAR},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      LINK_PATH = #{linkPath,jdbcType=VARCHAR},
+      LINK_TYPE = #{linkType,jdbcType=INTEGER},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      CONTENT = #{content,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

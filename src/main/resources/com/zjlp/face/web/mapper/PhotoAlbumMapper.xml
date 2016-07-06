@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.PhotoAlbumMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.product.material.domain.PhotoAlbum" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="SHOP_NO" property="shopNo" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="PIC_PATH" property="picPath" jdbcType="VARCHAR" />
+    <result column="ARTICLE_TEMPLATE_TYPE" property="articleTemplateType" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <resultMap id="ResultMapDto" type="com.zjlp.face.web.server.product.material.domain.dto.PhotoAlbumDto" extends="BaseResultMap" >
+   <result column="COUNT_ALBUM" property="countAlbum" jdbcType="INTEGER" />
+  </resultMap>
+  
+  
+  <sql id="Base_Column_List" >
+    ID, SHOP_NO, NAME, PIC_PATH, ARTICLE_TEMPLATE_TYPE, STATUS, CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from photo_album
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <select id="selectPhotoAlbumDtoByPrimaryKey" resultMap="ResultMapDto" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from photo_album
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from photo_album
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.product.material.domain.PhotoAlbum" >
+    insert into photo_album (ID, SHOP_NO, NAME, 
+      PIC_PATH, ARTICLE_TEMPLATE_TYPE, STATUS, 
+      CREATE_TIME, UPDATE_TIME)
+    values (#{id,jdbcType=BIGINT}, #{shopNo,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{picPath,jdbcType=VARCHAR}, #{articleTemplateType,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.product.material.domain.PhotoAlbum" >
+    <selectKey keyProperty="id" resultType="long" order="AFTER">  
+        SELECT LAST_INSERT_ID();  
+    </selectKey>
+    insert into photo_album
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="shopNo != null" >
+        SHOP_NO,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="picPath != null" >
+        PIC_PATH,
+      </if>
+      <if test="articleTemplateType != null" >
+        ARTICLE_TEMPLATE_TYPE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="shopNo != null" >
+        #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="picPath != null" >
+        #{picPath,jdbcType=VARCHAR},
+      </if>
+      <if test="articleTemplateType != null" >
+        #{articleTemplateType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.product.material.domain.PhotoAlbum" >
+    update photo_album
+    <set >
+      <if test="shopNo != null" >
+        SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="picPath != null" >
+        PIC_PATH = #{picPath,jdbcType=VARCHAR},
+      </if>
+      <if test="articleTemplateType != null" >
+        ARTICLE_TEMPLATE_TYPE = #{articleTemplateType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.product.material.domain.PhotoAlbum" >
+    update photo_album
+    set SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      PIC_PATH = #{picPath,jdbcType=VARCHAR},
+      ARTICLE_TEMPLATE_TYPE = #{articleTemplateType,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+    
+  <select id="getCount" resultType="java.lang.Integer" parameterType="com.zjlp.face.web.server.product.material.domain.PhotoAlbum">
+  	SELECT
+  	COUNT(id)
+  	FROM PHOTO_ALBUM
+  	WHERE SHOP_NO = #{shopNo,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="findPhotoList" resultMap="ResultMapDto" parameterType="java.util.Map">
+  	SELECT
+  	 pa.ID, pa.SHOP_NO, pa.NAME, pa.PIC_PATH, pa.ARTICLE_TEMPLATE_TYPE, pa.STATUS, pa.CREATE_TIME, pa.UPDATE_TIME,
+  	 (SELECT COUNT(apar.ID) FROM ALBUM_PHOTO_ALBUM_RELATION apar WHERE apar.PHOTO_ALBUM_ID = pa.ID) AS COUNT_ALBUM
+  	FROM PHOTO_ALBUM pa
+  	WHERE SHOP_NO = #{shopNo,jdbcType=VARCHAR}
+  	ORDER BY UPDATE_TIME desc
+  	LIMIT ${start}, ${pageSize};
+  </select>
+  
+  <select id="findPhotoAlbumByShopNo" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	SELECT
+  	<include refid="Base_Column_List" />
+  	FROM PHOTO_ALBUM
+  	WHERE SHOP_NO = #{shopNo,jdbcType=VARCHAR}
+  </select>
+  
+  
+  
+</mapper>

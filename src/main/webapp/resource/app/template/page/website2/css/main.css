@@ -1,0 +1,121 @@
+@charset "utf-8";
+/*  
+* @description: 三阶段官网模板4
+* @author: wmm
+* @update:
+*/
+#slider{overflow:hidden;position:relative;}
+#slider ul,#slider ul li,#slider ul li a,#slider ul li a img{display:block;width:100%;height:100%;}
+#slider ul{position:relative;}
+#slider ul li{position:absolute;}
+#slider .slidepage{width:100%;position:absolute;bottom:0.5em;text-align:center;}
+#slider .slidepage span{display:inline-block;width:0.5em;height:0.5em;border-radius:100%;background-color:rgba(255,255,255,0.5);margin:0 0.25em;}
+#slider .slidepage span.active{background-color:rgba(255,0,0,1)}
+
+.signage{
+	margin-bottom: 0.4rem;
+}
+.signage img{
+	display: block;
+	width: 100%;
+}
+
+.content{
+	clear: both;
+}
+
+.shop-item{
+	width: 5.92rem;
+	height: 5.92rem;
+	float: right;
+
+}
+.shop-item img{
+	width: 100%;
+	display: block;
+}
+.shop-item li{
+	margin-bottom: 0.18rem;
+}
+.shop-item li:last-child{
+	margin-bottom: 0;
+}
+.shop-item a{
+	display: block;
+	position: relative;
+}
+.shop-item .picture{
+	display: block;
+}
+.shop-item .title{
+	width: 100%;
+	background: rgba(0,0,0,.3);
+	color: #fff;
+	vertical-align: top;
+	bottom: 0;
+	left: 0;
+	position: absolute;
+	padding: 4px 8px;
+	line-height: 1.5em;
+}
+.m-column-line{
+	text-align: center;
+	font-size: 0.711111rem;
+	width: 100%;
+	margin-top: 0.5rem;
+	overflow-x: auto;
+	-webkit-overflow-scrolling:touch;
+	-moz-overflow-scrolling:touch;
+	-o-overflow-scrolling:touch;
+	overflow-scrolling:touch;
+    position: relative;
+}
+.iconfont{
+    position: absolute;
+    color:#999;
+    top:50%;
+    margin-top:-8px;
+    border:none;
+    z-index: 100;
+}
+.iconfont.icon-right{
+    right: 3px;
+}
+.iconfont.icon-back{
+    left: 3px;
+}
+.m-column-line ul{
+	width: 125%
+}
+.m-column-line li{
+	float: left;
+	width: 4.74074rem;
+	height: 4.14814rem;
+	border-right: 1px solid #fff;
+}
+.m-column-line a{
+	display: block;
+}
+.m-column-line li:last-child{
+	border-right: none;
+}
+.m-column-line li img{
+	width: 2.66666rem;
+	vertical-align: top;
+}
+.m-column-line .title{
+	display: block;
+}
+.m-touch{
+	width: 5.97014rem;
+	height: 18.07407rem;
+	float: right;
+	overflow-y: auto;
+	-webkit-overflow-scrolling:touch;
+	-moz-overflow-scrolling:touch;
+	-o-overflow-scrolling:touch;
+	overflow-scrolling:touch;
+}
+div::-webkit-scrollbar{
+	display: none;
+}

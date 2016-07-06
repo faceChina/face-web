@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.OrderPriceRecordMapper" >
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.trade.order.domain.OrderPriceRecord" >
+    insert into order_price_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="orderNo != null" >
+        ORDER_NO,
+      </if>
+      <if test="orderItemId != null" >
+        ORDER_ITEM_ID,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="quantity != null" >
+        QUANTITY,
+      </if>
+      <if test="unitPrice != null" >
+        UNIT_PRICE,
+      </if>
+      <if test="subTotal != null" >
+        SUB_TOTAL,
+      </if>
+      <if test="sumPriceBf != null" >
+        SUM_PRICE_BF,
+      </if>
+      <if test="sumPriceAf != null" >
+        SUM_PRICE_AF,
+      </if>
+      <if test="alterType != null" >
+        ALTER_TYPE,
+      </if>
+      <if test="alterAmout != null" >
+        ALTER_AMOUT,
+      </if>
+      <if test="createAuthor != null" >
+        CREATE_AUTHOR,
+      </if>
+      <if test="createAuthorName != null" >
+        CREATE_AUTHOR_NAME,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderItemId != null" >
+        #{orderItemId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="quantity != null" >
+        #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="unitPrice != null" >
+        #{unitPrice,jdbcType=BIGINT},
+      </if>
+      <if test="subTotal != null" >
+        #{subTotal,jdbcType=BIGINT},
+      </if>
+      <if test="sumPriceBf != null" >
+        #{sumPriceBf,jdbcType=BIGINT},
+      </if>
+      <if test="sumPriceAf != null" >
+        #{sumPriceAf,jdbcType=BIGINT},
+      </if>
+      <if test="alterType != null" >
+        #{alterType,jdbcType=INTEGER},
+      </if>
+      <if test="alterAmout != null" >
+        #{alterAmout,jdbcType=BIGINT},
+      </if>
+      <if test="createAuthor != null" >
+        #{createAuthor,jdbcType=BIGINT},
+      </if>
+      <if test="createAuthorName != null" >
+        #{createAuthorName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

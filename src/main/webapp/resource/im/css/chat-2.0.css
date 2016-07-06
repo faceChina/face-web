@@ -1,0 +1,500 @@
+/**
+ * function: im web chat css
+ * author: hoojo
+ * createDate: 2012-5-26 濞戞挸锕ゅ畷锟�:42:10
+ */
+@CHARSET "UTF-8";
+
+*, body {
+	font-family: Courier,serif,monospace;
+	font-size: 12px;
+	padding: 0;
+	margin: 0;	
+}
+
+.chat-main {
+	position: absolute;
+	right: 80px;
+	left: 50px;
+	top: 20px;
+	width:552px;
+	z-index: 999;
+	display: none;
+}
+/* 
+.chat-main .radius {
+	background-color: white;
+	border: 8px solid #94CADF;
+	border-radius: 1em;
+}
+
+#chat {
+	position: relative;
+	left: 150px;
+	padding: 0;
+	margin: 0;
+}
+#chat table {
+	border-collapse: collapse;
+	width: 435px;
+	*width: 460px;
+	width: 410px;
+	width: 320px;
+}
+
+#chat table .title {
+	font-weight: bold;
+	color: green;
+	padding: 3px;
+	background-color: #94CADF;
+}
+
+闁猴拷澧庣紓澶愬级閿燂拷#chat table .split {
+	background-color: #94CADF;
+	cursor: pointer;
+}
+
+################## product info ####################
+#chat table .product-info {
+	width: 30%;
+	display: none;
+	padding: 0;
+	margin: 0;
+	vertical-align: top;
+}
+
+#chat table .product-info ul {
+	margin: 0;
+	padding: 0;
+}
+
+#chat table .product-info ul div.header {
+	background-color: #EBEFFE;
+	line-height: 22px;
+	font-size: 12px;
+	color: black;
+}
+
+#chat table .product-info ul li {
+	list-style: none outside none;
+	background-color: white;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	padding-left: 5px;
+	line-height: 22px;
+	font-size: 11px;
+	color: #6F6F6F;
+	width: 140px;
+}
+
+#chat table .product-info ul li.pic {
+	height: 200px;
+	padding: 0 5px 0 5px;
+	border: 1px dashed #ccc;
+	text-align: center;
+}
+
+#chat table .product-info ul li.pic img {
+}
+
+#chat table .product-info ul li.product-name {
+	font-weight: bold;
+	color: black;
+}
+
+#chat table .product-info ul li.price span {
+	font-family: Courier;
+	font-size: 16px;
+	font-weight: bold;
+	color: #ED4E08;
+}
+
+#chat table .product-info ul li.market-price s {
+	color: black;
+}
+
+#chat table .product-info ul li a {
+	float: right;
+}
+
+#chat table .product-info ul li.info {
+	display: none;
+}
+
+########### 闁规亽鍎查弫鐟扳槈閸喍绱栭柛鏍ф惈閻擄拷############
+#chat table .receive-message {
+	height: 250px;
+}
+
+#chat table .send-message {
+	width: 100%;
+	height: auto;
+}
+
+#chat table td {
+	border: 1px solid white;
+}
+
+#chat table .bottom-bar {
+	background-color: #94CADF;
+	text-align: right;
+}
+
+############## 鐎规悶鍎遍崣鍧楀级閿燂拷################ start
+#chat table .tool-bar {
+	height: 25px;
+	background-color: #94CADF;
+}
+
+#chat table .tool-bar select {
+	float: left;
+}
+
+#chat table .tool-bar select.family {
+	width: 45px;
+	*width: 55px;
+}
+
+#chat table .tool-bar div {
+	width: 17px;
+	height: 16px;
+	float: left;
+	cursor: pointer;
+	margin-right: 2px;
+	margin-top: 1px;
+	*margin-top: 2px;
+	background: transparent url("../images/tb-sprite.gif") no-repeat scroll 0 0;
+}
+
+#chat table .tool-bar .color {
+	margin-left: 2px;
+	background-position: -159px 0;
+}
+#chat table .tool-bar .bold {
+	background-position: 0 0;
+}
+#chat table .tool-bar .italic {
+	background-position: -18px 0;
+}
+#chat table .tool-bar .underline {
+	background-position: -32px 0;
+}
+#chat table .tool-bar .face {
+	margin: 2px 0 0 3px;
+	background-image: url("../images/facehappy.gif");
+}
+#chat table .tool-bar .history {
+	background-image: none;
+	width: 60px;
+	float: right;
+	margin-top: 3px;
+	font-size: 12px;
+	display: none;
+}
+###### 閻炴稏鍔嶉崕锟�#####
+#chat #face {
+	border: 1px solid black;
+	width: 275px;
+	*width: 277px;
+	position: relative;
+	left: 8px;
+	top: -370px;
+	_top: -359px;
+	z-index: 3;
+	display: none;
+}
+
+#chat #face img {
+	border: 1px solid #ccc;
+	border-right: none;
+	border-bottom: none; 
+	cursor: pointer;
+}
+
+#send {
+	width: 90px;
+	height: 25px;
+}
+#close {
+	width: 40px;
+	height: 25px;
+}
+
+.chat-message {
+	position: absolute; 
+	bottom: 0; 
+	left: 0; 
+	width: 100%; 
+	height: 25px; 
+	background-color: #fcfcfc;
+}
+
+.no-msg, .have-msg {
+	cursor: pointer; 
+	float: right; 
+	margin: 5px 5px 0 0;
+} */
+
+#chat{
+	
+}
+.radius{
+	width: 530px;
+	height: 530px;
+	background: url(../images/im-bg.png) no-repeat;
+	border-radius: 10px;
+	border: 1px solid #a3bbcc;
+	padding: 10px;
+}
+.radius .title{
+	color: #036;
+	line-height: 24px;
+	padding-bottom: 7px;
+	text-indent: 10px;
+}
+.radius .info .left{
+	/* border-right: 1px solid #a3bbcc; */
+	width: 100%;
+	height: 500px;
+	float: left;
+	word-break:break-all;
+	/* white-space:pre-wrap; */
+}
+.radius .info .right{
+	width: 169px;
+	height: 500px;
+	background: #fff;
+	float: left;
+	
+}
+.receive-message{
+	width: 510px;
+	height: 270px;
+	padding:10px;
+	background: #fff;
+}
+.tool-bar{
+	height: 30px;
+	width: 100%;
+	font-size: 0;
+	
+}
+.tool-bar>*{
+	display: inline-block;
+	font-size: 12px;
+	margin: 3px 5px 0 0;
+		vertical-align: middle;
+}
+.tool-bar>select{
+	height:24px;
+}
+.tool-bar>div{
+	width: 24px;
+	text-align: center;
+	font-weight: bold;
+	font-family: Helvetica;
+	cursor: pointer;
+	height:24px;
+	background: url(../images/im-tool2.png) no-repeat;
+	background-position:0 0;
+}
+.tool-bar>#italic,.tool-bar>#bold,.tool-bar>#underline{
+	background-image:url(../images/im-tool.png);
+}
+.tool-bar .italic{
+	font-style: italic;
+	background-position:-54px 0;
+}
+.tool-bar .underline{
+	text-decoration: underline;
+	background-position:-27px 0;
+}
+.tool-bar .history{
+	display:none;
+}
+.tool-bar .face{
+	display:none;
+}
+.send-message{
+	height: 120px;
+	width: 510px;
+	padding:10px;
+	background: #fff;
+}
+.bottom-bar{
+	text-align: right;
+	margin-top: 8px;
+}
+.bottom-bar input{
+	line-height: 22px;
+	border: 1px solid #ccc;
+	padding: 0 10px;
+	border-radius: 3px;
+	background: url(../images/button-bg.png) repeat-x center;
+	margin-right: 10px;
+}
+.product-info{
+	font-size: 14px;
+	
+}
+.product-info h2{
+	background: url(../images/product-bg.png) repeat-x;
+	line-height: 30px;
+	text-indent: 10px;
+	color: #333
+
+}
+.product-info img{
+	width: 159px;
+	height: 159px;
+	border: 1px solid #eee;
+}
+.product-info p{
+padding: 5px 4px;
+}
+.product-info p.momeny{
+	color: #ccc;
+}
+.product-info p span{
+	color: #c00;
+	font-weight: bold;
+}
+.im-ui{
+	width: 250px;
+	position: absolute;
+	top: 0;
+	right: 50px;
+	font-family: "瀵邦喛钂嬮梿鍛寸拨";
+}
+.im-ui .im-header{
+	height: 80px;
+	width: 100%;
+	background: url(../images/imui-bg.png) repeat-x center top;
+	line-height: 24px;
+	color: #fff;
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
+
+}
+.im-ui .im-header p{
+	padding: 10px 15px 0;
+}
+.im-ui .im-header .logo{
+	width: 24px;
+	height: 24px;
+	background: url(../images/imui-logo.png) repeat-x;
+	float: left;
+	margin-right: 10px;
+}
+.im-ui .im-header .logo+span{
+	color: #33ccff;
+}
+.im-ui .im-header .title{
+	font-weight: bold;
+}
+.im-contact{
+	border: 1px solid #a3bbcc;
+	border-top: none;
+	border-bottom: none;
+	position: relative;
+}
+.im-contact h2{
+	background: #e5f7ff;
+	color: #069;
+	line-height: 32px;
+	text-indent: 15px;
+}
+.friends{
+	background: #fff;
+	min-height: 300px;
+	overflow-y: auto;
+}
+.friends>ul>li,.match-user>ul>li{
+	line-height: 30px;
+	text-indent: 15px;
+	white-space:nowrap; 
+	text-overflow:ellipsis; 
+	overflow:hidden;
+
+}
+.friends>ul>li:hover,.match-user>ul>li:hover{
+	background: #e5f7ff;
+	cursor: pointer;
+}
+.im-footer{
+	background: #7fd4ff;
+	height: 24px;
+	width: 100%;
+	padding: 14px 0 12px;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+.im-footer .message{
+	width: 24px;
+	height: 24px;
+	margin-left: 14px;
+	background: url(../images/imui-message.png) no-repeat center center;
+	border-radius:4px;
+	transition:background 0.8s;
+	cursor:pointer;
+}
+.im-footer .message:hover{
+	background:rgba(255,255,255,0.5) url(../images/imui-message.png) no-repeat center center;
+	border-radius:4px;
+	transition:background 0.8s;
+}
+.im-footer .message.twinkle{
+	background:url(../images/imui-message.gif) no-repeat center center;
+	transition:background 0.8s;
+	cursor:pointer;
+}
+.im-footer .message.twinkle:hover{
+	background:rgba(255,255,255,0.5) url(../images/imui-message.gif) no-repeat center center;
+	transition:background 0.8s;
+}
+.im-search{
+	height: 32px;
+	background: #e1edf6;
+	padding: 4px;
+	width: 240px;
+	position: relative;
+}
+.im-search input{
+	width: 198px;
+	height: 28px;
+/* 	line-height:28px; */
+	float: left;
+	border: none;
+	border-radius: 3px;
+	padding: 2px 40px 2px 2px;
+	box-sizing: content-box;
+}
+
+.sedsearch{
+	width: 20px;
+	height: 20px;
+	background: url(../images/im-search.png) no-repeat;
+	position: absolute;
+	right: 15px;
+	top: 10px;
+}
+.match-user{
+	width:100%;
+	position: absolute;
+	top:40px;
+	left:0;
+	height:700px;
+	background:#fff;
+	display:none;
+}
+.im-header .title select{
+	background: transparent;
+	border:0;
+	color:#fff;
+}
+.im-header .title select option{
+	background: transparent;
+	border:0;
+	color:#000;
+}

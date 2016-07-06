@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.RechargeMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.trade.recharge.domain.Recharge" >
+    <id column="RECHARGE_NO" property="rechargeNo" jdbcType="VARCHAR" />
+    <result column="USER_ACCOUNT" property="userAccount" jdbcType="VARCHAR" />
+    <result column="SHOP_NO" property="shopNo" jdbcType="VARCHAR" />
+    <result column="SELLER_ID" property="sellerId" jdbcType="BIGINT" />
+    <result column="USER_ID" property="userId" jdbcType="BIGINT" />
+    <result column="ACCOUNT_TYPE" property="accountType" jdbcType="INTEGER" />
+    <result column="RECHARGE_CHANNEL" property="rechargeChannel" jdbcType="INTEGER" />
+    <result column="RECHARGE_WAY" property="rechargeWay" jdbcType="INTEGER" />
+    <result column="BANK_CARD" property="bankCard" jdbcType="BIGINT" />
+    <result column="OPEN_ID" property="openId" jdbcType="VARCHAR" />
+    <result column="TRANSACTION_SERIAL_NUMBER" property="transactionSerialNumber" jdbcType="VARCHAR" />
+    <result column="PRICE" property="price" jdbcType="BIGINT" />
+    <result column="GIFT_PRICE" property="giftPrice" jdbcType="BIGINT" />
+    <result column="DISCOUNT_PRICE" property="discountPrice" jdbcType="BIGINT" />
+    <result column="RECORD_TYPE" property="recordType" jdbcType="INTEGER" />
+    <result column="OBTAIN_INTEGRAL" property="obtainIntegral" jdbcType="BIGINT" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="RECHARGE_TIME" property="rechargeTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    RECHARGE_NO, USER_ACCOUNT, SHOP_NO, SELLER_ID, USER_ID, ACCOUNT_TYPE, RECHARGE_CHANNEL, 
+    RECHARGE_WAY, BANK_CARD, OPEN_ID, TRANSACTION_SERIAL_NUMBER, PRICE, GIFT_PRICE, DISCOUNT_PRICE, 
+    RECORD_TYPE, OBTAIN_INTEGRAL, STATUS, RECHARGE_TIME, CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from recharge
+    where RECHARGE_NO = #{rechargeNo,jdbcType=VARCHAR}
+  </select>
+  <select id="getRechargeByTSN" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from recharge
+    where TRANSACTION_SERIAL_NUMBER = #{transactionSerialNumber,jdbcType=VARCHAR}
+  </select>
+  <select id="selectList" resultMap="BaseResultMap" parameterType="com.zjlp.face.web.server.trade.recharge.domain.Recharge" >
+    select 
+    <include refid="Base_Column_List" />
+    from recharge
+    <where>
+    	<if test="userAccount != null">
+    		USER_ACCOUNT = #{userAccount, jdbcType=VARCHAR}
+    	</if>
+    </where>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from recharge
+    where RECHARGE_NO = #{rechargeNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.trade.recharge.domain.Recharge" >
+  	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into recharge (RECHARGE_NO, USER_ACCOUNT, SHOP_NO, 
+      SELLER_ID, USER_ID, ACCOUNT_TYPE, 
+      RECHARGE_CHANNEL, RECHARGE_WAY, BANK_CARD, 
+      OPEN_ID, TRANSACTION_SERIAL_NUMBER, PRICE, 
+      GIFT_PRICE, DISCOUNT_PRICE, RECORD_TYPE, 
+      OBTAIN_INTEGRAL, STATUS, RECHARGE_TIME, CREATE_TIME, 
+      UPDATE_TIME)
+    values (#{rechargeNo,jdbcType=VARCHAR}, #{userAccount,jdbcType=VARCHAR}, #{shopNo,jdbcType=VARCHAR}, 
+      #{sellerId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{accountType,jdbcType=INTEGER}, 
+      #{rechargeChannel,jdbcType=INTEGER}, #{rechargeWay,jdbcType=INTEGER}, #{bankCard,jdbcType=BIGINT}, 
+      #{openId,jdbcType=VARCHAR}, #{transactionSerialNumber,jdbcType=VARCHAR}, #{price,jdbcType=BIGINT}, 
+      #{giftPrice,jdbcType=BIGINT}, #{discountPrice,jdbcType=BIGINT}, #{recordType,jdbcType=INTEGER}, 
+      #{obtainIntegral,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, #{rechargeTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.trade.recharge.domain.Recharge" >
+  	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into recharge
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rechargeNo != null" >
+        RECHARGE_NO,
+      </if>
+      <if test="userAccount != null" >
+        USER_ACCOUNT,
+      </if>
+      <if test="shopNo != null" >
+        SHOP_NO,
+      </if>
+      <if test="sellerId != null" >
+        SELLER_ID,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="accountType != null" >
+        ACCOUNT_TYPE,
+      </if>
+      <if test="rechargeChannel != null" >
+        RECHARGE_CHANNEL,
+      </if>
+      <if test="rechargeWay != null" >
+        RECHARGE_WAY,
+      </if>
+      <if test="bankCard != null" >
+        BANK_CARD,
+      </if>
+      <if test="openId != null" >
+        OPEN_ID,
+      </if>
+      <if test="transactionSerialNumber != null" >
+        TRANSACTION_SERIAL_NUMBER,
+      </if>
+      <if test="price != null" >
+        PRICE,
+      </if>
+      <if test="giftPrice != null" >
+        GIFT_PRICE,
+      </if>
+      <if test="discountPrice != null" >
+        DISCOUNT_PRICE,
+      </if>
+      <if test="recordType != null" >
+        RECORD_TYPE,
+      </if>
+      <if test="obtainIntegral != null" >
+        OBTAIN_INTEGRAL,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="rechargeTime != null" >
+        RECHARGE_TIME,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rechargeNo != null" >
+        #{rechargeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="userAccount != null" >
+        #{userAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="shopNo != null" >
+        #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerId != null" >
+        #{sellerId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="accountType != null" >
+        #{accountType,jdbcType=INTEGER},
+      </if>
+      <if test="rechargeChannel != null" >
+        #{rechargeChannel,jdbcType=INTEGER},
+      </if>
+      <if test="rechargeWay != null" >
+        #{rechargeWay,jdbcType=INTEGER},
+      </if>
+      <if test="bankCard != null" >
+        #{bankCard,jdbcType=BIGINT},
+      </if>
+      <if test="openId != null" >
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="transactionSerialNumber != null" >
+        #{transactionSerialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=BIGINT},
+      </if>
+      <if test="giftPrice != null" >
+        #{giftPrice,jdbcType=BIGINT},
+      </if>
+      <if test="discountPrice != null" >
+        #{discountPrice,jdbcType=BIGINT},
+      </if>
+      <if test="recordType != null" >
+        #{recordType,jdbcType=INTEGER},
+      </if>
+      <if test="obtainIntegral != null" >
+        #{obtainIntegral,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="rechargeTime != null" >
+        #{rechargeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.trade.recharge.domain.Recharge" >
+    update recharge
+    <set >
+      <if test="userAccount != null" >
+        USER_ACCOUNT = #{userAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="shopNo != null" >
+        SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerId != null" >
+        SELLER_ID = #{sellerId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="accountType != null" >
+        ACCOUNT_TYPE = #{accountType,jdbcType=INTEGER},
+      </if>
+      <if test="rechargeChannel != null" >
+        RECHARGE_CHANNEL = #{rechargeChannel,jdbcType=INTEGER},
+      </if>
+      <if test="rechargeWay != null" >
+        RECHARGE_WAY = #{rechargeWay,jdbcType=INTEGER},
+      </if>
+      <if test="bankCard != null" >
+        BANK_CARD = #{bankCard,jdbcType=BIGINT},
+      </if>
+      <if test="openId != null" >
+        OPEN_ID = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="transactionSerialNumber != null" >
+        TRANSACTION_SERIAL_NUMBER = #{transactionSerialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        PRICE = #{price,jdbcType=BIGINT},
+      </if>
+      <if test="giftPrice != null" >
+        GIFT_PRICE = #{giftPrice,jdbcType=BIGINT},
+      </if>
+      <if test="discountPrice != null" >
+        DISCOUNT_PRICE = #{discountPrice,jdbcType=BIGINT},
+      </if>
+      <if test="recordType != null" >
+        RECORD_TYPE = #{recordType,jdbcType=INTEGER},
+      </if>
+      <if test="obtainIntegral != null" >
+        OBTAIN_INTEGRAL = #{obtainIntegral,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="rechargeTime != null" >
+        RECHARGE_TIME = #{rechargeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where RECHARGE_NO = #{rechargeNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.trade.recharge.domain.Recharge" >
+    update recharge
+    set USER_ACCOUNT = #{userAccount,jdbcType=VARCHAR},
+      SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      SELLER_ID = #{sellerId,jdbcType=BIGINT},
+      USER_ID = #{userId,jdbcType=BIGINT},
+      ACCOUNT_TYPE = #{accountType,jdbcType=INTEGER},
+      RECHARGE_CHANNEL = #{rechargeChannel,jdbcType=INTEGER},
+      RECHARGE_WAY = #{rechargeWay,jdbcType=INTEGER},
+      BANK_CARD = #{bankCard,jdbcType=BIGINT},
+      OPEN_ID = #{openId,jdbcType=VARCHAR},
+      TRANSACTION_SERIAL_NUMBER = #{transactionSerialNumber,jdbcType=VARCHAR},
+      PRICE = #{price,jdbcType=BIGINT},
+      GIFT_PRICE = #{giftPrice,jdbcType=BIGINT},
+      DISCOUNT_PRICE = #{discountPrice,jdbcType=BIGINT},
+      RECORD_TYPE = #{recordType,jdbcType=INTEGER},
+      OBTAIN_INTEGRAL = #{obtainIntegral,jdbcType=BIGINT},
+      STATUS = #{status,jdbcType=INTEGER},
+      RECHARGE_TIME = #{rechargeTime,jdbcType=TIMESTAMP},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where RECHARGE_NO = #{rechargeNo,jdbcType=VARCHAR}
+  </update>
+  <select id="findRechargeListByUserAccountAndAccountType" resultMap="BaseResultMap">
+  	select * from recharge
+  	where user_account = #{userAccount}
+  	and account_type = 1
+  	and status = 3
+  	<if test="beginTime != null and endTime != null">
+  		and RECHARGE_TIME between #{beginTime} and #{endTime}
+  	</if>
+  </select>
+</mapper>

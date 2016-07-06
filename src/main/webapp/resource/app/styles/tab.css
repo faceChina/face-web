@@ -1,0 +1,37 @@
+@charset "utf-8";
+/* 标签页滑动门 */
+.tab{}
+.tab-handle {
+ 	display:-webkit-box;  
+ 	display:-moz-box;  
+ 	display:box; 
+}
+.tab-handle li {
+ 	-webkit-box-flex:1.0;
+ 	-moz-box-flex:1.0;
+ 	box-flex:1.0;
+}
+.tab-handle li a {
+	display: block;
+	padding: 1em;
+	background: #ffffff;
+	border-right:1px solid #ddd;
+	border-bottom:1px solid #ddd;
+	text-align: center;
+}
+.tab-handle li:last-child a{
+	border-right:none;
+}
+.tab-handle li.active a {
+	background: #c00;
+	border-right:1px solid #c00;
+	border-bottom: 1px solid #c00;
+	color: #fff;
+}
+.tab-content{}
+.tab-content .tab-pane {
+	display: none;
+}
+.tab-content .tab-pane.active {
+	display: block;
+}

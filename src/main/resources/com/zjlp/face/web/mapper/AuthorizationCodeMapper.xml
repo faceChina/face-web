@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.AuthorizationCodeMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.user.shop.domain.AuthorizationCode" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="ORDER_ITEM_ID" property="orderItemId" jdbcType="BIGINT" />
+    <result column="CODE" property="code" jdbcType="VARCHAR" />
+    <result column="SOURCE_SHOP_NO" property="sourceShopNo" jdbcType="VARCHAR" />
+    <result column="DESTINATION_SHOP_NO" property="destinationShopNo" jdbcType="VARCHAR" />
+    <result column="ACTIVATION_TIME" property="activationTime" jdbcType="TIMESTAMP" />
+    <result column="TYPE" property="type" jdbcType="INTEGER" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ORDER_ITEM_ID, CODE, SOURCE_SHOP_NO, DESTINATION_SHOP_NO, ACTIVATION_TIME, TYPE, 
+    STATUS, CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from authorization_code
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from authorization_code
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.user.shop.domain.AuthorizationCode" >
+    <selectKey keyProperty="id" resultType="long" order="AFTER">  
+        SELECT LAST_INSERT_ID();  
+    </selectKey> 
+    insert into authorization_code (ID,  ORDER_ITEM_ID, 
+      CODE, SOURCE_SHOP_NO, DESTINATION_SHOP_NO, ACTIVATION_TIME, 
+      TYPE, STATUS, CREATE_TIME, 
+      UPDATE_TIME)
+    values (#{id,jdbcType=BIGINT}, #{orderItemId,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, 
+      #{sourceShopNo,jdbcType=VARCHAR}, #{destinationShopNo,jdbcType=VARCHAR}, #{activationTime,jdbcType=TIMESTAMP},  
+      #{type,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.user.shop.domain.AuthorizationCode" >
+    <selectKey keyProperty="id" resultType="long" order="AFTER">  
+        SELECT LAST_INSERT_ID();  
+    </selectKey> 
+    insert into authorization_code
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="orderItemId != null" >
+        ORDER_ITEM_ID,
+      </if>
+      <if test="code != null" >
+        CODE,
+      </if>
+      <if test="sourceShopNo != null">
+      	SOURCE_SHOP_NO,
+      </if>
+      <if test="destinationShopNo != null">
+      	DESTINATION_SHOP_NO,
+      </if>
+      <if test="activationTime != null" >
+        ACTIVATION_TIME,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="orderItemId != null" >
+        #{orderItemId,jdbcType=BIGINT},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceShopNo != null">
+      	#{sourceShopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="destinationShopNo != null">
+      	#{destinationShopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="activationTime != null" >
+        #{activationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.user.shop.domain.AuthorizationCode" >
+    update authorization_code
+    <set >
+      <if test="orderItemId != null" >
+        ORDER_ITEM_ID = #{orderItemId,jdbcType=BIGINT},
+      </if>
+      <if test="code != null" >
+        CODE = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceShopNo != null">
+      	SOURCE_SHOP_NO = #{sourceShopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="destinationShopNo != null">
+      	DESTINATION_SHOP_NO = #{destinationShopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="activationTime != null" >
+        ACTIVATION_TIME = #{activationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.user.shop.domain.AuthorizationCode" >
+    update authorization_code
+    set 
+      ORDER_ITEM_ID = #{orderItemId,jdbcType=BIGINT},
+      CODE = #{code,jdbcType=VARCHAR},
+      SOURCE_SHOP_NO = #{sourceShopNo,jdbcType=VARCHAR},
+      DESTINATION_SHOP_NO = #{destinationShopNo,jdbcType=VARCHAR},
+      ACTIVATION_TIME = #{activationTime,jdbcType=TIMESTAMP},
+      TYPE = #{type,jdbcType=INTEGER},
+      STATUS = #{status,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="getByOrderItemId" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from authorization_code
+    where ORDER_ITEM_ID = #{orderItemId,jdbcType=BIGINT}
+  </select>
+  <select id="getAuthorizationCodeByCode" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from authorization_code
+    where code = #{code,jdbcType=VARCHAR}
+  </select>
+</mapper>

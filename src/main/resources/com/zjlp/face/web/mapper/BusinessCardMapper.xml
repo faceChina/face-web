@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.BusinessCardMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.user.businesscard.domain.BusinessCard" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="USER_ID" property="userId" jdbcType="BIGINT" />
+    <result column="SHOP_TYPE" property="shopType" jdbcType="INTEGER" />
+    <result column="SHOP_ID" property="shopId" jdbcType="VARCHAR" />
+    <result column="V_AREA_CODE" property="vAreaCode" jdbcType="INTEGER" />
+    <result column="V_AREA_NAME" property="vAreaName" jdbcType="VARCHAR" />
+    <result column="COMPANY_CODE" property="companyCode" jdbcType="INTEGER" />
+    <result column="COMPANY_NAME" property="companyName" jdbcType="VARCHAR" />
+    <result column="POSITION" property="position" jdbcType="VARCHAR" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="INDUSTRY_CODE" property="industryCode" jdbcType="INTEGER" />
+    <result column="INDUSTRY_NAME" property="industryName" jdbcType="VARCHAR" />
+    <result column="INDUSTRY_PROVIDE" property="industryProvide" jdbcType="VARCHAR" />
+    <result column="INDUSTRY_REQUIREMENT" property="industryRequirement" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="PHONE_VISIBILITY" property="phoneVisibility" jdbcType="INTEGER"/>
+    <result column="BACKGROUND_PIC" property="backgroundPic" jdbcType="VARCHAR"/>
+    <result column="PIC_TYPE" property="picType" jdbcType="INTEGER"/>
+    <result column="TEMPLATE" property="template" jdbcType="VARCHAR"/>
+    <result column="DEFINE_URL" property="defineUrl" jdbcType="VARCHAR"/>
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, USER_ID, SHOP_TYPE, SHOP_ID, V_AREA_CODE, V_AREA_NAME, COMPANY_CODE, COMPANY_NAME, 
+    POSITION, PHONE, INDUSTRY_CODE, INDUSTRY_NAME, INDUSTRY_PROVIDE, INDUSTRY_REQUIREMENT, 
+    STATUS, PHONE_VISIBILITY, BACKGROUND_PIC, PIC_TYPE, TEMPLATE, DEFINE_URL, CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from business_card
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from business_card
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.user.businesscard.domain.BusinessCard" >
+    insert into business_card (ID, USER_ID, SHOP_TYPE, 
+      SHOP_ID, V_AREA_CODE, V_AREA_NAME, 
+      COMPANY_CODE, COMPANY_NAME, POSITION, 
+      PHONE, INDUSTRY_CODE, INDUSTRY_NAME, 
+      INDUSTRY_PROVIDE, INDUSTRY_REQUIREMENT, STATUS, PHONE_VISIBILITY, BACKGROUND_PIC, PIC_TYPE, TEMPLATE, DEFINE_URL,
+      CREATE_TIME, UPDATE_TIME)
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{shopType,jdbcType=INTEGER}, 
+      #{shopId,jdbcType=VARCHAR}, #{vAreaCode,jdbcType=INTEGER}, #{vAreaName,jdbcType=VARCHAR}, 
+      #{companyCode,jdbcType=INTEGER}, #{companyName,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{industryCode,jdbcType=INTEGER}, #{industryName,jdbcType=VARCHAR}, 
+      #{industryProvide,jdbcType=VARCHAR}, #{industryRequirement,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{phoneVisibility, jdbcType=INTEGER}, #{backgroundPic, jdbcType=VARCHAR}, #{picType, jdbcType=INTEGER}, #{template, jdbcType=VARCHAR},#{defineUrl, jdbcType=VARCHAR},
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.user.businesscard.domain.BusinessCard" >
+  	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into business_card
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="shopType != null" >
+        SHOP_TYPE,
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID,
+      </if>
+      <if test="vAreaCode != null" >
+        V_AREA_CODE,
+      </if>
+      <if test="vAreaName != null" >
+        V_AREA_NAME,
+      </if>
+      <if test="companyCode != null" >
+        COMPANY_CODE,
+      </if>
+      <if test="companyName != null" >
+        COMPANY_NAME,
+      </if>
+      <if test="position != null" >
+        POSITION,
+      </if>
+      <if test="phone != null" >
+        PHONE,
+      </if>
+      <if test="industryCode != null" >
+        INDUSTRY_CODE,
+      </if>
+      <if test="industryName != null" >
+        INDUSTRY_NAME,
+      </if>
+      <if test="industryProvide != null" >
+        INDUSTRY_PROVIDE,
+      </if>
+      <if test="industryRequirement != null" >
+        INDUSTRY_REQUIREMENT,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="phoneVisibility != null">
+      	PHONE_VISIBILITY,
+      </if>
+      <if test="backgroundPic != null">
+      	BACKGROUND_PIC,
+      </if>
+      <if test="picType != null">
+      	PIC_TYPE,
+      </if>
+      <if test="template != null">
+      	TEMPLATE,
+      </if>
+      <if test="defineUrl != null">
+      	DEFINE_URL,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="shopType != null" >
+        #{shopType,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=VARCHAR},
+      </if>
+      <if test="vAreaCode != null" >
+        #{vAreaCode,jdbcType=INTEGER},
+      </if>
+      <if test="vAreaName != null" >
+        #{vAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyCode != null" >
+        #{companyCode,jdbcType=INTEGER},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="industryCode != null" >
+        #{industryCode,jdbcType=INTEGER},
+      </if>
+      <if test="industryName != null" >
+        #{industryName,jdbcType=VARCHAR},
+      </if>
+      <if test="industryProvide != null" >
+        #{industryProvide,jdbcType=VARCHAR},
+      </if>
+      <if test="industryRequirement != null" >
+        #{industryRequirement,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="phoneVisibility !=null">
+      	#{phoneVisibility, jdbcType=INTEGER},
+      </if>
+      <if test="backgroundPic != null">
+      	#{backgroundPic, jdbcType=VARCHAR},
+      </if>
+      <if test="picType != null">
+      	#{picType, jdbcType=INTEGER},
+      </if>
+      <if test="template != null">
+      	#{template, jdbcType=VARCHAR},
+      </if>
+      <if test="defineUrl != null">
+      	#{defineUrl, jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.user.businesscard.domain.BusinessCard" >
+    update business_card
+    <set >
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="shopType != null" >
+        SHOP_TYPE = #{shopType,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID = #{shopId,jdbcType=VARCHAR},
+      </if>
+      <if test="vAreaCode != null" >
+        V_AREA_CODE = #{vAreaCode,jdbcType=INTEGER},
+      </if>
+      <if test="vAreaName != null" >
+        V_AREA_NAME = #{vAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyCode != null" >
+        COMPANY_CODE = #{companyCode,jdbcType=INTEGER},
+      </if>
+      <if test="companyName != null" >
+        COMPANY_NAME = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        POSITION = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        PHONE = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="industryCode != null" >
+        INDUSTRY_CODE = #{industryCode,jdbcType=INTEGER},
+      </if>
+      <if test="industryName != null" >
+        INDUSTRY_NAME = #{industryName,jdbcType=VARCHAR},
+      </if>
+      <if test="industryProvide != null" >
+        INDUSTRY_PROVIDE = #{industryProvide,jdbcType=VARCHAR},
+      </if>
+      <if test="industryRequirement != null" >
+        INDUSTRY_REQUIREMENT = #{industryRequirement,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="phoneVisibility != null">
+      	PHONE_VISIBILITY = #{phoneVisibility, jdbcType=INTEGER},
+      </if>
+      <if test="backgroundPic != null">
+      	BACKGROUND_PIC = #{backgroundPic, jdbcType=VARCHAR},
+      </if>
+      <if test="picType != null">
+      	PIC_TYPE = #{picType, jdbcType=INTEGER},
+      </if>
+      <if test="template != null">
+      	TEMPLATE = #{template, jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateBusinessCard" parameterType="com.zjlp.face.web.server.user.businesscard.domain.BusinessCard">
+  	 update business_card
+    <set >
+      <if test="shopType != null" >
+        SHOP_TYPE = #{shopType,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID = #{shopId,jdbcType=VARCHAR},
+      </if>
+      <if test="vAreaCode != null" >
+        V_AREA_CODE = #{vAreaCode,jdbcType=INTEGER},
+      </if>
+      <if test="vAreaName != null" >
+        V_AREA_NAME = #{vAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyCode != null" >
+        COMPANY_CODE = #{companyCode,jdbcType=INTEGER},
+      </if>
+      <if test="companyName != null" >
+        COMPANY_NAME = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        POSITION = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        PHONE = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="industryCode != null" >
+        INDUSTRY_CODE = #{industryCode,jdbcType=INTEGER},
+      </if>
+      <if test="industryName != null" >
+        INDUSTRY_NAME = #{industryName,jdbcType=VARCHAR},
+      </if>
+      <if test="industryProvide != null" >
+        INDUSTRY_PROVIDE = #{industryProvide,jdbcType=VARCHAR},
+      </if>
+      <if test="industryRequirement != null" >
+        INDUSTRY_REQUIREMENT = #{industryRequirement,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="phoneVisibility != null">
+      	PHONE_VISIBILITY = #{phoneVisibility, jdbcType=INTEGER},
+      </if>
+      <if test="backgroundPic != null">
+      	BACKGROUND_PIC = #{backgroundPic, jdbcType=VARCHAR},
+      </if>
+      <if test="picType != null">
+      	PIC_TYPE = #{picType, jdbcType=INTEGER},
+      </if>
+      <if test="template != null">
+      	TEMPLATE = #{template, jdbcType=VARCHAR},
+      </if>
+      <if test="defineUrl != null">
+      	DEFINE_URL = #{defineUrl, jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT} AND USER_ID = #{userId}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.user.businesscard.domain.BusinessCard" >
+    update business_card
+    set USER_ID = #{userId,jdbcType=BIGINT},
+      SHOP_TYPE = #{shopType,jdbcType=INTEGER},
+      SHOP_ID = #{shopId,jdbcType=VARCHAR},
+      V_AREA_CODE = #{vAreaCode,jdbcType=INTEGER},
+      V_AREA_NAME = #{vAreaName,jdbcType=VARCHAR},
+      COMPANY_CODE = #{companyCode,jdbcType=INTEGER},
+      COMPANY_NAME = #{companyName,jdbcType=VARCHAR},
+      POSITION = #{position,jdbcType=VARCHAR},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      INDUSTRY_CODE = #{industryCode,jdbcType=INTEGER},
+      INDUSTRY_NAME = #{industryName,jdbcType=VARCHAR},
+      INDUSTRY_PROVIDE = #{industryProvide,jdbcType=VARCHAR},
+      INDUSTRY_REQUIREMENT = #{industryRequirement,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=INTEGER},
+      PHONE_VISIBILITY = #{phoneVisibility, jdbcType=INTEGER},
+      BACKGROUND_PIC = #{backgroundPic, jdbcType=VARCHAR},
+      PIC_TYPE = #{picType, jdbcType=INTEGER},
+      TEMPLATE = #{template, jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="getBusinessCardByUserId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  	SELECT
+		<include refid="Base_Column_List" />
+	FROM
+		business_card
+	WHERE USER_ID = #{userId}
+	AND `STATUS` = 1
+  </select>
+</mapper>

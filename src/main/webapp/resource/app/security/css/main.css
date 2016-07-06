@@ -1,0 +1,139 @@
+@charset "utf-8";
+/*  
+* @description:账户中心
+* @author:sf
+* @update:
+*/
+
+
+/* 进度条 */
+
+.progress{
+	width:85%;
+	margin:0 auto;
+	padding:1em;
+}
+.progress ul{
+	position: relative;
+	z-index:0;
+	width:100%;
+	overflow:hidden;
+}
+.progress ul:after{
+	display:block;
+	width:85%;
+	height:1px;
+	overflow:hidden;
+	background:#eee;
+	content:"";
+	position:absolute;
+	left:6%;
+	bottom:19px;
+	z-index:-1;
+	margin:0 auto;
+}
+.progress ul li{}
+.progress ul li i{
+	display:block;
+	width:2.142857142857143em;
+	height:2.5em;
+	margin:0 auto;
+	background:#f5f5f5 url(../img/progress-icon1.png) no-repeat left center;
+	background-size:100%;
+	line-height:2em;
+	text-align:center;
+}
+.progress ul li span{
+	display:block;
+	text-align:center;
+}
+
+.progress ul li.active i{
+	display:block;
+	width:2.142857142857143em;
+	height:2.5em;
+	margin:0 auto;
+	background:#f5f5f5 url(../img/progress-icon2.png) no-repeat;
+	background-size:100%;
+	text-align:center;
+	line-height:2em;
+	color: #cc0000;
+}
+.progress li.active span{
+	color: #cc0000;
+} 
+
+/* 进度条 end*/
+
+/* 新的支付密码设置 */
+.newPayCountBox{
+	font-family: 微软雅黑;
+}
+.newPayCountBox .list-row{
+	font-size: 15px;
+}
+.newPayCountBox .progress{
+	padding-top: 10px;
+	padding-bottom: 0;
+}
+.newPayCountBox .list-col{
+	padding: 2px 0;
+}
+.newPayCountBox .list-col .list-inline:first-child{
+	margin-right: 8px;
+}
+
+.newPayCountBox .list-row-width .list-inline:first-child{
+	width: auto;
+}
+.newPayCountBox .verify button{
+	padding: 6px;
+}
+.newPayCountBox .button button.btn-danger{
+	background-color: #ca1c1d;
+	font-size: 15px;
+}
+.newPayCountBox .list-inline button.disabled,.newPayCountBox .button button.disabled{
+	background-color: #e6e6e6;
+}
+.newPayCountBox .list-col .verify{
+	margin-bottom: 2px;
+
+}
+/*settings*/
+.set-group{
+	background: #fff;
+}
+.set-group-item.group-item{
+	border-bottom: 1px solid #e8e8e8;
+	margin: 0;
+	padding: 0 8px;
+}
+.set-group-item .group-colspan{
+	padding: 12px 0 18px 10px;
+}
+.set-group-item .group-colspan:last-child {
+	width: 26px;
+}
+.set-group-item .group-colspan em:first-child{
+	color: #333;
+}
+.set-group-item .clr-danger{
+	color: #d31919;
+}
+.set-group-item .group-colspan .clr-light{
+	display: block;
+	color: #444;
+	padding-top: 7px;
+	line-height: 20px;
+}
+.set-group-item .tel-right{
+	position: relative;
+	top: 6px;
+}
+.mt25 {
+	margin-top: 25px;
+}
+.list-inline input{
+	font-size: 13x;
+}

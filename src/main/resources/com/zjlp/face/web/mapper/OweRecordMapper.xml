@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.OweRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.operation.subbranch.domain.OweRecord" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="TRANSACTION_SERIAL_NUMBER" property="transactionSerialNumber" jdbcType="VARCHAR" />
+    <result column="ORDER_NO" property="orderNo" jdbcType="VARCHAR" />
+    <result column="PURCHASE_ORDER_ID" property="purchaseOrderId" jdbcType="BIGINT" />
+    <result column="USER_ID" property="userId" jdbcType="BIGINT" />
+    <result column="OWE_USER_ID" property="oweUserId" jdbcType="BIGINT" />
+    <result column="PRICE" property="price" jdbcType="BIGINT" />
+    <result column="PAY_PRICE" property="payPrice" jdbcType="BIGINT" />
+    <result column="OWE_PRICE" property="owePrice" jdbcType="BIGINT" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, TRANSACTION_SERIAL_NUMBER, ORDER_NO, PURCHASE_ORDER_ID, USER_ID, OWE_USER_ID, PRICE, PAY_PRICE, OWE_PRICE, 
+    STATUS, CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from owe_record
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from owe_record
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.operation.subbranch.domain.OweRecord" >
+    insert into owe_record (ID, TRANSACTION_SERIAL_NUMBER, ORDER_NO, PURCHASE_ORDER_ID, 
+      USER_ID, OWE_USER_ID, PRICE, 
+      PAY_PRICE, OWE_PRICE, STATUS, 
+      CREATE_TIME, UPDATE_TIME)
+    values (#{id,jdbcType=BIGINT}, #{transactionSerialNumber,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, #{purchaseOrderId,jdbcType=BIGINT}, 
+      #{userId,jdbcType=BIGINT}, #{oweUserId,jdbcType=BIGINT}, #{price,jdbcType=BIGINT}, 
+      #{payPrice,jdbcType=BIGINT}, #{owePrice,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.operation.subbranch.domain.OweRecord" >
+    insert into owe_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="transactionSerialNumber != null" >
+        TRANSACTION_SERIAL_NUMBER,
+      </if>
+      <if test="orderNo != null" >
+        ORDER_NO,
+      </if>
+      <if test="purchaseOrderId != null" >
+        PURCHASE_ORDER_ID,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="oweUserId != null" >
+        OWE_USER_ID,
+      </if>
+      <if test="price != null" >
+        PRICE,
+      </if>
+      <if test="payPrice != null" >
+        PAY_PRICE,
+      </if>
+      <if test="owePrice != null" >
+        OWE_PRICE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="transactionSerialNumber != null" >
+        #{transactionSerialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseOrderId != null" >
+        #{purchaseOrderId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="oweUserId != null" >
+        #{oweUserId,jdbcType=BIGINT},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=BIGINT},
+      </if>
+      <if test="payPrice != null" >
+        #{payPrice,jdbcType=BIGINT},
+      </if>
+      <if test="owePrice != null" >
+        #{owePrice,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.operation.subbranch.domain.OweRecord" >
+    update owe_record
+    <set >
+      <if test="transactionSerialNumber != null" >
+        TRANSACTION_SERIAL_NUMBER = #{transactionSerialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseOrderId != null" >
+        PURCHASE_ORDER_ID = #{purchaseOrderId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="oweUserId != null" >
+        OWE_USER_ID = #{oweUserId,jdbcType=BIGINT},
+      </if>
+      <if test="price != null" >
+        PRICE = #{price,jdbcType=BIGINT},
+      </if>
+      <if test="payPrice != null" >
+        PAY_PRICE = #{payPrice,jdbcType=BIGINT},
+      </if>
+      <if test="owePrice != null" >
+        OWE_PRICE = #{owePrice,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.operation.subbranch.domain.OweRecord" >
+    update owe_record
+    set ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+      PURCHASE_ORDER_ID = #{purchaseOrderId,jdbcType=BIGINT},
+      USER_ID = #{userId,jdbcType=BIGINT},
+      OWE_USER_ID = #{oweUserId,jdbcType=BIGINT},
+      PRICE = #{price,jdbcType=BIGINT},
+      PAY_PRICE = #{payPrice,jdbcType=BIGINT},
+      OWE_PRICE = #{owePrice,jdbcType=BIGINT},
+      STATUS = #{status,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      TRANSACTION_SERIAL_NUMBER = #{transactionSerialNumber,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

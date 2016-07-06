@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjlp.face.web.mapper.ModularMapper">
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.product.template.domain.Modular">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="OW_TEMPLATE_ID" jdbcType="BIGINT" property="owTemplateId" />
+    <result column="CODE" jdbcType="VARCHAR" property="code" />
+    <result column="NAME_ZH" jdbcType="VARCHAR" property="nameZh" />
+    <result column="NAME_ZH_COLOR" jdbcType="VARCHAR" property="nameZhColor" />
+    <result column="NAME_EN" jdbcType="VARCHAR" property="nameEn" />
+    <result column="NAME_EN_COLOR" jdbcType="VARCHAR" property="nameEnColor" />
+    <result column="BACKGROUND_COLOR" jdbcType="VARCHAR" property="backgroundColor" />
+    <result column="TRANSPARENCY" jdbcType="INTEGER" property="transparency" />
+    <result column="SORT" jdbcType="INTEGER" property="sort" />
+    <result column="IMG_PATH" jdbcType="VARCHAR" property="imgPath" />
+    <result column="RESOURCE_PATH" jdbcType="VARCHAR" property="resourcePath" />
+    <result column="TYPE" property="type" jdbcType="INTEGER" />
+    <result column="STATUS" jdbcType="INTEGER" property="status" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, OW_TEMPLATE_ID, CODE, NAME_ZH, NAME_ZH_COLOR, NAME_EN, NAME_EN_COLOR, BACKGROUND_COLOR, 
+    TRANSPARENCY, SORT, IMG_PATH, RESOURCE_PATH, TYPE, STATUS, CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from modular
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from modular
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.product.template.domain.Modular">
+   	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into modular (ID, OW_TEMPLATE_ID, CODE, 
+      NAME_ZH, NAME_ZH_COLOR, NAME_EN, 
+      NAME_EN_COLOR, BACKGROUND_COLOR, TRANSPARENCY, 
+      SORT, IMG_PATH, RESOURCE_PATH, TYPE,
+      STATUS, CREATE_TIME, UPDATE_TIME
+      )
+    values (#{id,jdbcType=BIGINT}, #{owTemplateId,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, 
+      #{nameZh,jdbcType=VARCHAR}, #{nameZhColor,jdbcType=VARCHAR}, #{nameEn,jdbcType=VARCHAR}, 
+      #{nameEnColor,jdbcType=VARCHAR}, #{backgroundColor,jdbcType=VARCHAR}, #{transparency,jdbcType=INTEGER}, 
+      #{sort,jdbcType=INTEGER}, #{imgPath,jdbcType=VARCHAR}, #{resourcePath,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
+      #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.product.template.domain.Modular">
+   	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into modular
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="owTemplateId != null">
+        OW_TEMPLATE_ID,
+      </if>
+      <if test="code != null">
+        CODE,
+      </if>
+      <if test="nameZh != null">
+        NAME_ZH,
+      </if>
+      <if test="nameZhColor != null">
+        NAME_ZH_COLOR,
+      </if>
+      <if test="nameEn != null">
+        NAME_EN,
+      </if>
+      <if test="nameEnColor != null">
+        NAME_EN_COLOR,
+      </if>
+      <if test="backgroundColor != null">
+        BACKGROUND_COLOR,
+      </if>
+      <if test="transparency != null">
+        TRANSPARENCY,
+      </if>
+      <if test="sort != null">
+        SORT,
+      </if>
+      <if test="imgPath != null">
+        IMG_PATH,
+      </if>
+      <if test="resourcePath != null">
+        RESOURCE_PATH,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="owTemplateId != null">
+        #{owTemplateId,jdbcType=BIGINT},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="nameZh != null">
+        #{nameZh,jdbcType=VARCHAR},
+      </if>
+      <if test="nameZhColor != null">
+        #{nameZhColor,jdbcType=VARCHAR},
+      </if>
+      <if test="nameEn != null">
+        #{nameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="nameEnColor != null">
+        #{nameEnColor,jdbcType=VARCHAR},
+      </if>
+      <if test="backgroundColor != null">
+        #{backgroundColor,jdbcType=VARCHAR},
+      </if>
+      <if test="transparency != null">
+        #{transparency,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="imgPath != null">
+        #{imgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="resourcePath != null">
+        #{resourcePath,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.product.template.domain.Modular">
+    update modular
+    <set>
+      <if test="owTemplateId != null">
+        OW_TEMPLATE_ID = #{owTemplateId,jdbcType=BIGINT},
+      </if>
+      <if test="code != null">
+        CODE = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="nameZh != null">
+        NAME_ZH = #{nameZh,jdbcType=VARCHAR},
+      </if>
+      <if test="nameZhColor != null">
+        NAME_ZH_COLOR = #{nameZhColor,jdbcType=VARCHAR},
+      </if>
+      <if test="nameEn != null">
+        NAME_EN = #{nameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="nameEnColor != null">
+        NAME_EN_COLOR = #{nameEnColor,jdbcType=VARCHAR},
+      </if>
+      <if test="backgroundColor != null">
+        BACKGROUND_COLOR = #{backgroundColor,jdbcType=VARCHAR},
+      </if>
+      <if test="transparency != null">
+        TRANSPARENCY = #{transparency,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null">
+        SORT = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="imgPath != null">
+        IMG_PATH = #{imgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="resourcePath != null">
+        RESOURCE_PATH = #{resourcePath,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.product.template.domain.Modular">
+    update modular
+    set OW_TEMPLATE_ID = #{owTemplateId,jdbcType=BIGINT},
+      CODE = #{code,jdbcType=VARCHAR},
+      NAME_ZH = #{nameZh,jdbcType=VARCHAR},
+      NAME_ZH_COLOR = #{nameZhColor,jdbcType=VARCHAR},
+      NAME_EN = #{nameEn,jdbcType=VARCHAR},
+      NAME_EN_COLOR = #{nameEnColor,jdbcType=VARCHAR},
+      BACKGROUND_COLOR = #{backgroundColor,jdbcType=VARCHAR},
+      TRANSPARENCY = #{transparency,jdbcType=INTEGER},
+      SORT = #{sort,jdbcType=INTEGER},
+      IMG_PATH = #{imgPath,jdbcType=VARCHAR},
+      RESOURCE_PATH = #{resourcePath,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=INTEGER},
+      STATUS = #{status,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByOwTemplateId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from modular
+    where OW_TEMPLATE_ID = #{owTemplateId,jdbcType=BIGINT}
+    order by type, sort
+  </select>
+  <update id="updateModularSort" parameterType="com.zjlp.face.web.server.product.template.domain.Modular" >
+    update modular
+    set 
+      SORT = #{sort,jdbcType=INTEGER},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="getModularMaxSort" resultType="java.lang.Integer" >
+    select max(sort) from modular
+    where OW_TEMPLATE_ID = #{owTemplateId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByOwTemplateId" parameterType="java.lang.Long" >
+    delete from modular
+    where OW_TEMPLATE_ID = #{owTemplateId,jdbcType=BIGINT}
+  </delete>
+  <update id="editModular" parameterType="com.zjlp.face.web.server.product.template.domain.Modular">
+    update modular
+    set 
+      CODE = #{code,jdbcType=VARCHAR},
+      NAME_ZH = #{nameZh,jdbcType=VARCHAR},
+      NAME_ZH_COLOR = #{nameZhColor,jdbcType=VARCHAR},
+      NAME_EN = #{nameEn,jdbcType=VARCHAR},
+      NAME_EN_COLOR = #{nameEnColor,jdbcType=VARCHAR},
+      BACKGROUND_COLOR = #{backgroundColor,jdbcType=VARCHAR},
+      TRANSPARENCY = #{transparency,jdbcType=INTEGER},
+      IMG_PATH = #{imgPath,jdbcType=VARCHAR},
+      RESOURCE_PATH = #{resourcePath,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

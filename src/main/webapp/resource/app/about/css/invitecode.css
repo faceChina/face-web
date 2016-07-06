@@ -1,0 +1,137 @@
+@charset "utf-8";
+/*  
+* @description:
+* @author:lmy
+* @update:
+*/
+#invitecode{
+	width: 100%;
+	height: 26.8rem;
+	background:url(../img/invitecodebg.jpg);
+	background-size: 100% 100%;
+	position: relative;
+	color: #fff;
+}
+.ic-box{
+	position: relative;
+	z-index: 20;
+}
+.ic-opacitybg{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background: #000;
+	opacity: .3;
+	z-index: 10;
+	top: 0;
+}/* 头部信息  */
+
+#invitecode .ic-header{
+	width: 100%;
+	height: 9.15rem;
+	display: inline-block;
+	font-family: 微软雅黑;
+	color: #fff;
+	position: relative;
+}
+
+
+.ic-header .userheader{
+	padding-top: 2.73rem;
+	padding-bottom: 0.4rem;
+	width: 3.5rem;
+	margin: 0 auto;
+	position: relative;
+	z-index: 100;
+}
+.userheader .uh-a-img{
+	width: 3.5rem;
+	height: 3.5rem;
+	border-radius: 100%;
+	overflow: hidden;
+	background-color: #fff;
+	display: inline-block;
+}
+.userheader .uh-a-img img{
+	width: 3.3rem;
+	height: 3.3rem;
+	margin-top: 0.1rem;
+	margin-left: 0.1rem;
+	border-radius: 100%;
+}
+
+.userinfo,.userother,.ic-content,.ic-header-code{
+	width: 100%;
+	text-align: center;
+	position: relative;
+	z-index: 100;
+}
+.userinfo{
+	padding-bottom: 1.5rem;
+}
+.userother{
+	font-size: 0.65rem;
+	line-height: 0.95rem;
+}
+.userinfo .ui-name{
+	color: #fff;
+	font-size: 0.75rem;
+	padding-right: 0.4rem;
+	font-weight: bold;
+}
+.userinfo .ui-zw{
+	font-size: 0.65rem;
+	font-weight: normal;
+}
+/*=内容=*/
+.ic-content{
+	padding-top: 3.75rem;
+	font-size: 0.6rem;
+}
+.ic-content a{
+	width: 12.75rem;
+	height: 2rem;
+	line-height: 2rem;
+	background-color: #fff;
+	color: #797c84;
+	font-size: 1.1rem;
+	display: inline-block;
+	margin-top: 0.5rem;
+	border-radius: 4px;
+	letter-spacing:2px;
+}
+.ic-content a.ic-c-bt-download{
+	background-color: #cc0000;
+	font-size: 0.9rem;
+	color: #fff;
+	letter-spacing:1px;
+}
+/*群二维码*/
+#groupcode p{
+	color: #000;
+}
+#groupcode .ic-header-code{
+	width: 100%;
+	display: inline-block;
+}
+#groupcode .ic-header-code img{
+	width: 9.07rem;
+	height: 9.07rem;
+	background-size: 100% 100%;
+	margin-top:3.05rem;
+	margin-bottom: 1rem;
+}
+.ic-header-font{
+	text-align: center;
+	font-size: 0.65rem;
+}
+.ic-header-font p{
+	padding-bottom: 0.3rem;
+}
+.ic-header-font .big-font{
+	font-size: 0.8rem;
+	padding-bottom: 0.75rem;
+}
+#groupcode .ic-content{
+	padding-top: 2.7rem;
+}

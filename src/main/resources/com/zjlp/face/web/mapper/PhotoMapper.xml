@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.PhotoMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.product.material.domain.Photo" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="ALBUM_ID" property="albumId" jdbcType="BIGINT" />
+    <result column="SHOP_NO" property="shopNo" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="PATH" property="path" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+    <result column="SORT" property="sort" jdbcType="INTEGER" />
+    <result column="ALBUM_SORT" property="albumSort" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <resultMap id="BaseResultMapDto" type="com.zjlp.face.web.server.product.material.domain.dto.PhotoDto" extends="BaseResultMap">
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ALBUM_ID, SHOP_NO, NAME, PATH, TYPE, MEMO, SORT, ALBUM_SORT, CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from photo
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from photo
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.product.material.domain.Photo" >
+   	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into photo (ID, ALBUM_ID, SHOP_NO, 
+      NAME, PATH, TYPE, MEMO, 
+      SORT, ALBUM_SORT, CREATE_TIME, 
+      UPDATE_TIME)
+    values (#{id,jdbcType=BIGINT}, #{albumId,jdbcType=BIGINT}, #{shopNo,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}, 
+      #{sort,jdbcType=INTEGER}, #{albumSort,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.product.material.domain.Photo" >
+   	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into photo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="albumId != null" >
+        ALBUM_ID,
+      </if>
+      <if test="shopNo != null" >
+        SHOP_NO,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="path != null" >
+        PATH,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="memo != null" >
+        MEMO,
+      </if>
+      <if test="sort != null" >
+        SORT,
+      </if>
+      <if test="albumSort != null" >
+        ALBUM_SORT,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="albumId != null" >
+        #{albumId,jdbcType=BIGINT},
+      </if>
+      <if test="shopNo != null" >
+        #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null" >
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="albumSort != null" >
+        #{albumSort,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.product.material.domain.Photo" >
+    update photo
+    <set >
+      <if test="albumId != null" >
+        ALBUM_ID = #{albumId,jdbcType=BIGINT},
+      </if>
+      <if test="shopNo != null" >
+        SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null" >
+        PATH = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        MEMO = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        SORT = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="albumSort != null" >
+        ALBUM_SORT = #{albumSort,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.product.material.domain.Photo" >
+    update photo
+    set ALBUM_ID = #{albumId,jdbcType=BIGINT},
+      SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      PATH = #{path,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=VARCHAR},
+      MEMO = #{memo,jdbcType=VARCHAR},
+      SORT = #{sort,jdbcType=INTEGER},
+      ALBUM_SORT = #{albumSort,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="findPhotoByShopNo" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	SELECT 
+  	<include refid="Base_Column_List" />
+  	FROM PHOTO
+  	WHERE SHOP_NO = #{shopNo,jdbcType=VARCHAR}
+  </select>
+  
+  
+  <select id="findPhotoByAlbumId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  	SELECT
+  	<include refid="Base_Column_List" />
+  	FROM PHOTO
+  	WHERE ALBUM_ID = #{albumId,jdbcType=BIGINT}
+  </select>
+  
+  <select id="getMaxPhotoSort" parameterType="java.lang.String" resultType="java.lang.Integer">
+  	SELECT MAX(SORT) 
+  	FROM PHOTO
+  	WHERE SHOP_NO = #{shopNo,jdbcType=VARCHAR}
+  </select>
+  
+  
+  <select id="getCount" resultType="java.lang.Integer" parameterType="com.zjlp.face.web.server.product.material.domain.dto.PhotoDto">
+  	SELECT
+  	COUNT(id)
+  	FROM PHOTO
+  	WHERE SHOP_NO = #{shopNo,jdbcType=VARCHAR}
+  	<if test="null!=albumId">
+  		AND ALBUM_ID = #{albumId,jdbcType=BIGINT}
+  	</if>
+  </select>
+  
+  <select id="findPhotoList" resultMap="BaseResultMapDto" parameterType="java.util.Map">
+  	SELECT
+  	<include refid="Base_Column_List" />
+  	FROM PHOTO
+  	WHERE SHOP_NO = #{shopNo,jdbcType=VARCHAR}
+  	<if test="null!=albumId">
+  		AND ALBUM_ID = #{albumId,jdbcType=BIGINT}
+  	</if>
+  	ORDER BY SORT desc
+  	LIMIT ${start}, ${pageSize};
+  </select>
+  
+
+  <update id="editMovePhoto" parameterType="com.zjlp.face.web.server.product.material.domain.Photo" >
+  	update photo
+  	set album_id = #{newId,jdbcType=BIGINT}
+  	where album_id = #{oldId,jdbcType=BIGINT}
+  </update>  
+  
+  
+  
+  <update id="editPhoto" parameterType="com.zjlp.face.web.server.product.material.domain.Photo" >
+  	update PHOTO
+  	set ALBUM_ID = #{albumId,jdbcType=BIGINT},
+  		UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+  	where ID = #{id,jdbcType=BIGINT}
+  </update>  
+  
+</mapper>

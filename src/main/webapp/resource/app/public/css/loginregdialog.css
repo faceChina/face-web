@@ -1,0 +1,125 @@
+/*==登录注册弹窗==*/
+.whf4{
+	width: 3.3rem;
+}
+.whf3{
+	width: 2.8rem;
+}
+.fleft{
+	float: left;
+}
+.tright{
+	text-align: right;
+}
+a.disabled{
+	background-color: #cdcdcd;
+	color: #000;
+}
+a.bg-dc3132{
+	background-color: #dc3132;
+	color: #fff;
+}
+.pd36{
+	padding: 0.9rem 0;
+}
+.pb0{
+	padding-bottom: 0;
+}
+.c-dialog-loginregbox{
+	background-color: #f8f8f8;
+	color: #666;
+	width: 100%;
+	margin: 0 auto;
+	font-size: .7rem;
+	padding-bottom: 1rem;
+}
+.c-dialog-loginregbox .lrbox-title{
+	width: 100%;
+	height: 2.225rem;
+	line-height: 2.225rem;
+	font-size: .7rem;
+	text-align: center;
+	border-bottom: 1px solid #ccc;
+	display: inline-block;
+	margin-bottom: 0.125rem;
+}
+.c-dialog-loginregbox .lrbox-content{
+	width:12rem;
+	margin: 0 auto;
+}
+.c-dialog-loginregbox .lrbox-content li{
+	display: inline-block;
+	width: 100%;
+	padding: 0.5rem 0;
+	border: 1px solid #cccccc;
+	border-radius: 4px;
+	margin-top: 0.425rem;
+	background-color: #fff;
+}
+.c-dialog-loginregbox .lrbox-content li input{
+	font-size: .65rem;
+}
+.c-dialog-loginregbox .lrbox-content li.noline{
+	border: 0;
+	padding:0;
+	background-color: #f8f8f8;
+}
+.c-dialog-loginregbox .lrbox-content li.disabled{
+	background-color: #ebebeb;
+}
+.c-dialog-loginregbox .lrbox-content li .l-font{
+	padding-right: 0.25rem;
+	text-align: left;
+	display: inline-block;
+	margin-left: 0.5rem;
+}
+.div-code{
+	padding: 0.5rem 0;
+	width: 7.9rem;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	margin-right: 0.325rem;
+	background-color: #fff;
+}
+.div-code input.input-code{
+	width: 4.5rem;
+}
+.bt-code{
+	width: 3.75rem;
+	padding: 0.375rem 0;
+	text-align: center;
+	border-radius: 4px;
+	border: 1px solid #ccc;
+	display: inline-block;
+	margin-top: 0.175rem;
+	font-size: 0.75;
+}
+.input-pwd{
+	width: 8rem;
+}
+.set-pwd{
+	width: 8.5rem;
+}
+.lrboox-bt .bt-reg{
+	width: 100%;
+	padding: 0.5rem 0;
+	text-align: center;
+	display: inline-block;
+	border-radius: 4px;
+	border: 1px solid #ccc;
+	font-size: 0.8rem;
+}
+.label-iphone{
+	width: 8rem;
+	display: inline-block;
+	text-align: left;
+}
+/*输入手机号码弹窗*/
+.c-dialog-loginregbox .lrbox-content li.li-iphone{
+	margin-top: 1.225rem;
+	margin-bottom: 1.75rem;
+}
+/*登录*/
+.c-dialog-loginregbox .mt50{
+	margin-top: 1.25rem;
+}

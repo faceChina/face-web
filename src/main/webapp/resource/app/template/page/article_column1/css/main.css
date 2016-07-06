@@ -1,0 +1,42 @@
+﻿@charset "utf-8";
+/*  
+* @description:文章模板1
+* @author: sf 
+* @update:
+*/
+
+/* 文章列表  */
+
+.list-rowspan{}
+.list-product{
+	margin:0 10px;
+}
+.list-product-col{
+	width:100%;
+	display:table;
+	margin:10px 0;
+	background:#fff;
+}
+.list-product-col span{
+	display:table-cell;
+	vertical-align:middle;
+}
+.list-product-col .pic{
+	width:40%;
+}
+.list-product-col .pic img{
+	display:block;
+	width:100%;
+}
+.list-product-col .info{
+	padding-left: 10px;
+}
+.list-product-col .info .tit{
+	display: -webkit-box;
+	-webkit-line-clamp:1;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	font-size:18px;
+}
+
+/* 文章列表  end*/

@@ -1,0 +1,66 @@
+@CHARSET "UTF-8";
+/*  
+* @description:弹出窗口、提示框
+* @author: 
+* @update:
+*/
+
+.aui_outer {
+	min-width: 300px;
+	background: #fff;
+	border:1px solid #ccc;
+	border-radius: 5px;
+	box-shadow:0px 0px 5px 5px rgba(0,0,0,0.1);
+	position: relative;
+}
+.aui_border{
+	width:100%;
+}
+.aui_inner{}
+.aui_dialog{
+	width:100%;
+}
+.aui_header{}
+.aui_titleBar {
+	width: 100%;
+	padding:0 10px;
+	font-size: 16px;
+	font-weight: bold;
+	line-height: 40px;
+	
+}
+.aui_title{}
+.aui_close {
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	width: 30px;
+	height: 30px;
+	font-size: 30px;
+	line-height: 30px;
+}
+.aui_main {
+	/* padding: 20px 0; */
+	border-bottom:1px solid #ccc;
+	border-top:1px solid #ccc;
+}
+.aui_content {
+	font-size: 16px;
+}
+.aui_footer{}
+.aui_buttons {
+	width:100%;
+	padding:10px;
+	text-align:center;
+}
+.aui_buttons button {
+	background: #fff;
+	border:1px solid #ccc;
+	padding: 8px 16px;
+	border-radius: 5px;
+	margin: 0 5px;
+} 
+.aui_buttons button.aui_state_highlight {
+	background-color: #e52141;
+	color: #fff;
+}

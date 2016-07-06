@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjlp.face.web.mapper.IntegralRecodeMapper">
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.operation.member.domain.IntegralRecode">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="MEMBER_CARD_ID" jdbcType="BIGINT" property="memberCardId" />
+    <result column="TYPE" jdbcType="INTEGER" property="type" />
+    <result column="WAY" jdbcType="INTEGER" property="way" />
+    <result column="INTEGRAL" jdbcType="BIGINT" property="integral" />
+    <result column="AVAILABLE_INTEGRAL" jdbcType="BIGINT" property="availableIntegral" />
+    <result column="FROZEN_INTEGRAL" jdbcType="BIGINT" property="frozenIntegral" />
+    <result column="OPER_YEAR" jdbcType="VARCHAR" property="operYear" />
+    <result column="OPER_MONTH" jdbcType="VARCHAR" property="operMonth" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, MEMBER_CARD_ID, TYPE, WAY, INTEGRAL, AVAILABLE_INTEGRAL, FROZEN_INTEGRAL, OPER_YEAR, 
+    OPER_MONTH, CREATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from integral_recode
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from integral_recode
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.operation.member.domain.IntegralRecode">
+  	<selectKey keyProperty="id" resultType="long" order="AFTER">  
+        SELECT LAST_INSERT_ID();  
+    </selectKey>
+    insert into integral_recode (ID, MEMBER_CARD_ID, TYPE, 
+      WAY, INTEGRAL, AVAILABLE_INTEGRAL, 
+      FROZEN_INTEGRAL, OPER_YEAR, OPER_MONTH, 
+      CREATE_TIME)
+    values (#{id,jdbcType=BIGINT}, #{memberCardId,jdbcType=BIGINT}, #{type,jdbcType=INTEGER}, 
+      #{way,jdbcType=INTEGER}, #{integral,jdbcType=BIGINT}, #{availableIntegral,jdbcType=BIGINT}, 
+      #{frozenIntegral,jdbcType=BIGINT}, #{operYear,jdbcType=VARCHAR}, #{operMonth,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.operation.member.domain.IntegralRecode">
+  	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into integral_recode
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="memberCardId != null">
+        MEMBER_CARD_ID,
+      </if>
+      <if test="type != null">
+        TYPE,
+      </if>
+      <if test="way != null">
+        WAY,
+      </if>
+      <if test="integral != null">
+        INTEGRAL,
+      </if>
+      <if test="availableIntegral != null">
+        AVAILABLE_INTEGRAL,
+      </if>
+      <if test="frozenIntegral != null">
+        FROZEN_INTEGRAL,
+      </if>
+      <if test="operYear != null">
+        OPER_YEAR,
+      </if>
+      <if test="operMonth != null">
+        OPER_MONTH,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="memberCardId != null">
+        #{memberCardId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="way != null">
+        #{way,jdbcType=INTEGER},
+      </if>
+      <if test="integral != null">
+        #{integral,jdbcType=BIGINT},
+      </if>
+      <if test="availableIntegral != null">
+        #{availableIntegral,jdbcType=BIGINT},
+      </if>
+      <if test="frozenIntegral != null">
+        #{frozenIntegral,jdbcType=BIGINT},
+      </if>
+      <if test="operYear != null">
+        #{operYear,jdbcType=VARCHAR},
+      </if>
+      <if test="operMonth != null">
+        #{operMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.operation.member.domain.IntegralRecode">
+    update integral_recode
+    <set>
+      <if test="memberCardId != null">
+        MEMBER_CARD_ID = #{memberCardId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null">
+        TYPE = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="way != null">
+        WAY = #{way,jdbcType=INTEGER},
+      </if>
+      <if test="integral != null">
+        INTEGRAL = #{integral,jdbcType=BIGINT},
+      </if>
+      <if test="availableIntegral != null">
+        AVAILABLE_INTEGRAL = #{availableIntegral,jdbcType=BIGINT},
+      </if>
+      <if test="frozenIntegral != null">
+        FROZEN_INTEGRAL = #{frozenIntegral,jdbcType=BIGINT},
+      </if>
+      <if test="operYear != null">
+        OPER_YEAR = #{operYear,jdbcType=VARCHAR},
+      </if>
+      <if test="operMonth != null">
+        OPER_MONTH = #{operMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.operation.member.domain.IntegralRecode">
+    update integral_recode
+    set MEMBER_CARD_ID = #{memberCardId,jdbcType=BIGINT},
+      TYPE = #{type,jdbcType=INTEGER},
+      WAY = #{way,jdbcType=INTEGER},
+      INTEGRAL = #{integral,jdbcType=BIGINT},
+      AVAILABLE_INTEGRAL = #{availableIntegral,jdbcType=BIGINT},
+      FROZEN_INTEGRAL = #{frozenIntegral,jdbcType=BIGINT},
+      OPER_YEAR = #{operYear,jdbcType=VARCHAR},
+      OPER_MONTH = #{operMonth,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="findIntegralRecordListByMemberCardId" parameterType="long" resultMap="BaseResultMap">
+  	SELECT
+		*
+	FROM
+		integral_recode AS ir
+	WHERE
+		ir.MEMBER_CARD_ID = #{memberCardId}
+	AND ir.ID NOT IN (
+		SELECT
+			ID
+		FROM
+			integral_recode AS ir2
+		WHERE
+			ir2.type = 1
+		AND ir2.WAY = 2
+	)
+	<if test="beginTime != null and endTime != null">
+  		and ir.create_time between #{beginTime} and #{endTime}
+  	</if>
+  	order by ir.create_time desc
+  </select>
+</mapper>

@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.CartMapper" >
+ <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.trade.cart.domain.Cart" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="USER_ID" property="userId" jdbcType="BIGINT" />
+    <result column="SHOP_NO" property="shopNo" jdbcType="VARCHAR" />
+    <result column="SHOP_NAME" property="shopName" jdbcType="VARCHAR" />
+    <result column="SUBBRANCH_ID" property="subbranchId" jdbcType="BIGINT" />
+    <result column="SUBBRANCH_SHOP_NAME" property="subbranchShopName" jdbcType="VARCHAR" />
+    <result column="GOOD_ID" property="goodId" jdbcType="BIGINT" />
+    <result column="GOOD_NAME" property="goodName" jdbcType="VARCHAR" />
+    <result column="GOOD_SKU_ID" property="goodSkuId" jdbcType="BIGINT" />
+    <result column="SKU_PROPERTIES_NAME" property="skuPropertiesName" jdbcType="VARCHAR" />
+    <result column="SKU_PICTURE_PATH" property="skuPicturePath" jdbcType="VARCHAR" />
+    <result column="UNIT_PRICE" property="unitPrice" jdbcType="BIGINT" />
+    <result column="QUANTITY" property="quantity" jdbcType="BIGINT" />
+    <result column="VERSION" property="version" jdbcType="VARCHAR" />
+    <result column="SHARE_ID" property="shareId" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cart.ID,  cart.USER_ID,  cart.SHOP_NO,  cart.SHOP_NAME, cart.SUBBRANCH_ID, cart.SUBBRANCH_SHOP_NAME, cart.GOOD_ID,  cart.GOOD_NAME,  cart.GOOD_SKU_ID,  cart.SKU_PROPERTIES_NAME, 
+     cart.SKU_PICTURE_PATH,  cart.UNIT_PRICE,  cart.QUANTITY,  cart.VERSION, cart.SHARE_ID, cart.CREATE_TIME,  cart.UPDATE_TIME
+  </sql>
+  <resultMap id="BaseResultMapDto" type="com.zjlp.face.web.server.trade.cart.domain.CartDto" extends="BaseResultMap"></resultMap>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from cart
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from cart
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.trade.cart.domain.Cart" >
+   	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into cart (ID, USER_ID, SHOP_NO, 
+      SHOP_NAME, SUBBRANCH_ID, SUBBRANCH_SHOP_NAME, 
+      GOOD_ID, GOOD_NAME, GOOD_SKU_ID, 
+      SKU_PROPERTIES_NAME, SKU_PICTURE_PATH, UNIT_PRICE, 
+      QUANTITY, VERSION, SHARE_ID, CREATE_TIME, UPDATE_TIME
+      )
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{shopNo,jdbcType=VARCHAR}, 
+      #{shopName,jdbcType=VARCHAR}, #{subbranchId,jdbcType=BIGINT}, #{subbranchShopName,jdbcType=VARCHAR}, 
+      #{goodId,jdbcType=BIGINT}, #{goodName,jdbcType=VARCHAR}, #{goodSkuId,jdbcType=BIGINT}, 
+      #{skuPropertiesName,jdbcType=VARCHAR}, #{skuPicturePath,jdbcType=VARCHAR}, #{unitPrice,jdbcType=BIGINT}, 
+      #{quantity,jdbcType=BIGINT}, #{version,jdbcType=VARCHAR}, 
+      #{shareId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.trade.cart.domain.Cart" >
+   	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+   insert into cart
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="shopNo != null" >
+        SHOP_NO,
+      </if>
+      <if test="shopName != null" >
+        SHOP_NAME,
+      </if>
+      <if test="subbranchId != null" >
+        SUBBRANCH_ID,
+      </if>
+      <if test="subbranchShopName != null" >
+        SUBBRANCH_SHOP_NAME,
+      </if>
+      <if test="goodId != null" >
+        GOOD_ID,
+      </if>
+      <if test="goodName != null" >
+        GOOD_NAME,
+      </if>
+      <if test="goodSkuId != null" >
+        GOOD_SKU_ID,
+      </if>
+      <if test="skuPropertiesName != null" >
+        SKU_PROPERTIES_NAME,
+      </if>
+      <if test="skuPicturePath != null" >
+        SKU_PICTURE_PATH,
+      </if>
+      <if test="unitPrice != null" >
+        UNIT_PRICE,
+      </if>
+      <if test="quantity != null" >
+        QUANTITY,
+      </if>
+      <if test="version != null" >
+        VERSION,
+      </if>
+      <if test="shareId != null" >
+        SHARE_ID,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="shopNo != null" >
+        #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="shopName != null" >
+        #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="subbranchId != null" >
+        #{subbranchId,jdbcType=BIGINT},
+      </if>
+      <if test="subbranchShopName != null" >
+        #{subbranchShopName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodId != null" >
+        #{goodId,jdbcType=BIGINT},
+      </if>
+      <if test="goodName != null" >
+        #{goodName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodSkuId != null" >
+        #{goodSkuId,jdbcType=BIGINT},
+      </if>
+      <if test="skuPropertiesName != null" >
+        #{skuPropertiesName,jdbcType=VARCHAR},
+      </if>
+      <if test="skuPicturePath != null" >
+        #{skuPicturePath,jdbcType=VARCHAR},
+      </if>
+      <if test="unitPrice != null" >
+        #{unitPrice,jdbcType=BIGINT},
+      </if>
+      <if test="quantity != null" >
+        #{quantity,jdbcType=BIGINT},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="shareId != null" >
+        #{shareId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.trade.cart.domain.Cart" >
+     update cart
+    <set >
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="shopNo != null" >
+        SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="shopName != null" >
+        SHOP_NAME = #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="subbranchId != null" >
+        SUBBRANCH_ID = #{subbranchId,jdbcType=BIGINT},
+      </if>
+      <if test="subbranchShopName != null" >
+        SUBBRANCH_SHOP_NAME = #{subbranchShopName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodId != null" >
+        GOOD_ID = #{goodId,jdbcType=BIGINT},
+      </if>
+      <if test="goodName != null" >
+        GOOD_NAME = #{goodName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodSkuId != null" >
+        GOOD_SKU_ID = #{goodSkuId,jdbcType=BIGINT},
+      </if>
+      <if test="skuPropertiesName != null" >
+        SKU_PROPERTIES_NAME = #{skuPropertiesName,jdbcType=VARCHAR},
+      </if>
+      <if test="skuPicturePath != null" >
+        SKU_PICTURE_PATH = #{skuPicturePath,jdbcType=VARCHAR},
+      </if>
+      <if test="unitPrice != null" >
+        UNIT_PRICE = #{unitPrice,jdbcType=BIGINT},
+      </if>
+      <if test="quantity != null" >
+        QUANTITY = #{quantity,jdbcType=BIGINT},
+      </if>
+      <if test="version != null" >
+        VERSION = #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="shareId != null" >
+        SHARE_ID = #{shareId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.trade.cart.domain.Cart" >
+     update cart
+    set USER_ID = #{userId,jdbcType=BIGINT},
+      SHOP_NO = #{shopNo,jdbcType=VARCHAR},
+      SHOP_NAME = #{shopName,jdbcType=VARCHAR},
+      SUBBRANCH_ID = #{subbranchId,jdbcType=BIGINT},
+      SUBBRANCH_SHOP_NAME = #{subbranchShopName,jdbcType=VARCHAR},
+      GOOD_ID = #{goodId,jdbcType=BIGINT},
+      GOOD_NAME = #{goodName,jdbcType=VARCHAR},
+      GOOD_SKU_ID = #{goodSkuId,jdbcType=BIGINT},
+      SKU_PROPERTIES_NAME = #{skuPropertiesName,jdbcType=VARCHAR},
+      SKU_PICTURE_PATH = #{skuPicturePath,jdbcType=VARCHAR},
+      UNIT_PRICE = #{unitPrice,jdbcType=BIGINT},
+      QUANTITY = #{quantity,jdbcType=BIGINT},
+      VERSION = #{version,jdbcType=VARCHAR},
+      SHARE_ID = #{shareId,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectCartListByUserId" resultMap="BaseResultMapDto">
+  	select <include refid="Base_Column_List"/>
+  	,sku.status,sku.sales_price salesPrice,sku.stock stock
+  	from cart
+  	left join good_sku sku on cart.good_sku_id=sku.id 
+  	where cart.user_id = #{userId}
+  	order by cart.create_time desc
+  </select>
+  <select id="getCart" resultMap="BaseResultMap">
+  	select <include refid="Base_Column_List"/>
+  	from cart
+  	where user_id = #{userId} 
+  	and shop_no = #{shopNo} 
+  	<if test="subbranchId != null">
+	  	and SUBBRANCH_ID = #{subbranchId,jdbcType=VARCHAR} 
+  	</if>
+  	<if test="subbranchId == null">
+  		and SUBBRANCH_ID is null
+  	</if>
+  	and good_sku_id = #{goodSkuId}
+  </select>
+  <select id="selectCartListByUserIdAndShopNo" resultMap="BaseResultMapDto">
+  	select <include refid="Base_Column_List"/>, good_sku.status,good_sku.sales_price salesPrice,good_sku.stock stock
+  	from cart  join good_sku on cart.good_sku_id=good_sku.id
+  	where user_id = #{userId} and shop_no = #{shopNo}
+  	order by create_time desc
+  </select>
+  <select id="getCount" resultType="java.lang.Integer">
+  	select count(1)
+  	from cart
+  	where user_id = #{userId}
+  </select>
+  <delete id="delNullityByUserId">
+  	delete cart from cart join good_sku on cart.good_sku_id=good_sku.id where cart.user_id = #{userId} <![CDATA[and good_sku.status <> 1]]>
+  </delete>
+  <update id="updateSubbranchInfo" parameterType="com.zjlp.face.web.server.trade.cart.domain.Cart" >
+       UPDATE
+           CART
+       SET
+           SUBBRANCH_ID = null,
+           UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+       WHERE
+           SUBBRANCH_ID = #{subbranchId,jdbcType=BIGINT}
+  </update>
+</mapper>

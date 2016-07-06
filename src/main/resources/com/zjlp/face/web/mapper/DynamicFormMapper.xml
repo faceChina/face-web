@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.DynamicFormMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.operation.appoint.domain.DynamicForm" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="REMOTE_ID" property="remoteId" jdbcType="VARCHAR" />
+    <result column="REMOTE_CODE" property="remoteCode" jdbcType="INTEGER" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="LABLE" property="lable" jdbcType="VARCHAR" />
+    <result column="PLACE_HOLDER" property="placeHolder" jdbcType="VARCHAR" />
+    <result column="IS_REQUIRED" property="isRequired" jdbcType="BIT" />
+    <result column="SORT" property="sort" jdbcType="INTEGER" />
+    <result column="INNER_SORT" property="innerSort" jdbcType="SMALLINT" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, REMOTE_ID, REMOTE_CODE, TYPE, LABLE, PLACE_HOLDER, IS_REQUIRED, SORT, INNER_SORT, MEMO, CREATE_TIME, 
+    UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from dynamic_form
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dynamic_form
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.operation.appoint.domain.DynamicForm" >
+     insert into dynamic_form (ID, REMOTE_ID, REMOTE_CODE, 
+      TYPE, LABLE, PLACE_HOLDER, 
+      IS_REQUIRED, SORT, INNER_SORT, 
+      MEMO, CREATE_TIME, UPDATE_TIME
+      )
+    values (#{id,jdbcType=BIGINT}, #{remoteId,jdbcType=VARCHAR}, #{remoteCode,jdbcType=INTEGER}, 
+      #{type,jdbcType=VARCHAR}, #{lable,jdbcType=VARCHAR}, #{placeHolder,jdbcType=VARCHAR}, 
+      #{isRequired,jdbcType=BIT}, #{sort,jdbcType=INTEGER}, #{innerSort,jdbcType=SMALLINT}, 
+      #{memo,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.operation.appoint.domain.DynamicForm" >
+  	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+     insert into dynamic_form
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="remoteId != null" >
+        REMOTE_ID,
+      </if>
+      <if test="remoteCode != null" >
+        REMOTE_CODE,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="lable != null" >
+        LABLE,
+      </if>
+      <if test="placeHolder != null" >
+        PLACE_HOLDER,
+      </if>
+      <if test="isRequired != null" >
+        IS_REQUIRED,
+      </if>
+      <if test="sort != null" >
+        SORT,
+      </if>
+      <if test="innerSort != null" >
+        INNER_SORT,
+      </if>
+      <if test="memo != null" >
+        MEMO,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="remoteId != null" >
+        #{remoteId,jdbcType=VARCHAR},
+      </if>
+      <if test="remoteCode != null" >
+        #{remoteCode,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="lable != null" >
+        #{lable,jdbcType=VARCHAR},
+      </if>
+      <if test="placeHolder != null" >
+        #{placeHolder,jdbcType=VARCHAR},
+      </if>
+      <if test="isRequired != null" >
+        #{isRequired,jdbcType=BIT},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="innerSort != null" >
+        #{innerSort,jdbcType=SMALLINT},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.operation.appoint.domain.DynamicForm" >
+    update dynamic_form
+    <set >
+      <if test="remoteId != null" >
+        REMOTE_ID = #{remoteId,jdbcType=VARCHAR},
+      </if>
+      <if test="remoteCode != null" >
+        REMOTE_CODE = #{remoteCode,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="lable != null" >
+        LABLE = #{lable,jdbcType=VARCHAR},
+      </if>
+      <if test="placeHolder != null" >
+        PLACE_HOLDER = #{placeHolder,jdbcType=VARCHAR},
+      </if>
+      <if test="isRequired != null" >
+        IS_REQUIRED = #{isRequired,jdbcType=BIT},
+      </if>
+      <if test="sort != null" >
+        SORT = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="innerSort != null" >
+        INNER_SORT = #{innerSort,jdbcType=SMALLINT},
+      </if>
+      <if test="memo != null" >
+        MEMO = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.operation.appoint.domain.DynamicForm" >
+    update dynamic_form
+    set REMOTE_ID = #{remoteId,jdbcType=VARCHAR},
+      REMOTE_CODE = #{remoteCode,jdbcType=INTEGER},
+      TYPE = #{type,jdbcType=VARCHAR},
+      LABLE = #{lable,jdbcType=VARCHAR},
+      PLACE_HOLDER = #{placeHolder,jdbcType=VARCHAR},
+      IS_REQUIRED = #{isRequired,jdbcType=BIT},
+      SORT = #{sort,jdbcType=INTEGER},
+      INNER_SORT = #{innerSort,jdbcType=SMALLINT},
+      MEMO = #{memo,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="findDynamicFormList" resultMap="BaseResultMap">
+  	select <include refid="Base_Column_List" />
+  	from dynamic_form
+  	where remote_id = #{remoteId} and remote_code = #{remoteCode}
+  	order by sort
+  </select>
+</mapper>

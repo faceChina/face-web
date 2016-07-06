@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.AppCommentMapper">
+	<resultMap id="BaseResultMap" type="com.zjlp.face.web.server.social.businesscircle.domain.AppComment">
+		<id column="ID" property="id" jdbcType="BIGINT" />
+		<result column="CIRCLEMSG_ID" property="circleMsgId" jdbcType="BIGINT" />
+		<result column="SENDER_ID" property="senderId" jdbcType="BIGINT" />
+		<result column="RECEIVE_ID" property="receiveId" jdbcType="BIGINT" />
+		<result column="FLAG" property="flag" jdbcType="INTEGER" />
+		<result column="CONTENT" property="content" jdbcType="VARCHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="SENDERNAME" property="senderName" jdbcType="VARCHAR" />
+		<result column="HEADIMGURL" property="headimgurl" jdbcType="VARCHAR" />
+		<result column="HEADIMGURL_RECEIVE" property="headimgurlReceive" jdbcType="VARCHAR" />
+		<result column="RECEIVENAME" property="receiveName" jdbcType="VARCHAR" />
+		<result column="SENDER_USER_NAME" property="senderUserName" jdbcType="VARCHAR" />
+		<result column="RECEIVE_USER_NAME" property="receiveUserName" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, CIRCLEMSG_ID,SENDER_ID, RECEIVE_ID,FLAG,CONTENT, CREATE_TIME
+	</sql>
+	
+	<insert id="insert" parameterType="com.zjlp.face.web.server.social.businesscircle.domain.AppComment">
+		<selectKey keyProperty="id" resultType="long" order="AFTER">
+			SELECT
+			LAST_INSERT_ID();
+		</selectKey>
+		INSERT INTO app_comment (CIRCLEMSG_ID,SENDER_ID, RECEIVE_ID,FLAG,CONTENT, CREATE_TIME)
+		VALUES (
+		#{circleMsgId,jdbcType=BIGINT},
+		#{senderId,jdbcType=BIGINT},
+		#{receiveId,jdbcType=BIGINT},
+		#{flag,jdbcType=INTEGER},
+		#{content,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	<delete id="deleteByIdAndUserId" parameterType="java.util.Map">
+		DELETE FROM
+		app_comment
+		WHERE ID = #{id,jdbcType=BIGINT}
+		And	SENDER_ID = #{senderId,jdbcType=BIGINT}
+	</delete>
+	<delete id="deleteByCircleMsgId" parameterType="java.lang.Long">
+		DELETE FROM
+		app_comment
+		WHERE CIRCLEMSG_ID = #{circleMsgId,jdbcType=BIGINT}
+	</delete>
+	<select id="selectByCircleMsgId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+	   SELECT
+	   a.*,s.NICKNAME AS SENDERNAME ,s.HEADIMGURL,r.NICKNAME AS RECEIVENAME,
+	   r.HEADIMGURL AS HEADIMGURL_RECEIVE,s.LOGIN_ACCOUNT as SENDER_USER_NAME,r.LOGIN_ACCOUNT AS RECEIVE_USER_NAME
+	   FROM app_comment a 
+	  LEFT JOIN  USER s ON a.SENDER_ID=s.ID
+	  LEFT JOIN  USER r ON a.RECEIVE_ID=r.ID
+	   WHERE a.CIRCLEMSG_ID = #{circleMsgId,jdbcType=BIGINT}
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+	     SELECT
+	   a.*,s.NICKNAME AS SENDERNAME ,s.HEADIMGURL,r.NICKNAME AS RECEIVENAME
+	   FROM app_comment a 
+	  LEFT JOIN  USER s ON a.SENDER_ID=s.ID
+	  LEFT JOIN  USER r ON a.RECEIVE_ID=r.ID
+	   WHERE a.ID = #{id,jdbcType=BIGINT}
+	</select>
+</mapper>

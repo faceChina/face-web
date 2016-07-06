@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.MulChatViewNickMapper">
+	<resultMap id="BaseResultMap"
+		type="com.zjlp.face.web.server.user.mulchat.domain.MulChatViewNick">
+		<id column="GROUP_ID" property="groupId" jdbcType="VARCHAR" />
+		<result column="LOGIN_ACCOUNT" property="loginAccount" jdbcType="VARCHAR" />
+		<result column="NICKNAME" property="viewNick" jdbcType="VARCHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		GROUP_ID, LOGIN_ACCOUNT, NICKNAME,CREATE_TIME, UPDATE_TIME
+	</sql>
+	
+	<insert id="insert" parameterType="com.zjlp.face.web.server.user.mulchat.domain.MulChatViewNick">
+	  INSERT INTO mul_chat_nick (GROUP_ID, LOGIN_ACCOUNT, NICKNAME,CREATE_TIME, UPDATE_TIME)
+	  VALUES (
+	    #{groupId,jdbcType=VARCHAR},
+	    #{loginAccount,jdbcType=VARCHAR},
+		#{viewNick,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{updateTime,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	
+	<delete id="delete" parameterType="java.util.Map">
+	  DELETE FROM 
+	  mul_chat_nick
+	  WHERE GROUP_ID = #{groupId,jdbcType=VARCHAR} 
+	  AND LOGIN_ACCOUNT = #{loginAccount,jdbcType=VARCHAR}
+	</delete>
+	
+	<select id="select" resultMap="BaseResultMap" parameterType="java.util.Map">
+	  SELECT
+	  <include refid="Base_Column_List" />
+	  FROM  mul_chat_nick
+	  WHERE GROUP_ID = #{groupId,jdbcType=VARCHAR} 
+	  AND LOGIN_ACCOUNT = #{loginAccount,jdbcType=VARCHAR}
+	</select>
+	
+	<update id="updateNickName" parameterType="com.zjlp.face.web.server.user.mulchat.domain.MulChatViewNick">
+	UPDATE
+	mul_chat_nick
+	<set>
+		<if test="viewNick != null">
+			NICKNAME = #{viewNick,jdbcType=VARCHAR},
+		</if>
+		<if test="updateTime != null">
+			UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+		</if>
+	</set> 
+	 WHERE GROUP_ID = #{groupId,jdbcType=VARCHAR} 
+	 AND LOGIN_ACCOUNT = #{loginAccount,jdbcType=VARCHAR}
+	</update>
+
+    <select id="findGroupNickList" resultMap="BaseResultMap" parameterType="java.lang.String">
+     SELECT 
+     <include refid="Base_Column_List"/>
+     FROM mul_chat_nick
+      WHERE GROUP_ID = #{groupId,jdbcType=VARCHAR}
+    </select>
+</mapper>

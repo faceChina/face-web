@@ -1,0 +1,55 @@
+﻿@charset "utf-8";
+/*  
+* @description:文章模板
+* @author: sf 
+* @update:
+*/
+
+/* 文章模板  样式 */
+.article-title{
+	position:relative;
+	overflow:hidden;
+	min-width:320px;
+	max-width:640px;
+	width:100%;
+	height:45px;
+	margin-top:-45px;
+	background:rgba(0,0,0,.4);
+	text-align:center;
+	line-height:45px;
+	letter-spacing:2px;
+	font-size:20px;
+}
+.article-title a{
+	display:block;
+	width:100%;
+	color:#fff;
+}
+
+
+.list-rowspan{}
+.list-product{}
+.list-product ul{padding-top: 20px;}
+.list-product ul li{
+	float:left;
+	display:inline;
+	width:50%;
+}
+.list-product ul li a{
+	display:block;
+    margin:0 10px 20px;
+    border:1px solid #ccc;
+}
+.list-product ul li a span{display:block;}
+.list-product ul li a .pic{width:100%;}
+.list-product ul li a .pic img{
+	width:100%;
+	display:block;
+}
+.list-product ul li a .info{
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	overflow: hidden;
+	text-align:center;
+}

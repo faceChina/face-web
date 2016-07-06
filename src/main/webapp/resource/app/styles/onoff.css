@@ -1,0 +1,66 @@
+@charset "utf-8";
+/* 开关按钮 */
+.onoff{
+	position:relative;
+	display:inline-block;
+	width:5em;
+	height:2.4em;
+	background:#cc0000;
+	z-index:0;
+/* 	margin-left:1.2em;
+margin-right:1.2em; */
+	cursor:pointer;
+	border-radius: 2.4em;
+	padding: 0 .6em;
+}
+/* .onoff:before{
+	display:block;
+	content: "";
+	position:absolute;
+	bottom:0;
+	left:-1.2em;
+	z-index:-1;
+	width:2.4em;
+	height:2.4em;
+	background:#cc0000;
+	border-radius:100%;
+	overflow:hidden;
+}
+.onoff:after{
+	display:block;
+	content: "";
+	position:absolute;
+	bottom:0;
+	right:-1.2em;
+	z-index:-1;
+	width:2.4em;
+	height:2.4em;
+	background:#cc0000;
+	border-radius:100%;
+	overflow:hidden;
+} */
+.onoff-info{
+	display:block;
+	line-height:2.4em;
+	color:#fff;
+	font-style:normal;
+	text-align:right;
+}
+.onoff-handle{
+	position:absolute;
+  	top:0;
+  	left:0;
+  	z-index:9;
+	display:block;
+	width:2.4em;
+	height:2.4em;
+	background:#fff;
+	border:1px solid #cc0000;
+  	border-radius:100%;
+}
+.onoff-off{
+	background-color: #ddd;
+}
+.onoff-off .onoff-handle{
+	border:1px solid #ddd;
+}

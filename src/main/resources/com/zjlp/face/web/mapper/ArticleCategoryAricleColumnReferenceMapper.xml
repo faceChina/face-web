@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.ArticleCategoryAricleColumnReferenceMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.product.material.domain.ArticleCategoryAricleColumnReference" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="ARTICLE_CATEGORY_ID" property="articleCategoryId" jdbcType="BIGINT" />
+    <result column="ARICLE_COLUMN_ID" property="aricleColumnId" jdbcType="BIGINT" />
+    <result column="SORT" property="sort" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ARTICLE_CATEGORY_ID, ARICLE_COLUMN_ID, SORT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from article_category_article_column_reference
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from article_category_article_column_reference
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.product.material.domain.ArticleCategoryAricleColumnReference" >
+    insert into article_category_article_column_reference (ID, ARTICLE_CATEGORY_ID, ARICLE_COLUMN_ID, 
+      SORT)
+    values (#{id,jdbcType=BIGINT}, #{articleCategoryId,jdbcType=BIGINT}, #{aricleColumnId,jdbcType=BIGINT}, 
+      #{sort,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.product.material.domain.ArticleCategoryAricleColumnReference" >
+    insert into article_category_article_column_reference
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="articleCategoryId != null" >
+        ARTICLE_CATEGORY_ID,
+      </if>
+      <if test="aricleColumnId != null" >
+        ARICLE_COLUMN_ID,
+      </if>
+      <if test="sort != null" >
+        SORT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="articleCategoryId != null" >
+        #{articleCategoryId,jdbcType=BIGINT},
+      </if>
+      <if test="aricleColumnId != null" >
+        #{aricleColumnId,jdbcType=BIGINT},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.product.material.domain.ArticleCategoryAricleColumnReference" >
+    update article_category_article_column_reference
+    <set >
+      <if test="articleCategoryId != null" >
+        ARTICLE_CATEGORY_ID = #{articleCategoryId,jdbcType=BIGINT},
+      </if>
+      <if test="aricleColumnId != null" >
+        ARICLE_COLUMN_ID = #{aricleColumnId,jdbcType=BIGINT},
+      </if>
+      <if test="sort != null" >
+        SORT = #{sort,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.product.material.domain.ArticleCategoryAricleColumnReference" >
+    update article_category_article_column_reference
+    set ARTICLE_CATEGORY_ID = #{articleCategoryId,jdbcType=BIGINT},
+      ARICLE_COLUMN_ID = #{aricleColumnId,jdbcType=BIGINT},
+      SORT = #{sort,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="findByAricleColumnId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+  	SELECT 
+  	   <include refid="Base_Column_List" />
+  	FROM ARTICLE_CATEGORY_ARTICLE_COLUMN_REFERENCE
+  	WHERE ARICLE_COLUMN_ID = #{aricleColumnId,jdbcType=BIGINT}
+  </select>
+  
+  
+  <delete id="deleteByAricleColumnId" parameterType="java.lang.Long">
+  	DELETE FROM ARTICLE_CATEGORY_ARTICLE_COLUMN_REFERENCE
+  	WHERE ARICLE_COLUMN_ID = #{aricleColumnId, jdbcType=BIGINT}
+  </delete>
+  
+  
+</mapper>

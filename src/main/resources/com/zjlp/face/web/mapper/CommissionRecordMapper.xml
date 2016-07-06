@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.CommissionRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.trade.payment.domain.CommissionRecord" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="TRANSACTION_SERIAL_NUMBER" property="transactionSerialNumber" jdbcType="VARCHAR" />
+    <result column="ORDER_NO" property="orderNo" jdbcType="VARCHAR" />
+    <result column="ACCOUNT_ID" property="accountId" jdbcType="BIGINT" />
+    <result column="COMMISSION" property="commission" jdbcType="BIGINT" />
+    <result column="IS_TO_ACCOUNT" property="isToAccount" jdbcType="INTEGER" />
+    <result column="IS_TO_TYPE" property="isToType" jdbcType="INTEGER" />
+    <result column="ORDER_STATES" property="orderStates" jdbcType="INTEGER" />
+    <result column="TYPE" property="type" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, TRANSACTION_SERIAL_NUMBER, ORDER_NO, ACCOUNT_ID, COMMISSION, IS_TO_ACCOUNT, IS_TO_TYPE, 
+    ORDER_STATES, TYPE, CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from commission_record
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectByOrderNo" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from commission_record
+    where ORDER_NO = #{orderNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from commission_record
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.trade.payment.domain.CommissionRecord" >
+    insert into commission_record (ID, TRANSACTION_SERIAL_NUMBER, ORDER_NO, 
+      ACCOUNT_ID, COMMISSION, IS_TO_ACCOUNT, 
+      IS_TO_TYPE, ORDER_STATES, TYPE, 
+      CREATE_TIME, UPDATE_TIME)
+    values (#{id,jdbcType=BIGINT}, #{transactionSerialNumber,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, 
+      #{accountId,jdbcType=BIGINT}, #{commission,jdbcType=BIGINT}, #{isToAccount,jdbcType=INTEGER}, 
+      #{isToType,jdbcType=INTEGER}, #{orderStates,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.trade.payment.domain.CommissionRecord" >
+    insert into commission_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="transactionSerialNumber != null" >
+        TRANSACTION_SERIAL_NUMBER,
+      </if>
+      <if test="orderNo != null" >
+        ORDER_NO,
+      </if>
+      <if test="accountId != null" >
+        ACCOUNT_ID,
+      </if>
+      <if test="commission != null" >
+        COMMISSION,
+      </if>
+      <if test="isToAccount != null" >
+        IS_TO_ACCOUNT,
+      </if>
+      <if test="isToType != null" >
+        IS_TO_TYPE,
+      </if>
+      <if test="orderStates != null" >
+        ORDER_STATES,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="transactionSerialNumber != null" >
+        #{transactionSerialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="accountId != null" >
+        #{accountId,jdbcType=BIGINT},
+      </if>
+      <if test="commission != null" >
+        #{commission,jdbcType=BIGINT},
+      </if>
+      <if test="isToAccount != null" >
+        #{isToAccount,jdbcType=INTEGER},
+      </if>
+      <if test="isToType != null" >
+        #{isToType,jdbcType=INTEGER},
+      </if>
+      <if test="orderStates != null" >
+        #{orderStates,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.trade.payment.domain.CommissionRecord" >
+    update commission_record
+    <set >
+      <if test="transactionSerialNumber != null" >
+        TRANSACTION_SERIAL_NUMBER = #{transactionSerialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="accountId != null" >
+        ACCOUNT_ID = #{accountId,jdbcType=BIGINT},
+      </if>
+      <if test="commission != null" >
+        COMMISSION = #{commission,jdbcType=BIGINT},
+      </if>
+      <if test="isToAccount != null" >
+        IS_TO_ACCOUNT = #{isToAccount,jdbcType=INTEGER},
+      </if>
+      <if test="isToType != null" >
+        IS_TO_TYPE = #{isToType,jdbcType=INTEGER},
+      </if>
+      <if test="orderStates != null" >
+        ORDER_STATES = #{orderStates,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.trade.payment.domain.CommissionRecord" >
+    update commission_record
+    set TRANSACTION_SERIAL_NUMBER = #{transactionSerialNumber,jdbcType=VARCHAR},
+      ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+      ACCOUNT_ID = #{accountId,jdbcType=BIGINT},
+      COMMISSION = #{commission,jdbcType=BIGINT},
+      IS_TO_ACCOUNT = #{isToAccount,jdbcType=INTEGER},
+      IS_TO_TYPE = #{isToType,jdbcType=INTEGER},
+      ORDER_STATES = #{orderStates,jdbcType=INTEGER},
+      TYPE = #{type,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateIsToAccount" parameterType="com.zjlp.face.web.server.trade.payment.domain.CommissionRecord" >
+  	update commission_record
+    set 
+      IS_TO_ACCOUNT = #{isToAccount,jdbcType=INTEGER},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ORDER_NO = #{orderNo,jdbcType=VARCHAR}
+  </update>
+  <select id="getUserFreezeAmount" resultType="java.lang.Long">
+  	SELECT
+		SUM(COMMISSION)
+	FROM
+		commission_record
+	WHERE
+		ACCOUNT_ID = #{accountId}
+	AND IS_TO_ACCOUNT = 0
+  </select>
+  <select id="getUsersShopsFreezeAmount" resultType="java.lang.Long">
+  	SELECT
+		SUM(COMMISSION)
+	FROM
+		commission_record
+	WHERE
+		ACCOUNT_ID IN (
+			SELECT
+				a.id
+			FROM
+				account AS a
+			WHERE
+				a.REMOTE_ID IN (
+					SELECT
+						s.no
+					FROM
+						shop as s
+					WHERE
+						s.USER_ID = #{userId}
+				)
+		)
+	AND IS_TO_ACCOUNT = 0
+  </select>
+  <select id="getShopFreezeIncome" resultType="java.lang.Long">
+  	SELECT
+		SUM(COMMISSION)
+	FROM
+		commission_record
+	WHERE
+		IS_TO_ACCOUNT = 0
+	AND ACCOUNT_ID = (
+		SELECT
+			id
+		FROM
+			account
+		WHERE
+			REMOTE_ID = #{shopNo}
+	)
+  </select>
+  <select id="getShopIncomeByTime" resultType="java.lang.Long">
+  	SELECT
+		SUM(COMMISSION)
+	FROM
+		commission_record
+	WHERE
+		IS_TO_ACCOUNT = 1
+	AND ACCOUNT_ID = (
+		SELECT
+			id
+		FROM
+			account
+		WHERE
+			REMOTE_ID = #{shopNo}
+	)
+	<if test="startTime != null">
+  		<![CDATA[and update_time > #{startTime}]]>
+  	</if>
+  	<![CDATA[and update_time <= #{endTime}]]>
+  </select>
+  
+  <select id="getShopName" resultType="java.lang.String">
+	SELECT sp.name  from Commission_Record cr, account acc , shop sp   
+	where cr.id= #{id} and cr.ACCOUNT_ID = acc.id and acc.REMOTE_ID = sp.NO 
+	and sp.STATUS = 1
+  </select>
+  
+  <select id="getSubbranchShopName" resultType="java.lang.String">
+    SELECT sub.shop_name  from Commission_Record cr, account acc ,	subbranch sub
+		where cr.id = #{id} and cr.ACCOUNT_ID = acc.id 
+		and acc.REMOTE_ID = sub.USER_ID
+		and sub.STATUS = 1
+  </select>
+  
+</mapper>

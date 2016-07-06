@@ -1,0 +1,96 @@
+@charset "utf-8";
+/*添加删除数量*/
+.addel {
+	display: inline-block;
+	height: 34px;
+	border: 1px solid #999;
+	border-radius: 3px;
+	line-height: 34px;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	-ms-box-sizing: content-box;
+	-o-box-sizing: content-box;
+	box-sizing: content-box;
+}
+
+.addel .addel-add,
+.addel .addel-del {
+	float: left;
+	width: 33px;
+	height: 34px;
+	border-right: 1px solid #999;
+	border-radius: 3px 0 0 3px;
+	background-color: #f5f4f4;
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#fffeff), to(#f5f4f4));
+	text-align: center;
+}
+
+.addel .addel-info input {
+	float: left;
+	width: 48px;
+	height: 34px;
+	background-color: #f5f4f4;
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#fffeff), to(#f5f4f4));
+	border: 0;
+	border-radius: 0;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 34px;
+	color: #333;
+	vertical-align: top;
+	text-align:center;
+	-webkit-appearance: none;
+}
+
+.addel .addel-add {
+	border-radius: 0 3px 3px 0;
+	border-left: 1px solid #999;
+	border-right: none;
+}
+
+/*添加删除数量2*/
+.addel-radius {
+	display: inline-block;
+	height: 34px;
+	line-height: 34px;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	-ms-box-sizing: content-box;
+	-o-box-sizing: content-box;
+	box-sizing: content-box;
+	background:#fff;
+}
+
+.addel-radius .addel-add,
+.addel-radius .addel-del {
+	float: left;
+	width: 33px;
+	height: 34px;
+	border: 1px solid #999;
+	border-radius: 100%;
+	background:#fff;
+	text-align: center;
+}
+.addel-radius .addel-add[disabled="disabled"],
+.addel-radius .addel-del[disabled="disabled"] {
+	/* background-color: #eee; */
+	color: #ddd;
+	border:1px solid #ddd;
+}
+.addel-radius .addel-info input {
+	float: left;
+	width: 48px;
+	height: 34px;
+	background:#fff;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 34px;
+	color: #333;
+	vertical-align: top;
+	text-align:center;
+	-webkit-appearance: none;
+}
+
+.addel-radius .addel-add {}

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd   
+	http://www.springframework.org/schema/context   
+	http://www.springframework.org/schema/context/spring-context-3.1.xsd
+	http://www.springframework.org/schema/task
+	http://www.springframework.org/schema/task/spring-task-3.1.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
+	
+	<!-- 配置Dao层切入点 -->
+	<bean id="daoIntroductionInterceptor" class="com.zjlp.face.web.component.daosupport.DaoIntroductionInterceptor" />
+
+	<bean id="audienceAdvisor" class="org.springframework.aop.aspectj.AspectJExpressionPointcutAdvisor">
+		<property name="advice" ref="daoIntroductionInterceptor" />
+		<property name="expression" value="execution(* com.zjlp.face.web..*.dao.*Dao.*(..))" />
+	</bean>
+	
+	<bean id="abstractDaoTarget" class="com.zjlp.face.web.component.daosupport.GenericDaoImpl" abstract="true">
+		<property name="sqlSession" ref="sqlSession" />
+	</bean>
+	
+	<!-- 切面 -->
+	<bean id="abstractDao" class="org.springframework.aop.framework.ProxyFactoryBean" abstract="true">
+		<property name="interceptorNames">
+			<list>
+				<value>audienceAdvisor</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="photoDao" parent="abstractDao">
+		<property name="proxyInterfaces" value="com.zjlp.face.web.server.product.material.dao.PhotoDao" />
+		<property name="target">
+			<bean parent="abstractDaoTarget">
+				<constructor-arg value="com.zjlp.face.web.mapper.PhotoMapper"/>
+			</bean>
+		</property>
+	</bean>
+	
+	
+	<bean id="albumDao" parent="abstractDao">
+		<property name="proxyInterfaces" value="com.zjlp.face.web.server.product.material.dao.AlbumDao" />
+		<property name="target">
+			<bean parent="abstractDaoTarget">
+				<constructor-arg value="com.zjlp.face.web.mapper.AlbumMapper"/>
+			</bean>
+		</property>
+	</bean>
+	
+	
+	<bean id="photoAlbumDao" parent="abstractDao">
+		<property name="proxyInterfaces" value="com.zjlp.face.web.server.product.material.dao.PhotoAlbumDao" />
+		<property name="target">
+			<bean parent="abstractDaoTarget">
+				<constructor-arg value="com.zjlp.face.web.mapper.PhotoAlbumMapper"/>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="albumPhotoAlbumRelationDao" parent="abstractDao">
+		<property name="proxyInterfaces" value="com.zjlp.face.web.server.product.material.dao.AlbumPhotoAlbumRelationDao" />
+		<property name="target">
+			<bean parent="abstractDaoTarget">
+				<constructor-arg value="com.zjlp.face.web.mapper.AlbumPhotoAlbumRelationMapper"/>
+			</bean>
+		</property>
+	</bean>
+	
+</beans> 

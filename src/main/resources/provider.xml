@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" 
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans.xsd 
+    http://code.alibabatech.com/schema/dubbo 
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd"> 
+
+	<!-- 会员卡服务 -->
+  	<bean id="memberCardService" class="com.zjlp.face.web.server.operation.member.service.impl.MemberCardServiceImpl"></bean>
+  	<!-- 模板服务 -->
+  	<bean id="templateMessageService" class="com.zjlp.face.web.server.user.weixin.service.impl.TemplateMessageServiceImpl"></bean>
+  	
+<!--   	<bean id="salesOrderBusiness" class="com.zjlp.face.web.server.trade.order.bussiness.impl.SalesOrderBusinessImpl"></bean> -->
+<!--   	<bean id="withdrawBusiness" class="com.zjlp.face.web.server.trade.account.business.impl.WithdrawBusinessImpl"></bean> -->
+	
+	<dubbo:service interface="com.zjlp.face.web.server.operation.member.service.MemberCardService" ref="memberCardService" version="${dubbo.memberCardService.version}"></dubbo:service>
+	
+	<dubbo:service interface="com.zjlp.face.web.server.user.weixin.service.TemplateMessageService" ref="templateMessageService" version="${dubbo.templateMessageService.version}"></dubbo:service>
+
+    <dubbo:service interface="com.zjlp.face.web.server.product.phone.producer.PhoneDeviceProducer" ref="phoneDeviceProducer" version="${dubbo.phoneDeviceProducer.version}"></dubbo:service>
+    <dubbo:service interface="com.zjlp.face.web.server.product.push.producer.AppPushMessageProducer" ref="appPushMessageProducer" version="${dubbo.AppPushMessageProducer.version}"></dubbo:service>
+    
+    <dubbo:service interface="com.zjlp.face.web.server.trade.order.bussiness.SalesOrderBusiness" ref="salesOrderBusiness" version="${dubbo.salesOrderBusiness.version}"></dubbo:service>
+    <dubbo:service interface="com.zjlp.face.web.server.trade.account.business.WithdrawBusiness" ref="withdrawBusiness" version="${dubbo.withdrawBusiness.version}"></dubbo:service>
+   
+   	<dubbo:service interface="com.zjlp.face.web.server.user.user.business.UserBusiness" ref="userBusiness" version="${dubbo.userBusiness.version}"></dubbo:service>
+   	<dubbo:service interface="com.zjlp.face.web.server.user.businesscard.business.BusinessCardBusiness" ref="businessCardBusiness" version="${dubbo.businessCardBusiness.version}"></dubbo:service>
+</beans>

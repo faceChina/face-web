@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.MemberAttendanceRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.operation.member.domain.MemberAttendanceRecord" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="MEMBER_CARD_ID" property="memberCardId" jdbcType="BIGINT" />
+    <result column="ATTENDANCE_NUMBER" property="attendanceNumber" jdbcType="INTEGER" />
+    <result column="ATTENDANCE_TIME" property="attendanceTime" jdbcType="DATE" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, MEMBER_CARD_ID, ATTENDANCE_NUMBER, ATTENDANCE_TIME, CREATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from member_attendance_record
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from member_attendance_record
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.operation.member.domain.MemberAttendanceRecord" >
+    insert into member_attendance_record (ID, MEMBER_CARD_ID, ATTENDANCE_NUMBER, 
+      ATTENDANCE_TIME, CREATE_TIME)
+    values (#{id,jdbcType=BIGINT}, #{memberCardId,jdbcType=BIGINT}, #{attendanceNumber,jdbcType=INTEGER}, 
+      #{attendanceTime,jdbcType=DATE}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.operation.member.domain.MemberAttendanceRecord" >
+  	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into member_attendance_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="memberCardId != null" >
+        MEMBER_CARD_ID,
+      </if>
+      <if test="attendanceNumber != null" >
+        ATTENDANCE_NUMBER,
+      </if>
+      <if test="attendanceTime != null" >
+        ATTENDANCE_TIME,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="memberCardId != null" >
+        #{memberCardId,jdbcType=BIGINT},
+      </if>
+      <if test="attendanceNumber != null" >
+        #{attendanceNumber,jdbcType=INTEGER},
+      </if>
+      <if test="attendanceTime != null" >
+        #{attendanceTime,jdbcType=DATE},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.operation.member.domain.MemberAttendanceRecord" >
+    update member_attendance_record
+    <set >
+      <if test="memberCardId != null" >
+        MEMBER_CARD_ID = #{memberCardId,jdbcType=BIGINT},
+      </if>
+      <if test="attendanceNumber != null" >
+        ATTENDANCE_NUMBER = #{attendanceNumber,jdbcType=INTEGER},
+      </if>
+      <if test="attendanceTime != null" >
+        ATTENDANCE_TIME = #{attendanceTime,jdbcType=DATE},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.operation.member.domain.MemberAttendanceRecord" >
+    update member_attendance_record
+    set MEMBER_CARD_ID = #{memberCardId,jdbcType=BIGINT},
+      ATTENDANCE_NUMBER = #{attendanceNumber,jdbcType=INTEGER},
+      ATTENDANCE_TIME = #{attendanceTime,jdbcType=DATE},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectLastRecordByMemberCardId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+       SELECT
+           <include refid="Base_Column_List" />
+       FROM
+           MEMBER_ATTENDANCE_RECORD
+       WHERE
+           MEMBER_CARD_ID = #{memberCardId,jdbcType=BIGINT}
+       ORDER BY ATTENDANCE_TIME DESC
+       LIMIT 1
+  </select>
+</mapper>

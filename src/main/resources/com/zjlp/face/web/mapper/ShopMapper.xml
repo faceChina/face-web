@@ -1,0 +1,677 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.ShopMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.user.shop.domain.Shop" >
+    <id column="NO" property="no" jdbcType="VARCHAR" />
+    <result column="USER_ID" property="userId" jdbcType="BIGINT" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="CONTACTS" property="contacts" jdbcType="VARCHAR" />
+    <result column="MARKETER" property="marketer" jdbcType="VARCHAR" />
+    <result column="OPERATER" property="operater" jdbcType="VARCHAR" />
+    <result column="CELL" property="cell" jdbcType="VARCHAR" />
+    <result column="AREA_CODE" property="areaCode" jdbcType="INTEGER" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="ACTIVATION_TIME" property="activationTime" jdbcType="TIMESTAMP" />
+    <result column="WECHAT" property="wechat" jdbcType="VARCHAR" />
+    <result column="PASSWD" property="passwd" jdbcType="VARCHAR" />
+    <result column="SOURCE" property="source" jdbcType="INTEGER" />
+    <result column="BINDING_TIME" property="bindingTime" jdbcType="TIMESTAMP" />
+    <result column="SIGNING_TIME" property="signingTime" jdbcType="TIMESTAMP" />
+    <result column="EFFECTIVE_TIME" property="effectiveTime" jdbcType="TIMESTAMP" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="AUTHORIZATION_CODE" property="authorizationCode" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="INTEGER" />
+    <result column="PROXY_TYPE" property="proxyType" jdbcType="INTEGER" />
+    <result column="TOKEN" property="token" jdbcType="VARCHAR" />
+    <result column="INVITATION_CODE" property="invitationCode" jdbcType="VARCHAR" />
+    <result column="ON_INVITATION_CODE" property="onInvitationCode" jdbcType="VARCHAR" />
+    <result column="IS_FREE" property="isFree" jdbcType="INTEGER" />
+    <result column="LOGISTICS_TYPES" property="logisticsTypes" jdbcType="INTEGER" />
+    <result column="APP_ID" property="appId" jdbcType="VARCHAR" />
+    <result column="APP_SECRET" property="appSecret" jdbcType="VARCHAR" />
+    <result column="AUTHENTICATE" property="authenticate" jdbcType="INTEGER" />
+    <result column="GUIDE_URL" property="guideUrl" jdbcType="VARCHAR"/>
+    <result column="TWO_DIMENSIONAL_CODE" property="twoDimensionalCode" jdbcType="VARCHAR"/>
+    <result column="SHOP_LOGO_URL" property="shopLogoUrl" jdbcType="VARCHAR"/>
+    <result column="SIGN_PIC" property="signPic" jdbcType="VARCHAR"/>
+    <result column="IS_DEFAULT_SIGN_PIC" property="isDefaultSignPic" jdbcType="INTEGER"/>
+    <result column="RECRUIT_BUTTON" property="recruitButton" jdbcType="INTEGER"/>
+    <result column="IS_NOTICE" property="isNotice" jdbcType="INTEGER"/>
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.zjlp.face.web.server.user.shop.domain.Shop" extends="BaseResultMap" >
+    <result column="SHOP_CONTENT" property="shopContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapShopDto" type="com.zjlp.face.web.server.user.shop.domain.dto.ShopDto" extends="BaseResultMap" >
+  </resultMap>
+  <sql id="Base_Column_List" >
+    NO, USER_ID, NAME, CONTACTS, MARKETER, OPERATER, CELL, AREA_CODE, ADDRESS, ACTIVATION_TIME, 
+    WECHAT, PASSWD, SOURCE, BINDING_TIME, SIGNING_TIME, EFFECTIVE_TIME, STATUS, AUTHORIZATION_CODE, 
+    TYPE, PROXY_TYPE, TOKEN, INVITATION_CODE, ON_INVITATION_CODE, IS_FREE, LOGISTICS_TYPES, 
+    APP_ID, APP_SECRET, AUTHENTICATE,GUIDE_URL, TWO_DIMENSIONAL_CODE,SHOP_LOGO_URL, SIGN_PIC, IS_DEFAULT_SIGN_PIC, RECRUIT_BUTTON, IS_NOTICE, CREATE_TIME, UPDATE_TIME
+  </sql>
+  <sql id="Blob_Column_List" >
+    SHOP_CONTENT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from shop
+    where NO = #{no,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from shop
+    where NO = #{no,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.user.shop.domain.Shop" >
+    insert into shop (NO, USER_ID, NAME, 
+      CONTACTS, MARKETER, OPERATER, 
+      CELL, AREA_CODE, ADDRESS, 
+      ACTIVATION_TIME, WECHAT, PASSWD, 
+      SOURCE, BINDING_TIME, SIGNING_TIME, 
+      EFFECTIVE_TIME, STATUS, AUTHORIZATION_CODE, 
+      TYPE, PROXY_TYPE, TOKEN, 
+      INVITATION_CODE, ON_INVITATION_CODE, IS_FREE,
+      LOGISTICS_TYPES, APP_ID, APP_SECRET,AUTHENTICATE, GUIDE_URL, SIGN_PIC, IS_DEFAULT_SIGN_PIC, RECRUIT_BUTTON, IS_NOTICE,
+      CREATE_TIME, UPDATE_TIME, SHOP_CONTENT,TWO_DIMENSIONAL_CODE, SHOP_LOGO_URL, 
+      )
+    values (#{no,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
+      #{contacts,jdbcType=VARCHAR}, #{marketer,jdbcType=VARCHAR}, #{operater,jdbcType=VARCHAR}, 
+      #{cell,jdbcType=VARCHAR}, #{areaCode,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, 
+      #{activationTime,jdbcType=TIMESTAMP}, #{wechat,jdbcType=VARCHAR}, #{passwd,jdbcType=VARCHAR}, 
+      #{source,jdbcType=INTEGER}, #{bindingTime,jdbcType=TIMESTAMP}, #{signingTime,jdbcType=TIMESTAMP}, 
+      #{effectiveTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{authorizationCode,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{proxyType,jdbcType=INTEGER}, #{token,jdbcType=VARCHAR}, 
+      #{invitationCode,jdbcType=VARCHAR}, #{onInvitationCode,jdbcType=VARCHAR}, #{isFree,jdbcType=INTEGER}, 
+      #{logisticsTypes,jdbcType=INTEGER}, #{appId,jdbcType=VARCHAR}, #{appSecret,jdbcType=VARCHAR},#{authenticate,jdbcType=INTEGER}, #{guideUrl, jdbcType=VARCHAR},
+      #{signPic, jdbcType=VARCHAR}, #{isDefaultSignPic, jdbcType=INTEGER}, #{recruitButton, jdbcType=INTEGER}, #{isNotice, jdbcType=INTEGER},
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{shopContent,jdbcType=LONGVARCHAR},#{twoDimensionalCode,jdbcType=LONGVARCHAR}, #{shopLogoUrl, jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.user.shop.domain.Shop" >
+    insert into shop
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="no != null" >
+        NO,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="contacts != null" >
+        CONTACTS,
+      </if>
+      <if test="marketer != null" >
+        MARKETER,
+      </if>
+      <if test="operater != null" >
+        OPERATER,
+      </if>
+      <if test="cell != null" >
+        CELL,
+      </if>
+      <if test="areaCode != null" >
+        AREA_CODE,
+      </if>
+      <if test="address != null" >
+        ADDRESS,
+      </if>
+      <if test="activationTime != null" >
+        ACTIVATION_TIME,
+      </if>
+      <if test="wechat != null" >
+        WECHAT,
+      </if>
+      <if test="passwd != null" >
+        PASSWD,
+      </if>
+      <if test="source != null" >
+        SOURCE,
+      </if>
+      <if test="bindingTime != null" >
+        BINDING_TIME,
+      </if>
+      <if test="signingTime != null" >
+        SIGNING_TIME,
+      </if>
+      <if test="effectiveTime != null" >
+        EFFECTIVE_TIME,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="authorizationCode != null" >
+        AUTHORIZATION_CODE,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="proxyType != null" >
+        PROXY_TYPE,
+      </if>
+      <if test="token != null" >
+        TOKEN,
+      </if>
+      <if test="invitationCode != null" >
+        INVITATION_CODE,
+      </if>
+      <if test="onInvitationCode != null" >
+        ON_INVITATION_CODE,
+      </if>
+      <if test="isFree != null" >
+        IS_FREE,
+      </if>
+      <if test="logisticsTypes != null" >
+        LOGISTICS_TYPES,
+      </if>
+      <if test="appId != null" >
+        APP_ID,
+      </if>
+      <if test="appSecret != null" >
+        APP_SECRET,
+      </if>
+      <if test="authenticate != null">
+      	AUTHENTICATE,
+      </if>
+      <if test="guideUrl != null">
+      	GUIDE_URL,
+      </if>
+      <if test="signPic != null">
+      	SIGN_PIC,
+      </if>
+      <if test="isDefaultSignPic != null">
+      	IS_DEFAULT_SIGN_PIC,
+      </if>
+      <if test="recruitButton != null">
+      	RECRUIT_BUTTON,
+      </if>
+      <if test="isNotice != null">
+      	IS_NOTICE,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="shopContent != null" >
+        SHOP_CONTENT,
+      </if>
+      <if test="twoDimensionalCode != null" >
+        TWO_DIMENSIONAL_CODE,
+      </if>
+      <if test="shopLogoUrl != null">
+      	SHOP_LOGO_URL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="no != null" >
+        #{no,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="contacts != null" >
+        #{contacts,jdbcType=VARCHAR},
+      </if>
+      <if test="marketer != null" >
+        #{marketer,jdbcType=VARCHAR},
+      </if>
+      <if test="operater != null" >
+        #{operater,jdbcType=VARCHAR},
+      </if>
+      <if test="cell != null" >
+        #{cell,jdbcType=VARCHAR},
+      </if>
+      <if test="areaCode != null" >
+        #{areaCode,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="activationTime != null" >
+        #{activationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wechat != null" >
+        #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="passwd != null" >
+        #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=INTEGER},
+      </if>
+      <if test="bindingTime != null" >
+        #{bindingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signingTime != null" >
+        #{signingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="effectiveTime != null" >
+        #{effectiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="authorizationCode != null" >
+        #{authorizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="proxyType != null" >
+        #{proxyType,jdbcType=INTEGER},
+      </if>
+      <if test="token != null" >
+        #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="invitationCode != null" >
+        #{invitationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="onInvitationCode != null" >
+        #{onInvitationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isFree != null" >
+        #{isFree,jdbcType=INTEGER},
+      </if>
+      <if test="logisticsTypes != null" >
+        #{logisticsTypes,jdbcType=INTEGER},
+      </if>
+      <if test="appId != null" >
+        #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="appSecret != null" >
+        #{appSecret,jdbcType=VARCHAR},
+      </if>
+      <if test="authenticate != null">
+      	#{authenticate,jdbcType=Integer},
+      </if>
+      <if test="guideUrl != null">
+      	#{guideUrl, jdbcType=VARCHAR},
+      </if>
+      <if test="signPic != null">
+      	#{signPic, jdbcType=VARCHAR},
+      </if>
+      <if test="isDefaultSignPic != null">
+      	#{isDefaultSignPic, jdbcType=INTEGER},
+      </if>
+      <if test="recruitButton != null">
+      	#{recruitButton, jdbcType=INTEGER},
+      </if>
+      <if test="isNotice != null">
+      	#{isNotice, jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shopContent != null" >
+        #{shopContent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="twoDimensionalCode != null" >
+        #{twoDimensionalCode, jdbcType=VARCHAR},
+      </if>
+      <if test="shopLogoUrl != null">
+      	#{shopLogoUrl, jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.user.shop.domain.Shop" >
+    update shop
+    <set >
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="contacts != null" >
+        CONTACTS = #{contacts,jdbcType=VARCHAR},
+      </if>
+      <if test="marketer != null" >
+        MARKETER = #{marketer,jdbcType=VARCHAR},
+      </if>
+      <if test="operater != null" >
+        OPERATER = #{operater,jdbcType=VARCHAR},
+      </if>
+      <if test="cell != null" >
+        CELL = #{cell,jdbcType=VARCHAR},
+      </if>
+      <if test="areaCode != null" >
+        AREA_CODE = #{areaCode,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="activationTime != null" >
+        ACTIVATION_TIME = #{activationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wechat != null" >
+        WECHAT = #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="passwd != null" >
+        PASSWD = #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        SOURCE = #{source,jdbcType=INTEGER},
+      </if>
+      <if test="bindingTime != null" >
+        BINDING_TIME = #{bindingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signingTime != null" >
+        SIGNING_TIME = #{signingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="effectiveTime != null" >
+        EFFECTIVE_TIME = #{effectiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="authorizationCode != null" >
+        AUTHORIZATION_CODE = #{authorizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="proxyType != null" >
+        PROXY_TYPE = #{proxyType,jdbcType=INTEGER},
+      </if>
+      <if test="token != null" >
+        TOKEN = #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="invitationCode != null" >
+        INVITATION_CODE = #{invitationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="onInvitationCode != null" >
+        ON_INVITATION_CODE = #{onInvitationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isFree != null" >
+        IS_FREE = #{isFree,jdbcType=INTEGER},
+      </if>
+      <if test="logisticsTypes != null" >
+        LOGISTICS_TYPES = #{logisticsTypes,jdbcType=INTEGER},
+      </if>
+      <if test="appId != null" >
+        APP_ID = #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="appSecret != null" >
+        APP_SECRET = #{appSecret,jdbcType=VARCHAR},
+      </if>
+      <if test="authenticate != null">
+      	AUTHENTICATE = #{authenticate,jdbcType=INTEGER},
+      </if>
+      <if test="guideUrl != null">
+      	GUIDE_URL = #{guideUrl, jdbcType=VARCHAR},
+      </if>
+      <if test="signPic != null">
+      	SIGN_PIC = #{signPic, jdbcType=VARCHAR},
+      </if>
+      <if test="isDefaultSignPic != null">
+      	IS_DEFAULT_SIGN_PIC = #{isDefaultSignPic, jdbcType=INTEGER},
+      </if>
+      <if test="recruitButton != null">
+      	RECRUIT_BUTTON = #{recruitButton, jdbcType=INTEGER},
+      </if>
+      <if test="isNotice != null">
+      	IS_NOTICE = #{isNotice, jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shopContent != null" >
+        SHOP_CONTENT = #{shopContent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="twoDimensionalCode != null" >
+        TWO_DIMENSIONAL_CODE = #{twoDimensionalCode, jdbcType=VARCHAR},
+      </if>
+      <if test="shopLogoUrl != null">
+      	SHOP_LOGO_URL = #{shopLogoUrl, jdbcType=VARCHAR}
+      </if>
+    </set>
+    where NO = #{no,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zjlp.face.web.server.user.shop.domain.Shop" >
+    update shop
+    set USER_ID = #{userId,jdbcType=BIGINT},
+      NAME = #{name,jdbcType=VARCHAR},
+      CONTACTS = #{contacts,jdbcType=VARCHAR},
+      MARKETER = #{marketer,jdbcType=VARCHAR},
+      OPERATER = #{operater,jdbcType=VARCHAR},
+      CELL = #{cell,jdbcType=VARCHAR},
+      AREA_CODE = #{areaCode,jdbcType=INTEGER},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      ACTIVATION_TIME = #{activationTime,jdbcType=TIMESTAMP},
+      WECHAT = #{wechat,jdbcType=VARCHAR},
+      PASSWD = #{passwd,jdbcType=VARCHAR},
+      SOURCE = #{source,jdbcType=INTEGER},
+      BINDING_TIME = #{bindingTime,jdbcType=TIMESTAMP},
+      SIGNING_TIME = #{signingTime,jdbcType=TIMESTAMP},
+      EFFECTIVE_TIME = #{effectiveTime,jdbcType=TIMESTAMP},
+      STATUS = #{status,jdbcType=INTEGER},
+      AUTHORIZATION_CODE = #{authorizationCode,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=INTEGER},
+      PROXY_TYPE = #{proxyType,jdbcType=INTEGER},
+      TOKEN = #{token,jdbcType=VARCHAR},
+      INVITATION_CODE = #{invitationCode,jdbcType=VARCHAR},
+      ON_INVITATION_CODE = #{onInvitationCode,jdbcType=VARCHAR},
+      IS_FREE = #{isFree,jdbcType=INTEGER},
+      LOGISTICS_TYPES = #{logisticsTypes,jdbcType=INTEGER},
+      APP_ID = #{appId,jdbcType=VARCHAR},
+      APP_SECRET = #{appSecret,jdbcType=VARCHAR},
+      AUTHENTICATE = #{authenticate,jdbcType=Integer},
+      GUIDE_URL = #{guideUrl, jdbcType=VARCHAR},
+      TWO_DIMENSIONAL_CODE = #{twoDimensionalCode, jdbcType=VARCHAR},
+      SIGN_PIC = #{signPic, jdbcType=VARCHAR},
+      IS_DEFAULT_SIGN_PIC = #{isDefaultSignPic, jdbcType=INTEGER},
+      RECRUIT_BUTTON = #{recruitButton, jdbcType=INTEGER},
+      IS_NOTICE = #{isNotice, jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      SHOP_CONTENT = #{shopContent,jdbcType=LONGVARCHAR},
+      SHOP_LOGO_URL = #{shopLogoUrl, jdbcType=VARCHAR}
+    where NO = #{no,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.user.shop.domain.Shop" >
+    update shop
+    set USER_ID = #{userId,jdbcType=BIGINT},
+      NAME = #{name,jdbcType=VARCHAR},
+      CONTACTS = #{contacts,jdbcType=VARCHAR},
+      MARKETER = #{marketer,jdbcType=VARCHAR},
+      OPERATER = #{operater,jdbcType=VARCHAR},
+      CELL = #{cell,jdbcType=VARCHAR},
+      AREA_CODE = #{areaCode,jdbcType=INTEGER},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      ACTIVATION_TIME = #{activationTime,jdbcType=TIMESTAMP},
+      WECHAT = #{wechat,jdbcType=VARCHAR},
+      PASSWD = #{passwd,jdbcType=VARCHAR},
+      SOURCE = #{source,jdbcType=INTEGER},
+      BINDING_TIME = #{bindingTime,jdbcType=TIMESTAMP},
+      SIGNING_TIME = #{signingTime,jdbcType=TIMESTAMP},
+      EFFECTIVE_TIME = #{effectiveTime,jdbcType=TIMESTAMP},
+      STATUS = #{status,jdbcType=INTEGER},
+      AUTHORIZATION_CODE = #{authorizationCode,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=INTEGER},
+      PROXY_TYPE = #{proxyType,jdbcType=INTEGER},
+      TOKEN = #{token,jdbcType=VARCHAR},
+      INVITATION_CODE = #{invitationCode,jdbcType=VARCHAR},
+      ON_INVITATION_CODE = #{onInvitationCode,jdbcType=VARCHAR},
+      IS_FREE = #{isFree,jdbcType=INTEGER},
+      LOGISTICS_TYPES = #{logisticsTypes,jdbcType=INTEGER},
+      APP_ID = #{appId,jdbcType=VARCHAR},
+      APP_SECRET = #{appSecret,jdbcType=VARCHAR},
+      AUTHENTICATE = #{authenticate,jdbcType=Integer},
+      GUIDE_URL = #{guideUrl, jdbcType=VARCHAR},
+      TWO_DIMENSIONAL_CODE = #{twoDimensionalCode, jdbcType=VARCHAR},
+      SHOP_LOGO_URL = #{shopLogoUrl, jdbcType=VARCHAR},
+      SIGN_PIC = #{signPic, jdbcType=VARCHAR},
+      IS_DEFAULT_SIGN_PIC = #{isDefaultSignPic, jdbcType=INTEGER},
+      RECRUIT_BUTTON = #{recruitButton, jdbcType=INTEGER},
+      IS_NOTICE = #{isNotice, jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where NO = #{no,jdbcType=VARCHAR}
+  </update>
+  <select id="selectShopListByUserId" resultMap="BaseResultMap">
+  	select <include refid="Base_Column_List"/>
+  	from shop where user_id = #{userId} and status > -1
+  </select>
+  <select id="getShopByInvitationCode" resultMap="BaseResultMap">
+  	select <include refid="Base_Column_List"/>
+  	from shop where invitation_code = #{invitationCode}
+  </select>
+  
+  <select id="findShopList" parameterType="com.zjlp.face.web.server.user.shop.domain.dto.ShopDto" resultMap="ResultMapShopDto">
+      SELECT
+          NO, TYPE, NAME, USER_ID, ACTIVATION_TIME, EFFECTIVE_TIME, WECHAT,IS_FREE,PROXY_TYPE
+      FROM
+          SHOP
+      WHERE
+     	  STATUS > -1
+          <if test="userId != null">
+             AND USER_ID = #{userId,jdbcType=BIGINT}
+          </if>
+          <if test="no != null">
+              AND NO = #{no, jdbcType=VARCHAR}
+          </if>
+          <if test="name != null">
+              AND NAME like CONCAT('%',#{name, jdbcType=VARCHAR},'%')
+          </if>
+  </select>
+  
+  <select id="findSellerIdByShopNo" resultType="java.lang.Long">
+  	select user_id from shop where no = #{shopNo}
+  </select>
+  <select id="findShopListByMemberCardId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  	SELECT
+  	s.*
+  	FROM SHOP s LEFT JOIN MEMBER_WECHAT_RELATION mwr on s.NO = mwr.SHOP_NO
+  	WHERE
+  	STATUS > -1
+  	AND mwr.MEMBER_CARD_ID = #{memberCardId, jdbcType=BIGINT} 
+  </select>
+  <sql id="foundShopsFrom">
+    FROM SHOP s WHERE 1=1 AND s.TYPE IN (1,2)
+    <!--Filter dirty digital data-->
+    <if test="searchKey == null">
+    AND s.NAME NOT REGEXP  '[0-9]'
+    </if>
+  </sql>
+  
+  <select id="getFoundShopsPageCount" resultType="java.lang.Integer"  parameterType="java.util.Map">
+   SELECT COUNT(1)  
+   <include refid="foundShopsFrom"></include>
+  </select>
+  
+  <select id="selectFoundShops" resultMap="BaseResultMap" parameterType="java.util.Map">
+   SELECT s.NO, s.NAME,s.ADDRESS,s.TYPE,s.SHOP_LOGO_URL
+   <include refid="foundShopsFrom"/>
+   
+   <!--for accurate search accurate -->
+	<if test="searchKey != null">
+		AND NAME like CONCAT('%',#{searchKey, jdbcType=VARCHAR},'%')
+		OR ADDRESS like CONCAT('%',#{searchKey, jdbcType=VARCHAR},'%' )
+	</if>
+	
+   ORDER BY 
+    <choose>
+      <when test="orderBy == 0">
+         CONVERT(s.NAME USING gbk) COLLATE gbk_chinese_ci  ASC
+      </when>
+      <otherwise>
+	     CONVERT(s.NAME USING gbk) COLLATE gbk_chinese_ci  ASC
+	   </otherwise>
+    </choose>
+    LIMIT #{start},#{pageSize}
+  </select>
+  <select id="selectByAuthCode" resultMap="BaseResultMap" parameterType="java.lang.String">
+       SELECT
+           <include refid="Base_Column_List" />
+       FROM
+           SHOP
+       WHERE
+           AUTHORIZATION_CODE = #{code,jdbcType=VARCHAR}
+  </select>
+  <select id="getRecruitShopCount" resultType="integer">
+  	SELECT
+		count(1)
+	FROM
+		shop AS s
+	WHERE
+		s.no IN (
+			SELECT
+				dri.SUPPLIER_SHOP_NO
+			FROM
+				da_recruit_info AS dri
+			WHERE
+				dri. STATUS = 1
+		)
+	<if test="keyword != null">
+	AND s.name like CONCAT(CONCAT('%', #{keyword}), '%')
+	</if>
+  </select>
+  <select id="findRecruitShop" resultMap="BaseResultMap">
+  	SELECT
+		s.*
+	FROM
+		shop AS s
+	WHERE
+		s.no IN (
+			SELECT
+				dri.SUPPLIER_SHOP_NO
+			FROM
+				da_recruit_info AS dri
+			WHERE
+				dri. STATUS = 1
+			ORDER BY dri.create_time desc
+		)
+	<if test="keyword != null">
+		AND s.name like CONCAT(CONCAT('%', #{keyword}), '%')
+	</if>
+	LIMIT #{pageStart}, #{pageSize}
+  </select>
+  <select id="getShopByUserId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+  	select 
+  	<include refid="Base_Column_List"/>
+  	from shop
+  	where USER_ID = #{userId, jdbcType=BIGINT}
+  	AND STATUS > -1
+  	limit 1
+  </select>
+  
+  <!-- 推荐店铺 -->
+  <select id="getRecommendShop" resultType="com.zjlp.face.web.server.user.shop.domain.vo.RecommendShopVo" parameterType="java.lang.Long">
+  	SELECT 
+  		temp1.`NO` shopNo,
+  		COUNT(SHOP_NO) goodCount,
+  		temp1.`NAME` shopName,
+  		temp1.USER_ID userId,
+  		temp1.SHOP_LOGO_URL shopLogo,
+  		temp1.isSubbranch,
+  		temp1.subbranchId 
+  	FROM 
+  		good go RIGHT JOIN 	
+		(
+			SELECT 0 as isSubbranch,sh.NO,sh.USER_ID,sh.NAME ,sh.SHOP_LOGO_URL,0 as subbranchId FROM shop sh WHERE sh.USER_ID = #{userId, jdbcType=BIGINT} AND sh.STATUS = 1
+			UNION 
+			SELECT 1 as isSubbranch,su.SUPPLIER_SHOP_NO,su.USER_ID,CONCAT(sp.`NAME`,'-',su.SHOP_NAME),sp.SHOP_LOGO_URL,su.ID 
+			FROM subbranch su ,shop sp
+			WHERE su.USER_ID = #{userId, jdbcType=BIGINT} AND su.SUPPLIER_SHOP_NO = sp.`NO` AND su.`STATUS` = 1 AND sp.`STATUS` = 1
+		) temp1 ON go.SHOP_NO = temp1.`NO` AND go.STATUS = 1 AND go.SERVICE_ID = 1 
+	GROUP BY temp1.`NO` 
+	ORDER BY subbranchId 
+  </select>
+  
+</mapper>

@@ -1,0 +1,93 @@
+@charset "utf-8";
+/*  
+* @description: 官网模板
+* @author: sf 
+* @update:
+*/
+
+.column-list{}
+.column-list li{
+	position:relative;
+	margin-top:0.5rem;
+}
+.column-list li:first-child{
+	margin-top:0;
+}
+.column-list li a{
+	display:block;
+}
+.column-list li a .column-list-pic{}
+.column-list li a .column-list-pic img{
+	display:block;
+	width:100%;
+}
+.column-list li a .column-list-tit{
+	position:absolute;
+	left:0;
+	top:0;
+	display:block;
+	width:7.5rem;
+	padding:0.8rem 0;
+	background:rgba(255,255,255,0.4);
+	text-align:center;
+	font-size:0.875rem;
+}
+.column-list li a .column-list-tit .column-list-info var{
+	display:block;
+}
+.column-list li a .column-list-tit .column-list-info .font{
+	font-size:0.5rem;
+}
+
+.column-line{
+	width: 100%;
+	max-width:640px;
+	min-width:320px;
+	overflow-x: auto;
+	-webkit-overflow-scrolling:touch;
+	-moz-overflow-scrolling:touch;
+	-o-overflow-scrolling:touch;
+	overflow-scrolling:touch;
+	text-align: center;
+	position:fixed;
+	bottom:0;
+}
+.column-line ul{
+	width:200%;
+}
+.column-line ul li{
+	float: left;
+	width:6.32098765rem;
+	background:#cccccc;
+	border-right:1px solid #eee;
+}
+.column-line ul li:last-child{
+	border-right:0;
+}
+.column-line ul li a{
+    height:3.318518518518519rem ;
+	display:block;
+	padding:0.75rem 0;
+	color:#000;
+}
+.column-line ul li a:hover,.column-line ul li a:hover .column-line-info .font{
+	background:#333;
+	color:#fff;
+}
+.column-line ul li a .column-line-info{
+	display:block;
+	text-align:center;
+}
+.column-line ul li a .column-line-info var{
+	display:block;
+	font-size:0.875rem;
+}
+.column-line ul li a .column-line-info .font{
+	font-size:0.5rem;
+	color:#666;
+    line-height: 1em;
+}
+
+div::-webkit-scrollbar{
+    display: none;
+}

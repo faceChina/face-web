@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.MarketingActivityDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.operation.marketing.domain.MarketingActivityDetail" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="TOOL_ID" property="toolId" jdbcType="BIGINT" />
+    <result column="ACTIVITY_ID" property="activityId" jdbcType="BIGINT" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="INTEGER" />
+    <result column="MAX_VAL" property="maxVal" jdbcType="INTEGER" />
+    <result column="MIN_VAL" property="minVal" jdbcType="INTEGER" />
+    <result column="PREMISE_VAL" property="premiseVal" jdbcType="INTEGER" />
+    <result column="STEP" property="step" jdbcType="INTEGER" />
+    <result column="STEP_ACCUMULATE" property="stepAccumulate" jdbcType="INTEGER" />
+    <result column="RESULT_VAL" property="resultVal" jdbcType="INTEGER" />
+    <result column="BASE_VAL" property="baseVal" jdbcType="INTEGER" />
+    <result column="FROM_UNIT" property="fromUnit" jdbcType="INTEGER" />
+    <result column="TO_UNIT" property="toUnit" jdbcType="INTEGER" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" type="com.zjlp.face.web.server.operation.marketing.domain.dto.MarketingActivityDetailDto" id="DtoResultMap">
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, TOOL_ID, ACTIVITY_ID, NAME, TYPE, MAX_VAL, MIN_VAL, PREMISE_VAL, STEP, STEP_ACCUMULATE, 
+    RESULT_VAL, BASE_VAL, FROM_UNIT, TO_UNIT, STATUS, CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from marketing_activity_detail
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from marketing_activity_detail
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.operation.marketing.domain.MarketingActivityDetail" >
+    insert into marketing_activity_detail (ID, TOOL_ID, ACTIVITY_ID, 
+      NAME, TYPE, MAX_VAL, 
+      MIN_VAL, PREMISE_VAL, STEP, 
+      STEP_ACCUMULATE, RESULT_VAL, BASE_VAL,FROM_UNIT, TO_UNIT,
+      STATUS, CREATE_TIME, UPDATE_TIME
+      )
+    values (#{id,jdbcType=BIGINT}, #{toolId,jdbcType=BIGINT}, #{activityId,jdbcType=BIGINT}, 
+      #{name,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{maxVal,jdbcType=INTEGER}, 
+      #{minVal,jdbcType=INTEGER}, #{premiseVal,jdbcType=INTEGER}, #{step,jdbcType=INTEGER}, 
+      #{stepAccumulate,jdbcType=INTEGER}, #{resultVal,jdbcType=INTEGER}, #{baseVal,jdbcType=INTEGER}, 
+      #{fromUnit,jdbcType=INTEGER},#{toUnit,jdbcType=INTEGER},
+      #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.operation.marketing.domain.MarketingActivityDetail" >
+  	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into marketing_activity_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="toolId != null" >
+        TOOL_ID,
+      </if>
+      <if test="activityId != null" >
+        ACTIVITY_ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="maxVal != null" >
+        MAX_VAL,
+      </if>
+      <if test="minVal != null" >
+        MIN_VAL,
+      </if>
+      <if test="premiseVal != null" >
+        PREMISE_VAL,
+      </if>
+      <if test="step != null" >
+        STEP,
+      </if>
+      <if test="stepAccumulate != null" >
+        STEP_ACCUMULATE,
+      </if>
+      <if test="resultVal != null" >
+        RESULT_VAL,
+      </if>
+      <if test="baseVal != null" >
+        BASE_VAL,
+      </if>
+      <if test="fromUnit != null" >
+        FROM_UNIT,
+      </if>
+      <if test="toUnit != null" >
+        TO_UNIT,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="toolId != null" >
+        #{toolId,jdbcType=BIGINT},
+      </if>
+      <if test="activityId != null" >
+        #{activityId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="maxVal != null" >
+        #{maxVal,jdbcType=INTEGER},
+      </if>
+      <if test="minVal != null" >
+        #{minVal,jdbcType=INTEGER},
+      </if>
+      <if test="premiseVal != null" >
+        #{premiseVal,jdbcType=INTEGER},
+      </if>
+      <if test="step != null" >
+        #{step,jdbcType=INTEGER},
+      </if>
+      <if test="stepAccumulate != null" >
+        #{stepAccumulate,jdbcType=INTEGER},
+      </if>
+      <if test="resultVal != null" >
+        #{resultVal,jdbcType=INTEGER},
+      </if>
+      <if test="baseVal != null" >
+        #{baseVal,jdbcType=INTEGER},
+      </if>
+      <if test="fromUnit != null" >
+        #{fromUnit,jdbcType=INTEGER},
+      </if>
+      <if test="toUnit != null" >
+        #{toUnit,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.operation.marketing.domain.MarketingActivityDetail" >
+    update marketing_activity_detail
+    <set >
+      <if test="toolId != null" >
+        TOOL_ID = #{toolId,jdbcType=BIGINT},
+      </if>
+      <if test="activityId != null" >
+        ACTIVITY_ID = #{activityId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="maxVal != null" >
+        MAX_VAL = #{maxVal,jdbcType=INTEGER},
+      </if>
+      <if test="minVal != null" >
+        MIN_VAL = #{minVal,jdbcType=INTEGER},
+      </if>
+      <if test="premiseVal != null" >
+        PREMISE_VAL = #{premiseVal,jdbcType=INTEGER},
+      </if>
+      <if test="step != null" >
+        STEP = #{step,jdbcType=INTEGER},
+      </if>
+      <if test="stepAccumulate != null" >
+        STEP_ACCUMULATE = #{stepAccumulate,jdbcType=INTEGER},
+      </if>
+      <if test="resultVal != null" >
+        RESULT_VAL = #{resultVal,jdbcType=INTEGER},
+      </if>
+      <if test="baseVal != null" >
+        BASE_VAL = #{baseVal,jdbcType=INTEGER},
+      </if>
+      <if test="fromUnit != null" >
+        FROM_UNIT = #{fromUnit,jdbcType=INTEGER},
+      </if>
+      <if test="toUnit != null" >
+        TO_UNIT = #{toUnit,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.operation.marketing.domain.MarketingActivityDetail" >
+    update marketing_activity_detail
+    set TOOL_ID = #{toolId,jdbcType=BIGINT},
+      ACTIVITY_ID = #{activityId,jdbcType=BIGINT},
+      NAME = #{name,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=INTEGER},
+      MAX_VAL = #{maxVal,jdbcType=INTEGER},
+      MIN_VAL = #{minVal,jdbcType=INTEGER},
+      PREMISE_VAL = #{premiseVal,jdbcType=INTEGER},
+      STEP = #{step,jdbcType=INTEGER},
+      STEP_ACCUMULATE = #{stepAccumulate,jdbcType=INTEGER},
+      RESULT_VAL = #{resultVal,jdbcType=INTEGER},
+      BASE_VAL = #{baseVal,jdbcType=INTEGER},
+      FROM_UNIT = #{fromUnit,jdbcType=INTEGER},
+      TO_UNIT = #{toUnit,jdbcType=INTEGER},
+      STATUS = #{status,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="selectByDetail" resultMap="BaseResultMap" parameterType="com.zjlp.face.web.server.operation.marketing.domain.MarketingActivityDetail">
+       select
+           <include refid="Base_Column_List" />
+       from
+           marketing_activity_detail
+       <where>
+       		STATUS = 1
+           <if test="toolId != null">
+               AND TOOL_ID = #{toolId,jdbcType=BIGINT}
+           </if>
+           <if test="activityId != null">
+               AND ACTIVITY_ID = #{activityId,jdbcType=BIGINT}
+           </if>
+       </where>
+  </select>
+  
+  <select id="selectDtoList" resultMap="DtoResultMap" parameterType="com.zjlp.face.web.server.operation.marketing.domain.MarketingActivityDetail">
+       SELECT
+           <include refid="Base_Column_List" />
+       FROM
+           MARKETING_ACTIVITY_DETAIL
+       WHERE
+           ACTIVITY_ID = #{activityId,jdbcType=BIGINT}
+           AND STATUS = 1
+  </select>
+  
+  <update id="delByActivityId" parameterType="java.lang.Long">
+       UPDATE
+           MARKETING_ACTIVITY_DETAIL
+       SET
+           STATUS = -1,
+           UPDATE_TIME = NOW()
+       WHERE
+           ACTIVITY_ID = #{activityId,jdbcType=BIGINT}
+  </update>
+  
+  <update id="delById" parameterType="java.lang.Long">
+       UPDATE
+           MARKETING_ACTIVITY_DETAIL
+       SET
+           STATUS = -1,
+           UPDATE_TIME = NOW()
+       WHERE
+           ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateStatusByToolId" parameterType="com.zjlp.face.web.server.operation.marketing.domain.MarketingActivityDetail">
+       update
+           MARKETING_ACTIVITY_DETAIL
+       SET
+           STATUS = #{status,jdbcType=INTEGER},
+           UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+       WHERE
+           TOOL_ID = #{toolId,jdbcType=BIGINT}
+           AND STATUS > -1
+  </update>
+</mapper>

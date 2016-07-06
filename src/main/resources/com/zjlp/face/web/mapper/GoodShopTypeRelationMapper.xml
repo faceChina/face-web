@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.GoodShopTypeRelationMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.product.good.domain.GoodShopTypeRelation" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="SHOP_TYPE_ID" property="shopTypeId" jdbcType="BIGINT" />
+    <result column="GOOD_ID" property="goodId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, SHOP_TYPE_ID, GOOD_ID
+  </sql>
+  <!-- 根据商品ID查询关系 -->
+  <select id="selectByGoodId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from good_shop_type_relation
+    where GOOD_ID = #{goodId,jdbcType=BIGINT}
+  </select>
+  <!-- 根据商品分类ID查询关系 -->
+  <select id="selectByShopTypeId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from good_shop_type_relation
+    where SHOP_TYPE_ID = #{shopTypeId,jdbcType=BIGINT}
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from good_shop_type_relation
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from good_shop_type_relation
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <!-- 根据商品ID删除商品分类关系 -->
+  <delete id="deleteAllByGoodId" parameterType="java.lang.Long" >
+    delete from good_shop_type_relation
+    where GOOD_ID = #{goodId,jdbcType=BIGINT}
+  </delete>
+  
+    <delete id="deleteAllByShopTypeId" parameterType="java.lang.Long" >
+    delete from good_shop_type_relation
+    where SHOP_TYPE_ID = #{shopTypeId,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterType="com.zjlp.face.web.server.product.good.domain.GoodShopTypeRelation" >
+    	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+   insert into good_shop_type_relation (ID, SHOP_TYPE_ID, GOOD_ID)
+    values (#{id,jdbcType=BIGINT}, #{shopTypeId,jdbcType=BIGINT}, #{goodId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.product.good.domain.GoodShopTypeRelation" >
+    	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into good_shop_type_relation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="shopTypeId != null" >
+        SHOP_TYPE_ID,
+      </if>
+      <if test="goodId != null" >
+        GOOD_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="shopTypeId != null" >
+        #{shopTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="goodId != null" >
+        #{goodId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.product.good.domain.GoodShopTypeRelation" >
+    update good_shop_type_relation
+    <set >
+      <if test="shopTypeId != null" >
+        SHOP_TYPE_ID = #{shopTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="goodId != null" >
+        GOOD_ID = #{goodId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.product.good.domain.GoodShopTypeRelation" >
+    update good_shop_type_relation
+    set SHOP_TYPE_ID = #{shopTypeId,jdbcType=BIGINT},
+      GOOD_ID = #{goodId,jdbcType=BIGINT}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

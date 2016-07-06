@@ -1,0 +1,595 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjlp.face.web.mapper.MemberCardMapper" >
+  <resultMap id="BaseResultMap" type="com.zjlp.face.web.server.operation.member.domain.MemberCard" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="SELLER_ID" property="sellerId" jdbcType="BIGINT" />
+    <result column="USER_ID" property="userId" jdbcType="BIGINT" />
+    <result column="OPEN_ID" property="openId" jdbcType="VARCHAR" />
+    <result column="FAKE_ID" property="fakeId" jdbcType="VARCHAR" />
+    <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+    <result column="CELL" property="cell" jdbcType="VARCHAR" />
+    <result column="MEMBER_CARD" property="memberCard" jdbcType="VARCHAR" />
+    <result column="MEMBER_CARD_PREFIX" property="memberCardPrefix" jdbcType="VARCHAR" />
+    <result column="MEMBER_CARD_NO" property="memberCardNo" jdbcType="INTEGER" />
+    <result column="AMOUNT" property="amount" jdbcType="BIGINT" />
+    <result column="REAL_AMOUNT" property="realAmount" jdbcType="BIGINT" />
+    <result column="GIFT_AMOUNT" property="giftAmount" jdbcType="BIGINT" />
+    <result column="CONSUMPTION_AMOUT" property="consumptionAmout" jdbcType="BIGINT" />
+    <result column="REAL_CONSUMPTION_ACCOUNT" property="realConsumptionAccount" jdbcType="BIGINT" />
+    <result column="AVAILABLE_INTEGRAL" property="availableIntegral" jdbcType="BIGINT" />
+    <result column="FROZEN_INTEGRAL" property="frozenIntegral" jdbcType="BIGINT" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="IMG_PATH" property="imgPath" jdbcType="VARCHAR" />
+    <result column="CLAIM_TIME" property="claimTime" jdbcType="TIMESTAMP" />
+    <result column="SEX" property="sex" jdbcType="INTEGER" />
+    <result column="ADDRESS_DETAIL" property="addressDetail" jdbcType="VARCHAR" />
+    <result column="V_AREA_CODE" property="vAreaCode" jdbcType="INTEGER" />
+    <result column="PROVINCE" property="province" jdbcType="VARCHAR" />
+    <result column="CITY" property="city" jdbcType="VARCHAR" />
+    <result column="DISTRICT" property="district" jdbcType="VARCHAR" />
+    <result column="BIRTHDAY" property="birthday" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="BaseResultDtoMap" type="com.zjlp.face.web.server.operation.member.domain.dto.MemberCardDto" extends="BaseResultMap">
+  <result column="CARD_IMG_PATH" property="cardImgPath" jdbcType="VARCHAR" />
+  <result column="CARD_NAME_COLOR" property="cardNameColor" jdbcType="VARCHAR" />
+  <result column="CARD_NO_COLOR" property="cardNoColor" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, SELLER_ID, USER_ID, OPEN_ID, FAKE_ID, USER_NAME, CELL, MEMBER_CARD, MEMBER_CARD_PREFIX, 
+    MEMBER_CARD_NO, AMOUNT, REAL_AMOUNT, GIFT_AMOUNT, CONSUMPTION_AMOUT, REAL_CONSUMPTION_ACCOUNT, AVAILABLE_INTEGRAL, 
+    FROZEN_INTEGRAL, STATUS, IMG_PATH, CLAIM_TIME, SEX, ADDRESS_DETAIL, V_AREA_CODE, 
+    PROVINCE, CITY, DISTRICT, BIRTHDAY, REMARK, CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from member_card
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="getMemberCard" resultMap="BaseResultMap" parameterType="com.zjlp.face.web.server.operation.member.domain.MemberCard" >
+    select 
+    mc.*, me.img_path CARD_IMG_PATH
+    from member_card mc left join member_enactment me on mc.SELLER_ID = me.SELLER_ID
+    <where>
+    	<if test="id != null">
+    		and mc.ID = #{id,jdbcType=BIGINT}
+    	</if>
+    	<if test="sellerId != null">
+    		and mc.SELLER_ID = #{sellerId,jdbcType=BIGINT}
+    	</if>
+    	<if test="userId != null">
+    		and mc.USER_ID = #{userId,jdbcType=BIGINT}
+    	</if>
+    	<if test="openId != null">
+    		and mc.OPEN_ID = #{openId,jdbcType=VARCHAR}
+    	</if>
+    	<if test="fakeId != null">
+    		and mc.FAKE_ID = #{fakeId,jdbcType=VARCHAR}
+    	</if>
+    </where>
+  </select>
+  <select id="getMemberCardForShow" resultMap="BaseResultDtoMap" parameterType="com.zjlp.face.web.server.operation.member.domain.dto.MemberCardDto" >
+    select mc.*, me.img_path CARD_IMG_PATH, me.CARD_NAME_COLOR, me.CARD_NO_COLOR
+	from member_card mc  left join member_wechat_relation mwr on mc.id = mwr.member_card_id 
+	left join member_enactment me on mc.seller_id = me.seller_id
+    <where>
+    	<if test="shopNo != null">
+    		mwr.shop_no = #{shopNo,jdbcType=VARCHAR}
+    	</if>
+    	<if test="sellerId != null">
+    		and mwr.SELLER_ID = #{sellerId,jdbcType=BIGINT}
+    	</if>
+    	<if test="openId != null">
+    		and mwr.OPEN_ID = #{openId,jdbcType=VARCHAR}
+    	</if>
+    </where>
+  </select>
+  <select id="getMemberCardForWap" resultMap="BaseResultDtoMap" parameterType="com.zjlp.face.web.server.operation.member.domain.dto.MemberCardDto" >
+    select 
+    mc.*, me.img_path CARD_IMG_PATH, me.CARD_NAME_COLOR , me.CARD_NO_COLOR 
+    from member_card mc left join member_enactment me on mc.SELLER_ID = me.SELLER_ID
+    <where>
+    	<if test="id != null">
+    		and mc.ID = #{id,jdbcType=BIGINT}
+    	</if>
+    	<if test="sellerId != null">
+    		and mc.SELLER_ID = #{sellerId,jdbcType=BIGINT}
+    	</if>
+    	<if test="userId != null">
+    		and mc.USER_ID = #{userId,jdbcType=BIGINT}
+    	</if>
+    	<if test="openId != null">
+    		and mc.OPEN_ID = #{openId,jdbcType=VARCHAR}
+    	</if>
+    </where>
+  </select>
+  <select id="getLastMemberCardBySellerId" resultType="java.lang.Integer" parameterType="java.lang.Long" >
+    select 
+    max(MEMBER_CARD_NO)
+    from member_card
+    where SELLER_ID = #{sellerId,jdbcType=BIGINT}
+    and status in (0, 1)
+  </select>
+  <select id="findPageList" resultMap="BaseResultDtoMap" parameterType="java.util.Map">
+  	select 
+    mc.*, me.img_path CARD_IMG_PATH, me.CARD_NAME_COLOR, me.CARD_NO_COLOR 
+    from member_card mc left join member_enactment me on mc.SELLER_ID = me.SELLER_ID
+    <where>
+    	<if test="memberCardDto.userId != null">
+    		mc.user_id = #{memberCardDto.userId, jdbcType=BIGINT}
+    	</if>
+    </where>
+    order by mc.create_time Desc
+    limit #{start},#{pageSize}
+  </select>
+  <select id="getPageCount" resultType="java.lang.Integer" parameterType="com.zjlp.face.web.server.operation.member.domain.dto.MemberCardDto" >
+  	select
+  	count(id)
+  	from member_card
+    <where>
+    	<if test="userId != null">
+    		user_id = #{userId, jdbcType=BIGINT}
+    	</if>
+    </where>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from member_card
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zjlp.face.web.server.operation.member.domain.MemberCard" >
+  	<selectKey keyProperty="id" resultType="long" order="AFTER">  
+        SELECT LAST_INSERT_ID();  
+    </selectKey> 
+    insert into member_card (ID, SELLER_ID, USER_ID, 
+      OPEN_ID, FAKE_ID, USER_NAME, 
+      CELL, MEMBER_CARD, MEMBER_CARD_PREFIX, 
+      MEMBER_CARD_NO, AMOUNT, CONSUMPTION_AMOUT, 
+      REAL_CONSUMPTION_ACCOUNT, AVAILABLE_INTEGRAL, 
+      FROZEN_INTEGRAL, STATUS, IMG_PATH, 
+      CLAIM_TIME, SEX, ADDRESS_DETAIL, 
+      V_AREA_CODE, PROVINCE, CITY, 
+      DISTRICT, BIRTHDAY, REMARK, 
+      CREATE_TIME, UPDATE_TIME)
+    values (#{id,jdbcType=BIGINT}, #{sellerId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, 
+      #{openId,jdbcType=VARCHAR}, #{fakeId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+      #{cell,jdbcType=VARCHAR}, #{memberCard,jdbcType=VARCHAR}, #{memberCardPrefix,jdbcType=VARCHAR}, 
+      #{memberCardNo,jdbcType=INTEGER}, #{amount,jdbcType=BIGINT}, #{consumptionAmout,jdbcType=BIGINT}, 
+      #{realConsumptionAccount,jdbcType=BIGINT}, #{availableIntegral,jdbcType=BIGINT}, 
+      #{frozenIntegral,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, #{imgPath,jdbcType=VARCHAR}, 
+      #{claimTime,jdbcType=TIMESTAMP}, #{sex,jdbcType=INTEGER}, #{addressDetail,jdbcType=VARCHAR}, 
+      #{vAreaCode,jdbcType=INTEGER}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{district,jdbcType=VARCHAR}, #{birthday,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjlp.face.web.server.operation.member.domain.MemberCard" >
+  	<selectKey keyProperty="id" resultType="long" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into member_card
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="sellerId != null" >
+        SELLER_ID,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="openId != null" >
+        OPEN_ID,
+      </if>
+      <if test="fakeId != null" >
+        FAKE_ID,
+      </if>
+      <if test="userName != null" >
+        USER_NAME,
+      </if>
+      <if test="cell != null" >
+        CELL,
+      </if>
+      <if test="memberCard != null" >
+        MEMBER_CARD,
+      </if>
+      <if test="memberCardPrefix != null" >
+        MEMBER_CARD_PREFIX,
+      </if>
+      <if test="memberCardNo != null" >
+        MEMBER_CARD_NO,
+      </if>
+      <if test="amount != null" >
+        AMOUNT,
+      </if>
+      <if test="realAmount != null" >
+        REAL_AMOUNT,
+      </if>
+      <if test="giftAmount != null" >
+        GIFT_AMOUNT,
+      </if>
+      <if test="consumptionAmout != null" >
+        CONSUMPTION_AMOUT,
+      </if>
+      <if test="realConsumptionAccount != null" >
+        REAL_CONSUMPTION_ACCOUNT,
+      </if>
+      <if test="availableIntegral != null" >
+        AVAILABLE_INTEGRAL,
+      </if>
+      <if test="frozenIntegral != null" >
+        FROZEN_INTEGRAL,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="imgPath != null" >
+        IMG_PATH,
+      </if>
+      <if test="claimTime != null" >
+        CLAIM_TIME,
+      </if>
+      <if test="sex != null" >
+        SEX,
+      </if>
+      <if test="addressDetail != null" >
+        ADDRESS_DETAIL,
+      </if>
+      <if test="vAreaCode != null" >
+        V_AREA_CODE,
+      </if>
+      <if test="province != null" >
+        PROVINCE,
+      </if>
+      <if test="city != null" >
+        CITY,
+      </if>
+      <if test="district != null" >
+        DISTRICT,
+      </if>
+      <if test="birthday != null" >
+        BIRTHDAY,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="sellerId != null" >
+        #{sellerId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="openId != null" >
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="fakeId != null" >
+        #{fakeId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="cell != null" >
+        #{cell,jdbcType=VARCHAR},
+      </if>
+      <if test="memberCard != null" >
+        #{memberCard,jdbcType=VARCHAR},
+      </if>
+      <if test="memberCardPrefix != null" >
+        #{memberCardPrefix,jdbcType=VARCHAR},
+      </if>
+      <if test="memberCardNo != null" >
+        #{memberCardNo,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=BIGINT},
+      </if>
+      <if test="realAmount != null" >
+      	#{realAmount,jdbcType=BIGINT},
+      </if>
+      <if test="giftAmount != null" >
+        #{giftAmount,jdbcType=BIGINT},
+      </if>
+      <if test="consumptionAmout != null" >
+        #{consumptionAmout,jdbcType=BIGINT},
+      </if>
+      <if test="realConsumptionAccount != null" >
+        #{realConsumptionAccount,jdbcType=BIGINT},
+      </if>
+      <if test="availableIntegral != null" >
+        #{availableIntegral,jdbcType=BIGINT},
+      </if>
+      <if test="frozenIntegral != null" >
+        #{frozenIntegral,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="imgPath != null" >
+        #{imgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="claimTime != null" >
+        #{claimTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="addressDetail != null" >
+        #{addressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="vAreaCode != null" >
+        #{vAreaCode,jdbcType=INTEGER},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null" >
+        #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjlp.face.web.server.operation.member.domain.MemberCard" >
+    update member_card
+    <set >
+      <if test="sellerId != null" >
+        SELLER_ID = #{sellerId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="openId != null" >
+        OPEN_ID = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="fakeId != null" >
+        FAKE_ID = #{fakeId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="cell != null" >
+        CELL = #{cell,jdbcType=VARCHAR},
+      </if>
+      <if test="memberCard != null" >
+        MEMBER_CARD = #{memberCard,jdbcType=VARCHAR},
+      </if>
+      <if test="memberCardPrefix != null" >
+        MEMBER_CARD_PREFIX = #{memberCardPrefix,jdbcType=VARCHAR},
+      </if>
+      <if test="memberCardNo != null" >
+        MEMBER_CARD_NO = #{memberCardNo,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null" >
+        AMOUNT = #{amount,jdbcType=BIGINT},
+      </if>
+      <if test="realAmount != null" >
+        REAL_AMOUNT = #{realAmount,jdbcType=BIGINT},
+      </if>
+      <if test="giftAmount != null" >
+        GIFT_AMOUNT = #{giftAmount,jdbcType=BIGINT},
+      </if>
+      <if test="consumptionAmout != null" >
+        CONSUMPTION_AMOUT = #{consumptionAmout,jdbcType=BIGINT},
+      </if>
+      <if test="realConsumptionAccount != null" >
+        REAL_CONSUMPTION_ACCOUNT = #{realConsumptionAccount,jdbcType=BIGINT},
+      </if>
+      <if test="availableIntegral != null" >
+        AVAILABLE_INTEGRAL = #{availableIntegral,jdbcType=BIGINT},
+      </if>
+      <if test="frozenIntegral != null" >
+        FROZEN_INTEGRAL = #{frozenIntegral,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="imgPath != null" >
+        IMG_PATH = #{imgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="claimTime != null" >
+        CLAIM_TIME = #{claimTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sex != null" >
+        SEX = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="addressDetail != null" >
+        ADDRESS_DETAIL = #{addressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="vAreaCode != null" >
+        V_AREA_CODE = #{vAreaCode,jdbcType=INTEGER},
+      </if>
+      <if test="province != null" >
+        PROVINCE = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        CITY = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null" >
+        DISTRICT = #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        BIRTHDAY = #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjlp.face.web.server.operation.member.domain.MemberCard" >
+    update member_card
+    set SELLER_ID = #{sellerId,jdbcType=BIGINT},
+      USER_ID = #{userId,jdbcType=BIGINT},
+      OPEN_ID = #{openId,jdbcType=VARCHAR},
+      FAKE_ID = #{fakeId,jdbcType=VARCHAR},
+      USER_NAME = #{userName,jdbcType=VARCHAR},
+      CELL = #{cell,jdbcType=VARCHAR},
+      MEMBER_CARD = #{memberCard,jdbcType=VARCHAR},
+      MEMBER_CARD_PREFIX = #{memberCardPrefix,jdbcType=VARCHAR},
+      MEMBER_CARD_NO = #{memberCardNo,jdbcType=INTEGER},
+      AMOUNT = #{amount,jdbcType=BIGINT},
+      REAL_AMOUNT = #{realAmount,jdbcType=BIGINT},
+      GIFT_AMOUNT = #{giftAmount,jdbcType=BIGINT},
+      CONSUMPTION_AMOUT = #{consumptionAmout,jdbcType=BIGINT},
+      REAL_CONSUMPTION_ACCOUNT = #{realConsumptionAccount,jdbcType=BIGINT},
+      AVAILABLE_INTEGRAL = #{availableIntegral,jdbcType=BIGINT},
+      FROZEN_INTEGRAL = #{frozenIntegral,jdbcType=BIGINT},
+      STATUS = #{status,jdbcType=INTEGER},
+      IMG_PATH = #{imgPath,jdbcType=VARCHAR},
+      CLAIM_TIME = #{claimTime,jdbcType=TIMESTAMP},
+      SEX = #{sex,jdbcType=INTEGER},
+      ADDRESS_DETAIL = #{addressDetail,jdbcType=VARCHAR},
+      V_AREA_CODE = #{vAreaCode,jdbcType=INTEGER},
+      PROVINCE = #{province,jdbcType=VARCHAR},
+      CITY = #{city,jdbcType=VARCHAR},
+      DISTRICT = #{district,jdbcType=VARCHAR},
+      BIRTHDAY = #{birthday,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="findIntegralCountForWap" resultType="long">
+  	select available_integral from member_card where user_id = #{userId} and seller_id = #{sellerId}
+  </select>
+  <select id="findMemberCardIdByUserIdAndShopId" resultType="long">
+  	select id from member_card where user_id = #{userId} and seller_id = #{sellerId}
+  </select>
+  
+  <!-- 查询加锁 -->
+  <select id="selectByPrimaryKeyLock" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+      SELECT 
+          <include refid="Base_Column_List" />
+      FROM 
+          member_card
+      WHERE
+          ID = #{id,jdbcType=BIGINT}
+      FOR UPDATE
+  </select>
+  
+  <update id="updateAmount" parameterType="com.zjlp.face.web.server.operation.member.domain.MemberCard">
+      UPDATE
+          MEMBER_CARD
+      SET
+          AMOUNT = #{amount,jdbcType=BIGINT},
+          REAL_AMOUNT = #{realAmount,jdbcType=BIGINT},
+          GIFT_AMOUNT = #{giftAmount,jdbcType=BIGINT},
+          UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+      WHERE 
+          ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <update id="updateConsumptionAccount" parameterType="com.zjlp.face.web.server.operation.member.domain.MemberCard">
+      UPDATE
+          MEMBER_CARD
+      SET
+          CONSUMPTION_AMOUT = #{consumptionAmout,jdbcType=BIGINT},
+          REAL_CONSUMPTION_ACCOUNT = #{realConsumptionAccount,jdbcType=BIGINT},
+          UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+      WHERE 
+          ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="selectMemberCardList" resultMap="BaseResultDtoMap" parameterType="com.zjlp.face.web.server.operation.member.domain.dto.MemberCardDto">
+       select
+           <include refid="Base_Column_List" />
+       from
+           MEMBER_CARD
+       <where>
+           STATUS > -1
+           <if test="sellerId != null">
+               AND SELLER_ID = #{sellerId,jdbcType=BIGINT}
+           </if>
+           <if test="userId != null">
+               AND USER_ID = #{userId,jdbcType=BIGINT}
+           </if>
+       </where>
+  </select>
+  
+  <select id="selectCardPageForSeller" resultMap="BaseResultDtoMap" parameterType="com.zjlp.face.web.server.operation.member.domain.dto.MemberCardDto">
+       SELECT
+           <include refid="Base_Column_List" />
+       FROM
+           MEMBER_CARD
+       WHERE
+           SELLER_ID = #{sellerId,jdbcType=BIGINT}
+           AND STATUS > -1
+           <if test="maxAmount != null">
+               <![CDATA[ AND CONSUMPTION_AMOUT < #{maxAmount} ]]>
+           </if>
+           <if test="minAmount != null">
+           	   <![CDATA[ AND CONSUMPTION_AMOUT >= #{minAmount} ]]>
+           </if>
+           <if test="condition != null">
+               AND (USER_NAME LIKE CONCAT('%',#{condition},'%') OR CELL LIKE CONCAT('%',#{condition},'%'))
+           </if>
+       ORDER BY #{orderbySQL}
+       LIMIT #{aide.startNum}, #{aide.pageSizeNum}
+  </select>
+  
+  <select id="selectCountForSeller" resultType="java.lang.Integer" parameterType="com.zjlp.face.web.server.operation.member.domain.dto.MemberCardDto">
+       SELECT
+           COUNT(1)
+       FROM
+           MEMBER_CARD
+       WHERE
+           SELLER_ID = #{sellerId,jdbcType=BIGINT}
+           AND STATUS > -1
+           <if test="maxAmount != null">
+               <![CDATA[ AND CONSUMPTION_AMOUT < #{maxAmount} ]]>
+           </if>
+           <if test="minAmount != null">
+           	   <![CDATA[ AND CONSUMPTION_AMOUT >= #{minAmount} ]]>
+           </if>
+           <if test="condition != null">
+               AND (USER_NAME LIKE CONCAT('%',#{condition},'%') OR CELL LIKE CONCAT('%',#{condition},'%'))
+           </if>
+  </select>
+  <select id="selectByShopNoAndUserId" resultMap="BaseResultDtoMap" parameterType="com.zjlp.face.web.server.operation.member.domain.dto.MemberCardDto">
+       SELECT
+           mc.ID, mc.SELLER_ID, mc.USER_ID, mc.OPEN_ID, mc.USER_NAME, mc.CELL, mc.MEMBER_CARD, mc.MEMBER_CARD_PREFIX, 
+		   mc.MEMBER_CARD_NO, mc.AMOUNT, mc.CONSUMPTION_AMOUT, mc.REAL_CONSUMPTION_ACCOUNT, mc.AVAILABLE_INTEGRAL, 
+		   mc.FROZEN_INTEGRAL, mc.STATUS, mc.IMG_PATH, mc.CLAIM_TIME, mc.SEX, mc.ADDRESS_DETAIL, mc.V_AREA_CODE, 
+		   mc.PROVINCE, mc.CITY, mc.DISTRICT, mc.BIRTHDAY, mc.REMARK, mc.CREATE_TIME, mc.UPDATE_TIME,mc.REAL_AMOUNT,mc.GIFT_AMOUNT
+       FROM
+           MEMBER_CARD AS mc
+       LEFT JOIN
+           SHOP AS sp ON (mc.SELLER_ID = sp.USER_ID)
+       WHERE
+           sp.NO = #{shopNo,jdbcType=VARCHAR}
+           AND mc.USER_ID = #{userId,jdbcType=BIGINT}
+  </select>
+</mapper>

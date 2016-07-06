@@ -1,0 +1,64 @@
+@charset "utf-8";
+/*  
+* @description: 预览公用样式
+* @author: sf
+* @update:
+*/
+body{
+ 	font-size:14px;
+ } 
+.slideBox,.container{
+ 	margin:0;
+ }
+.container{ 
+	width: 320px;
+	min-width: 320px;
+}
+.outbox{
+	width:379px;
+	height:770px;
+	overflow:hidden;
+	background:url(../../../img/bg-iphone320.png) no-repeat;
+    position: relative;
+}
+.inbox{
+	width:320px;
+	height:568px;
+	overflow:auto;
+	margin:100px auto 0;
+	padding-top:64px;
+	background:#F4F4F4;
+	position:relative;
+}
+.nav-bar{
+	right:10px;
+	top:70px;
+}
+.m-nav-bottom{
+	position:absolute;
+}
+.m-nav-bottom img{
+	width:100%;
+	height:44px;
+	overflow:hidden;
+	margin:0 auto;
+} 
+
+/* 微信的头部 */
+.wxhead{
+	width: 379px;
+	height: 64px;
+	background: url(../../../img/wxhead.jpg) no-repeat;
+	overflow: hidden;
+	position: absolute;
+	top: 100px;
+	left:30px;
+	text-align: center;
+	z-index: 99;
+	line-height: 85px;
+	color: #fff;
+}
+.wxhead-title{
+	width:320px;
+	text-align:center;
+}
